@@ -1,0 +1,520 @@
+*
+	margin 0
+	padding 0
+
+body
+	font-family Arial, Helvetica, sans-serif
+	font-size 14px
+
+h1
+	font-size 18px
+	font-weight 100
+	padding 13px 0px 13px 0px
+	color #FFF
+	float left
+
+h2
+	font-size 24px
+	font-weight 100
+	margin 6px 0px 24px 0px
+	color #000
+
+h3
+	font-size 10px
+	font-weight 100
+	margin 0px 0px 10px 0px
+	color #999
+	float right
+	font-family Arial, Helvetica, sans-serif
+
+a
+	text-decoration none
+	color #64A3E1
+
+.main
+	margin-left auto
+	margin-right auto
+	width 900px
+
+.colRight
+	float right
+	width 63%
+
+.colLeft
+	width 33%
+
+.aRight
+	text-align right
+
+.fRight
+	float right
+
+.button
+	-moz-border-radius 3px
+	border-radius 3px
+	display inline-block
+	padding 3px 5px 3px 5px
+	background-color #8CD5D7
+	font-size 11px
+	color #000000
+	&:hover
+		background-color #00C4C2
+
+button
+	&.button
+		border 0 none
+		cursor pointer
+
+.head
+	width 100%
+	margin 20px 0px 26px 0px
+	padding 0px 0px 1px 0px
+	height 50px
+	margin 20px 0px 10px 0px
+	padding 0px 0px 1px 0px
+	height 75px
+	color #ccc
+
+.HIlogo
+	float right
+	margin 0px 20px 0px 0px
+
+.mainNav
+	float left
+	margin 16px 0px 0px 15px
+	a
+		font-family Arial, Helvetica, sans-serif
+		font-size 12px
+		color #333
+		margin 0px 10px 0px 0px
+		display inline-block
+
+.nav
+	margin 10px 15px 0px 5px
+	font-family Arial, Helvetica, sans-serif
+	select
+		background-color #fff
+		color #64A3E1
+		border 0px
+		padding 0px 3px 0px 3px
+		font-family Georgia, "Times New Roman", Times, serif
+	option
+		background-color #fff
+		color #64A3E1
+		padding 0px 10px 0px 3px
+		font-family Arial, Helvetica, sans-serif
+	input
+		background-color #333333
+		color #FFF
+		padding 3px 10px 3px 3px
+		border 1px solid #999
+		width 200px
+	.zoeken
+		background-color #333333
+		color #FFF
+		padding 4px 5px 3px 5px
+		border 1px solid #999
+		font-size 12px
+		cursor pointer
+		&:hover
+			background-color #666
+			color #fff
+
+.footer
+	padding 20px 0px 20px 0px
+	margin 50px 0px 50px 0px
+	border-top 1px solid #999
+	clear both
+	font-size 12px
+	color #CCCCCC
+
+.facets
+	background-color #F6F6F6
+	background-image url(../images/facetBG.png)
+	background-position top
+	background-repeat no-repeat
+	padding 40px 0px 0
+	margin 0px 0px 20px 0px
+	float left
+	width 300px
+	font-size 12px
+	li
+		min-height 13px
+
+.results
+	padding 20px 20px 20px 0px
+
+.resultHeader
+	padding 5px 0px 5px 0px
+	margin 5px 0px 0px 0px
+	list-style none
+	border-bottom 1px solid #E1ECF2
+	font-family Arial, Helvetica, sans-serif
+	color #999
+	font-size 11px
+
+.resultAmount
+	font-size 16px
+	font-weight bold
+
+.loading
+	.amount
+		display none
+
+.loading .resultAmount,.moreResultsItem.loading
+	background-repeat no-repeat
+	background-image url(../images/ajax-loader.gif)
+	background-color transparent
+	min-height 32px
+
+.moreResultsItem
+	margin-top 5px
+	background-position center 0
+	&.loading
+		button
+			display none
+
+.resultList
+	li
+		list-style none
+		height 32px
+
+.resultItem
+	padding 10px 0px 10px 0px
+	list-style none
+	border-bottom 1px solid #E1ECF2
+	cursor pointer
+	&:hover
+		background-color #EFEFEF !important
+		background-color #999
+
+.resultItemVersion
+	padding 5px 0px 5px 20px
+	display block
+	cursor pointer
+	font-family Arial, Helvetica, sans-serif
+	font-size 13px
+	color #000
+	&:hover
+		background-color #E7E7E7 !important
+		font-weight normal !important
+
+.resultCol
+	width 30%
+	float right
+	font-family Arial, Helvetica, sans-serif
+	color #000
+	font-size 14px
+	margin 0px 10px 10px 0px
+
+.resultCol3
+	text-align right
+
+.resultCol1
+	float left
+
+.searchString
+	font-weight bold
+
+.cutoffcolspan
+	display inline-block
+	max-width 100%
+	overflow hidden
+	white-space nowrap
+	text-overflow ellipsis
+
+.viewingDocument .colLeft,.viewingDocument .colRight,.viewingDocument .head
+	display none
+
+.viewingDocument
+	.head
+		&.subNavTop
+			display block
+
+li
+	&.filtered
+		display none
+
+.control
+	ul
+		margin 0px 0px 20px 0px
+	h2
+		font-size 11px
+		font-weight bold
+		padding 0 0 10px 0px
+		margin 0
+		color #999
+
+.facet
+	padding-bottom 20px
+	padding 10px 20px 20px 10px
+	border-bottom 1px solid #FFF
+	li
+		margin 0px 0px 0px 0px
+		list-style none
+
+.facetList
+	max-height 400px
+	overflow auto
+	padding 5px 0px 0px 0px
+	overflow auto
+	max-height 130px
+	height 130px
+	height auto !important
+	li
+		list-style none
+		font-size 11px
+		margin 0px 0px 3px 0px
+
+.facet li,.facet label,.facet span
+	cursor pointer
+
+.searchFacetBox
+	width 60%
+	&.smallbox
+		margin 0 30px 0 0
+	&.bigbox
+		padding 2px 2px 2px 2px
+		margin 0px 10px 0px 0px
+
+.suggestionBox
+	overflow auto
+	li
+
+.count
+	float right
+	color #999
+	padding 0px 10px 0px 0px
+
+.lineNumber
+	display none
+	font-family Arial, Helvetica, sans-serif
+	color #CCCCCC
+	padding 0px 5px 0px 0px
+	font-size 10px
+	line-height 10px
+
+.underline
+	text-decoration underline
+
+.italics
+	font-style italic
+
+.small_caps
+	font-variant small-caps
+
+.col3Bottom
+	margin -100px 0px 100px 0px
+
+.facsimileWrap
+	width 350px
+	border 1px solid #555
+	cursor pointer
+
+.facsimileOver
+	width 400px
+	height 100px
+	position absolute
+	background-image url(../images/ZoomIcon.png)
+	background-repeat no-repeat
+	background-position left top
+
+.facsimileColor
+	border-bottom 1px solid #555
+	height 2px
+
+.facsimile
+	z-index 100
+
+.pageNumbering
+	font-family Arial, Helvetica, sans-serif
+	font-size 12px
+	border-top 1px solid #555
+	padding 5px 0px 5px 10px
+
+.small
+	font-size 11px
+
+.italic
+	font-style italic
+
+.grey
+	color #999999
+
+.lineTop
+	border-top 1px solid #E5E5E5
+
+.thickUnderline
+	border-bottom 2px solid #999
+
+.detailCol01
+	margin 0px 0px 0px 0px
+	padding 15px 0px 15px 0px
+	float left
+	width 90px
+	color #999999
+
+.detailCol02
+	margin 0px 0px 0px 120px
+	padding 15px 0px 0px 0px
+	width 550px
+
+.detailCol03
+	margin 0px 0px 0px 0px
+	padding 15px 0px 15px 0px
+	float right
+	width 200px
+
+.readText
+	position relative
+	font-family Georgia, "Times New Roman", Times, serif
+	font-size 16px
+	line-height 20px
+	p
+		margin 0px 0px 15px 0px
+
+.annotation
+	margin 0px 0px 15px 0px
+	color #aaa
+	font-size 11px
+	.notenum
+		padding 1px 1px 1px 1px
+		margin 0px 0px 5px 0px
+		background-color #F3F3F3
+		font-size 10px
+		color #999999
+		display block
+		width 7px
+
+.notenum
+	color #FF66FF
+	cursor pointer
+	font-family Helvetica, Arial, sans-serif
+	margin 0px 0px 0px 1px
+	vertical-align 15%
+	font-size 11px
+
+.dMetadata
+	width 225px
+
+.dMetadataRow
+	margin 0px 0px 10px 0px
+	padding 10px 0px 0px 0px
+	overflow hidden
+
+.dMetadataToggleArea
+	display none
+	display block
+
+.showfullmetadata
+	.dMetadataToggleArea
+		display block
+
+.bigWhite
+	padding-top 60px
+
+.searchterm
+	background-color #F2F6A1
+
+.swapsort
+	border 0 none
+	width 20px
+	height 20px
+	vertical-align top
+	margin 2px 0 0 3px
+	display inline-block
+	background-color transparent
+	&.asc
+		background-image url(../images/sort-up.png)
+	&.desc
+		background-image url(../images/sort-down.png)
+
+.correspondenceswitch
+	font-size 0.85em
+	color #999
+	margin 0 0 3px 0
+
+#printbtn
+	margin 0 0 0 20px
+
+.facsimileLinkContainer
+	position relative
+
+.facsimileLink
+	padding-top 5px
+
+.dialog
+	display none
+	position absolute
+	position fixed
+	-moz-border-radius 5px
+	-webkit-border-radius 5px
+	-o-border-radius 5px
+	-ms-border-radius 5px
+	border-radius 5px
+	-moz-box-shadow 1px 1px 1px #ccc
+	-webkit-box-shadow 1px 1px 1px #ccc
+	box-shadow 1px 1px 1px #ccc
+	background-color #D5E7EC
+	z-index 3000
+	left 50%
+	top 50%
+
+.dialogHeader
+	font-size 16px
+	font-weight bold
+	padding 20px
+	float none
+
+.dialogBody
+	margin 0
+	padding 20px
+	background-color #F2F8F9
+	overflow auto
+	max-height 350px
+
+.dialogFooter
+	padding 10px
+	min-height 5px
+	button
+		min-width 70px
+		margin 3px 20px
+
+.darkmask
+	display none
+	position fixed
+	top 0
+	left 0
+	right 0
+	bottom 0
+	opacity 0.7
+	// filter alpha(opacity = 70)
+	z-index 2999
+	background-color #000
+	*background-color transparent
+
+.close
+	float right
+	display inline-block
+	padding 3px 7px
+	cursor pointer
+	-moz-border-radius 5px
+	-webkit-border-radius 5px
+	-o-border-radius 5px
+	-ms-border-radius 5px
+	border-radius 5px
+	background-color #666
+	color #FFF
+	&:hover
+		color #000
+		text-decoration none
+
+.print-dialog
+	width 300px
+	height 200px
+	margin -100px 0 0 -150px
+
+@media
+	print
+		#letter .head, .facsimileLinkContainer a, .dMetadataToggleBtn
+			display none

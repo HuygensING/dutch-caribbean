@@ -1,0 +1,46 @@
+{
+  "name": "dutch-caribbean",
+  "version": "0.0.0",
+  "author": " (https://github.com/Gijsjan)",
+  "main": "app/index.js",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/Gijsjan/generator-backbone-amd.git"
+  },
+  "scripts": {
+    "test": "node ./.test/bin/server.js",
+    "start": "coffee ./server.coffee"
+  },
+  "devDependencies": {
+    "coffee-script": "*",
+    "stylus": "*",
+    "jade": "*",
+    "underscore": "*",
+    "express": "*",
+    "grunt": "*",
+    "grunt-shell": "*",
+    "grunt-contrib-watch": "*",
+    "grunt-contrib-coffee": "*",
+    "grunt-contrib-jade": "*",
+    "grunt-contrib-stylus": "*"
+  },
+  "description": "ERROR: No README.md file found!",
+  "directories": {
+    "test": "test"
+  },
+  "dependencies": {
+    "grunt": "~0.4.1",
+    "grunt-contrib-coffee": "~0.7.0",
+    "grunt-contrib-copy": "~0.4.1",
+    "grunt-contrib-requirejs": "~0.4.1",
+    "grunt-contrib-jade": "~0.7.0",
+    "grunt-contrib-stylus": "~0.6.0",
+    "grunt-contrib-uglify": "~0.2.2",
+    "grunt-contrib-watch": "~0.4.4",
+    "grunt-shell": "~0.3.1",
+    "grunt-text-replace": "~0.3.6",
+    "underscore": "~1.5.1",
+    "yeoman": "~0.9.6"
+  },
+  "license": "BSD"
+}

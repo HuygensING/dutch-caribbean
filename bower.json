@@ -1,0 +1,18 @@
+{
+	"name": "dutch-caribbean",
+	"version": "0.0.0",
+	"dependencies": {
+		"requirejs": "*",
+		"requirejs-text": "*",
+		"requirejs-domready": "*",
+		"jquery": "*",
+		"underscore-amd": "*",
+		"backbone-amd": "*",
+		"faceted-search": "ssh://jonaa@hi7dev.huygens.knaw.nl/data/git/git/faceted-search.git"
+	},
+	"devDependencies": {
+		"mocha": "*",
+		"chai": "*"
+	}
+}
+
