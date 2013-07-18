@@ -26,8 +26,11 @@ define (require) ->
 
 		'routes':
 			'': 'home'
+			'creator/results': 'home_creator'
 			'creator/:id': 'creator'
+			'archive/results': 'home_archive'
 			'archive/:id': 'archive'
+			'legislation/results': 'home_legislation'
 			'legislation/:id': 'legislation'
 
 		home: ->
