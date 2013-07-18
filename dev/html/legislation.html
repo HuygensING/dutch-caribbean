@@ -1,0 +1,29 @@
+
+<div class="breadcrumbs">
+  <div class="line"></div>
+  <ul>
+    <li><a href="/legislation/results">Search results</a></li><% if (model.titleEng) { %>
+    <li class="active"><a href="/legislation/"><%= model.titleEng.length > 70 ? model.titleEng.substr(0,70) + '...' : model.titleEng %></a></li><% } %>
+  </ul>
+</div>
+<div class="content">
+  <div class="panel-left">
+    <h2>Legislation<span><%- model.titleEng %></span></h2>
+    <div class="contents"><%= model.contents %></div>
+    <div class="archival-source"><%= model.originalArchivalSource %></div>
+  </div>
+  <div class="panel-right">
+    <div class="subject">
+      <h4>Subject</h4>
+    </div>
+    <div class="relevant-dates">
+      <h4>Relevant dates</h4>
+    </div>
+    <div class="geography">
+      <h4>Geography</h4>
+    </div>
+    <div class="pages">
+      <h4>Pages</h4>
+    </div>
+  </div>
+</div>

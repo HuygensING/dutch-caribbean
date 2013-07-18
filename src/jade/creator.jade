@@ -1,0 +1,68 @@
+.breadcrumbs
+	.line
+	ul
+		li: a(href="/creator/results") Search results
+		| <% if (model.nameEng) { %>
+		li.active
+			| <a href="/creator/<%= model._id %>"><%= model.nameEng.length > 70 ? model.nameEng.substr(0,70) + '...' : model.nameEng %></a>
+		| <% } %>
+
+
+.content
+	.panel-left
+		h2
+			| Creator
+			span: <%- model.nameEng %>
+
+		.history
+			<%= model.history %>
+
+		<% if (model.notes) { %>
+		.remarks
+			h4 Remarks
+			<%= model.notes %>
+		<% } %>
+
+		| <% if (_.has(model, 'relatedArchives') && model.relatedArchives.length) { %>
+		.related-archives
+			h4 Related archives
+			ul
+				| <% _.each(model.relatedArchives, function (archive) { %>
+				li <a href="<%= config.archiveURL(archive.id) %>"><%- archive.displayName %></a>
+				| <% }) %>
+		| <% } %>
+
+		| <% if (_.has(model, 'relatedArchivers') && model.relatedArchivers.length) { %>
+		.related-creators
+			h4 Related creators
+			ul
+				| <% _.each(model.relatedArchivers, function (archiver) { %>
+				li <a href="<%= config.archiverURL(archiver.id) %>"><%- archiver.displayName %></a>
+				| <% }) %>
+		| <% } %>
+
+	.panel-right
+		| <% if (_.has(model, 'subjectKeywords') && model.subjectKeywords.length) { %>
+		.subject
+			h4 Subject
+			| <% _.each(model.subjectKeywords, function (kw) { %>
+			p <%= kw.displayName %>
+			| <% }) %>
+		| <% } %>
+
+		.date
+			h4 Date
+			p
+				| Begin date
+				span <%= model.beginDate %>
+			p
+				| End date
+				span <%= model.endDate %>
+
+		| <% if (_.has(model, 'placeKeywords') && model.placeKeywords.length) { %>
+		.geography
+			h4 Geography
+			| <% _.each(model.placeKeywords, function (place) { %>
+			p <%= place.displayName %>
+			| <% }) %>
+		| <% } %>

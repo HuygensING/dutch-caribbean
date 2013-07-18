@@ -1,0 +1,117 @@
+.tabs
+	ul
+		background-color #f1f1f1
+		background-image url('/images/tabs-slant.png')
+		width 299px
+		li
+			cursor pointer
+			list-style none
+			display inline-block
+			line-height 40px
+			padding-top 20px
+			width 32%
+			text-align center
+
+			&:hover
+				background-color lighten(#f1f1f1, 20%)
+				background-image url('/images/tabs-slant.png')
+
+
+.breadcrumbs
+	position relative
+	margin-top 50px
+	margin-bottom 45px
+	.line
+		position absolute
+		top 11px
+		border-top 1px solid breadCrumbLineColor
+		height 1px
+		width 100%
+		z-index -1
+
+	ul
+		z-index 1
+		breadBorder = 1px solid breadCrumbBorder
+		height 30px
+
+		li
+			list-style none
+			position relative
+			float left
+			background-image url('/images/breadcrumb-arrow.png')
+			background-repeat no-repeat
+			background-position right
+			background-color breadCrumbBackground
+			border-top breadBorder
+			border-bottom breadBorder
+			padding-right 10px
+
+			a
+				display inline-block
+				color breadCrumbTextColor
+				line-height 21px
+				padding 0 16px 0 8px
+
+		li.active a
+			color black
+		li:first-child a
+			border-left breadBorder
+		li:last-child
+
+			background-image url('/images/breadcrumb-arrow-end.png')
+
+		.triangle-right
+			display inline-block
+			position absolute
+			float right
+			width 0
+			height 0
+			border-top 10px solid transparent
+			border-bottom 10px solid transparent
+			border-left 11px solid #e5fbf9
+			margin 0 0 0 -5px
+
+.model-view
+	h2
+		color grey
+		span
+			margin-left: .5em
+			color black
+			font-weight 600
+
+	.history, .contents
+		line-height 20px
+		margin-bottom 50px
+
+	.remarks,
+	.related-archives,
+	.related-creators,
+	.subject,
+	.relevant-dates
+	.date,
+	.geography,
+	.pages
+		margin-bottom sectionMargin
+
+	.archival-source
+		font-weight bold
+		font-style italic
+
+	.subject
+		margin-top 1em
+
+	.date
+		p
+			span
+				padding 1em
+
+	.panel-left
+		h4
+			margin-bottom .5em
+
+		li
+			line-height 130%
+			list-style none
+		li a:before
+			content "\25B8"
+			margin-right .5em

@@ -14,13 +14,16 @@ define (require) ->
 			tpl = _.template Templates.Home
 			@$el.html tpl()
 
-			fs = new FacetedSearch
-				el: @$ config.facetedSearchElement
+			creatorSearch = new FacetedSearch
+				el: @$('.creator-search .faceted-search')
 				baseUrl: config.facetedSearchHost
 				searchUrl: config.searchPath
-				defaultQuery:
+				queryOptions:
 					term: '*'
-					typeString: 'person'
+					typeString: config.resources.creator
 					sort: 'id'
+			creatorSearch.$el
+			creatorSearch.on 'faceted-search:results', (results) =>
+				console.log results
 
 			@

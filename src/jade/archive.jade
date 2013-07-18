@@ -1,0 +1,53 @@
+.breadcrumbs
+	.line
+	ul
+		li: a(href="/archive/results") Search results
+		| <% if (model.titleEng) { %>
+		li.active <%= model.titleEng.length > 70 ? model.titleEng.substr(0,70) + '...' : model.titleEng %>
+		| <% } %>
+
+.content
+	.panel-left
+		h2
+			| Archive
+			span <%= model.titleEng %>
+
+		| <% if (_.has(model, 'underlyingArchives') && model.underlyingArchives.length) { %>
+		.related-archives
+			h4 Related archives
+			ul
+				| <% _.each(model.underlyingArchives, function (archive) { %>
+				li <a href="<%= config.archiveURL(archive.id) %>"><%- archive.displayName %></a>
+				| <% }) %>
+		| <% } %>
+
+		| <% if (_.has(model, 'creators') && model.creators.length) { %>
+		.related-creators
+			h4 Related creators
+			ul
+				| <% _.each(model.creators, function (archiver) { %>
+				li <a href="<%= config.archiverURL(archiver.id) %>"><%- archiver.displayName %></a>
+				| <% }) %>
+		| <% } %>
+
+	.panel-right
+		.reference
+			h4 Reference
+			<%= model.countries ? model.countries[0] + ' ' : '' %><%= model.refCodeArchive %> <%= model.refCode %>
+
+			| <% if (_.has(model, 'subjectKeywords') && model.subjectKeywords.length) { %>
+			.subject
+			h4 Subject
+
+			| <% _.each(model.subjectKeywords, function (kw) { %>
+			p <%= kw.displayName %>
+			| <% }) %>
+			| <% } %>
+
+			| <% if (_.has(model, 'placeKeywords') && model.placeKeywords.length) { %>
+			.geography
+			h4 Geography
+			| <% _.each(model.placeKeywords, function (place) { %>
+			p <%= place.displayName %>
+			| <% }) %>
+			| <% } %>

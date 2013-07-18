@@ -1,0 +1,32 @@
+.breadcrumbs
+	.line
+	ul
+		li: a(href="/legislation/results") Search results
+		| <% if (model.titleEng) { %>
+		li.active
+			| <a href="/legislation/"><%= model.titleEng.length > 70 ? model.titleEng.substr(0,70) + '...' : model.titleEng %></a>
+		| <% } %>
+
+.content
+	.panel-left
+		h2
+			| Legislation
+			span: <%- model.titleEng %>
+
+		.contents
+			<%= model.contents %>
+
+		.archival-source
+			<%= model.originalArchivalSource %>
+	.panel-right
+		.subject
+			h4 Subject
+
+		.relevant-dates
+			h4 Relevant dates
+
+		.geography
+			h4 Geography
+		
+		.pages
+			h4 Pages

@@ -9,7 +9,10 @@
     Pubsub = require('pubsub');
     currentUser = require('models/currentUser');
     Views = {
-      Home: require('views/home')
+      Home: require('views/home'),
+      Creator: require('views/creator'),
+      Archive: require('views/archive'),
+      Legislation: require('views/legislation')
     };
     return MainRouter = (function(_super) {
       __extends(MainRouter, _super);
@@ -35,11 +38,35 @@
       };
 
       MainRouter.prototype['routes'] = {
-        '': 'home'
+        '': 'home',
+        'creator/:id': 'creator',
+        'archive/:id': 'archive',
+        'legislation/:id': 'legislation'
       };
 
       MainRouter.prototype.home = function() {
         return this.view = Views.Home;
+      };
+
+      MainRouter.prototype.creator = function(id) {
+        this.view = Views.Creator;
+        return this.query = {
+          id: id
+        };
+      };
+
+      MainRouter.prototype.archive = function(id) {
+        this.view = Views.Archive;
+        return this.query = {
+          id: id
+        };
+      };
+
+      MainRouter.prototype.legislation = function(id) {
+        this.view = Views.Legislation;
+        return this.query = {
+          id: id
+        };
       };
 
       return MainRouter;

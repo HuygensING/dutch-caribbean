@@ -1,0 +1,46 @@
+
+<div class="breadcrumbs">
+  <div class="line"></div>
+  <ul>
+    <li><a href="/creator/results">Search results</a></li><% if (model.nameEng) { %>
+    <li class="active"><a href="/creator/<%= model._id %>"><%= model.nameEng.length > 70 ? model.nameEng.substr(0,70) + '...' : model.nameEng %></a></li><% } %>
+  </ul>
+</div>
+<div class="content">
+  <div class="panel-left">
+    <h2>Creator<span><%- model.nameEng %></span></h2>
+    <div class="history"><%= model.history %></div><% if (model.notes) { %>
+    <div class="remarks">
+      <h4>Remarks</h4><%= model.notes %>
+    </div><% } %>
+    <% if (_.has(model, 'relatedArchives') && model.relatedArchives.length) { %>
+    <div class="related-archives">
+      <h4>Related archives</h4>
+      <ul><% _.each(model.relatedArchives, function (archive) { %>
+        <li><a href="<%= config.archiveURL(archive.id) %>"><%- archive.displayName %></a></li><% }) %>
+      </ul>
+    </div><% } %>
+    <% if (_.has(model, 'relatedArchivers') && model.relatedArchivers.length) { %>
+    <div class="related-creators">
+      <h4>Related creators</h4>
+      <ul><% _.each(model.relatedArchivers, function (archiver) { %>
+        <li><a href="<%= config.archiverURL(archiver.id) %>"><%- archiver.displayName %></a></li><% }) %>
+      </ul>
+    </div><% } %>
+  </div>
+  <div class="panel-right"><% if (_.has(model, 'subjectKeywords') && model.subjectKeywords.length) { %>
+    <div class="subject">
+      <h4>Subject</h4><% _.each(model.subjectKeywords, function (kw) { %>
+      <p><%= kw.displayName %></p><% }) %>
+    </div><% } %>
+    <div class="date">
+      <h4>Date</h4>
+      <p>Begin date<span><%= model.beginDate %></span></p>
+      <p>End date<span><%= model.endDate %></span></p>
+    </div><% if (_.has(model, 'placeKeywords') && model.placeKeywords.length) { %>
+    <div class="geography">
+      <h4>Geography</h4><% _.each(model.placeKeywords, function (place) { %>
+      <p><%= place.displayName %></p><% }) %>
+    </div><% } %>
+  </div>
+</div>

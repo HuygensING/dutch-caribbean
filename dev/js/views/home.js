@@ -24,18 +24,23 @@
       };
 
       Home.prototype.render = function() {
-        var fs, tpl;
+        var creatorSearch, tpl,
+          _this = this;
         tpl = _.template(Templates.Home);
         this.$el.html(tpl());
-        fs = new FacetedSearch({
-          el: this.$(config.facetedSearchElement),
+        creatorSearch = new FacetedSearch({
+          el: this.$('.creator-search .faceted-search'),
           baseUrl: config.facetedSearchHost,
           searchUrl: config.searchPath,
-          defaultQuery: {
+          queryOptions: {
             term: '*',
-            typeString: 'person',
+            typeString: config.resources.creator,
             sort: 'id'
           }
+        });
+        creatorSearch.$el;
+        creatorSearch.on('faceted-search:results', function(results) {
+          return console.log(results);
         });
         return this;
       };

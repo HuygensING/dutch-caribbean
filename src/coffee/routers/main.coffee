@@ -6,6 +6,9 @@ define (require) ->
 
 	Views =
 		Home: require 'views/home'
+		Creator: require 'views/creator'
+		Archive: require 'views/archive'
+		Legislation: require 'views/legislation'
 
 	class MainRouter extends Backbone.Router
 		view: null
@@ -23,6 +26,24 @@ define (require) ->
 
 		'routes':
 			'': 'home'
+			'creator/:id': 'creator'
+			'archive/:id': 'archive'
+			'legislation/:id': 'legislation'
 
 		home: ->
 			@view = Views.Home
+
+		creator: (id) ->
+			@view = Views.Creator
+			@query =
+				id: id
+
+		archive: (id) ->
+			@view = Views.Archive
+			@query =
+				id: id
+
+		legislation: (id) ->
+			@view = Views.Legislation
+			@query =
+				id: id

@@ -1,0 +1,41 @@
+
+<div class="breadcrumbs">
+  <div class="line"></div>
+  <ul>
+    <li><a href="/archive/results">Search results</a></li><% if (model.titleEng) { %>
+    <li class="active"><%= model.titleEng.length > 70 ? model.titleEng.substr(0,70) + '...' : model.titleEng %></li><% } %>
+  </ul>
+</div>
+<div class="content">
+  <div class="panel-left">
+    <h2>Archive<span><%= model.titleEng %></span></h2><% if (_.has(model, 'underlyingArchives') && model.underlyingArchives.length) { %>
+    <div class="related-archives">
+      <h4>Related archives</h4>
+      <ul><% _.each(model.underlyingArchives, function (archive) { %>
+        <li><a href="<%= config.archiveURL(archive.id) %>"><%- archive.displayName %></a></li><% }) %>
+      </ul>
+    </div><% } %>
+    <% if (_.has(model, 'creators') && model.creators.length) { %>
+    <div class="related-creators">
+      <h4>Related creators</h4>
+      <ul><% _.each(model.creators, function (archiver) { %>
+        <li><a href="<%= config.archiverURL(archiver.id) %>"><%- archiver.displayName %></a></li><% }) %>
+      </ul>
+    </div><% } %>
+  </div>
+  <div class="panel-right">
+    <div class="reference">
+      <h4>Reference</h4><%= model.countries ? model.countries[0] + ' ' : '' %><%= model.refCodeArchive %> <%= model.refCode %>
+      <% if (_.has(model, 'subjectKeywords') && model.subjectKeywords.length) { %>
+      <div class="subject"></div>
+      <h4>Subject</h4><% _.each(model.subjectKeywords, function (kw) { %>
+      <p><%= kw.displayName %></p><% }) %>
+      <% } %>
+      <% if (_.has(model, 'placeKeywords') && model.placeKeywords.length) { %>
+      <div class="geography"></div>
+      <h4>Geography</h4><% _.each(model.placeKeywords, function (place) { %>
+      <p><%= place.displayName %></p><% }) %>
+      <% } %>
+    </div>
+  </div>
+</div>
