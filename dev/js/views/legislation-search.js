@@ -28,25 +28,23 @@
       };
 
       Search.prototype.render = function() {
-        var creatorSearch, tpl,
+        var legislationSearch, tpl,
           _this = this;
         tpl = _.template(Templates.Search);
         this.$el.html(tpl({
-          type: 'CREATOR'
+          type: 'LEGISLATION'
         }));
-        creatorSearch = new FacetedSearch({
+        legislationSearch = new FacetedSearch({
           el: this.$('.faceted-search'),
           baseUrl: config.facetedSearchHost,
           searchUrl: config.searchPath,
           queryOptions: {
             term: '*',
-            typeString: config.resources.creator.label,
-            sort: 'id'
+            typeString: config.resources.legislation.label
           }
         });
-        creatorSearch.on('faceted-search:results', function(results) {
-          resultsCache.set('creators', results);
-          _this.renderResults();
+        legislationSearch.on('faceted-search:results', function(results) {
+          resultsCache.set('archives', results);
           return console.log(results);
         });
         return this.renderResults();

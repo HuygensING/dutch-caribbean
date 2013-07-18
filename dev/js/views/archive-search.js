@@ -28,25 +28,24 @@
       };
 
       Search.prototype.render = function() {
-        var creatorSearch, tpl,
+        var archiveSearch, tpl,
           _this = this;
         tpl = _.template(Templates.Search);
         this.$el.html(tpl({
-          type: 'CREATOR'
+          type: 'ARCHIVE'
         }));
-        creatorSearch = new FacetedSearch({
+        archiveSearch = new FacetedSearch({
           el: this.$('.faceted-search'),
           baseUrl: config.facetedSearchHost,
           searchUrl: config.searchPath,
           queryOptions: {
             term: '*',
-            typeString: config.resources.creator.label,
+            typeString: config.resources.archive.label,
             sort: 'id'
           }
         });
-        creatorSearch.on('faceted-search:results', function(results) {
-          resultsCache.set('creators', results);
-          _this.renderResults();
+        archiveSearch.on('faceted-search:results', function(results) {
+          resultsCache.set('archives', results);
           return console.log(results);
         });
         return this.renderResults();

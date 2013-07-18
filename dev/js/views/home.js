@@ -3,12 +3,17 @@
     __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
 
   define(function(require) {
-    var BaseView, FacetedSearch, Home, Templates, config, resultsCache, _ref;
+    var BaseView, FacetedSearch, Home, Templates, Views, config, resultsCache, _ref;
     config = require('config');
     BaseView = require('views/base');
     FacetedSearch = require('faceted-search');
     Templates = {
       Home: require('text!html/home.html')
+    };
+    Views = {
+      ArchiveSearch: require('views/archive-search'),
+      CreatorSearch: require('views/creator-search'),
+      LegislationSearch: require('views/legislation-search')
     };
     resultsCache = require('models/results-cache');
     return Home = (function(_super) {
@@ -19,54 +24,51 @@
         return _ref;
       }
 
+      Home.prototype.events = {
+        'click .tabs li.archives': 'showArchives',
+        'click .tabs li.creators': 'showCreators',
+        'click .tabs li.legislation': 'showLegislation'
+      };
+
       Home.prototype.initialize = function(options) {
         Home.__super__.initialize.apply(this, arguments);
         this.activeTab = options.activeTab ? options.activeTab : '.creator-search';
         return this.render();
       };
 
+      Home.prototype.showArchives = function() {
+        this.$('.search-views > div:not(.archive-search)').hide();
+        this.$('.search-views .archive-search').show();
+        return this.$('.tabs li').removeClass('active').filter('.archives').addClass('active');
+      };
+
+      Home.prototype.showCreators = function() {
+        this.$('.search-views > div:not(.creator-search)').hide();
+        this.$('.search-views .creator-search').show();
+        return this.$('.tabs li').removeClass('active').filter('.creators').addClass('active');
+      };
+
+      Home.prototype.showLegislation = function() {
+        this.$('.search-views > div:not(.legislation-search)').hide();
+        this.$('.search-views .legislation-search').show();
+        return this.$('.tabs li').removeClass('active').filter('.legislation').addClass('active');
+      };
+
       Home.prototype.render = function() {
-        var archiveSearch, creatorSearch, legislationSearch, tpl,
-          _this = this;
+        var tpl;
         tpl = _.template(Templates.Home);
         this.$el.html(tpl());
-        creatorSearch = new FacetedSearch({
-          el: this.$('.creator-search .faceted-search'),
-          baseUrl: config.facetedSearchHost,
-          searchUrl: config.searchPath,
-          queryOptions: {
-            term: '*',
-            typeString: config.resources.creator.label,
-            sort: 'id'
-          }
+        new Views.ArchiveSearch({
+          el: this.$('.archive-search')
         });
-        creatorSearch.on('faceted-search:results', function(results) {
-          resultsCache.set('creators', results);
-          return console.log(results);
+        new Views.CreatorSearch({
+          el: this.$('.creator-search')
         });
-        archiveSearch = new FacetedSearch({
-          el: this.$('.archive-search .faceted-search'),
-          baseUrl: config.facetedSearchHost,
-          searchUrl: config.searchPath,
-          queryOptions: {
-            term: '*',
-            typeString: config.resources.archive.label,
-            sort: 'id'
-          }
+        new Views.LegislationSearch({
+          el: this.$('.legislation-search')
         });
-        archiveSearch.on('faceted-search:results', function(results) {
-          resultsCache.set('archives', results);
-          return console.log(results);
-        });
-        legislationSearch = new FacetedSearch({
-          el: this.$('.legislation-search .faceted-search'),
-          baseUrl: config.facetedSearchHost,
-          searchUrl: config.searchPath,
-          queryOptions: {
-            term: '*',
-            typeString: config.resources.legislation.label
-          }
-        });
+        this.$('.creator-search, .legislation-search').hide();
+        this.$('.tabs li.archives').addClass('active');
         return this;
       };
 

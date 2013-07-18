@@ -251,9 +251,11 @@
 .model-view .content .panel-left{position:absolute;width:600px;top:0}
 .model-view .content .panel-right{position:absolute;width:220px;top:0;left:720px}
 
-.tabs ul{background-color:#f1f1f1;background-image:url("/images/tabs-slant.png");width:299px;}
+.tabs{position:relative;background-color:#f1f1f1;width:299px;}
+.tabs img{position:absolute;top:0;z-index:1100;pointer-events:none}
 .tabs ul li{cursor:pointer;list-style:none;display:inline-block;line-height:40px;padding-top:20px;width:32%;text-align:center;}
-.tabs ul li:hover{background-color:#f4f4f4;background-image:url("/images/tabs-slant.png")}
+.tabs ul li:hover{background-color:#f5f5f5}
+.tabs ul li.active{font-weight:bold;background-color:#e5e5e5}
 .breadcrumbs{position:relative;margin-top:50px;margin-bottom:45px;}
 .breadcrumbs .line{position:absolute;top:11px;border-top:1px solid #e4ecef;height:1px;width:100%;z-index:-1}
 .breadcrumbs ul{z-index:1;height:30px;}

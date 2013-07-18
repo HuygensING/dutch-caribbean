@@ -1,8 +1,13 @@
 .tabs
+	position relative
+	background-color #f1f1f1
+	width 299px
+	img
+		position absolute
+		top 0
+		z-index 1100
+		pointer-events none
 	ul
-		background-color #f1f1f1
-		background-image url('/images/tabs-slant.png')
-		width 299px
 		li
 			cursor pointer
 			list-style none
@@ -11,10 +16,11 @@
 			padding-top 20px
 			width 32%
 			text-align center
-
 			&:hover
-				background-color lighten(#f1f1f1, 20%)
-				background-image url('/images/tabs-slant.png')
+				background-color lighten(#f1f1f1, 30%)
+			&.active
+				font-weight bold
+				background-color darken(#f1f1f1, 5%)
 
 
 .breadcrumbs

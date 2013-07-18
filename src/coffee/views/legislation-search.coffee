@@ -16,20 +16,18 @@ define (require) ->
 
 		render: ->
 			tpl = _.template Templates.Search
-			@$el.html tpl type: 'CREATOR'
+			@$el.html tpl type: 'LEGISLATION'
 
-			creatorSearch = new FacetedSearch
+			legislationSearch = new FacetedSearch
 				el: @$('.faceted-search')
 				baseUrl: config.facetedSearchHost
 				searchUrl: config.searchPath
 				queryOptions:
 					term: '*'
-					typeString: config.resources.creator.label
-					sort: 'id'
-
-			creatorSearch.on 'faceted-search:results', (results) =>
-				resultsCache.set 'creators', results
-				@renderResults()
+					typeString: config.resources.legislation.label
+			legislationSearch.on 'faceted-search:results', (results) =>
+				resultsCache.set 'archives', results
 				console.log results
 
 			@renderResults()
+
