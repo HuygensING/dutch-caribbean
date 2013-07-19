@@ -12,7 +12,7 @@ define (require) ->
 			@render()
 
 		renderResults: ->
-			console.log @resultsCache
+			# console.log @resultsCache
 
 		render: ->
 			tpl = _.template Templates.Search
@@ -27,7 +27,7 @@ define (require) ->
 					typeString: config.resources.legislation.label
 			legislationSearch.on 'faceted-search:results', (results) =>
 				resultsCache.set 'archives', results
-				console.log results
+				# console.log results
 
 			@renderResults()
 

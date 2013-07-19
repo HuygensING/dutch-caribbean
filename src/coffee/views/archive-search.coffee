@@ -9,10 +9,13 @@ define (require) ->
 
 	class Search extends BaseView
 		initialize: ->
+
 			@render()
 
-		renderResults: ->
-			console.log @resultsCache
+		renderResults: (results) ->
+			# console.log @resultsCache
+			console.log results
+			@$('.results').html 'myresults'
 
 		render: ->
 			tpl = _.template Templates.Search
@@ -28,7 +31,9 @@ define (require) ->
 					sort: 'id'
 			archiveSearch.on 'faceted-search:results', (results) =>
 				resultsCache.set 'archives', results
-				console.log results
+				# console.log results
+				@renderResults results
 
-			@renderResults()
-
+			# @renderResults()
+			@$('button').click (ev) =>
+				Backbone.history.navigate 'archive/AVE0000000077', trigger:true

@@ -1,19 +1,17 @@
+port = process.argv[2] || 3000 # Default to port 3000
+staticDir = if port % 2 is 0 then 'dev' else 'stage' # If the port is an even number go to dev/, if odd, go to stage/
+
 _ = require 'underscore'
 
 express = require('express')
 app = express()
 
+app.use express.static __dirname + '/' + staticDir
 app.use express.bodyParser()
+app.use express.compress()
 
-app.use express.static(__dirname + '/dev')
+app.all '/*', (req, res) ->
+  res.sendfile 'index.html', root: __dirname+'/'+staticDir	
 
-_writeResponse = (response, res) ->
-	console.log '_writeResponse: no http code!' if not response.code?
-	response.data = {} if not response.data?
-
-	res.writeHead response.code, 'Content-Type': 'application/json; charset=UTF-8'
-	res.end JSON.stringify(response.data)
-				
-
-app.listen 3000, 'localhost'
-console.log 'Node server running on http://localhost:3000'
+app.listen port, 'localhost'
+console.log "Server running #{staticDir}/ on http://localhost:#{port}"

@@ -12,7 +12,7 @@ define (require) ->
 			@render()
 
 		renderResults: ->
-			console.log @resultsCache
+			# console.log @resultsCache
 
 		render: ->
 			tpl = _.template Templates.Search
@@ -30,6 +30,6 @@ define (require) ->
 			creatorSearch.on 'faceted-search:results', (results) =>
 				resultsCache.set 'creators', results
 				@renderResults()
-				console.log results
+				# console.log results
 
 			@renderResults()

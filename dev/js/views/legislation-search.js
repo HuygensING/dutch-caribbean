@@ -23,9 +23,7 @@
         return this.render();
       };
 
-      Search.prototype.renderResults = function() {
-        return console.log(this.resultsCache);
-      };
+      Search.prototype.renderResults = function() {};
 
       Search.prototype.render = function() {
         var legislationSearch, tpl,
@@ -44,8 +42,7 @@
           }
         });
         legislationSearch.on('faceted-search:results', function(results) {
-          resultsCache.set('archives', results);
-          return console.log(results);
+          return resultsCache.set('archives', results);
         });
         return this.renderResults();
       };

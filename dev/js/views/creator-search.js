@@ -23,9 +23,7 @@
         return this.render();
       };
 
-      Search.prototype.renderResults = function() {
-        return console.log(this.resultsCache);
-      };
+      Search.prototype.renderResults = function() {};
 
       Search.prototype.render = function() {
         var creatorSearch, tpl,
@@ -46,8 +44,7 @@
         });
         creatorSearch.on('faceted-search:results', function(results) {
           resultsCache.set('creators', results);
-          _this.renderResults();
-          return console.log(results);
+          return _this.renderResults();
         });
         return this.renderResults();
       };

@@ -23,8 +23,9 @@
         return this.render();
       };
 
-      Search.prototype.renderResults = function() {
-        return console.log(this.resultsCache);
+      Search.prototype.renderResults = function(results) {
+        console.log(results);
+        return this.$('.results').html('myresults');
       };
 
       Search.prototype.render = function() {
@@ -46,9 +47,13 @@
         });
         archiveSearch.on('faceted-search:results', function(results) {
           resultsCache.set('archives', results);
-          return console.log(results);
+          return _this.renderResults(results);
         });
-        return this.renderResults();
+        return this.$('button').click(function(ev) {
+          return Backbone.history.navigate('archive/AVE0000000077', {
+            trigger: true
+          });
+        });
       };
 
       return Search;
