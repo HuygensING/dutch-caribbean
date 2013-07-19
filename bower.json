@@ -8,7 +8,9 @@
 		"jquery": "*",
 		"underscore-amd": "*",
 		"backbone-amd": "*",
-		"faceted-search": "ssh://jonaa@hi7dev.huygens.knaw.nl/data/git/git/faceted-search.git"
+		"managers": "https://github.com/Gijsjan/managers.git",
+		"helpers": "https://github.com/Gijsjan/helpers.git",
+		"almond": "*"
 	},
 	"devDependencies": {
 		"mocha": "*",
