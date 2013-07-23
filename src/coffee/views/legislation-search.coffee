@@ -8,11 +8,20 @@ define (require) ->
 	resultsCache = require 'models/results-cache'
 
 	class Search extends BaseView
+		events: ->
+			'click .results .body li': 'resultClicked'
+
+		resultClicked: (ev) ->
+			@publish 'navigate:entry', 'legislation/'+ev.currentTarget.id
+
 		initialize: ->
+			super
+
 			@render()
 
 		renderResults: (response) ->
-			@$('.results h3').html response.numFound + ' Archives found'
+			# console.log response
+			@$('.results h3').html response.numFound + ' Legislations found'
 
 			ul = document.createElement('ul')
 			_.each response.results, (result) =>

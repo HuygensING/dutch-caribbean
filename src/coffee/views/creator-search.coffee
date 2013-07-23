@@ -8,12 +8,20 @@ define (require) ->
 	resultsCache = require 'models/results-cache'
 
 	class Search extends BaseView
+		events: ->
+			'click .results .body li': 'resultClicked'
+
+		resultClicked: (ev) ->
+			@publish 'navigate:entry', 'creator/'+ev.currentTarget.id
+
 		initialize: ->
+			super
+			
 			@render()
 
 		renderResults: (response) ->
 			# console.log response
-			@$('.results h3').html response.numFound + ' Archives found'
+			@$('.results h3').html response.numFound + ' Creators found'
 
 			ul = document.createElement('ul')
 			_.each response.results, (result) =>

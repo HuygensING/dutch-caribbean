@@ -19,14 +19,25 @@
         return _ref;
       }
 
+      Search.prototype.events = function() {
+        return {
+          'click .results .body li': 'resultClicked'
+        };
+      };
+
+      Search.prototype.resultClicked = function(ev) {
+        return this.publish('navigate:entry', 'legislation/' + ev.currentTarget.id);
+      };
+
       Search.prototype.initialize = function() {
+        Search.__super__.initialize.apply(this, arguments);
         return this.render();
       };
 
       Search.prototype.renderResults = function(response) {
         var ul,
           _this = this;
-        this.$('.results h3').html(response.numFound + ' Archives found');
+        this.$('.results h3').html(response.numFound + ' Legislations found');
         ul = document.createElement('ul');
         _.each(response.results, function(result) {
           var li, small;
