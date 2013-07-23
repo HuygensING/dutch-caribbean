@@ -8,14 +8,33 @@ define (require) ->
 	resultsCache = require 'models/results-cache'
 
 	class Search extends BaseView
+
+		events: ->
+			'click .results .body li': 'resultClicked'
+
+		resultClicked: (ev) ->
+			@publish 'navigate:entry', 'archive/'+ev.currentTarget.id
+
 		initialize: ->
+			super 
 
 			@render()
 
-		renderResults: (results) ->
-			# console.log @resultsCache
-			console.log results
-			@$('.results').html 'myresults'
+		renderResults: (response) ->
+			@$('.results h3').html response.numFound + ' Archives found'
+
+			ul = document.createElement('ul')
+			_.each response.results, (result) =>
+				li = document.createElement 'li'
+				li.innerHTML = result.titleEng
+				li.id = result._id
+				small = document.createElement 'small'
+				small.innerHTML = '('+result.beginDate+'-'+result.endDate+')'
+				li.appendChild small
+				ul.appendChild li
+
+			@$('.results .body').html ul
+
 
 		render: ->
 			tpl = _.template Templates.Search
@@ -29,11 +48,6 @@ define (require) ->
 					term: '*'
 					typeString: config.resources.archive.label
 					sort: 'id'
-			archiveSearch.on 'faceted-search:results', (results) =>
-				resultsCache.set 'archives', results
-				# console.log results
-				@renderResults results
-
-			# @renderResults()
-			@$('button').click (ev) =>
-				Backbone.history.navigate 'archive/AVE0000000077', trigger:true
+			archiveSearch.on 'faceted-search:results', (response) =>
+				# resultsCache.set 'archives', response
+				@renderResults response

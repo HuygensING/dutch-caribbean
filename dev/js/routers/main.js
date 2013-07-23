@@ -23,8 +23,14 @@
       }
 
       MainRouter.prototype.initialize = function() {
+        var _this = this;
         _.extend(this, Pubsub);
-        return this.on('route', this.show, this);
+        this.on('route', this.show, this);
+        return this.subscribe('navigate:entry', function(route) {
+          return _this.navigate(route, {
+            trigger: true
+          });
+        });
       };
 
       MainRouter.prototype['routes'] = {

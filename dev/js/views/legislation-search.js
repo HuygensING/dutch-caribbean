@@ -23,7 +23,23 @@
         return this.render();
       };
 
-      Search.prototype.renderResults = function() {};
+      Search.prototype.renderResults = function(response) {
+        var ul,
+          _this = this;
+        this.$('.results h3').html(response.numFound + ' Archives found');
+        ul = document.createElement('ul');
+        _.each(response.results, function(result) {
+          var li, small;
+          li = document.createElement('li');
+          li.innerHTML = result.titleEng;
+          li.id = result._id;
+          small = document.createElement('small');
+          small.innerHTML = '(' + result.beginDate + '-' + result.endDate + ')';
+          li.appendChild(small);
+          return ul.appendChild(li);
+        });
+        return this.$('.results .body').html(ul);
+      };
 
       Search.prototype.render = function() {
         var legislationSearch, tpl,
@@ -41,10 +57,9 @@
             typeString: config.resources.legislation.label
           }
         });
-        legislationSearch.on('faceted-search:results', function(results) {
-          return resultsCache.set('archives', results);
+        return legislationSearch.on('faceted-search:results', function(response) {
+          return _this.renderResults(response);
         });
-        return this.renderResults();
       };
 
       return Search;

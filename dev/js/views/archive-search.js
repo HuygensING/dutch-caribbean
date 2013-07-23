@@ -19,13 +19,37 @@
         return _ref;
       }
 
+      Search.prototype.events = function() {
+        return {
+          'click .results .body li': 'resultClicked'
+        };
+      };
+
+      Search.prototype.resultClicked = function(ev) {
+        return this.publish('navigate:entry', 'archive/' + ev.currentTarget.id);
+      };
+
       Search.prototype.initialize = function() {
+        Search.__super__.initialize.apply(this, arguments);
         return this.render();
       };
 
-      Search.prototype.renderResults = function(results) {
-        console.log(results);
-        return this.$('.results').html('myresults');
+      Search.prototype.renderResults = function(response) {
+        var ul,
+          _this = this;
+        this.$('.results h3').html(response.numFound + ' Archives found');
+        ul = document.createElement('ul');
+        _.each(response.results, function(result) {
+          var li, small;
+          li = document.createElement('li');
+          li.innerHTML = result.titleEng;
+          li.id = result._id;
+          small = document.createElement('small');
+          small.innerHTML = '(' + result.beginDate + '-' + result.endDate + ')';
+          li.appendChild(small);
+          return ul.appendChild(li);
+        });
+        return this.$('.results .body').html(ul);
       };
 
       Search.prototype.render = function() {
@@ -45,14 +69,8 @@
             sort: 'id'
           }
         });
-        archiveSearch.on('faceted-search:results', function(results) {
-          resultsCache.set('archives', results);
-          return _this.renderResults(results);
-        });
-        return this.$('button').click(function(ev) {
-          return Backbone.history.navigate('archive/AVE0000000077', {
-            trigger: true
-          });
+        return archiveSearch.on('faceted-search:results', function(response) {
+          return _this.renderResults(response);
         });
       };
 

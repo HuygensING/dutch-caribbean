@@ -23,7 +23,23 @@
         return this.render();
       };
 
-      Search.prototype.renderResults = function() {};
+      Search.prototype.renderResults = function(response) {
+        var ul,
+          _this = this;
+        this.$('.results h3').html(response.numFound + ' Archives found');
+        ul = document.createElement('ul');
+        _.each(response.results, function(result) {
+          var li, small;
+          li = document.createElement('li');
+          li.innerHTML = result.nameEng;
+          li.id = result._id;
+          small = document.createElement('small');
+          small.innerHTML = '(' + result.beginDate + '-' + result.endDate + ')';
+          li.appendChild(small);
+          return ul.appendChild(li);
+        });
+        return this.$('.results .body').html(ul);
+      };
 
       Search.prototype.render = function() {
         var creatorSearch, tpl,
@@ -42,11 +58,9 @@
             sort: 'id'
           }
         });
-        creatorSearch.on('faceted-search:results', function(results) {
-          resultsCache.set('creators', results);
-          return _this.renderResults();
+        return creatorSearch.on('faceted-search:results', function(response) {
+          return _this.renderResults(response);
         });
-        return this.renderResults();
       };
 
       return Search;

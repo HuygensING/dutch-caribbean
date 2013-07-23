@@ -24,6 +24,8 @@ define (require) ->
 			_.extend @, Pubsub
 			@on 'route', @show, @
 
+			@subscribe 'navigate:entry', (route) => @navigate route, trigger: true
+
 		'routes':
 			'': 'home'
 			'creator/results': 'home_creator'

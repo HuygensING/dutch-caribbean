@@ -3431,7 +3431,6 @@ define('domready',[],function () {
       }
 
       ViewManager.prototype.clear = function(view) {
-        console.log('clear')
         if (view) {
           selfDestruct(view);
           return currentViews.remove(view.cid);
@@ -3453,7 +3452,6 @@ define('domready',[],function () {
       };
 
       ViewManager.prototype.show = function(View, query) {
-        console.log('viewmanager show')
         var html, view;
         this.clear();
         query = query || {};
@@ -8662,7 +8660,7 @@ define('text',['module'], function (module) {
 
 define('text!html/home.html',[],function () { return '<div class="tabs"><img src="/images/tabs-slant.png"/><ul><li class="archives">Archives</li><li class="creators">Creators</li><li class="legislation">Legislation</li></ul></div><div class="search-views"><div class="archive-search"></div><div class="creator-search"></div><div class="legislation-search"></div></div>';});
 
-define('text!html/faceted-search-and-results.html',[],function () { return '<div class="faceted-search"></div><div class="results"></div>';});
+define('text!html/faceted-search-and-results.html',[],function () { return '<div class="row span3"><div class="cell span1"><div class="faceted-search"></div></div><div class="cell span2"><div class="results"><h3></h3><div class="body"></div></div></div></div>';});
 
 (function() {
   var __hasProp = {}.hasOwnProperty,
@@ -8708,13 +8706,37 @@ define('text!html/faceted-search-and-results.html',[],function () { return '<div
         return _ref;
       }
 
+      Search.prototype.events = function() {
+        return {
+          'click .results .body li': 'resultClicked'
+        };
+      };
+
+      Search.prototype.resultClicked = function(ev) {
+        return this.publish('navigate:entry', 'archive/' + ev.currentTarget.id);
+      };
+
       Search.prototype.initialize = function() {
+        Search.__super__.initialize.apply(this, arguments);
         return this.render();
       };
 
-      Search.prototype.renderResults = function(results) {
-        console.log(results);
-        return this.$('.results').html('myresults');
+      Search.prototype.renderResults = function(response) {
+        var ul,
+          _this = this;
+        this.$('.results h3').html(response.numFound + ' Archives found');
+        ul = document.createElement('ul');
+        _.each(response.results, function(result) {
+          var li, small;
+          li = document.createElement('li');
+          li.innerHTML = result.titleEng;
+          li.id = result._id;
+          small = document.createElement('small');
+          small.innerHTML = '(' + result.beginDate + '-' + result.endDate + ')';
+          li.appendChild(small);
+          return ul.appendChild(li);
+        });
+        return this.$('.results .body').html(ul);
       };
 
       Search.prototype.render = function() {
@@ -8734,14 +8756,8 @@ define('text!html/faceted-search-and-results.html',[],function () { return '<div
             sort: 'id'
           }
         });
-        archiveSearch.on('faceted-search:results', function(results) {
-          resultsCache.set('archives', results);
-          return _this.renderResults(results);
-        });
-        return this.$('button').click(function(ev) {
-          return Backbone.history.navigate('archive/AVE0000000077', {
-            trigger: true
-          });
+        return archiveSearch.on('faceted-search:results', function(response) {
+          return _this.renderResults(response);
         });
       };
 
@@ -8777,7 +8793,23 @@ define('text!html/faceted-search-and-results.html',[],function () { return '<div
         return this.render();
       };
 
-      Search.prototype.renderResults = function() {};
+      Search.prototype.renderResults = function(response) {
+        var ul,
+          _this = this;
+        this.$('.results h3').html(response.numFound + ' Archives found');
+        ul = document.createElement('ul');
+        _.each(response.results, function(result) {
+          var li, small;
+          li = document.createElement('li');
+          li.innerHTML = result.nameEng;
+          li.id = result._id;
+          small = document.createElement('small');
+          small.innerHTML = '(' + result.beginDate + '-' + result.endDate + ')';
+          li.appendChild(small);
+          return ul.appendChild(li);
+        });
+        return this.$('.results .body').html(ul);
+      };
 
       Search.prototype.render = function() {
         var creatorSearch, tpl,
@@ -8796,11 +8828,9 @@ define('text!html/faceted-search-and-results.html',[],function () { return '<div
             sort: 'id'
           }
         });
-        creatorSearch.on('faceted-search:results', function(results) {
-          resultsCache.set('creators', results);
-          return _this.renderResults();
+        return creatorSearch.on('faceted-search:results', function(response) {
+          return _this.renderResults(response);
         });
-        return this.renderResults();
       };
 
       return Search;
@@ -8835,7 +8865,23 @@ define('text!html/faceted-search-and-results.html',[],function () { return '<div
         return this.render();
       };
 
-      Search.prototype.renderResults = function() {};
+      Search.prototype.renderResults = function(response) {
+        var ul,
+          _this = this;
+        this.$('.results h3').html(response.numFound + ' Archives found');
+        ul = document.createElement('ul');
+        _.each(response.results, function(result) {
+          var li, small;
+          li = document.createElement('li');
+          li.innerHTML = result.titleEng;
+          li.id = result._id;
+          small = document.createElement('small');
+          small.innerHTML = '(' + result.beginDate + '-' + result.endDate + ')';
+          li.appendChild(small);
+          return ul.appendChild(li);
+        });
+        return this.$('.results .body').html(ul);
+      };
 
       Search.prototype.render = function() {
         var legislationSearch, tpl,
@@ -8853,10 +8899,9 @@ define('text!html/faceted-search-and-results.html',[],function () { return '<div
             typeString: config.resources.legislation.label
           }
         });
-        legislationSearch.on('faceted-search:results', function(results) {
-          return resultsCache.set('archives', results);
+        return legislationSearch.on('faceted-search:results', function(response) {
+          return _this.renderResults(response);
         });
-        return this.renderResults();
       };
 
       return Search;
@@ -9073,7 +9118,7 @@ define('text!html/creator.html',[],function () { return '<div class="breadcrumbs
 
 }).call(this);
 
-define('text!html/archive.html',[],function () { return '\n<div class="breadcrumbs">\n  <div class="line"></div>\n  <ul>\n    <li><a href="/archive/results">Search results</a></li><% if (model.titleEng) { %>\n    <li class="active"><%= model.titleEng.length > 70 ? model.titleEng.substr(0,70) + \'...\' : model.titleEng %></li><% } %>\n  </ul>\n</div>\n<div class="content">\n  <div class="panel-left">\n    <h2>Archive<span><%= model.titleEng %></span></h2><% if (_.has(model, \'underlyingArchives\') && model.underlyingArchives.length) { %>\n    <div class="related-archives">\n      <h4>Related archives</h4>\n      <ul><% _.each(model.underlyingArchives, function (archive) { %>\n        <li><a href="<%= config.archiveURL(archive.id) %>"><%- archive.displayName %></a></li><% }) %>\n      </ul>\n    </div><% } %>\n    <% if (_.has(model, \'creators\') && model.creators.length) { %>\n    <div class="related-creators">\n      <h4>Related creators</h4>\n      <ul><% _.each(model.creators, function (archiver) { %>\n        <li><a href="<%= config.archiverURL(archiver.id) %>"><%- archiver.displayName %></a></li><% }) %>\n      </ul>\n    </div><% } %>\n  </div>\n  <div class="panel-right">\n    <div class="reference">\n      <h4>Reference</h4><%= model.countries ? model.countries[0] + \' \' : \'\' %><%= model.refCodeArchive %> <%= model.refCode %>\n      <% if (_.has(model, \'subjectKeywords\') && model.subjectKeywords.length) { %>\n      <div class="subject"></div>\n      <h4>Subject</h4><% _.each(model.subjectKeywords, function (kw) { %>\n      <p><%= kw.displayName %></p><% }) %>\n      <% } %>\n      <% if (_.has(model, \'placeKeywords\') && model.placeKeywords.length) { %>\n      <div class="geography"></div>\n      <h4>Geography</h4><% _.each(model.placeKeywords, function (place) { %>\n      <p><%= place.displayName %></p><% }) %>\n      <% } %>\n    </div>\n  </div>\n</div>';});
+define('text!html/archive.html',[],function () { return '<div class="breadcrumbs"><div class="line"></div><ul><li><a href="/archive/results">Search results</a></li><% if (model.titleEng) { %><li class="active"><%= model.titleEng.length > 70 ? model.titleEng.substr(0,70) + \'...\' : model.titleEng %></li><% } %></ul></div><div class="content"><div class="panel-left"><h2>Archive<span><%= model.titleEng %></span></h2><% if (_.has(model, \'underlyingArchives\') && model.underlyingArchives.length) { %><div class="related-archives"><h4>Related archives</h4><ul><% _.each(model.underlyingArchives, function (archive) { %><li><a href="<%= config.archiveURL(archive.id) %>"><%- archive.displayName %></a></li><% }) %></ul></div><% } %>\n<% if (_.has(model, \'creators\') && model.creators.length) { %><div class="related-creators"><h4>Related creators</h4><ul><% _.each(model.creators, function (archiver) { %><li><a href="<%= config.archiverURL(archiver.id) %>"><%- archiver.displayName %></a></li><% }) %></ul></div><% } %></div><div class="panel-right"><div class="reference"><h4>Reference</h4><%= model.countries ? model.countries[0] + \' \' : \'\' %><%= model.refCodeArchive %> <%= model.refCode %>\n<% if (_.has(model, \'subjectKeywords\') && model.subjectKeywords.length) { %><div class="subject"></div><h4>Subject</h4><% _.each(model.subjectKeywords, function (kw) { %><p><%= kw.displayName %></p><% }) %>\n<% } %>\n<% if (_.has(model, \'placeKeywords\') && model.placeKeywords.length) { %><div class="geography"></div><h4>Geography</h4><% _.each(model.placeKeywords, function (place) { %><p><%= place.displayName %></p><% }) %>\n<% } %></div></div></div>';});
 
 (function() {
   var __hasProp = {}.hasOwnProperty,
@@ -9239,8 +9284,14 @@ define('text!html/legislation.html',[],function () { return '<div class="breadcr
       }
 
       MainRouter.prototype.initialize = function() {
+        var _this = this;
         _.extend(this, Pubsub);
-        return this.on('route', this.show, this);
+        this.on('route', this.show, this);
+        return this.subscribe('navigate:entry', function(route) {
+          return _this.navigate(route, {
+            trigger: true
+          });
+        });
       };
 
       MainRouter.prototype['routes'] = {
