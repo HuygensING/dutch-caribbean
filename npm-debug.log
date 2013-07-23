@@ -1,0 +1,20 @@
+0 info it worked if it ends with ok
+1 verbose cli [ '/usr/local/bin/node', '/usr/local/bin/npm', 'start', '3001' ]
+2 info using npm@1.2.15
+3 info using node@v0.10.2
+4 verbose node symlink /usr/local/bin/node
+5 verbose read json /home/gijs/Projects/dutch-caribbean/node_modules/3001/package.json
+6 error Error: ENOENT, open '/home/gijs/Projects/dutch-caribbean/node_modules/3001/package.json'
+7 error If you need help, you may report this log at:
+7 error     <http://github.com/isaacs/npm/issues>
+7 error or email it to:
+7 error     <npm-@googlegroups.com>
+8 error System Linux 3.5.0-17-generic
+9 error command "/usr/local/bin/node" "/usr/local/bin/npm" "start" "3001"
+10 error cwd /home/gijs/Projects/dutch-caribbean
+11 error node -v v0.10.2
+12 error npm -v 1.2.15
+13 error path /home/gijs/Projects/dutch-caribbean/node_modules/3001/package.json
+14 error code ENOENT
+15 error errno 34
+16 verbose exit [ 34, true ]

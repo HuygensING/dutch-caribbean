@@ -6,6 +6,7 @@ require.config
     'domready': '../lib/requirejs-domready/domReady'
     'text': '../lib/requirejs-text/text'
     'faceted-search': '../lib/faceted-search/stage/js/main'
+    'managers': '../lib/managers/dev'
     'html': '../html'
 
   shim:

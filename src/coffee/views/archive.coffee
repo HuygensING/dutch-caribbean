@@ -11,6 +11,7 @@ define (require) ->
 	class Archive extends BaseView
 		className: 'model-view'
 		initialize: (options) ->
+			# console.log 'init'
 			super
 
 			if options and options.id?

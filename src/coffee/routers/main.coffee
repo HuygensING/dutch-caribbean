@@ -11,14 +11,14 @@ define (require) ->
 		Legislation: require 'views/legislation'
 
 	class MainRouter extends Backbone.Router
-		view: null
-		query: {}
+		# view: null
+		# query: {}
 
-		show: (route, params) ->
-			viewManager.clear() # Empty the viewManager before initializing new views
-			viewManager.show new @view @query
+		# show: (route, params) ->
+		# 	viewManager.clear() # Empty the viewManager before initializing new views
+		# 	viewManager.show new @view @query
 
-			@query = {}
+		# 	@query = {}
 
 		initialize: ->
 			_.extend @, Pubsub
@@ -34,19 +34,14 @@ define (require) ->
 			'legislation/:id': 'legislation'
 
 		home: ->
-			@view = Views.Home
+			# @view = Views.Home
+			viewManager.show Views.Home
 
 		creator: (id) ->
-			@view = Views.Creator
-			@query =
-				id: id
+			viewManager.show Views.Creator, id: id
 
 		archive: (id) ->
-			@view = Views.Archive
-			@query =
-				id: id
+			viewManager.show Views.Archive, id: id
 
 		legislation: (id) ->
-			@view = Views.Legislation
-			@query =
-				id: id
+			viewManager.show Views.Legislation, id: id

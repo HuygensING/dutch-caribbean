@@ -9,7 +9,8 @@
   },
   "scripts": {
     "test": "node ./.test/bin/server.js",
-    "start": "coffee ./server.coffee"
+    "start": "coffee ./server.coffee 5000",
+    "start-stage": "coffee ./server.coffee 5001"
   },
   "devDependencies": {
     "coffee-script": "*",

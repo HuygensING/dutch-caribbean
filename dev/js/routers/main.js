@@ -22,16 +22,6 @@
         return _ref;
       }
 
-      MainRouter.prototype.view = null;
-
-      MainRouter.prototype.query = {};
-
-      MainRouter.prototype.show = function(route, params) {
-        viewManager.clear();
-        viewManager.show(new this.view(this.query));
-        return this.query = {};
-      };
-
       MainRouter.prototype.initialize = function() {
         _.extend(this, Pubsub);
         return this.on('route', this.show, this);
@@ -48,28 +38,25 @@
       };
 
       MainRouter.prototype.home = function() {
-        return this.view = Views.Home;
+        return viewManager.show(Views.Home);
       };
 
       MainRouter.prototype.creator = function(id) {
-        this.view = Views.Creator;
-        return this.query = {
+        return viewManager.show(Views.Creator, {
           id: id
-        };
+        });
       };
 
       MainRouter.prototype.archive = function(id) {
-        this.view = Views.Archive;
-        return this.query = {
+        return viewManager.show(Views.Archive, {
           id: id
-        };
+        });
       };
 
       MainRouter.prototype.legislation = function(id) {
-        this.view = Views.Legislation;
-        return this.query = {
+        return viewManager.show(Views.Legislation, {
           id: id
-        };
+        });
       };
 
       return MainRouter;
