@@ -29,7 +29,7 @@ define (require) ->
 				li.innerHTML = result.titleEng
 				li.id = result._id
 				small = document.createElement 'small'
-				small.innerHTML = '('+result.beginDate+'-'+result.endDate+')'
+				small.innerHTML = '('+result.date1+')'
 				li.appendChild small
 				ul.appendChild li
 
@@ -38,6 +38,8 @@ define (require) ->
 		render: ->
 			tpl = _.template Templates.Search
 			@$el.html tpl type: 'LEGISLATION'
+
+			firstTime = true
 
 			legislationSearch = new FacetedSearch
 				el: @$('.faceted-search')
@@ -48,4 +50,20 @@ define (require) ->
 					typeString: config.resources.legislation.label
 			legislationSearch.on 'faceted-search:results', (response) =>
 				# resultsCache.set 'archives', response
-				@renderResults response
+				# console.log firstTime
+				if not firstTime
+					@renderResults response
+
+				firstTime = false
+
+				### RENDER FACET TITLES ###
+				_.each @$('.facet h3'), (h3) =>
+					name = h3.getAttribute 'data-name'
+					if name?
+						h3.innerHTML = config.facetNames[name]
+
+				### CHANGE FACET ORDER ###
+				order = ['facet_s_date', 'facet_s_place', 'facet_s_subject', 'facet_s_person']
+
+				for facetName in order.reverse()
+					@$('.facets').prepend @$('h3[data-name="'+facetName+'"]').parents('.facet')

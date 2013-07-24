@@ -53,12 +53,13 @@
       };
 
       Search.prototype.render = function() {
-        var archiveSearch, tpl,
+        var archiveSearch, firstTime, tpl,
           _this = this;
         tpl = _.template(Templates.Search);
         this.$el.html(tpl({
           type: 'ARCHIVE'
         }));
+        firstTime = true;
         archiveSearch = new FacetedSearch({
           el: this.$('.faceted-search'),
           baseUrl: config.facetedSearchHost,
@@ -70,7 +71,32 @@
           }
         });
         return archiveSearch.on('faceted-search:results', function(response) {
-          return _this.renderResults(response);
+          var facetName, order, _i, _len, _ref1, _results;
+          console.log(response);
+          if (!firstTime) {
+            _this.renderResults(response);
+          }
+          firstTime = false;
+          /* RENDER FACET TITLES*/
+
+          console.log(config);
+          _.each(_this.$('.facet h3'), function(h3) {
+            var name;
+            name = h3.getAttribute('data-name');
+            if (name != null) {
+              return h3.innerHTML = config.facetNames[name];
+            }
+          });
+          /* CHANGE FACET ORDER*/
+
+          order = ['facet_s_begin_date', 'facet_s_end_date', 'facet_s_place', 'facet_s_subject', 'facet_s_person', 'facet_s_refcode'];
+          _ref1 = order.reverse();
+          _results = [];
+          for (_i = 0, _len = _ref1.length; _i < _len; _i++) {
+            facetName = _ref1[_i];
+            _results.push(_this.$('.facets').prepend(_this.$('h3[data-name="' + facetName + '"]').parents('.facet')));
+          }
+          return _results;
         });
       };
 

@@ -1,7 +1,6 @@
 (function() {
   define(function(require) {
-    var config;
-    config = {
+    return {
       baseURL: 'http://demo17.huygens.knaw.nl/repository',
       appRootElement: '#app',
       homeElement: '#app',
@@ -10,37 +9,43 @@
       resources: {
         legislation: {
           label: 'atlglegislation',
-          url: ''
+          url: function(id) {
+            return "" + config.baseURL + "/resources/atlglegislation/" + id;
+          }
         },
         archive: {
           label: 'atlgarchive',
-          url: ''
+          url: function(id) {
+            return "" + config.baseURL + "/resources/atlgarchive/" + id;
+          }
         },
         creator: {
           label: 'atlgarchiver',
-          url: ''
+          url: function(id) {
+            return "" + config.baseURL + "/resources/atlgarchiver/" + id;
+          }
         }
+      },
+      archiverURL: function(id) {
+        return "/creator/" + id;
+      },
+      archiveURL: function(id) {
+        return "/archive/" + id;
+      },
+      legislation: function(id) {
+        return "/legislation/" + id;
+      },
+      facetNames: {
+        facet_s_refcode: 'Refcode',
+        facet_s_subject: 'Subject',
+        facet_s_person: 'Person',
+        facet_s_place: 'Geography',
+        facet_s_date: 'Date',
+        facet_s_begin_date: 'Begin date',
+        facet_s_end_date: 'End date',
+        facet_s_type: 'Identity type'
       }
     };
-    config.resources.legislation.url = function(id) {
-      return "" + config.baseURL + "/resources/atlglegislation/" + id;
-    };
-    config.resources.archive.url = function(id) {
-      return "" + config.baseURL + "/resources/atlgarchive/" + id;
-    };
-    config.resources.creator.url = function(id) {
-      return "" + config.baseURL + "/resources/atlgarchiver/" + id;
-    };
-    config.archiverURL = function(id) {
-      return "/creator/" + id;
-    };
-    config.archiveURL = function(id) {
-      return "/archive/" + id;
-    };
-    config.legislation = function(id) {
-      return "/legislation/" + id;
-    };
-    return config;
   });
 
 }).call(this);

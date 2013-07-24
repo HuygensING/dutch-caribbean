@@ -48,6 +48,23 @@ define (require) ->
 					typeString: config.resources.creator.label
 					sort: 'id'
 
+			firstTime = true
+
 			creatorSearch.on 'faceted-search:results', (response) =>
 				# resultsCache.set 'archives', response
-				@renderResults response
+				if not firstTime
+					@renderResults response
+
+				firstTime = false
+
+				### RENDER FACET TITLES ###
+				_.each @$('.facet h3'), (h3) =>
+					name = h3.getAttribute 'data-name'
+					if name?
+						h3.innerHTML = config.facetNames[name]
+
+				### CHANGE FACET ORDER ###
+				order = ['facet_s_begin_date', 'facet_s_end_date', 'facet_s_type', 'facet_s_place', 'facet_s_subject', 'facet_s_person']
+
+				for facetName in order.reverse()
+					@$('.facets').prepend @$('h3[data-name="'+facetName+'"]').parents('.facet')

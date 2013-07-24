@@ -39,6 +39,8 @@ define (require) ->
 		render: ->
 			tpl = _.template Templates.Search
 			@$el.html tpl type: 'ARCHIVE'
+
+			firstTime = true
 	
 			archiveSearch = new FacetedSearch
 				el: @$('.faceted-search')
@@ -49,5 +51,22 @@ define (require) ->
 					typeString: config.resources.archive.label
 					sort: 'id'
 			archiveSearch.on 'faceted-search:results', (response) =>
+				console.log response
 				# resultsCache.set 'archives', response
-				@renderResults response
+				if not firstTime
+					@renderResults response
+
+				firstTime = false
+
+				### RENDER FACET TITLES ###
+				console.log config
+				_.each @$('.facet h3'), (h3) =>
+					name = h3.getAttribute 'data-name'
+					if name?
+						h3.innerHTML = config.facetNames[name]
+
+				### CHANGE FACET ORDER ###
+				order = ['facet_s_begin_date', 'facet_s_end_date', 'facet_s_place', 'facet_s_subject', 'facet_s_person', 'facet_s_refcode']
+
+				for facetName in order.reverse()
+					@$('.facets').prepend @$('h3[data-name="'+facetName+'"]').parents('.facet')
