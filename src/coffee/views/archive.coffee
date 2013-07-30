@@ -9,7 +9,7 @@ define (require) ->
 		Archive: require 'text!html/archive.html'
 
 	class Archive extends BaseView
-		className: 'model-view'
+		className: 'fiche'
 		initialize: (options) ->
 			# console.log 'init'
 			super

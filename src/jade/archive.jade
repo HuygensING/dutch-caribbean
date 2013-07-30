@@ -8,46 +8,52 @@
 
 .content
 	.panel-left
-		h2
-			| Archive
-			span <%= model.titleEng %>
+		h3.type Archive
+		h2.title <%= model.titleEng %>
 
-		| <% if (_.has(model, 'underlyingArchives') && model.underlyingArchives.length) { %>
 		.related-archives
 			h4 Related archives
+			| <% if (_.has(model, 'underlyingArchives') && model.underlyingArchives.length) { %>
 			ul
 				| <% _.each(model.underlyingArchives, function (archive) { %>
 				li <a href="<%= config.archiveURL(archive.id) %>"><%- archive.displayName %> (underlying)</a>
 				| <% }) %>
-		| <% } %>
+			| <% } else { %>
+			p -
+			| <% } %>
 
-		| <% if (_.has(model, 'creators') && model.creators.length) { %>
 		.related-creators
 			h4 Related creators
+			| <% if (_.has(model, 'creators') && model.creators.length) { %>
 			ul
 				| <% _.each(model.creators, function (archiver) { %>
 				li <a href="<%= config.archiverURL(archiver.id) %>"><%- archiver.displayName %> (creator)</a>
 				| <% }) %>
-		| <% } %>
+			| <% } else { %>
+			p -
+			| <% } %>
 
 	.panel-right
 		.reference
 			h4 Reference
 			<%= model.countries ? model.countries[0] + ' ' : '' %><%= model.refCodeArchive %> <%= model.refCode %>
 
-			| <% if (_.has(model, 'subjectKeywords') && model.subjectKeywords.length) { %>
-			.subject
+		.subject
 			h4 Subject
-
+			| <% if (_.has(model, 'subjectKeywords') && model.subjectKeywords.length) { %>
 			| <% _.each(model.subjectKeywords, function (kw) { %>
 			p <%= kw.displayName %>
 			| <% }) %>
+			| <% } else { %>
+			p -
 			| <% } %>
 
-			| <% if (_.has(model, 'placeKeywords') && model.placeKeywords.length) { %>
-			.geography
+		.geography
 			h4 Geography
+			| <% if (_.has(model, 'placeKeywords') && model.placeKeywords.length) { %>
 			| <% _.each(model.placeKeywords, function (place) { %>
 			p <%= place.displayName %>
 			| <% }) %>
+			| <% } else { %>
+			p -
 			| <% } %>

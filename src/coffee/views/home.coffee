@@ -43,6 +43,8 @@ define (require) ->
 			tpl = _.template Templates.Home
 			@$el.html tpl()
 
+			console.log "Rendering homeS"
+
 			new Views.ArchiveSearch el: @$('.archive-search')
 			new Views.CreatorSearch el: @$('.creator-search')
 			new Views.LegislationSearch el: @$('.legislation-search')

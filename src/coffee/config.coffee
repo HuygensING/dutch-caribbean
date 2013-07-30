@@ -25,8 +25,8 @@ define (require) ->
 			creator:
 				label: 'atlgarchiver'
 
-	config.resources.legislation.url = (id) -> "#{config.baseURL}/resources/atlglegislation/#{id}"
-	config.resources.archive.url = (id) -> "#{config.baseURL}/resources/atlgarchive/#{id}"
-	config.resources.creator.url = (id) -> "#{config.baseURL}/resources/atlgarchiver/#{id}"
+	config.resources.legislation.url = (id) -> "#{config.baseURL}/resources/atlglegislations/#{id}"
+	config.resources.archive.url = (id) -> "#{config.baseURL}/resources/atlgarchives/#{id}"
+	config.resources.creator.url = (id) -> "#{config.baseURL}/resources/atlgarchivers/#{id}"
 
 	config

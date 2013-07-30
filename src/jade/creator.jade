@@ -10,45 +10,53 @@
 
 .content
 	.panel-left
-		h2
-			| Creator
-			span: <%- model.nameEng %>
+		h3.type Creator
+		h2.title
+			<%- model.nameEng %>
 
 		.history
 			<%= model.history %>
 
-		<% if (model.notes) { %>
 		.remarks
 			h4 Remarks
-			<%= model.notes %>
-		<% } %>
+			| <% if (model.notes) { %>
+			| 	<%= model.notes %>
+			| <% } else { %>
+			p -
+			| <% } %>
 
-		| <% if (_.has(model, 'relatedArchives') && model.relatedArchives.length) { %>
 		.related-archives
 			h4 Related archives
+			| <% if (_.has(model, 'relatedArchives') && model.relatedArchives.length) { %>
 			ul
 				| <% _.each(model.relatedArchives, function (archive) { %>
 				li <a href="<%= config.archiveURL(archive.id) %>"><%- archive.displayName %></a>
 				| <% }) %>
-		| <% } %>
+			| <% } else { %>
+			p -
+			| <% } %>
 
-		| <% if (_.has(model, 'relatedArchivers') && model.relatedArchivers.length) { %>
 		.related-creators
 			h4 Related creators
+			| <% if (_.has(model, 'relatedArchivers') && model.relatedArchivers.length) { %>
 			ul
 				| <% _.each(model.relatedArchivers, function (archiver) { %>
 				li <a href="<%= config.archiverURL(archiver.id) %>"><%- archiver.displayName %></a>
 				| <% }) %>
-		| <% } %>
+			| <% } else { %>
+			p -
+			| <% } %>
 
 	.panel-right
-		| <% if (_.has(model, 'subjectKeywords') && model.subjectKeywords.length) { %>
 		.subject
 			h4 Subject
-			| <% _.each(model.subjectKeywords, function (kw) { %>
-			p <%= kw.displayName %>
-			| <% }) %>
-		| <% } %>
+			| <% if (_.has(model, 'subjectKeywords') && model.subjectKeywords.length) { %>
+			| 	<% _.each(model.subjectKeywords, function (kw) { %>
+			p 		<%= kw.displayName %>
+			| 	<% }) %>
+			| <% } else { %>
+			p -
+			| <% } %>
 
 		.date
 			h4 Date
@@ -59,10 +67,12 @@
 				| End date
 				span <%= model.endDate %>
 
-		| <% if (_.has(model, 'placeKeywords') && model.placeKeywords.length) { %>
 		.geography
 			h4 Geography
-			| <% _.each(model.placeKeywords, function (place) { %>
-			p <%= place.displayName %>
-			| <% }) %>
-		| <% } %>
+			| <% if (_.has(model, 'placeKeywords') && model.placeKeywords.length) { %>
+			| 	<% _.each(model.placeKeywords, function (place) { %>
+			p 		<%= place.displayName %>
+			| 	<% }) %>
+			| <% } else { %>
+			p -
+			| <% } %>

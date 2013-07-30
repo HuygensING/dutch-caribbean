@@ -9,7 +9,7 @@ define (require) ->
 		Creator: require 'text!html/creator.html'
 
 	class Creator extends BaseView
-		className: 'model-view'
+		className: 'fiche'
 		initialize: (options) ->
 			super
 

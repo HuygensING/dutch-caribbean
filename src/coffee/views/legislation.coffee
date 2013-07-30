@@ -9,7 +9,7 @@ define (require) ->
 		Legislation: require 'text!html/legislation.html'
 
 	class Legislation extends BaseView
-		className: 'model-view'
+		className: 'fiche'
 		initialize: (options) ->
 			super
 

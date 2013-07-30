@@ -9,9 +9,8 @@
 
 .content
 	.panel-left
-		h2
-			| Legislation
-			span: <%- model.titleEng %>
+		h3.type Legislation
+		h2.title <%- model.titleEng %>
 
 		.contents
 			<%= model.contents %>
@@ -19,28 +18,35 @@
 		.archival-source
 			<%= model.originalArchivalSource %>
 	.panel-right
-		| <% if (_.has(model, 'subjectKeywords') && model.subjectKeywords.length) { %>
 		.subject
 			h4 Subject
-			| <% _.each(model.subjectKeywords, function (kw) { %>
-			p <%= kw.displayName %>
-			| <% }) %>
-		| <% } %>
+			| <% if (_.has(model, 'subjectKeywords') && model.subjectKeywords.length) { %>
+			| 	<% _.each(model.subjectKeywords, function (kw) { %>
+			p 		<%= kw.displayName %>
+			| 	<% }) %>
+			| <% } else { %>
+			p -
+			| <% } %>
+
 		.relevant-dates
 			h4 Relevant dates
 			p Date 1 <%= model.date1 %>
 			p Date 2 <%= model.date2 %>
 
-		| <% if (_.has(model, 'placeKeywords') && model.placeKeywords.length) { %>
 		.geography
 			h4 Geography
-			| <% _.each(model.placeKeywords, function (place) { %>
-			p <%= place.displayName %>
-			| <% }) %>
+			| <% if (_.has(model, 'placeKeywords') && model.placeKeywords.length) { %>
+			| 	<% _.each(model.placeKeywords, function (place) { %>
+			p 		<%= place.displayName %>
+			| 	<% }) %>
+			| <% } else { %>
+			p -
 			| <% } %>
 
-		| <% if (_.has(model, 'pages') && model.pages) { %>
 		.pages
 			h4 Pages
-			|	<%= model.pages %>
-		| <% } %>
+			| <% if (_.has(model, 'pages') && model.pages) { %>
+			|		<%= model.pages %>
+			| <% } else { %>
+			p -
+			| <% } %>
