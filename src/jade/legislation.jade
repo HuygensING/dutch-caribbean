@@ -18,26 +18,25 @@
 		.archival-source
 			<%= model.originalArchivalSource %>
 	.panel-right
-		.subject
-			h4 Subject
-			| <% if (_.has(model, 'subjectKeywords') && model.subjectKeywords.length) { %>
-			| 	<% _.each(model.subjectKeywords, function (kw) { %>
-			p 		<%= kw.displayName %>
-			| 	<% }) %>
-			| <% } else { %>
-			p -
-			| <% } %>
-
 		.relevant-dates
 			h4 Relevant dates
-			p Date 1 <%= model.date1 %>
-			p Date 2 <%= model.date2 %>
+			p <%= model.date1 %>
 
 		.geography
 			h4 Geography
 			| <% if (_.has(model, 'placeKeywords') && model.placeKeywords.length) { %>
 			| 	<% _.each(model.placeKeywords, function (place) { %>
 			p 		<%= place.displayName %>
+			| 	<% }) %>
+			| <% } else { %>
+			p -
+			| <% } %>
+
+		.subject
+			h4 Subject
+			| <% if (_.has(model, 'subjectKeywords') && model.subjectKeywords.length) { %>
+			| 	<% _.each(model.subjectKeywords, function (kw) { %>
+			p 		<%= kw.displayName %>
 			| 	<% }) %>
 			| <% } else { %>
 			p -

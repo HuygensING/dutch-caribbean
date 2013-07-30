@@ -34,9 +34,15 @@
 			| <% } %>
 
 	.panel-right
-		.reference
-			h4 Reference
-			<%= model.countries ? model.countries[0] + ' ' : '' %><%= model.refCodeArchive %> <%= model.refCode %>
+		.geography
+			h4 Geography
+			| <% if (_.has(model, 'placeKeywords') && model.placeKeywords.length) { %>
+			| <% _.each(model.placeKeywords, function (place) { %>
+			p <%= place.displayName %>
+			| <% }) %>
+			| <% } else { %>
+			p -
+			| <% } %>
 
 		.subject
 			h4 Subject
@@ -48,12 +54,6 @@
 			p -
 			| <% } %>
 
-		.geography
-			h4 Geography
-			| <% if (_.has(model, 'placeKeywords') && model.placeKeywords.length) { %>
-			| <% _.each(model.placeKeywords, function (place) { %>
-			p <%= place.displayName %>
-			| <% }) %>
-			| <% } else { %>
-			p -
-			| <% } %>
+		.reference
+			h4 Reference
+			<%= model.countries ? model.countries[0] + ' ' : '' %><%= model.refCodeArchive %> <%= model.refCode %>
