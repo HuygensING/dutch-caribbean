@@ -10,6 +10,8 @@ define (require) ->
 		Archive: require 'views/archive'
 		Legislation: require 'views/legislation'
 
+	home = new Views.Home el: '#home'
+
 	class MainRouter extends Backbone.Router
 		# view: null
 		# query: {}
@@ -37,13 +39,29 @@ define (require) ->
 
 		home: ->
 			# @view = Views.Home
-			viewManager.show Views.Home
+			# viewManager.show Views.Home
+			@showHome()
+
+		home_creator: ->
+			@showHome('.creators')
+		home_archive: ->
+			@showHome('archives')
+		home_legislation: ->
+			@showHome()
 
 		creator: (id) ->
-			viewManager.show Views.Creator, id: id
-
+			@showFiche Views.Creator, id: id
 		archive: (id) ->
-			viewManager.show Views.Archive, id: id
-
+			@showFiche Views.Archive, id: id
 		legislation: (id) ->
-			viewManager.show Views.Legislation, id: id
+			@showFiche Views.Legislation, id: id
+
+		showHome: (activeTab) ->
+			$('#fiche').hide()
+			$('#home').show()
+
+		showFiche: (view, options) ->
+			$('#home').hide()
+			v = new view _.extend(options, el: '#fiche')
+			v.render()
+			$('#fiche').show()

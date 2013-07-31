@@ -18,4 +18,4 @@ require.config
 
 require ['domready', 'app'], (domready, app) ->
   domready ->
-     app.initialize()
+    app.initialize()

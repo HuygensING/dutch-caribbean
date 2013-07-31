@@ -1,2 +1,57 @@
-<div class="breadcrumbs"><div class="line"></div><ul><li><a href="/legislation/results">Search results</a></li><% if (model.titleEng) { %><li class="active"><a href="/legislation/"><%= model.titleEng.length > 70 ? model.titleEng.substr(0,70) + '...' : model.titleEng %></a></li><% } %></ul></div><div class="content"><div class="panel-left"><h2>Legislation<span><%- model.titleEng %></span></h2><div class="contents"><%= model.contents %></div><div class="archival-source"><%= model.originalArchivalSource %></div></div><div class="panel-right"><% if (_.has(model, 'subjectKeywords') && model.subjectKeywords.length) { %><div class="subject"><h4>Subject</h4><% _.each(model.subjectKeywords, function (kw) { %><p><%= kw.displayName %></p><% }) %></div><% } %><div class="relevant-dates"><h4>Relevant dates</h4><p>Date 1 <%= model.date1 %></p><p>Date 2 <%= model.date2 %></p></div><% if (_.has(model, 'placeKeywords') && model.placeKeywords.length) { %><div class="geography"><h4>Geography</h4><% _.each(model.placeKeywords, function (place) { %><p><%= place.displayName %></p><% }) %>
-<% } %></div><% if (_.has(model, 'pages') && model.pages) { %><div class="pages"><h4>Pages</h4>	<%= model.pages %></div><% } %></div></div>
+
+<div class="breadcrumbs">
+  <div class="line"></div>
+  <ul>
+    <li><a href="/legislation/results">Search results</a></li><% if (data.titleEng) { %>
+    <li class="active"><a href="/legislation/"><%= data.titleEng.length > 70 ? data.titleEng.substr(0,70) + '...' : data.titleEng %></a></li><% } %>
+  </ul>
+</div>
+<div class="content">
+  <div class="panel-left">
+    <h3 class="type">Legislation</h3>
+    <h2 class="title"><%- data.titleEng %><i class="reference"><%= data.reference %> <%= data.pages %></i></h2><% if (String().toLowerCase(data.titleEng) !== String(data.titleNld).toLowerCase()) { %>
+    <div class="section dutch-title">
+      <h4>Dutch title</h4>
+      <p><%= data.titleNld %></p>
+    </div><% } %>
+    <div class="section contents">
+      <p><%= String(data.contents).replace(/\n/g, '<br>') %></p>
+    </div>
+    <div class="section archival-source">
+      <h4>Original archive source</h4>
+      <p><%= data.originalArchivalSource || '-' %></p>
+    </div>
+    <div class="section earlier-later-publications">
+      <h4>Earlier and later publications</h4><% if (_.has(data, 'otherPublications') && data.otherPublications.length) { %>
+      <p><%= data.otherPublications.join(', ') %></p><% } else { %>
+      <p>-</p><% } %>
+    </div>
+  </div>
+  <div class="panel-right">
+    <div class="section relevant-dates">
+      <h4>Relevant dates</h4>
+      <p><%= data.date1 %></p>
+    </div>
+    <div class="section geography">
+      <h4>Geography</h4><% if (_.has(data, 'placeKeywords') && data.placeKeywords.length) { %>
+      	<% _.each(data.placeKeywords, function (place) { %>
+      <p>		<%= place.displayName %></p>	<% }) %>
+      <% } else { %>
+      <p>-</p><% } %>
+    </div>
+    <div class="section subject">
+      <h4>Subject</h4><% if (_.has(data, 'otherKeywords') && data.otherKeywords.length) { %>
+      	<% _.each(data.otherKeywords, function (kw) { %>
+      <p>		<%= kw.displayName %></p>	<% }) %>
+      <% } else { %>
+      <p>-</p><% } %>
+    </div>
+    <div class="section person">
+      <h4>Person</h4><% if (_.has(data, 'persons') && data.persons.length) { %>
+      	<% _.each(data.persons, function (person) { %>
+      <p>		<%= person.displayName %></p>	<% }) %>
+      <% } else { %>
+      <p>-</p><% } %>
+    </div>
+  </div>
+</div>

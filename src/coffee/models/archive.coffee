@@ -7,3 +7,5 @@ define (require) ->
 		url: -> config.resources.archive.url(@id)
 		initialize: ->
 			@fetch if @id
+		reference: ->
+			[@get('countries')?.join(' '), @get('refCodeArchive'), @get('refCode'), @get('itemNo')].join ' '

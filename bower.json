@@ -5,7 +5,7 @@
 		"requirejs": "*",
 		"requirejs-text": "*",
 		"requirejs-domready": "*",
-		"jquery": "*",
+		"jquery": "1.9.1",
 		"underscore-amd": "*",
 		"backbone-amd": "*",
 		"managers": "https://github.com/Gijsjan/managers.git",

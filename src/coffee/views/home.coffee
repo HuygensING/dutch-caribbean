@@ -1,5 +1,6 @@
 define (require) ->
 	config = require 'config'
+	# router = require 'routers/main'
 	BaseView = require 'views/base'
 	FacetedSearch = require 'faceted-search'
 	Templates =
@@ -12,44 +13,39 @@ define (require) ->
 
 	resultsCache = require 'models/results-cache'
 
-	class Home extends BaseView
+	class Home extends Backbone.View
 		events:
 			'click .tabs li.archives': 'showArchives'
 			'click .tabs li.creators': 'showCreators'
-			'click .tabs li.legislation': 'showLegislation'
+			'click .tabs li.legislations': 'showLegislation'
 
 		initialize: (options) ->
 			super
 
-			@activeTab = if options.activeTab then options.activeTab else '.creator-search'
+			@activeTab = if options?.activeTab then options.activeTab else '.archives'
 			@render()
 
 		showArchives: ->
-			@$('.search-views > div:not(.archive-search)').hide()
-			@$('.search-views .archive-search').show()
-			@$('.tabs li').removeClass('active').filter('.archives').addClass('active')
-
+			@showActive('.archives')
 		showCreators: ->
-			@$('.search-views > div:not(.creator-search)').hide()
-			@$('.search-views .creator-search').show()
-			@$('.tabs li').removeClass('active').filter('.creators').addClass('active')
-
+			@showActive('.creators')
 		showLegislation: ->
-			@$('.search-views > div:not(.legislation-search)').hide()
-			@$('.search-views .legislation-search').show()
-			@$('.tabs li').removeClass('active').filter('.legislation').addClass('active')
+			@showActive('.legislations')
+
+		showActive: (cls) ->
+			@$(".search-views > div:not(#{cls}.search)").hide()
+			@$(".search-views #{cls}.search").show()
+			@$('.tabs li').removeClass('active').filter(cls).addClass('active')
 
 		render: ->
 			tpl = _.template Templates.Home
 			@$el.html tpl()
 
-			console.log "Rendering homeS"
+			new Views.ArchiveSearch el: @$('.archives.search')
+			new Views.CreatorSearch el: @$('.creators.search')
+			new Views.LegislationSearch el: @$('.legislations.search')
 
-			new Views.ArchiveSearch el: @$('.archive-search')
-			new Views.CreatorSearch el: @$('.creator-search')
-			new Views.LegislationSearch el: @$('.legislation-search')
-
-			@$('.creator-search, .legislation-search').hide()
-			@$('.tabs li.archives').addClass('active')
+			@$(".search-views > .search:not(#{@activeTab})").hide()
+			@$(".tabs li#{@activeTab}").addClass 'active'
 
 			@

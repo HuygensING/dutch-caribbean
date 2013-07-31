@@ -3,7 +3,7 @@
     __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
 
   define(function(require) {
-    var Backbone, MainRouter, Pubsub, Views, currentUser, viewManager, _ref;
+    var Backbone, MainRouter, Pubsub, Views, currentUser, home, viewManager, _ref;
     Backbone = require('backbone');
     viewManager = require('managers/view');
     Pubsub = require('pubsub');
@@ -14,6 +14,9 @@
       Archive: require('views/archive'),
       Legislation: require('views/legislation')
     };
+    home = new Views.Home({
+      el: '#home'
+    });
     return MainRouter = (function(_super) {
       __extends(MainRouter, _super);
 
@@ -44,25 +47,52 @@
       };
 
       MainRouter.prototype.home = function() {
-        return viewManager.show(Views.Home);
+        return this.showHome();
+      };
+
+      MainRouter.prototype.home_creator = function() {
+        return this.showHome('.creators');
+      };
+
+      MainRouter.prototype.home_archive = function() {
+        return this.showHome('archives');
+      };
+
+      MainRouter.prototype.home_legislation = function() {
+        return this.showHome();
       };
 
       MainRouter.prototype.creator = function(id) {
-        return viewManager.show(Views.Creator, {
+        return this.showFiche(Views.Creator, {
           id: id
         });
       };
 
       MainRouter.prototype.archive = function(id) {
-        return viewManager.show(Views.Archive, {
+        return this.showFiche(Views.Archive, {
           id: id
         });
       };
 
       MainRouter.prototype.legislation = function(id) {
-        return viewManager.show(Views.Legislation, {
+        return this.showFiche(Views.Legislation, {
           id: id
         });
+      };
+
+      MainRouter.prototype.showHome = function(activeTab) {
+        $('#fiche').hide();
+        return $('#home').show();
+      };
+
+      MainRouter.prototype.showFiche = function(view, options) {
+        var v;
+        $('#home').hide();
+        v = new view(_.extend(options, {
+          el: '#fiche'
+        }));
+        v.render();
+        return $('#fiche').show();
       };
 
       return MainRouter;

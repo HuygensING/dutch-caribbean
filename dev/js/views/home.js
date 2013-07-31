@@ -27,31 +27,31 @@
       Home.prototype.events = {
         'click .tabs li.archives': 'showArchives',
         'click .tabs li.creators': 'showCreators',
-        'click .tabs li.legislation': 'showLegislation'
+        'click .tabs li.legislations': 'showLegislation'
       };
 
       Home.prototype.initialize = function(options) {
         Home.__super__.initialize.apply(this, arguments);
-        this.activeTab = options.activeTab ? options.activeTab : '.creator-search';
+        this.activeTab = (options != null ? options.activeTab : void 0) ? options.activeTab : '.archives';
         return this.render();
       };
 
       Home.prototype.showArchives = function() {
-        this.$('.search-views > div:not(.archive-search)').hide();
-        this.$('.search-views .archive-search').show();
-        return this.$('.tabs li').removeClass('active').filter('.archives').addClass('active');
+        return this.showActive('.archives');
       };
 
       Home.prototype.showCreators = function() {
-        this.$('.search-views > div:not(.creator-search)').hide();
-        this.$('.search-views .creator-search').show();
-        return this.$('.tabs li').removeClass('active').filter('.creators').addClass('active');
+        return this.showActive('.creators');
       };
 
       Home.prototype.showLegislation = function() {
-        this.$('.search-views > div:not(.legislation-search)').hide();
-        this.$('.search-views .legislation-search').show();
-        return this.$('.tabs li').removeClass('active').filter('.legislation').addClass('active');
+        return this.showActive('.legislations');
+      };
+
+      Home.prototype.showActive = function(cls) {
+        this.$(".search-views > div:not(" + cls + ".search)").hide();
+        this.$(".search-views " + cls + ".search").show();
+        return this.$('.tabs li').removeClass('active').filter(cls).addClass('active');
       };
 
       Home.prototype.render = function() {
@@ -59,22 +59,22 @@
         tpl = _.template(Templates.Home);
         this.$el.html(tpl());
         new Views.ArchiveSearch({
-          el: this.$('.archive-search')
+          el: this.$('.archives.search')
         });
         new Views.CreatorSearch({
-          el: this.$('.creator-search')
+          el: this.$('.creators.search')
         });
         new Views.LegislationSearch({
-          el: this.$('.legislation-search')
+          el: this.$('.legislations.search')
         });
-        this.$('.creator-search, .legislation-search').hide();
-        this.$('.tabs li.archives').addClass('active');
+        this.$(".search-views > .search:not(" + this.activeTab + ")").hide();
+        this.$(".tabs li" + this.activeTab).addClass('active');
         return this;
       };
 
       return Home;
 
-    })(BaseView);
+    })(Backbone.View);
   });
 
 }).call(this);

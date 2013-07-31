@@ -25,6 +25,7 @@ define (require) ->
 		render: ->
 			tmpl = _.template Templates.Creator
 			@$el.html tmpl
-				model: @model.attributes
+				data: @model.attributes
+				model: @model
 				config: config
 			console.log @model.attributes

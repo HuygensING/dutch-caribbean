@@ -20,7 +20,7 @@
         return _ref;
       }
 
-      Creator.prototype.className = 'model-view';
+      Creator.prototype.className = 'fiche';
 
       Creator.prototype.initialize = function(options) {
         Creator.__super__.initialize.apply(this, arguments);
@@ -39,7 +39,8 @@
         var tmpl;
         tmpl = _.template(Templates.Creator);
         this.$el.html(tmpl({
-          model: this.model.attributes,
+          data: this.model.attributes,
+          model: this.model,
           config: config
         }));
         return console.log(this.model.attributes);

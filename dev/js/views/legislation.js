@@ -20,7 +20,7 @@
         return _ref;
       }
 
-      Legislation.prototype.className = 'model-view';
+      Legislation.prototype.className = 'fiche';
 
       Legislation.prototype.initialize = function(options) {
         Legislation.__super__.initialize.apply(this, arguments);
@@ -36,10 +36,10 @@
 
       Legislation.prototype.render = function() {
         var tmpl;
-        console.log("LEG", this.model.attributes);
+        console.log("LEG", this.$el, this.model.attributes);
         tmpl = _.template(Templates.Legislation);
         return this.$el.html(tmpl({
-          model: this.model.attributes,
+          data: this.model.attributes,
           config: config
         }));
       };

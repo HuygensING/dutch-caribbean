@@ -20,7 +20,7 @@
         return _ref;
       }
 
-      Archive.prototype.className = 'model-view';
+      Archive.prototype.className = 'fiche';
 
       Archive.prototype.initialize = function(options) {
         Archive.__super__.initialize.apply(this, arguments);
@@ -39,7 +39,8 @@
         tmpl = _.template(Templates.Archive);
         console.log(this.model.attributes);
         return this.$el.html(tmpl({
-          model: this.model.attributes,
+          data: this.model.attributes,
+          model: this.model,
           config: config
         }));
       };

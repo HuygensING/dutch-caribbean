@@ -25,5 +25,6 @@ define (require) ->
 			tmpl = _.template Templates.Archive
 			console.log @model.attributes
 			@$el.html tmpl
-				model: @model.attributes
+				data: @model.attributes
+				model: @model
 				config: config

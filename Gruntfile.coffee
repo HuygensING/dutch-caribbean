@@ -41,7 +41,7 @@ module.exports = (grunt) ->
 			symlink_facetedsearch:
 				command: [
 					'cd dev/lib'
-					'ln -s ~/Projects/faceted-search/ faceted-search'
+					'ln -s ~/Development/faceted-search/ faceted-search'
 				].join '&&'
 
 			bowerinstall:

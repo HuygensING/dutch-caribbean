@@ -2,9 +2,9 @@
 	.line
 	ul
 		li: a(href="/creator/results") Search results
-		| <% if (model.nameEng) { %>
+		| <% if (data.nameEng) { %>
 		li.active
-			| <a href="/creator/<%= model._id %>"><%= model.nameEng.length > 70 ? model.nameEng.substr(0,70) + '...' : model.nameEng %></a>
+			| <a href="/creator/<%= data._id %>"><%= data.nameEng.length > 70 ? data.nameEng.substr(0,70) + '...' : data.nameEng %></a>
 		| <% } %>
 
 
@@ -12,35 +12,41 @@
 	.panel-left
 		h3.type Creator
 		h2.title
-			<%- model.nameEng %>
+			<%- data.nameEng %>
 
-		.history
-			<%= model.history %>
+		<% if (String(data.nameEng).toLowerCase() !== String(data.nameNld).toLowerCase()) { %>
+		.section.dutch-name
+			h4 Dutch name
+			p <%= data.nameNld %>
+		<% } %>
 
-		.remarks
+		.section.history
+			<%= String(data.history).replace(/\n/g, '<br>') %>
+
+		.section.remarks
 			h4 Remarks
-			| <% if (model.notes) { %>
-			| 	<%= model.notes %>
+			| <% if (data.notes) { %>
+			p	<%= data.notes %>
 			| <% } else { %>
 			p -
 			| <% } %>
 
-		.related-archives
+		.section.related-archives
 			h4 Related archives
-			| <% if (_.has(model, 'relatedArchives') && model.relatedArchives.length) { %>
+			| <% if (_.has(data, 'relatedArchives') && data.relatedArchives.length) { %>
 			ul
-				| <% _.each(model.relatedArchives, function (archive) { %>
+				| <% _.each(data.relatedArchives, function (archive) { %>
 				li <a href="<%= config.archiveURL(archive.id) %>"><%- archive.displayName %></a>
 				| <% }) %>
 			| <% } else { %>
 			p -
 			| <% } %>
 
-		.related-creators
+		.section.related-creators
 			h4 Related creators
-			| <% if (_.has(model, 'relatedArchivers') && model.relatedArchivers.length) { %>
+			| <% if (_.has(data, 'relatedArchivers') && data.relatedArchivers.length) { %>
 			ul
-				| <% _.each(model.relatedArchivers, function (archiver) { %>
+				| <% _.each(data.relatedArchivers, function (archiver) { %>
 				li <a href="<%= config.archiverURL(archiver.id) %>"><%- archiver.displayName %></a>
 				| <% }) %>
 			| <% } else { %>
@@ -48,31 +54,45 @@
 			| <% } %>
 
 	.panel-right
-		.date
+		.section.date
 			h4 Date
 			p
 				span.lbl Begin date
-				span <%= model.beginDate %>
+				span <%= data.beginDate %>
 			p
 				span.lbl End date
-				span <%= model.endDate %>
+				span <%= data.endDate %>
 
-		.geography
+		.section.geography
 			h4 Geography
-			| <% if (_.has(model, 'placeKeywords') && model.placeKeywords.length) { %>
-			| 	<% _.each(model.placeKeywords, function (place) { %>
+			| <% if (_.has(data, 'placeKeywords') && data.placeKeywords.length) { %>
+			| 	<% _.each(data.placeKeywords, function (place) { %>
 			p 		<%= place.displayName %>
 			| 	<% }) %>
 			| <% } else { %>
 			p -
 			| <% } %>
 
-		.subject
+		.section.subject
 			h4 Subject
-			| <% if (_.has(model, 'subjectKeywords') && model.subjectKeywords.length) { %>
-			| 	<% _.each(model.subjectKeywords, function (kw) { %>
+			| <% if (_.has(data, 'subjectKeywords') && data.subjectKeywords.length) { %>
+			| 	<% _.each(data.subjectKeywords, function (kw) { %>
 			p 		<%= kw.displayName %>
 			| 	<% }) %>
 			| <% } else { %>
 			p -
 			| <% } %>
+
+		.section.person
+			h4 Person
+			| <% if (_.has(data, 'persons') && data.persons.length) { %>
+			| 	<% _.each(data.persons, function (person) { %>
+			p 		<%= person.displayName %>
+			| 	<% }) %>
+			| <% } else { %>
+			p -
+			| <% } %>
+
+		.section.type
+			h4 Type
+			| <%= (data.types || []).join(', ') %>

@@ -10,7 +10,7 @@
         Backbone.history.start({
           pushState: true
         });
-        return $(document).on('click', 'a:not([data-bypass])', function(e) {
+        return $(document).on('click', 'a:not([target])', function(e) {
           var href;
           href = $(this).attr('href');
           if (href != null) {

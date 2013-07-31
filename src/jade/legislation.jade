@@ -2,50 +2,77 @@
 	.line
 	ul
 		li: a(href="/legislation/results") Search results
-		| <% if (model.titleEng) { %>
+		| <% if (data.titleEng) { %>
 		li.active
-			| <a href="/legislation/"><%= model.titleEng.length > 70 ? model.titleEng.substr(0,70) + '...' : model.titleEng %></a>
+			| <a href="/legislation/"><%= data.titleEng.length > 70 ? data.titleEng.substr(0,70) + '...' : data.titleEng %></a>
 		| <% } %>
 
 .content
 	.panel-left
 		h3.type Legislation
-		h2.title <%- model.titleEng %>
+		h2.title
+			| <%- data.titleEng %>
+			i.reference <%= data.reference %> <%= data.pages %>
 
-		.contents
-			<%= model.contents %>
+		| <% if (String().toLowerCase(data.titleEng) !== String(data.titleNld).toLowerCase()) { %>
+		.section.dutch-title
+			h4 Dutch title
+			p <%= data.titleNld %>
+		| <% } %>
 
-		.archival-source
-			<%= model.originalArchivalSource %>
+		.section.contents
+			p <%= String(data.contents).replace(/\n/g, '<br>') %>
+
+		.section.archival-source
+			h4 Original archive source
+			p <%= data.originalArchivalSource || '-' %>
+		.section.earlier-later-publications
+			h4 Earlier and later publications
+			| <% if (_.has(data, 'otherPublications') && data.otherPublications.length) { %>
+			p <%= data.otherPublications.join(', ') %>
+			| <% } else { %>
+			p -
+			| <% } %>
+
 	.panel-right
-		.relevant-dates
+		.section.relevant-dates
 			h4 Relevant dates
-			p <%= model.date1 %>
+			p <%= data.date1 %>
 
-		.geography
+		.section.geography
 			h4 Geography
-			| <% if (_.has(model, 'placeKeywords') && model.placeKeywords.length) { %>
-			| 	<% _.each(model.placeKeywords, function (place) { %>
+			| <% if (_.has(data, 'placeKeywords') && data.placeKeywords.length) { %>
+			| 	<% _.each(data.placeKeywords, function (place) { %>
 			p 		<%= place.displayName %>
 			| 	<% }) %>
 			| <% } else { %>
 			p -
 			| <% } %>
 
-		.subject
+		.section.subject
 			h4 Subject
-			| <% if (_.has(model, 'subjectKeywords') && model.subjectKeywords.length) { %>
-			| 	<% _.each(model.subjectKeywords, function (kw) { %>
+			| <% if (_.has(data, 'otherKeywords') && data.otherKeywords.length) { %>
+			| 	<% _.each(data.otherKeywords, function (kw) { %>
 			p 		<%= kw.displayName %>
 			| 	<% }) %>
 			| <% } else { %>
 			p -
 			| <% } %>
 
-		.pages
-			h4 Pages
-			| <% if (_.has(model, 'pages') && model.pages) { %>
-			|		<%= model.pages %>
+		.section.person
+			h4 Person
+			| <% if (_.has(data, 'persons') && data.persons.length) { %>
+			| 	<% _.each(data.persons, function (person) { %>
+			p 		<%= person.displayName %>
+			| 	<% }) %>
 			| <% } else { %>
 			p -
 			| <% } %>
+
+		//- .section.pages
+		//- 	h4 Pages
+		//- 	| <% if (_.has(data, 'pages') && data.pages) { %>
+		//- 	|		<%= data.pages %>
+		//- 	| <% } else { %>
+		//- 	p -
+		//- 	| <% } %>

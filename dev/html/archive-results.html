@@ -1,0 +1,7 @@
+<ul class="results"><% _.each(results, function (r) { %>
+<li id="<%= r._id %>">
+  <span class="title"><%= r.titleEng %></span>
+		<span class="right"><%= String(r.beginDate).split('-')[0] %> - <%= String(r.endDate).split('-')[0] %></span>
+		<span class="ref"><%= [r.countries[0], r.refCodeArchive, r.refCode, r.itemNo].join(' ') %></span>
+</li>
+<% }) %></ul>

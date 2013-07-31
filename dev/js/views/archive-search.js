@@ -8,7 +8,8 @@
     BaseView = require('views/base');
     FacetedSearch = require('faceted-search');
     Templates = {
-      Search: require('text!html/faceted-search-and-results.html')
+      Search: require('text!html/faceted-search-and-results.html'),
+      Results: require('text!html/archive-results.html')
     };
     resultsCache = require('models/results-cache');
     return Search = (function(_super) {
@@ -21,7 +22,10 @@
 
       Search.prototype.events = function() {
         return {
-          'click .results .body li': 'resultClicked'
+          'click .results .body li': 'resultClicked',
+          'click .results .next': 'nextResults',
+          'click .results .previous': 'previousResults',
+          'change .sort select': 'sortResults'
         };
       };
 
@@ -29,59 +33,90 @@
         return this.publish('navigate:entry', 'archive/' + ev.currentTarget.id);
       };
 
+      Search.prototype.nextResults = function() {
+        return this.archiveSearch.next();
+      };
+
+      Search.prototype.previousResults = function() {
+        return this.archiveSearch.prev();
+      };
+
+      Search.prototype.sortResults = function(e) {
+        this.sortBy = $(e.currentTarget).val();
+        return this.archiveSearch.sortResultsBy(this.sortBy);
+      };
+
       Search.prototype.initialize = function() {
         Search.__super__.initialize.apply(this, arguments);
         return this.render();
       };
 
+      Search.prototype.renderSortableFields = function() {
+        var f, option, select, _i, _len, _ref1;
+        if (this.sortableFields) {
+          select = $('<select>');
+          _ref1 = this.sortableFields;
+          for (_i = 0, _len = _ref1.length; _i < _len; _i++) {
+            f = _ref1[_i];
+            option = $('<option>').attr({
+              value: f
+            }).text(config.sortableFieldNames[f]);
+            if (this.sortBy && this.sortBy === f) {
+              option.attr('selected', 'selected');
+            }
+            select.append(option);
+          }
+          this.$('.heading .sort').html(select);
+        }
+        return this;
+      };
+
       Search.prototype.renderResults = function(response) {
-        var ul,
-          _this = this;
-        this.$('.results h3').html(response.numFound + ' Archives found');
-        ul = document.createElement('ul');
-        _.each(response.results, function(result) {
-          var li, small;
-          li = document.createElement('li');
-          li.innerHTML = result.titleEng;
-          li.id = result._id;
-          small = document.createElement('small');
-          small.innerHTML = '(' + result.beginDate + '-' + result.endDate + ')';
-          li.appendChild(small);
-          return ul.appendChild(li);
-        });
-        return this.$('.results .body').html(ul);
+        var rtpl;
+        this.$('.results h3').html(response.numFound + ' archives');
+        rtpl = _.template(Templates.Results);
+        this.$('.results .body').html(rtpl({
+          results: response.results
+        }));
+        this.$('.results .cursor .next').toggle(this.archiveSearch.hasNext());
+        return this.$('.results .cursor .previous').toggle(this.archiveSearch.hasPrev());
       };
 
       Search.prototype.render = function() {
-        var archiveSearch, firstTime, tpl,
+        var firstTime, tpl,
           _this = this;
         tpl = _.template(Templates.Search);
         this.$el.html(tpl({
           type: 'ARCHIVE'
         }));
         firstTime = true;
-        archiveSearch = new FacetedSearch({
+        this.archiveSearch = new FacetedSearch({
           el: this.$('.faceted-search'),
           baseUrl: config.facetedSearchHost,
           searchUrl: config.searchPath,
           queryOptions: {
+            resultRows: config.resultRows,
             term: '*',
             typeString: config.resources.archive.label,
             sort: 'id'
           }
         });
-        return archiveSearch.on('faceted-search:results', function(response) {
+        return this.archiveSearch.on('faceted-search:results', function(response) {
           var facetName, order, _i, _len, _ref1, _results;
           console.log(response);
           if (!firstTime) {
+            if ('sortableFields' in response) {
+              _this.sortableFields = response.sortableFields;
+            }
             _this.renderResults(response);
           }
           firstTime = false;
+          _this.renderSortableFields();
           /* RENDER FACET TITLES*/
 
-          console.log(config);
           _.each(_this.$('.facet h3'), function(h3) {
             var name;
+            console.log("Changing facet name for " + h3 + ": " + config.facetNames);
             name = h3.getAttribute('data-name');
             if (name != null) {
               return h3.innerHTML = config.facetNames[name];

@@ -1,4 +1,12 @@
-.fiche
+#fiche
+	.section
+		margin-bottom sectionMargin
+
+	h2.title .reference
+		display block
+		font-size 11pt
+		margin 5px 0
+
 	h3.type
 		color grey
 		font-weight normal
@@ -7,19 +15,18 @@
 		line-height 20px
 		margin-bottom 50px
 
-	.remarks,
-	.related-archives,
-	.related-creators,
-	.subject,
-	.relevant-dates
-	.date,
-	.geography,
-	.pages
-		margin-bottom sectionMargin
-
-	.archival-source
-		font-weight bold
-		font-style italic
+	/*
+		.remarks,
+		.reference,
+		.dutch-title,
+		.related-archives,
+		.related-creators,
+		.subject,
+		.relevant-dates
+		.date,
+		.geography,
+		.pages,
+	*/
 
 	.subject
 		margin-top 1em
@@ -28,6 +35,9 @@
 		span.lbl
 			display inline-block
 			width 6em
+
+	.remarks p
+		font-size 80%
 
 	.panel-left
 		h4
