@@ -3,8 +3,9 @@
     __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
 
   define(function(require) {
-    var BaseView, FacetedSearch, Home, Templates, Views, config, resultsCache, _ref;
+    var BaseView, FacetedSearch, Home, Templates, Views, config, pubsub, resultsCache, _ref;
     config = require('config');
+    pubsub = require('managers/pubsub');
     BaseView = require('views/base');
     FacetedSearch = require('faceted-search');
     Templates = {
@@ -32,26 +33,37 @@
 
       Home.prototype.initialize = function(options) {
         Home.__super__.initialize.apply(this, arguments);
-        this.activeTab = (options != null ? options.activeTab : void 0) ? options.activeTab : '.archives';
+        _.extend(this, pubsub);
+        this.activeTab = (options != null ? options.activeTab : void 0) ? options.activeTab : 'archive';
         return this.render();
       };
 
+      Home.prototype.showTab = function(tab) {
+        this.showActive(tab || 'archive');
+        if (tab) {
+          return this.publish('navigate:url', "/" + tab + "/results");
+        }
+      };
+
       Home.prototype.showArchives = function() {
-        return this.showActive('.archives');
+        this.showActive('archive');
+        return this.publish('navigate:url', '/archive/results');
       };
 
       Home.prototype.showCreators = function() {
-        return this.showActive('.creators');
+        this.showActive('creator');
+        return this.publish('navigate:url', '/creator/results');
       };
 
       Home.prototype.showLegislation = function() {
-        return this.showActive('.legislations');
+        this.showActive('legislation');
+        return this.publish('navigate:url', '/legislation/results');
       };
 
       Home.prototype.showActive = function(cls) {
-        this.$(".search-views > div:not(" + cls + ".search)").hide();
-        this.$(".search-views " + cls + ".search").show();
-        return this.$('.tabs li').removeClass('active').filter(cls).addClass('active');
+        this.$(".search-views > div:not(." + cls + "s.search)").hide();
+        this.$(".search-views ." + cls + "s.search").show();
+        return this.$('.tabs li').removeClass('active').filter("." + cls + "s").addClass('active');
       };
 
       Home.prototype.render = function() {

@@ -28,7 +28,7 @@
 
       Person.prototype.reference = function() {
         var _ref1;
-        return [(_ref1 = this.get('countries')) != null ? _ref1.join(' ') : void 0, this.get('refCodeArchive'), this.get('refCode'), this.get('itemNo')].join(' ');
+        return [(_ref1 = this.get('countries')) != null ? _ref1.join(' ') : void 0, this.get('refCodeArchive'), this.get('refCode'), this.get('subCode'), this.get('itemNo') || this.get('series')].join(' ');
       };
 
       return Person;

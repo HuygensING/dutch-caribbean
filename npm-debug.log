@@ -1,0 +1,146 @@
+0 info it worked if it ends with ok
+1 verbose cli [ '/usr/local/bin/node',
+1 verbose cli   '/usr/local/bin/npm',
+1 verbose cli   'install',
+1 verbose cli   'coffee-script' ]
+2 info using npm@1.2.18
+3 info using node@v0.10.5
+4 verbose read json /home/jona/workspace/dutch-caribbean/package.json
+5 warn package.json dutch-caribbean@0.0.0 No README.md file found!
+6 verbose read json /home/jona/workspace/dutch-caribbean/node_modules/coffee-script/package.json
+7 verbose read json /home/jona/workspace/dutch-caribbean/node_modules/express/package.json
+8 verbose read json /home/jona/workspace/dutch-caribbean/node_modules/grunt/package.json
+9 verbose read json /home/jona/workspace/dutch-caribbean/node_modules/grunt-contrib-coffee/package.json
+10 verbose read json /home/jona/workspace/dutch-caribbean/node_modules/grunt-contrib-concat/package.json
+11 verbose read json /home/jona/workspace/dutch-caribbean/node_modules/grunt-contrib-copy/package.json
+12 verbose read json /home/jona/workspace/dutch-caribbean/node_modules/grunt-contrib-cssmin/package.json
+13 verbose read json /home/jona/workspace/dutch-caribbean/node_modules/grunt-contrib-jade/package.json
+14 verbose read json /home/jona/workspace/dutch-caribbean/node_modules/grunt-contrib-requirejs/package.json
+15 verbose read json /home/jona/workspace/dutch-caribbean/node_modules/grunt-contrib-stylus/package.json
+16 verbose read json /home/jona/workspace/dutch-caribbean/node_modules/grunt-contrib-uglify/package.json
+17 verbose read json /home/jona/workspace/dutch-caribbean/node_modules/grunt-contrib-watch/package.json
+18 verbose read json /home/jona/workspace/dutch-caribbean/node_modules/grunt-shell/package.json
+19 verbose read json /home/jona/workspace/dutch-caribbean/node_modules/grunt-text-replace/package.json
+20 verbose read json /home/jona/workspace/dutch-caribbean/node_modules/underscore/package.json
+21 verbose read json /home/jona/workspace/dutch-caribbean/node_modules/yeoman/package.json
+22 verbose from cache /home/jona/workspace/dutch-caribbean/package.json
+23 verbose readDependencies using package.json deps
+24 verbose cache add [ 'coffee-script', null ]
+25 verbose cache add name=undefined spec="coffee-script" args=["coffee-script",null]
+26 verbose parsed url { protocol: null,
+26 verbose parsed url   slashes: null,
+26 verbose parsed url   auth: null,
+26 verbose parsed url   host: null,
+26 verbose parsed url   port: null,
+26 verbose parsed url   hostname: null,
+26 verbose parsed url   hash: null,
+26 verbose parsed url   search: null,
+26 verbose parsed url   query: null,
+26 verbose parsed url   pathname: 'coffee-script',
+26 verbose parsed url   path: 'coffee-script',
+26 verbose parsed url   href: 'coffee-script' }
+27 silly lockFile ab358269-coffee-script coffee-script
+28 verbose lock coffee-script /home/jona/.npm/ab358269-coffee-script.lock
+29 silly lockFile ab358269-coffee-script coffee-script
+30 silly lockFile ab358269-coffee-script coffee-script
+31 verbose addNamed [ 'coffee-script', '' ]
+32 verbose addNamed [ null, '' ]
+33 silly lockFile 53951495-coffee-script coffee-script@
+34 verbose lock coffee-script@ /home/jona/.npm/53951495-coffee-script.lock
+35 silly addNameRange { name: 'coffee-script', range: '', hasData: false }
+36 verbose registry.get coffee-script not expired, no request
+37 silly addNameRange number 2 { name: 'coffee-script', range: '', hasData: true }
+38 silly addNameRange versions [ 'coffee-script',
+38 silly addNameRange   [ '0.7.0',
+38 silly addNameRange     '0.7.1',
+38 silly addNameRange     '0.7.2',
+38 silly addNameRange     '0.9.0',
+38 silly addNameRange     '0.9.1',
+38 silly addNameRange     '0.9.2',
+38 silly addNameRange     '0.9.3',
+38 silly addNameRange     '0.9.4',
+38 silly addNameRange     '0.9.5',
+38 silly addNameRange     '0.9.6',
+38 silly addNameRange     '1.0.0',
+38 silly addNameRange     '1.0.1',
+38 silly addNameRange     '1.1.0',
+38 silly addNameRange     '1.1.1',
+38 silly addNameRange     '1.1.2',
+38 silly addNameRange     '1.1.3',
+38 silly addNameRange     '1.2.0',
+38 silly addNameRange     '1.3.0',
+38 silly addNameRange     '1.3.1',
+38 silly addNameRange     '1.3.2',
+38 silly addNameRange     '1.3.3',
+38 silly addNameRange     '1.4.0',
+38 silly addNameRange     '1.5.0',
+38 silly addNameRange     '1.6.0',
+38 silly addNameRange     '1.6.1',
+38 silly addNameRange     '1.6.2',
+38 silly addNameRange     '1.6.3' ] ]
+39 verbose addNamed [ 'coffee-script', '1.6.3' ]
+40 verbose addNamed [ '1.6.3', '1.6.3' ]
+41 silly lockFile 15ab88ca-coffee-script-1-6-3 coffee-script@1.6.3
+42 verbose lock coffee-script@1.6.3 /home/jona/.npm/15ab88ca-coffee-script-1-6-3.lock
+43 verbose read json /home/jona/.npm/coffee-script/1.6.3/package/package.json
+44 silly lockFile 15ab88ca-coffee-script-1-6-3 coffee-script@1.6.3
+45 silly lockFile 15ab88ca-coffee-script-1-6-3 coffee-script@1.6.3
+46 silly lockFile 53951495-coffee-script coffee-script@
+47 silly lockFile 53951495-coffee-script coffee-script@
+48 silly resolved [ { name: 'coffee-script',
+48 silly resolved     description: 'Unfancy JavaScript',
+48 silly resolved     keywords: [ 'javascript', 'language', 'coffeescript', 'compiler' ],
+48 silly resolved     author: { name: 'Jeremy Ashkenas' },
+48 silly resolved     version: '1.6.3',
+48 silly resolved     licenses: [ [Object] ],
+48 silly resolved     engines: { node: '>=0.8.0' },
+48 silly resolved     directories: { lib: './lib/coffee-script' },
+48 silly resolved     main: './lib/coffee-script/coffee-script',
+48 silly resolved     bin: { coffee: './bin/coffee', cake: './bin/cake' },
+48 silly resolved     scripts: { test: 'node ./bin/cake test' },
+48 silly resolved     homepage: 'http://coffeescript.org',
+48 silly resolved     bugs: 'https://github.com/jashkenas/coffee-script/issues',
+48 silly resolved     repository:
+48 silly resolved      { type: 'git',
+48 silly resolved        url: 'git://github.com/jashkenas/coffee-script.git' },
+48 silly resolved     devDependencies: { 'uglify-js': '~2.2', jison: '>=0.2.0' },
+48 silly resolved     readme: '\n            {\n         }   }   {\n        {   {  }  }\n         }   }{  {\n        {  }{  }  }                    _____       __  __\n       ( }{ }{  { )                   / ____|     / _|/ _|\n     .- { { }  { }} -.               | |     ___ | |_| |_ ___  ___\n    (  ( } { } { } }  )              | |    / _ \\|  _|  _/ _ \\/ _ \\\n    |`-..________ ..-\'|              | |___| (_) | | | ||  __/  __/\n    |                 |               \\_____\\___/|_| |_| \\___|\\___|\n    |                 ;--.\n    |                (__  \\            _____           _       _\n    |                 | )  )          / ____|         (_)     | |\n    |                 |/  /          | (___   ___ _ __ _ _ __ | |_\n    |                 (  /            \\___ \\ / __| \'__| | \'_ \\| __|\n    |                 |/              ____) | (__| |  | | |_) | |_\n    |                 |              |_____/ \\___|_|  |_| .__/ \\__|\n     `-.._________..-\'                                  | |\n                                                        |_|\n\n\n  CoffeeScript is a little language that compiles into JavaScript.\n\n  Install Node.js, and then the CoffeeScript compiler:\n  sudo bin/cake install\n\n  Or, if you have the Node Package Manager installed:\n  npm install -g coffee-script\n  (Leave off the -g if you don\'t wish to install globally.)\n\n  Execute a script:\n  coffee /path/to/script.coffee\n\n  Compile a script:\n  coffee -c /path/to/script.coffee\n\n  For documentation, usage, and examples, see:\n  http://coffeescript.org/\n\n  To suggest a feature, report a bug, or general discussion:\n  http://github.com/jashkenas/coffee-script/issues/\n\n  If you\'d like to chat, drop by #coffeescript on Freenode IRC,\n  or on webchat.freenode.net.\n\n  The source repository:\n  git://github.com/jashkenas/coffee-script.git\n\n  All contributors are listed here:\n  http://github.com/jashkenas/coffee-script/contributors\n',
+48 silly resolved     readmeFilename: 'README',
+48 silly resolved     _id: 'coffee-script@1.6.3',
+48 silly resolved     _from: 'coffee-script@' } ]
+49 info install coffee-script@1.6.3 into /home/jona/workspace/dutch-caribbean
+50 info installOne coffee-script@1.6.3
+51 verbose from cache /home/jona/.npm/coffee-script/1.6.3/package/package.json
+52 info /home/jona/workspace/dutch-caribbean/node_modules/coffee-script unbuild
+53 verbose from cache /home/jona/workspace/dutch-caribbean/node_modules/coffee-script/package.json
+54 info preuninstall coffee-script@1.6.3
+55 info uninstall coffee-script@1.6.3
+56 verbose true,/home/jona/workspace/dutch-caribbean/node_modules,/home/jona/workspace/dutch-caribbean/node_modules unbuild coffee-script@1.6.3
+57 verbose /home/jona/workspace/dutch-caribbean/node_modules/.bin,[object Object] binRoot
+58 info /home/jona/workspace/dutch-caribbean/node_modules/coffee-script unbuild
+59 verbose read json /home/jona/workspace/dutch-caribbean/node_modules/coffee-script/package.json
+60 info preuninstall coffee-script@1.6.3
+61 info uninstall coffee-script@1.6.3
+62 verbose true,/home/jona/workspace/dutch-caribbean/node_modules,/home/jona/workspace/dutch-caribbean/node_modules unbuild coffee-script@1.6.3
+63 verbose /home/jona/workspace/dutch-caribbean/node_modules/.bin,[object Object] binRoot
+64 error error rolling back Error: EACCES, unlink '/home/jona/workspace/dutch-caribbean/node_modules/.bin/coffee'
+64 error error rolling back  coffee-script@1.6.3 { [Error: EACCES, unlink '/home/jona/workspace/dutch-caribbean/node_modules/.bin/coffee']
+64 error error rolling back   errno: 3,
+64 error error rolling back   code: 'EACCES',
+64 error error rolling back   path: '/home/jona/workspace/dutch-caribbean/node_modules/.bin/coffee' }
+65 error Error: EACCES, unlink '/home/jona/workspace/dutch-caribbean/node_modules/.bin/coffee'
+65 error  { [Error: EACCES, unlink '/home/jona/workspace/dutch-caribbean/node_modules/.bin/coffee']
+65 error   errno: 3,
+65 error   code: 'EACCES',
+65 error   path: '/home/jona/workspace/dutch-caribbean/node_modules/.bin/coffee' }
+66 error Please try running this command again as root/Administrator.
+67 error System Linux 3.5.0-17-generic
+68 error command "/usr/local/bin/node" "/usr/local/bin/npm" "install" "coffee-script"
+69 error cwd /home/jona/workspace/dutch-caribbean
+70 error node -v v0.10.5
+71 error npm -v 1.2.18
+72 error path /home/jona/workspace/dutch-caribbean/node_modules/.bin/coffee
+73 error code EACCES
+74 error errno 3
+75 error stack Error: EACCES, unlink '/home/jona/workspace/dutch-caribbean/node_modules/.bin/coffee'
+76 verbose exit [ 3, true ]

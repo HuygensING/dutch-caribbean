@@ -36,7 +36,9 @@
 
       Legislation.prototype.render = function() {
         var tmpl;
-        console.log("LEG", this.$el, this.model.attributes);
+        if (config.debug) {
+          console.log("LEG", this.$el, this.model.attributes);
+        }
         tmpl = _.template(Templates.Legislation);
         return this.$el.html(tmpl({
           data: this.model.attributes,

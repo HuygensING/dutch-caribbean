@@ -56,6 +56,8 @@ define (require) ->
 			tpl = _.template Templates.Search
 			@$el.html tpl type: 'ARCHIVE'
 
+			@$('.results .cursor .next, .results .cursor .previous').hide()
+
 			firstTime = true
 	
 			@archiveSearch = new FacetedSearch
@@ -67,6 +69,11 @@ define (require) ->
 					term: '*'
 					typeString: config.resources.archive.label
 					sort: 'id'
+				excludeFacets: [
+					'facet_s_begin_date'
+					'facet_s_end_date'
+				]
+
 			@archiveSearch.on 'faceted-search:results', (response) =>
 				console.log response
 				# resultsCache.set 'archives', response
@@ -82,13 +89,12 @@ define (require) ->
 				### RENDER FACET TITLES ###
 				# console.log config
 				_.each @$('.facet h3'), (h3) =>
-					console.log "Changing facet name for #{h3}: #{config.facetNames}"
 					name = h3.getAttribute 'data-name'
 					if name?
 						h3.innerHTML = config.facetNames[name]
 
 				### CHANGE FACET ORDER ###
-				order = ['facet_s_begin_date', 'facet_s_end_date', 'facet_s_place', 'facet_s_subject', 'facet_s_person', 'facet_s_refcode']
+				order = ['facet_s_period', 'facet_s_begin_date', 'facet_s_end_date', 'facet_s_place', 'facet_s_subject', 'facet_s_person', 'facet_s_refcode']
 
 				for facetName in order.reverse()
 					@$('.facets').prepend @$('h3[data-name="'+facetName+'"]').parents('.facet')

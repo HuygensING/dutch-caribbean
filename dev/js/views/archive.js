@@ -25,7 +25,6 @@
       Archive.prototype.initialize = function(options) {
         Archive.__super__.initialize.apply(this, arguments);
         if (options && (options.id != null)) {
-          console.log("New Archive", this.options.id);
           this.model = new Models.Archive({
             _id: options.id
           });
@@ -37,7 +36,9 @@
       Archive.prototype.render = function() {
         var tmpl;
         tmpl = _.template(Templates.Archive);
-        console.log(this.model.attributes);
+        if (config.debug) {
+          console.log(this.model.attributes);
+        }
         return this.$el.html(tmpl({
           data: this.model.attributes,
           model: this.model,

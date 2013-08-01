@@ -8,4 +8,4 @@ define (require) ->
 		initialize: ->
 			@fetch if @id
 		reference: ->
-			[@get('countries')?.join(' '), @get('refCodeArchive'), @get('refCode'), @get('itemNo')].join ' '
+			[@get('countries')?.join(' '), @get('refCodeArchive'), @get('refCode'), @get('subCode'), @get('itemNo') || @get('series')].join ' '

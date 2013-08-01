@@ -1,6 +1,9 @@
 define (require) ->
 	config = require 'config'
 	# router = require 'routers/main'
+
+	pubsub = require 'managers/pubsub'
+
 	BaseView = require 'views/base'
 	FacetedSearch = require 'faceted-search'
 	Templates =
@@ -22,20 +25,31 @@ define (require) ->
 		initialize: (options) ->
 			super
 
-			@activeTab = if options?.activeTab then options.activeTab else '.archives'
+			_.extend @, pubsub
+
+			@activeTab = if options?.activeTab then options.activeTab else 'archive'
 			@render()
 
+		showTab: (tab) ->
+			@showActive(tab || 'archive')
+			# @navigate "/#{tab}/results"
+			if tab
+				@publish 'navigate:url', "/#{tab}/results"
+
 		showArchives: ->
-			@showActive('.archives')
+			@showActive('archive')
+			@publish 'navigate:url', '/archive/results'
 		showCreators: ->
-			@showActive('.creators')
+			@showActive('creator')
+			@publish 'navigate:url', '/creator/results'
 		showLegislation: ->
-			@showActive('.legislations')
+			@showActive('legislation')
+			@publish 'navigate:url', '/legislation/results'
 
 		showActive: (cls) ->
-			@$(".search-views > div:not(#{cls}.search)").hide()
-			@$(".search-views #{cls}.search").show()
-			@$('.tabs li').removeClass('active').filter(cls).addClass('active')
+			@$(".search-views > div:not(.#{cls}s.search)").hide()
+			@$(".search-views .#{cls}s.search").show()
+			@$('.tabs li').removeClass('active').filter(".#{cls}s").addClass('active')
 
 		render: ->
 			tpl = _.template Templates.Home

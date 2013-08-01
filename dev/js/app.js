@@ -6,6 +6,7 @@
     return {
       initialize: function() {
         var mainRouter;
+        Backbone.View.prototype.navigate = Backbone.history.navigate;
         mainRouter = new MainRouter();
         Backbone.history.start({
           pushState: true

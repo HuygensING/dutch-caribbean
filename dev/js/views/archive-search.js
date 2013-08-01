@@ -89,6 +89,7 @@
         this.$el.html(tpl({
           type: 'ARCHIVE'
         }));
+        this.$('.results .cursor .next, .results .cursor .previous').hide();
         firstTime = true;
         this.archiveSearch = new FacetedSearch({
           el: this.$('.faceted-search'),
@@ -99,7 +100,8 @@
             term: '*',
             typeString: config.resources.archive.label,
             sort: 'id'
-          }
+          },
+          excludeFacets: ['facet_s_begin_date', 'facet_s_end_date']
         });
         return this.archiveSearch.on('faceted-search:results', function(response) {
           var facetName, order, _i, _len, _ref1, _results;
@@ -116,7 +118,6 @@
 
           _.each(_this.$('.facet h3'), function(h3) {
             var name;
-            console.log("Changing facet name for " + h3 + ": " + config.facetNames);
             name = h3.getAttribute('data-name');
             if (name != null) {
               return h3.innerHTML = config.facetNames[name];
@@ -124,7 +125,7 @@
           });
           /* CHANGE FACET ORDER*/
 
-          order = ['facet_s_begin_date', 'facet_s_end_date', 'facet_s_place', 'facet_s_subject', 'facet_s_person', 'facet_s_refcode'];
+          order = ['facet_s_period', 'facet_s_begin_date', 'facet_s_end_date', 'facet_s_place', 'facet_s_subject', 'facet_s_person', 'facet_s_refcode'];
           _ref1 = order.reverse();
           _results = [];
           for (_i = 0, _len = _ref1.length; _i < _len; _i++) {

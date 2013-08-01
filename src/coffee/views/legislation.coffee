@@ -21,7 +21,7 @@ define (require) ->
 			@render()
 
 		render: ->
-			console.log "LEG", @$el, @model.attributes
+			if config.debug then console.log "LEG", @$el, @model.attributes
 			tmpl = _.template Templates.Legislation
 			@$el.html tmpl
 				data: @model.attributes

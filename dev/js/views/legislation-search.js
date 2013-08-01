@@ -90,6 +90,7 @@
         this.$el.html(tpl({
           type: 'LEGISLATION'
         }));
+        this.$('.results .cursor .next, .results .cursor .previous').hide();
         firstTime = true;
         this.legislationSearch = new FacetedSearch({
           el: this.$('.faceted-search'),
@@ -99,7 +100,8 @@
             resultRows: config.resultRows,
             term: '*',
             typeString: config.resources.legislation.label
-          }
+          },
+          excludeFacets: ['facet_s_begin_date', 'facet_s_end_date']
         });
         return this.legislationSearch.on('faceted-search:results', function(response) {
           var facetName, order, _i, _len, _ref1, _results;

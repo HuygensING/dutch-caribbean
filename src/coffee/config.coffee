@@ -1,11 +1,11 @@
 define (require) ->
 	config =
-		baseURL: 'http://demo17.huygens.knaw.nl/repository'
+		baseURL: 'http://repository.huygens.knaw.nl/'
 		appRootElement: '#app'
 		homeElement: '#app'
 		resultRows: 15
-		facetedSearchHost: 'http://demo17.huygens.knaw.nl/'
-		searchPath: 'repository/search'
+		facetedSearchHost: 'http://repository.huygens.knaw.nl/'
+		searchPath: 'search'
 		archiverURL: (id) -> "/creator/#{id}"
 		archiverResultsURL: "/creator/results"
 		archiveURL: (id) -> "/archive/#{id}"
@@ -17,12 +17,12 @@ define (require) ->
 			facet_s_subject: 'Subject'
 			facet_s_person: 'Person'
 			facet_s_place: 'Geography'
-			facet_sort_date: 'Date'
+			facet_s_date: 'Date'
 			facet_s_begin_date: 'Begin date'
 			facet_s_end_date: 'End date'
 			facet_s_type: 'Identity type'
 			facet_sort_text: 'Text'
-			facet_sort_period: 'Period'
+			facet_s_period: 'Period'
 		sortableFieldNames:
 			facet_sort_date: 'Date'
 			facet_sort_title: 'Title'

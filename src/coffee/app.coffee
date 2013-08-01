@@ -3,8 +3,11 @@ define (require) ->
 	MainRouter = require 'routers/main'
 
 	initialize: ->
+		Backbone.View.prototype.navigate = Backbone.history.navigate
+		
 		mainRouter = new MainRouter()
-		Backbone.history.start pushState: true   
+		
+		Backbone.history.start pushState: true
 
 		$(document).on 'click', 'a:not([target])', (e) ->
 			href = $(@).attr 'href'

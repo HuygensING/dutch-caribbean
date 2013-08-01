@@ -29,21 +29,24 @@
         var _this = this;
         _.extend(this, Pubsub);
         this.on('route', this.show, this);
-        return this.subscribe('navigate:entry', function(route) {
+        this.subscribe('navigate:entry', function(route) {
           return _this.navigate(route, {
             trigger: true
           });
         });
+        return this.subscribe('navigate:url', function(url) {
+          return _this.navigate(url);
+        });
       };
 
       MainRouter.prototype['routes'] = {
-        '': 'home',
         'creator/results': 'home_creator',
         'creator/:id': 'creator',
         'archive/results': 'home_archive',
         'archive/:id': 'archive',
         'legislation/results': 'home_legislation',
-        'legislation/:id': 'legislation'
+        'legislation/:id': 'legislation',
+        '': 'home'
       };
 
       MainRouter.prototype.home = function() {
@@ -51,15 +54,15 @@
       };
 
       MainRouter.prototype.home_creator = function() {
-        return this.showHome('.creators');
+        return this.showHome('creator');
       };
 
       MainRouter.prototype.home_archive = function() {
-        return this.showHome('archives');
+        return this.showHome('archive');
       };
 
       MainRouter.prototype.home_legislation = function() {
-        return this.showHome();
+        return this.showHome('legislation');
       };
 
       MainRouter.prototype.creator = function(id) {
@@ -82,6 +85,7 @@
 
       MainRouter.prototype.showHome = function(activeTab) {
         $('#fiche').hide();
+        home.showTab(activeTab);
         return $('#home').show();
       };
 

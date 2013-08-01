@@ -56,6 +56,8 @@ define (require) ->
 			tpl = _.template Templates.Search
 			@$el.html tpl type: 'LEGISLATION'
 
+			@$('.results .cursor .next, .results .cursor .previous').hide()
+
 			firstTime = true
 
 			@legislationSearch = new FacetedSearch
@@ -66,6 +68,11 @@ define (require) ->
 					resultRows: config.resultRows
 					term: '*'
 					typeString: config.resources.legislation.label
+				excludeFacets: [
+					'facet_s_begin_date'
+					'facet_s_end_date'
+				]
+
 			@legislationSearch.on 'faceted-search:results', (response) =>
 				# resultsCache.set 'archives', response
 				# console.log firstTime

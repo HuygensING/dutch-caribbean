@@ -56,6 +56,8 @@ define (require) ->
 			tpl = _.template Templates.Search
 			@$el.html tpl type: 'CREATOR'
 
+			@$('.results .cursor .next, .results .cursor .previous').hide()
+
 			@creatorSearch = new FacetedSearch
 				el: @$('.faceted-search')
 				baseUrl: config.facetedSearchHost
@@ -65,6 +67,10 @@ define (require) ->
 					term: '*'
 					typeString: config.resources.creator.label
 					sort: 'id'
+				excludeFacets: [
+					'facet_s_begin_date'
+					'facet_s_end_date'
+				]
 
 			firstTime = true
 
@@ -86,7 +92,7 @@ define (require) ->
 						h3.innerHTML = config.facetNames[name]
 
 				### CHANGE FACET ORDER ###
-				order = ['facet_s_begin_date', 'facet_s_end_date', 'facet_s_type', 'facet_s_place', 'facet_s_subject', 'facet_s_person']
+				order = ['facet_s_period', 'facet_s_begin_date', 'facet_s_end_date', 'facet_s_type', 'facet_s_place', 'facet_s_subject', 'facet_s_person']
 
 				for facetName in order.reverse()
 					@$('.facets').prepend @$('h3[data-name="'+facetName+'"]').parents('.facet')

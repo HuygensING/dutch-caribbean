@@ -27,15 +27,16 @@ define (require) ->
 			@on 'route', @show, @
 
 			@subscribe 'navigate:entry', (route) => @navigate route, trigger: true
+			@subscribe 'navigate:url', (url) => @navigate url
 
 		'routes':
-			'': 'home'
 			'creator/results': 'home_creator'
 			'creator/:id': 'creator'
 			'archive/results': 'home_archive'
 			'archive/:id': 'archive'
 			'legislation/results': 'home_legislation'
 			'legislation/:id': 'legislation'
+			'': 'home'
 
 		home: ->
 			# @view = Views.Home
@@ -43,11 +44,11 @@ define (require) ->
 			@showHome()
 
 		home_creator: ->
-			@showHome('.creators')
+			@showHome('creator')
 		home_archive: ->
-			@showHome('archives')
+			@showHome('archive')
 		home_legislation: ->
-			@showHome()
+			@showHome('legislation')
 
 		creator: (id) ->
 			@showFiche Views.Creator, id: id
@@ -58,6 +59,9 @@ define (require) ->
 
 		showHome: (activeTab) ->
 			$('#fiche').hide()
+			
+			home.showTab activeTab
+			# @navigate "/#{activeTab}/results"
 			$('#home').show()
 
 		showFiche: (view, options) ->

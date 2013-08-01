@@ -108,6 +108,13 @@ module.exports = (grunt) ->
 				]
 				dest:
 					'dev/css/main.css'
+			legacy:
+				src: [
+					'json2.min.js'
+					'stage/js/main.js'
+					'jquery-ajaxhooks.min.js'
+				]
+				dest: 'stage/js/main.js'
 
 		cssmin:
 			stage:
@@ -137,7 +144,7 @@ module.exports = (grunt) ->
 					# exclude: ['backbone', 'jquery', 'underscore', 'helpers/fns'] # Managers and helpers should be excluded, but how?
 					preserveLicenseComments: false
 					out: "stage/js/main.js"
-					# optimize: 'none'
+					optimize: 'none'
 					paths:
 						'jquery': '../lib/jquery/jquery.min'
 						'underscore': '../lib/underscore-amd/underscore'
@@ -205,6 +212,7 @@ module.exports = (grunt) ->
 		'cssmin:stage'
 		'shell:symlink_stage_images' # Symlink from dev/images to stage/images
 		'requirejs:compile' # Run r.js
+		'concat:legacy'
 		# 'shell:rsync' # Rsync to test server
 	]
 

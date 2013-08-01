@@ -89,6 +89,7 @@
         this.$el.html(tpl({
           type: 'CREATOR'
         }));
+        this.$('.results .cursor .next, .results .cursor .previous').hide();
         this.creatorSearch = new FacetedSearch({
           el: this.$('.faceted-search'),
           baseUrl: config.facetedSearchHost,
@@ -98,7 +99,8 @@
             term: '*',
             typeString: config.resources.creator.label,
             sort: 'id'
-          }
+          },
+          excludeFacets: ['facet_s_begin_date', 'facet_s_end_date']
         });
         firstTime = true;
         return this.creatorSearch.on('faceted-search:results', function(response) {
@@ -122,7 +124,7 @@
           });
           /* CHANGE FACET ORDER*/
 
-          order = ['facet_s_begin_date', 'facet_s_end_date', 'facet_s_type', 'facet_s_place', 'facet_s_subject', 'facet_s_person'];
+          order = ['facet_s_period', 'facet_s_begin_date', 'facet_s_end_date', 'facet_s_type', 'facet_s_place', 'facet_s_subject', 'facet_s_person'];
           _ref1 = order.reverse();
           _results = [];
           for (_i = 0, _len = _ref1.length; _i < _len; _i++) {
