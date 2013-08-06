@@ -6,4 +6,5 @@ define (require) ->
 			@render()
 
 		render: ->
-			@$('.results').html JSON.stringify @data
+			if JSON?
+				@$('.results').html JSON.stringify @data

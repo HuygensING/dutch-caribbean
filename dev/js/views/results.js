@@ -18,7 +18,9 @@
       };
 
       ResultsList.prototype.render = function() {
-        return this.$('.results').html(JSON.stringify(this.data));
+        if (typeof JSON !== "undefined" && JSON !== null) {
+          return this.$('.results').html(JSON.stringify(this.data));
+        }
       };
 
       return ResultsList;

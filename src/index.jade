@@ -2,21 +2,22 @@ doctype
 html(lang="en")
 	head
 		meta(charset="utf-8")
-		title Dutch Caribbean
+		title The Dutch in the Caribbean, c. 1670 - c. 1870
 		link(rel="stylesheet", type="text/css", href="/css/main.css")
 		link(rel="stylesheet", type="text/css", href="/lib/faceted-search/stage/css/main.css")
 		script(data-main="/js/main", src="/lib/requirejs/require.js")
+		// @@timestamp
 	body
 		.wrapper
 			#app.main
 				.head
-					img(src="/images/HuygensING.png", class="HIlogo")
+					a(href="http://www.huygens.knaw.nl/"): img(src="/images/HuygensING.png", class="HIlogo")
 					h1
 						a(href="/"): img(src="/images/dutch-caribbean.jpg", class="HIlogo", alt="The Dutch in the Caribbean")
 				#main
 					#home
 					#fiche
-		script
+		script.
 			(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
 			(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
 			m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)

@@ -24,7 +24,7 @@
 			p <%= String(data.contents).replace(/\n/g, '<br>') %>
 
 		.section.archival-source
-			h4 Original archive source
+			h4 Original archival source
 			p <%= data.originalArchivalSource || '-' %>
 		.section.earlier-later-publications
 			h4 Earlier and later publications
@@ -51,10 +51,19 @@
 
 		.section.subject
 			h4 Subject
-			| <% if (_.has(data, 'otherKeywords') && data.otherKeywords.length) { %>
-			| 	<% _.each(data.otherKeywords, function (kw) { %>
-			p 		<%= kw.displayName %>
-			| 	<% }) %>
+			| <% var hasOKW = _.has(data, 'otherKeywords') && data.otherKeywords.length; %>
+			| <% var hasGKW = _.has(data, 'groupKeywords') && data.groupKeywords.length; %>
+			| <% if (hasOKW || hasGKW) { %>
+			|		<% if (hasOKW) { %>
+			| 		<% _.each(data.otherKeywords, function (kw) { %>
+			p 			<%= kw.displayName %>
+			| 		<% }) %>
+			|		<% } %>
+			|		<% if (hasGKW) { %>
+			|			<% _.each(data.groupKeywords, function (gkw) { %>
+			p				<%= gkw.displayName %>
+			|			<% }) %>
+			|		<% } %>
 			| <% } else { %>
 			p -
 			| <% } %>

@@ -130,8 +130,14 @@ module.exports = (grunt) ->
 				src: 'dev/index.html'
 				dest: 'stage/index.html'
 				replacements: [
-					from: '<script data-main="/js/main" src="/lib/requirejs/require.js"></script>'
-					to: '<script src="/js/main.js"></script>'
+					{
+						from: '<script data-main="/js/main" src="/lib/requirejs/require.js"></script>'
+						to: '<script src="/js/main.js"></script>'
+					}
+					{
+						from: '@@timestamp'
+						to: (new Date).toString()
+					}
 				]
 
 		requirejs:

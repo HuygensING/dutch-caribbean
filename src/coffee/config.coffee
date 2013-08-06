@@ -1,10 +1,10 @@
 define (require) ->
 	config =
-		baseURL: 'http://repository.huygens.knaw.nl/'
+		baseURL: 'http://database.dutch-caribbean.huygens.knaw.nl/api/'
 		appRootElement: '#app'
 		homeElement: '#app'
 		resultRows: 15
-		facetedSearchHost: 'http://repository.huygens.knaw.nl/'
+		facetedSearchHost: 'http://database.dutch-caribbean.huygens.knaw.nl/api/'
 		searchPath: 'search'
 		archiverURL: (id) -> "/creator/#{id}"
 		archiverResultsURL: "/creator/results"

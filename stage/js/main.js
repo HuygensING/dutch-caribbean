@@ -3556,11 +3556,11 @@ return(!i||i!==r&&!b.contains(r,i))&&(e.type=o.origType,n=o.handler.apply(this,a
   define('config',['require'],function(require) {
     var config;
     config = {
-      baseURL: 'http://repository.huygens.knaw.nl/',
+      baseURL: 'http://database.dutch-caribbean.huygens.knaw.nl/api/',
       appRootElement: '#app',
       homeElement: '#app',
       resultRows: 15,
-      facetedSearchHost: 'http://repository.huygens.knaw.nl/',
+      facetedSearchHost: 'http://database.dutch-caribbean.huygens.knaw.nl/api/',
       searchPath: 'search',
       archiverURL: function(id) {
         return "/creator/" + id;
@@ -7606,6 +7606,10 @@ define('text!html/facet.html',[],function () { return '<div class="placeholder p
         return _ref;
       }
 
+      Facet.prototype.initialize = function(options) {
+        return Facet.__super__.initialize.apply(this, arguments);
+      };
+
       Facet.prototype.render = function() {
         var rtpl;
         rtpl = _.template(Templates.Facet);
@@ -8037,7 +8041,6 @@ define('text!html/facet/boolean.html',[],function () { return '<header><h3 data-
       }
 
       DateFacet.prototype.parse = function(attrs) {
-        console.log(attrs);
         attrs.options = _.map(_.pluck(attrs.options, 'name'), function(option) {
           return option.substr(0, 4);
         });
@@ -8097,7 +8100,6 @@ define('text!html/facet/date.html',[],function () { return '<header><h3 data-nam
           parse: true
         });
         this.listenTo(this.model, 'change:options', this.render);
-        console.log(this.model);
         return this.render();
       };
 
@@ -8306,6 +8308,7 @@ define('text!html/facet/period.html',[],function () { return '\n<header>\n  <h3 
   define('managers/ajax',['require','jquery'],function(require) {
     var $;
     $ = require('jquery');
+    $.support.cors = true;
     return {
       token: null,
       get: function(args) {
@@ -8427,7 +8430,7 @@ define('text!html/facet/period.html',[],function () { return '\n<header>\n  <h3 
             }
           });
           return jqXHR.fail(function(jqXHR, textStatus, errorThrown) {
-            console.log("*** FAIL", arguments);
+            console.log("*** FAIL", textStatus, errorThrown, arguments);
             if (jqXHR.status === 401) {
               return _this.publish('unauthorized');
             }
@@ -8436,11 +8439,13 @@ define('text!html/facet/period.html',[],function () { return '\n<header>\n  <h3 
       };
 
       FacetedSearch.prototype.setCursor = function(direction, cb, context) {
-        var jqXHR,
+        var jqXHR, url,
           _this = this;
         if (this.serverResponse[direction]) {
+          url = this.serverResponse[direction];
+          url = url.replace('hi12.huygens.knaw.nl:8080/repository', 'repository.huygens.knaw.nl');
           jqXHR = ajax.get({
-            url: this.serverResponse[direction]
+            url: url
           });
           return jqXHR.done(function(response) {
             _this.serverResponse = response;
@@ -8615,12 +8620,13 @@ define('text!html/faceted-search.html',[],function () { return '\n<div class="fa
       FacetedSearch.prototype.initialize = function(options) {
         var facetViewMap, queryOptions,
           _this = this;
-        console.log("OPTIOONS", options);
         FacetedSearch.__super__.initialize.apply(this, arguments);
         facetViewMap = options.facetViewMap;
         delete options.facetViewMap;
         _.extend(config, options);
         _.extend(config.facetViewMap, facetViewMap);
+        console.log(">> << >> << >> << >> << >> << >> << >> << >> << >>");
+        console.log("" + config.facetOrder);
         this.facetViews = {};
         this.firstRender = true;
         queryOptions = _.extend(config.queryOptions, config.textSearchOptions);
@@ -8631,6 +8637,8 @@ define('text!html/faceted-search.html',[],function () { return '\n<div class="fa
         this.subscribe('unauthorized', function() {
           return _this.trigger('unauthorized');
         });
+        console.log(":: << :: << :: << :: << :: << :: << :: << :: << ::");
+        console.log("" + config.facetOrder);
         return this.render();
       };
 
@@ -8644,6 +8652,8 @@ define('text!html/faceted-search.html',[],function () { return '\n<div class="fa
           this.$('.search-placeholder').html(search.$el);
           this.listenTo(search, 'change', this.fetchResults);
         }
+        console.log(">> ** >> ** >> ** >> ** >> ** >> ** >> ** >> ** >>");
+        console.log("" + config.facetOrder);
         this.fetchResults();
         return this;
       };
@@ -8660,6 +8670,8 @@ define('text!html/faceted-search.html',[],function () { return '\n<div class="fa
           queryOptions = {};
         }
         this.model.set(queryOptions);
+        console.log(">> %&%& >> %&%& >> %&%& >> %&%& >> %&%& >> %&%& >> %&%& >> %&%& >>");
+        console.log("" + config.facetOrder);
         return this.model.fetch({
           success: function() {
             return _this.renderFacets();
@@ -8683,23 +8695,51 @@ define('text!html/faceted-search.html',[],function () { return '\n<div class="fa
         return _.has(this.model.serverResponse, '_prev');
       };
 
+      FacetedSearch.prototype.reset = function() {};
+
       FacetedSearch.prototype.publishResult = function(result) {
         this.trigger('faceted-search:results', result);
         return this.publish('faceted-search:results', result);
       };
 
       FacetedSearch.prototype.renderFacets = function(data) {
-        var facetData, fragment, hideFacet, index, _ref1, _ref2, _ref3;
+        var f, facet, facetData, facets, fragment, hasTitleMapping, hideFacet, idx, index, _ref1, _ref2;
         this.$('.loader').hide();
+        console.log(">> ORDER >> " + config.facetOrder);
+        facets = this.model.serverResponse.facets;
         if (this.firstRender) {
           this.firstRender = false;
           fragment = document.createDocumentFragment();
-          _ref1 = this.model.serverResponse.facets;
-          for (index in _ref1) {
-            if (!__hasProp.call(_ref1, index)) continue;
-            facetData = _ref1[index];
+          if (config.facetOrder) {
+            _ref1 = ((function() {
+              var _i, _len, _ref1, _results;
+              _ref1 = config.facetOrder;
+              _results = [];
+              for (_i = 0, _len = _ref1.length; _i < _len; _i++) {
+                f = _ref1[_i];
+                _results.push(f);
+              }
+              return _results;
+            })()).reverse();
+            for (index in _ref1) {
+              f = _ref1[index];
+              for (idx in facets) {
+                facet = facets[idx];
+                if (f === facet.name) {
+                  facets.splice(0, 0, facets.splice(idx, 1)[0]);
+                }
+              }
+            }
+          }
+          for (index in facets) {
+            if (!__hasProp.call(facets, index)) continue;
+            facetData = facets[index];
             hideFacet = 'excludeFacets' in config && (_ref2 = facetData.name, __indexOf.call(config.excludeFacets, _ref2) >= 0);
             if (facetData.type in config.facetViewMap) {
+              hasTitleMapping = (config.facetTitles != null) && facetData.name in config.facetTitles;
+              if (hasTitleMapping && !facetData.title) {
+                facetData.title = config.facetTitles[facetData.name];
+              }
               this.facetViews[facetData.name] = new config.facetViewMap[facetData.type]({
                 attrs: facetData
               });
@@ -8713,11 +8753,9 @@ define('text!html/faceted-search.html',[],function () { return '\n<div class="fa
           }
           this.$('.facets').html(fragment);
         } else {
-          _ref3 = this.model.serverResponse.facets;
-          for (index in _ref3) {
-            if (!__hasProp.call(_ref3, index)) continue;
-            data = _ref3[index];
-            console.log(this.facetViews, data.name);
+          for (index in facets) {
+            if (!__hasProp.call(facets, index)) continue;
+            data = facets[index];
             this.facetViews[data.name].update(data.options);
           }
         }
@@ -8744,7 +8782,7 @@ define('text!html/faceted-search.html',[],function () { return '\n<div class="fa
     return require('main');
 }));
 /**
- * @license RequireJS text 2.0.9 Copyright (c) 2010-2012, The Dojo Foundation All Rights Reserved.
+ * @license RequireJS text 2.0.10 Copyright (c) 2010-2012, The Dojo Foundation All Rights Reserved.
  * Available via the MIT or new BSD license.
  * see: http://github.com/requirejs/text for details
  */
@@ -8768,7 +8806,7 @@ define('text',['module'], function (module) {
         masterConfig = (module.config && module.config()) || {};
 
     text = {
-        version: '2.0.9',
+        version: '2.0.10',
 
         strip: function (content) {
             //Strips <?xml ...?> declarations so that external SVG and XML
@@ -8920,6 +8958,12 @@ define('text',['module'], function (module) {
                 url = req.toUrl(nonStripName),
                 useXhr = (masterConfig.useXhr) ||
                          text.useXhr;
+
+            // Do not load if it is an empty: url
+            if (url.indexOf('empty:') === 0) {
+                onLoad();
+                return;
+            }
 
             //Load the text. Use XHR if possible and in a browser.
             if (!hasLocation || useXhr(url, defaultProtocol, defaultHostName, defaultPort)) {
@@ -9126,9 +9170,9 @@ define('text',['module'], function (module) {
 
 define('text!html/home.html',[],function () { return '<div class="tabs"><img src="/images/tabs-slant.png"/><ul><li class="archives">Archives</li><li class="creators">Creators</li><li class="legislations">Legislation</li></ul></div><div class="search-views"><div class="archives search"></div><div class="creators search"></div><div class="legislations search"></div></div>';});
 
-define('text!html/faceted-search-and-results.html',[],function () { return '<div class="row span3"><div class="cell span1"><div class="faceted-search"></div></div><div class="cell span2"><div class="abbreviations"><a href="http://dutch-caribbean.huygens.knaw.nl/wp-content/uploads/2013/06/Afkortingen-Caribische-Wereld.pdf" target="_new">Abbreviations</a></div><div class="results"><div class="heading"><h3>No results yet</h3><div class="sort"></div></div><div class="cursor"><span class="previous">Previous</span><span class="next">Next</span></div><div class="body"></div></div></div></div>';});
+define('text!html/faceted-search-and-results.html',[],function () { return '<div class="row span3"><div class="cell span1"><div class="faceted-search"></div></div><div class="cell span2"><div class="abbreviations"><a href="http://dutch-caribbean.huygens.knaw.nl/wp-content/uploads/2013/08/Afkortingen-Caribische-Wereld.pdf" target="_new">Abbreviations</a></div><div class="results"><div class="heading"><h3>No results yet</h3><div class="sort"></div></div><div class="cursor"><span class="previous">Previous</span><span class="next">Next</span></div><div class="body"></div></div></div></div>';});
 
-define('text!html/archive-results.html',[],function () { return '<ul class="results"><% _.each(results, function (r) { %>\n<li id="<%= r._id %>">\n  <span class="title"><%= r.titleEng %></span>\n\t\t<span class="right"><%= String(r.beginDate).split(\'-\')[0] %> - <%= String(r.endDate).split(\'-\')[0] %></span>\n\t\t<span class="ref"><%= [r.countries[0], r.refCodeArchive, r.refCode, r.subCode, r.itemNo || r.series].join(\' \') %></span>\n</li>\n<% }) %></ul>';});
+define('text!html/generic-results.html',[],function () { return '\n<ul class="results">\n  <% _.each(results, function (r) { %>\n  <li id="<%= r._id %>">\n    <span class="title"><%= r.titleEng || r.nameEng %></span>\n  </li>\n  <% }) %>\n</ul>';});
 
 (function() {
   var __hasProp = {}.hasOwnProperty,
@@ -9157,14 +9201,14 @@ define('text!html/archive-results.html',[],function () { return '<ul class="resu
   var __hasProp = {}.hasOwnProperty,
     __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
 
-  define('views/archive-search',['require','config','views/base','faceted-search','text!html/faceted-search-and-results.html','text!html/archive-results.html','models/results-cache'],function(require) {
+  define('views/search',['require','config','views/base','faceted-search','text!html/faceted-search-and-results.html','text!html/generic-results.html','models/results-cache'],function(require) {
     var BaseView, FacetedSearch, Search, Templates, config, resultsCache, _ref;
     config = require('config');
     BaseView = require('views/base');
     FacetedSearch = require('faceted-search');
     Templates = {
       Search: require('text!html/faceted-search-and-results.html'),
-      Results: require('text!html/archive-results.html')
+      Results: require('text!html/generic-results.html')
     };
     resultsCache = require('models/results-cache');
     return Search = (function(_super) {
@@ -9184,25 +9228,43 @@ define('text!html/archive-results.html',[],function () { return '<ul class="resu
         };
       };
 
-      Search.prototype.resultClicked = function(ev) {
-        return this.publish('navigate:entry', 'archive/' + ev.currentTarget.id);
-      };
-
       Search.prototype.nextResults = function() {
-        return this.archiveSearch.next();
+        return this.search.next();
       };
 
       Search.prototype.previousResults = function() {
-        return this.archiveSearch.prev();
+        return this.search.prev();
       };
 
       Search.prototype.sortResults = function(e) {
-        this.sortBy = $(e.currentTarget).val();
-        return this.archiveSearch.sortResultsBy(this.sortBy);
+        this.sortField = $(e.currentTarget).val();
+        return this.search.sortResultsBy(this.sortField);
       };
 
-      Search.prototype.initialize = function() {
+      Search.prototype.initialize = function(options) {
+        var _this = this;
+        this.options = options;
         Search.__super__.initialize.apply(this, arguments);
+        if (!this.resultsTemplate) {
+          this.resultsTemplate = _.template(Templates.Results);
+        }
+        if (!this.searchTemplate) {
+          this.searchTemplate = _.template(Templates.Search);
+        }
+        this.firstTime = true;
+        this.search = this.options.facetedSearch || this.facetedSearch;
+        this.search.on('faceted-search:results', function(response) {
+          if (_this.firstTime) {
+
+          } else {
+            if ('sortableFields' in response) {
+              _this.sortableFields = response.sortableFields;
+            }
+            _this.renderResults(response);
+          }
+          _this.firstTime = false;
+          return _this.renderSortableFields();
+        });
         return this.render();
       };
 
@@ -9216,7 +9278,7 @@ define('text!html/archive-results.html',[],function () { return '<ul class="resu
             option = $('<option>').attr({
               value: f
             }).text(config.sortableFieldNames[f]);
-            if (this.sortBy && this.sortBy === f) {
+            if (this.sortField && this.sortField === f) {
               option.attr('selected', 'selected');
             }
             select.append(option);
@@ -9227,73 +9289,73 @@ define('text!html/archive-results.html',[],function () { return '<ul class="resu
       };
 
       Search.prototype.renderResults = function(response) {
-        var rtpl;
         this.$('.results h3').html(response.numFound + ' archives');
-        rtpl = _.template(Templates.Results);
-        this.$('.results .body').html(rtpl({
+        this.$('.results .body').html(this.resultsTemplate({
           results: response.results
         }));
-        this.$('.results .cursor .next').toggle(this.archiveSearch.hasNext());
-        return this.$('.results .cursor .previous').toggle(this.archiveSearch.hasPrev());
+        this.$('.results .cursor .next').toggle(this.search.hasNext());
+        return this.$('.results .cursor .previous').toggle(this.search.hasPrev());
       };
 
       Search.prototype.render = function() {
-        var firstTime, tpl,
-          _this = this;
-        tpl = _.template(Templates.Search);
-        this.$el.html(tpl({
-          type: 'ARCHIVE'
-        }));
-        this.$('.results .cursor .next, .results .cursor .previous').hide();
-        firstTime = true;
-        this.archiveSearch = new FacetedSearch({
-          el: this.$('.faceted-search'),
-          baseUrl: config.facetedSearchHost,
-          searchUrl: config.searchPath,
-          queryOptions: {
-            resultRows: config.resultRows,
-            term: '*',
-            typeString: config.resources.archive.label,
-            sort: 'id'
-          },
-          excludeFacets: ['facet_s_begin_date', 'facet_s_end_date']
-        });
-        return this.archiveSearch.on('faceted-search:results', function(response) {
-          var facetName, order, _i, _len, _ref1, _results;
-          console.log(response);
-          if (!firstTime) {
-            if ('sortableFields' in response) {
-              _this.sortableFields = response.sortableFields;
-            }
-            _this.renderResults(response);
-          }
-          firstTime = false;
-          _this.renderSortableFields();
-          /* RENDER FACET TITLES*/
-
-          _.each(_this.$('.facet h3'), function(h3) {
-            var name;
-            name = h3.getAttribute('data-name');
-            if (name != null) {
-              return h3.innerHTML = config.facetNames[name];
-            }
-          });
-          /* CHANGE FACET ORDER*/
-
-          order = ['facet_s_period', 'facet_s_begin_date', 'facet_s_end_date', 'facet_s_place', 'facet_s_subject', 'facet_s_person', 'facet_s_refcode'];
-          _ref1 = order.reverse();
-          _results = [];
-          for (_i = 0, _len = _ref1.length; _i < _len; _i++) {
-            facetName = _ref1[_i];
-            _results.push(_this.$('.facets').prepend(_this.$('h3[data-name="' + facetName + '"]').parents('.facet')));
-          }
-          return _results;
-        });
+        this.$el.html(this.searchTemplate());
+        this.$('.faceted-search').html(this.search.$el);
+        return this;
       };
 
       return Search;
 
     })(BaseView);
+  });
+
+}).call(this);
+
+define('text!html/archive-results.html',[],function () { return '<ul class="results"><% _.each(results, function (r) { %>\n<li id="<%= r._id %>">\n  <span class="title"><%= r.titleEng %></span>\n\t\t<span class="right"><%= String(r.beginDate).split(\'-\')[0] %> - <%= String(r.endDate).split(\'-\')[0] %></span>\n\t\t<span class="ref"><%= [r.countries[0], r.refCodeArchive, r.refCode, r.subCode, r.itemNo || r.series].join(\' \') %></span>\n</li>\n<% }) %></ul>';});
+
+(function() {
+  var __hasProp = {}.hasOwnProperty,
+    __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
+
+  define('views/archive-search',['require','config','views/search','faceted-search','text!html/faceted-search-and-results.html','text!html/archive-results.html'],function(require) {
+    var FacetedSearch, Search, SearchView, Templates, config, _ref;
+    config = require('config');
+    SearchView = require('views/search');
+    FacetedSearch = require('faceted-search');
+    Templates = {
+      Search: require('text!html/faceted-search-and-results.html'),
+      Results: require('text!html/archive-results.html')
+    };
+    return Search = (function(_super) {
+      __extends(Search, _super);
+
+      function Search() {
+        _ref = Search.__super__.constructor.apply(this, arguments);
+        return _ref;
+      }
+
+      Search.prototype.resultClicked = function(ev) {
+        return this.publish('navigate:entry', 'archive/' + ev.currentTarget.id);
+      };
+
+      Search.prototype.resultsTemplate = _.template(Templates.Results);
+
+      Search.prototype.facetedSearch = new FacetedSearch({
+        baseUrl: config.facetedSearchHost,
+        searchUrl: config.searchPath,
+        queryOptions: {
+          resultRows: config.resultRows,
+          term: '*',
+          typeString: config.resources.archive.label,
+          sort: 'facet_sort_title'
+        },
+        excludeFacets: ['facet_s_begin_date', 'facet_s_end_date'],
+        facetOrder: ['facet_s_period', 'facet_s_begin_date', 'facet_s_end_date', 'facet_s_place', 'facet_s_subject', 'facet_s_person', 'facet_s_refcode'],
+        facetTitles: config.facetNames
+      });
+
+      return Search;
+
+    })(SearchView);
   });
 
 }).call(this);
@@ -9304,16 +9366,15 @@ define('text!html/creator-results.html',[],function () { return '<ul class="resu
   var __hasProp = {}.hasOwnProperty,
     __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
 
-  define('views/creator-search',['require','config','views/base','faceted-search','text!html/faceted-search-and-results.html','text!html/creator-results.html','models/results-cache'],function(require) {
-    var BaseView, FacetedSearch, Search, Templates, config, resultsCache, _ref;
+  define('views/creator-search',['require','config','views/search','faceted-search','text!html/faceted-search-and-results.html','text!html/creator-results.html'],function(require) {
+    var FacetedSearch, Search, SearchView, Templates, config, _ref;
     config = require('config');
-    BaseView = require('views/base');
+    SearchView = require('views/search');
     FacetedSearch = require('faceted-search');
     Templates = {
       Search: require('text!html/faceted-search-and-results.html'),
       Results: require('text!html/creator-results.html')
     };
-    resultsCache = require('models/results-cache');
     return Search = (function(_super) {
       __extends(Search, _super);
 
@@ -9322,124 +9383,29 @@ define('text!html/creator-results.html',[],function () { return '<ul class="resu
         return _ref;
       }
 
-      Search.prototype.events = function() {
-        return {
-          'click .results .body li': 'resultClicked',
-          'click .results .next': 'nextResults',
-          'click .results .previous': 'previousResults',
-          'change .sort select': 'sortResults'
-        };
-      };
-
       Search.prototype.resultClicked = function(ev) {
-        return this.publish('navigate:entry', 'creator/' + ev.currentTarget.id);
+        return this.publish('navigate:entry', 'legislation/' + ev.currentTarget.id);
       };
 
-      Search.prototype.nextResults = function() {
-        return this.creatorSearch.next();
-      };
+      Search.prototype.resultsTemplate = _.template(Templates.Results);
 
-      Search.prototype.previousResults = function() {
-        return this.creatorSearch.prev();
-      };
-
-      Search.prototype.sortResults = function(e) {
-        this.sortBy = $(e.currentTarget).val();
-        return this.creatorSearch.sortResultsBy(this.sortBy);
-      };
-
-      Search.prototype.initialize = function() {
-        Search.__super__.initialize.apply(this, arguments);
-        return this.render();
-      };
-
-      Search.prototype.renderSortableFields = function() {
-        var f, option, select, _i, _len, _ref1;
-        if (this.sortableFields) {
-          select = $('<select>');
-          _ref1 = this.sortableFields;
-          for (_i = 0, _len = _ref1.length; _i < _len; _i++) {
-            f = _ref1[_i];
-            option = $('<option>').attr({
-              value: f
-            }).text(config.sortableFieldNames[f]);
-            if (this.sortBy && this.sortBy === f) {
-              option.attr('selected', 'selected');
-            }
-            select.append(option);
-          }
-          this.$('.heading .sort').html(select);
-        }
-        return this;
-      };
-
-      Search.prototype.renderResults = function(response) {
-        var rtpl;
-        this.$('.results h3').html(response.numFound + ' creators');
-        rtpl = _.template(Templates.Results);
-        this.$('.results .body').html(rtpl({
-          results: response.results
-        }));
-        this.$('.results .cursor .next').toggle(this.creatorSearch.hasNext());
-        return this.$('.results .cursor .previous').toggle(this.creatorSearch.hasPrev());
-      };
-
-      Search.prototype.render = function() {
-        var firstTime, tpl,
-          _this = this;
-        tpl = _.template(Templates.Search);
-        this.$el.html(tpl({
-          type: 'CREATOR'
-        }));
-        this.$('.results .cursor .next, .results .cursor .previous').hide();
-        this.creatorSearch = new FacetedSearch({
-          el: this.$('.faceted-search'),
-          baseUrl: config.facetedSearchHost,
-          searchUrl: config.searchPath,
-          queryOptions: {
-            resultRows: config.resultRows,
-            term: '*',
-            typeString: config.resources.creator.label,
-            sort: 'id'
-          },
-          excludeFacets: ['facet_s_begin_date', 'facet_s_end_date']
-        });
-        firstTime = true;
-        return this.creatorSearch.on('faceted-search:results', function(response) {
-          var facetName, order, _i, _len, _ref1, _results;
-          if (!firstTime) {
-            if ('sortableFields' in response) {
-              _this.sortableFields = response.sortableFields;
-            }
-            _this.renderResults(response);
-          }
-          firstTime = false;
-          _this.renderSortableFields();
-          /* RENDER FACET TITLES*/
-
-          _.each(_this.$('.facet h3'), function(h3) {
-            var name;
-            name = h3.getAttribute('data-name');
-            if (name != null) {
-              return h3.innerHTML = config.facetNames[name];
-            }
-          });
-          /* CHANGE FACET ORDER*/
-
-          order = ['facet_s_period', 'facet_s_begin_date', 'facet_s_end_date', 'facet_s_type', 'facet_s_place', 'facet_s_subject', 'facet_s_person'];
-          _ref1 = order.reverse();
-          _results = [];
-          for (_i = 0, _len = _ref1.length; _i < _len; _i++) {
-            facetName = _ref1[_i];
-            _results.push(_this.$('.facets').prepend(_this.$('h3[data-name="' + facetName + '"]').parents('.facet')));
-          }
-          return _results;
-        });
-      };
+      Search.prototype.facetedSearch = new FacetedSearch({
+        baseUrl: config.facetedSearchHost,
+        searchUrl: config.searchPath,
+        queryOptions: {
+          resultRows: config.resultRows,
+          term: '*',
+          typeString: config.resources.creator.label,
+          sort: 'facet_sort_name'
+        },
+        excludeFacets: ['facet_s_begin_date', 'facet_s_end_date'],
+        facetOrder: ['facet_s_period', 'facet_s_begin_date', 'facet_s_end_date', 'facet_s_type', 'facet_s_place', 'facet_s_subject', 'facet_s_person'],
+        facetTitles: config.facetNames
+      });
 
       return Search;
 
-    })(BaseView);
+    })(SearchView);
   });
 
 }).call(this);
@@ -9450,17 +9416,15 @@ define('text!html/legislation-results.html',[],function () { return '<ul class="
   var __hasProp = {}.hasOwnProperty,
     __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
 
-  define('views/legislation-search',['require','config','jquery','views/base','faceted-search','text!html/faceted-search-and-results.html','text!html/legislation-results.html','models/results-cache'],function(require) {
-    var $, BaseView, FacetedSearch, Search, Templates, config, resultsCache, _ref;
+  define('views/legislation-search',['require','config','views/search','faceted-search','text!html/faceted-search-and-results.html','text!html/legislation-results.html'],function(require) {
+    var FacetedSearch, Search, SearchView, Templates, config, _ref;
     config = require('config');
-    $ = require('jquery');
-    BaseView = require('views/base');
+    SearchView = require('views/search');
     FacetedSearch = require('faceted-search');
     Templates = {
       Search: require('text!html/faceted-search-and-results.html'),
       Results: require('text!html/legislation-results.html')
     };
-    resultsCache = require('models/results-cache');
     return Search = (function(_super) {
       __extends(Search, _super);
 
@@ -9469,123 +9433,29 @@ define('text!html/legislation-results.html',[],function () { return '<ul class="
         return _ref;
       }
 
-      Search.prototype.events = function() {
-        return {
-          'click .results .body li': 'resultClicked',
-          'click .results .next': 'nextResults',
-          'click .results .previous': 'previousResults',
-          'change .sort select': 'sortResults'
-        };
-      };
-
       Search.prototype.resultClicked = function(ev) {
         return this.publish('navigate:entry', 'legislation/' + ev.currentTarget.id);
       };
 
-      Search.prototype.nextResults = function() {
-        return this.legislationSearch.next();
-      };
+      Search.prototype.resultsTemplate = _.template(Templates.Results);
 
-      Search.prototype.previousResults = function() {
-        return this.legislationSearch.prev();
-      };
-
-      Search.prototype.sortResults = function(e) {
-        this.sortBy = $(e.currentTarget).val();
-        return this.legislationSearch.sortResultsBy(this.sortBy);
-      };
-
-      Search.prototype.initialize = function() {
-        Search.__super__.initialize.apply(this, arguments);
-        return this.render();
-      };
-
-      Search.prototype.renderSortableFields = function() {
-        var f, option, select, _i, _len, _ref1;
-        if (this.sortableFields) {
-          select = $('<select>');
-          _ref1 = this.sortableFields;
-          for (_i = 0, _len = _ref1.length; _i < _len; _i++) {
-            f = _ref1[_i];
-            option = $('<option>').attr({
-              value: f
-            }).text(config.sortableFieldNames[f]);
-            if (this.sortBy && this.sortBy === f) {
-              option.attr('selected', 'selected');
-            }
-            select.append(option);
-          }
-          this.$('.heading .sort').html(select);
-        }
-        return this;
-      };
-
-      Search.prototype.renderResults = function(response) {
-        var rtpl;
-        this.$('.results h3').html(response.numFound + ' legislations');
-        rtpl = _.template(Templates.Results);
-        this.$('.results .body').html(rtpl({
-          results: response.results
-        }));
-        this.$('.results .cursor .next').toggle(this.legislationSearch.hasNext());
-        return this.$('.results .cursor .previous').toggle(this.legislationSearch.hasPrev());
-      };
-
-      Search.prototype.render = function() {
-        var firstTime, tpl,
-          _this = this;
-        tpl = _.template(Templates.Search);
-        this.$el.html(tpl({
-          type: 'LEGISLATION'
-        }));
-        this.$('.results .cursor .next, .results .cursor .previous').hide();
-        firstTime = true;
-        this.legislationSearch = new FacetedSearch({
-          el: this.$('.faceted-search'),
-          baseUrl: config.facetedSearchHost,
-          searchUrl: config.searchPath,
-          queryOptions: {
-            resultRows: config.resultRows,
-            term: '*',
-            typeString: config.resources.legislation.label
-          },
-          excludeFacets: ['facet_s_begin_date', 'facet_s_end_date']
-        });
-        return this.legislationSearch.on('faceted-search:results', function(response) {
-          var facetName, order, _i, _len, _ref1, _results;
-          if (!firstTime) {
-            if ('sortableFields' in response) {
-              _this.sortableFields = response.sortableFields;
-            }
-            _this.renderResults(response);
-          }
-          firstTime = false;
-          _this.renderSortableFields();
-          /* RENDER FACET TITLES*/
-
-          _.each(_this.$('.facet h3'), function(h3) {
-            var name;
-            name = h3.getAttribute('data-name');
-            if (name != null) {
-              return h3.innerHTML = config.facetNames[name];
-            }
-          });
-          /* CHANGE FACET ORDER*/
-
-          order = ['facet_s_date', 'facet_s_place', 'facet_s_subject', 'facet_s_person'];
-          _ref1 = order.reverse();
-          _results = [];
-          for (_i = 0, _len = _ref1.length; _i < _len; _i++) {
-            facetName = _ref1[_i];
-            _results.push(_this.$('.facets').prepend(_this.$('h3[data-name="' + facetName + '"]').parents('.facet')));
-          }
-          return _results;
-        });
-      };
+      Search.prototype.facetedSearch = new FacetedSearch({
+        baseUrl: config.facetedSearchHost,
+        searchUrl: config.searchPath,
+        queryOptions: {
+          resultRows: config.resultRows,
+          term: '*',
+          typeString: config.resources.legislation.label,
+          sort: 'facet_sort_date'
+        },
+        excludeFacets: ['facet_s_begin_date', 'facet_s_end_date'],
+        facetOrder: ['facet_s_period', 'facet_s_date', 'facet_s_place', 'facet_s_subject', 'facet_s_person'],
+        facetTitles: config.facetNames
+      });
 
       return Search;
 
-    })(BaseView);
+    })(SearchView);
   });
 
 }).call(this);
@@ -9903,7 +9773,7 @@ define('text!html/archive.html',[],function () { return '<div class="breadcrumbs
 
 }).call(this);
 
-define('text!html/legislation.html',[],function () { return '<div class="breadcrumbs"><div class="line"></div><ul><li><a href="/legislation/results">Search results</a></li><% if (data.titleEng) { %><li class="active"><a href="/legislation/"><%= data.titleEng.length > 70 ? data.titleEng.substr(0,70) + \'...\' : data.titleEng %></a></li><% } %></ul></div><div class="content"><div class="panel-left"><h3 class="type">Legislation</h3><h2 class="title"><%- data.titleEng %><i class="reference"><%= data.reference %> <%= data.pages %></i></h2><% if (String().toLowerCase(data.titleEng) !== String(data.titleNld).toLowerCase()) { %><div class="section dutch-title"><h4>Dutch title</h4><p><%= data.titleNld %></p></div><% } %><div class="section contents"><p><%= String(data.contents).replace(/\\n/g, \'<br>\') %></p></div><div class="section archival-source"><h4>Original archive source</h4><p><%= data.originalArchivalSource || \'-\' %></p></div><div class="section earlier-later-publications"><h4>Earlier and later publications</h4><% if (_.has(data, \'otherPublications\') && data.otherPublications.length) { %><p><%= data.otherPublications.join(\', \') %></p><% } else { %><p>-</p><% } %></div></div><div class="panel-right"><div class="section relevant-dates"><h4>Relevant dates</h4><p><%= data.date1 %></p></div><div class="section geography"><h4>Geography</h4><% if (_.has(data, \'placeKeywords\') && data.placeKeywords.length) { %>\n\t<% _.each(data.placeKeywords, function (place) { %><p>\t\t<%= place.displayName %></p>\t<% }) %>\n<% } else { %><p>-</p><% } %></div><div class="section subject"><h4>Subject</h4><% if (_.has(data, \'otherKeywords\') && data.otherKeywords.length) { %>\n\t<% _.each(data.otherKeywords, function (kw) { %><p>\t\t<%= kw.displayName %></p>\t<% }) %>\n<% } else { %><p>-</p><% } %></div><div class="section person"><h4>Person</h4><% if (_.has(data, \'persons\') && data.persons.length) { %>\n\t<% _.each(data.persons, function (person) { %><p>\t\t<%= person.displayName %></p>\t<% }) %>\n<% } else { %><p>-</p><% } %></div></div></div>';});
+define('text!html/legislation.html',[],function () { return '\n<div class="breadcrumbs">\n  <div class="line"></div>\n  <ul>\n    <li><a href="/legislation/results">Search results</a></li><% if (data.titleEng) { %>\n    <li class="active"><a href="/legislation/"><%= data.titleEng.length > 70 ? data.titleEng.substr(0,70) + \'...\' : data.titleEng %></a></li><% } %>\n  </ul>\n</div>\n<div class="content">\n  <div class="panel-left">\n    <h3 class="type">Legislation</h3>\n    <h2 class="title"><%- data.titleEng %><i class="reference"><%= data.reference %> <%= data.pages %></i></h2><% if (String().toLowerCase(data.titleEng) !== String(data.titleNld).toLowerCase()) { %>\n    <div class="section dutch-title">\n      <h4>Dutch title</h4>\n      <p><%= data.titleNld %></p>\n    </div><% } %>\n    <div class="section contents">\n      <p><%= String(data.contents).replace(/\\n/g, \'<br>\') %></p>\n    </div>\n    <div class="section archival-source">\n      <h4>Original archival source</h4>\n      <p><%= data.originalArchivalSource || \'-\' %></p>\n    </div>\n    <div class="section earlier-later-publications">\n      <h4>Earlier and later publications</h4><% if (_.has(data, \'otherPublications\') && data.otherPublications.length) { %>\n      <p><%= data.otherPublications.join(\', \') %></p><% } else { %>\n      <p>-</p><% } %>\n    </div>\n  </div>\n  <div class="panel-right">\n    <div class="section relevant-dates">\n      <h4>Relevant dates</h4>\n      <p><%= data.date1 %></p>\n    </div>\n    <div class="section geography">\n      <h4>Geography</h4><% if (_.has(data, \'placeKeywords\') && data.placeKeywords.length) { %>\n      \t<% _.each(data.placeKeywords, function (place) { %>\n      <p>\t\t<%= place.displayName %></p>\t<% }) %>\n      <% } else { %>\n      <p>-</p><% } %>\n    </div>\n    <div class="section subject">\n      <h4>Subject</h4><% var hasOKW = _.has(data, \'otherKeywords\') && data.otherKeywords.length; %>\n      <% var hasGKW = _.has(data, \'groupKeywords\') && data.groupKeywords.length; %>\n      <% if (hasOKW || hasGKW) { %>\n      \t\t<% if (hasOKW) { %>\n      \t\t<% _.each(data.otherKeywords, function (kw) { %>\n      <p>\t\t\t<%= kw.displayName %></p>\t\t<% }) %>\n      \t\t<% } %>\n      \t\t<% console.log("GKW", hasGKW) %>\n      \t\t<% if (hasGKW) { %>\n      \t\t\t<% _.each(data.groupKeywords, function (gkw) { %>\n      \t\t\t\t<%= gkw.displayName %>\n      \t\t\t<% }) %>\n      \t\t<% } %>\n      <% } else { %>\n      <p>-</p><% } %>\n    </div>\n    <div class="section person">\n      <h4>Person</h4><% if (_.has(data, \'persons\') && data.persons.length) { %>\n      \t<% _.each(data.persons, function (person) { %>\n      <p>\t\t<%= person.displayName %></p>\t<% }) %>\n      <% } else { %>\n      <p>-</p><% } %>\n    </div>\n  </div>\n</div>';});
 
 (function() {
   var __hasProp = {}.hasOwnProperty,

@@ -2,11 +2,11 @@
   define(function(require) {
     var config;
     config = {
-      baseURL: 'http://repository.huygens.knaw.nl/',
+      baseURL: 'http://database.dutch-caribbean.huygens.knaw.nl/api/',
       appRootElement: '#app',
       homeElement: '#app',
       resultRows: 15,
-      facetedSearchHost: 'http://repository.huygens.knaw.nl/',
+      facetedSearchHost: 'http://database.dutch-caribbean.huygens.knaw.nl/api/',
       searchPath: 'search',
       archiverURL: function(id) {
         return "/creator/" + id;
