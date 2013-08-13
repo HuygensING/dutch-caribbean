@@ -1,8 +1,5 @@
-
-<ul class="results">
-  <% _.each(results, function (r) { %>
-  <li id="<%= r._id %>">
-    <span class="title"><%= r.titleEng || r.nameEng %></span>
-  </li>
-  <% }) %>
-</ul>
+<ul class="results"><% _.each(results, function (r) { %>
+<li id="<%= r._id %>">
+  <span class="title"><%= r.titleEng || r.nameEng %></span>
+</li>
+<% }) %></ul>

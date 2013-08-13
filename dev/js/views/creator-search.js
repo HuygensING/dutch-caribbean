@@ -20,12 +20,13 @@
       }
 
       Search.prototype.resultClicked = function(ev) {
-        return this.publish('navigate:entry', 'legislation/' + ev.currentTarget.id);
+        return this.publish('navigate:entry', 'creator/' + ev.currentTarget.id);
       };
 
       Search.prototype.resultsTemplate = _.template(Templates.Results);
 
       Search.prototype.facetedSearch = new FacetedSearch({
+        name: 'creator',
         baseUrl: config.facetedSearchHost,
         searchUrl: config.searchPath,
         queryOptions: {

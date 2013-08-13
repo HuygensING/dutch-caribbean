@@ -7153,6 +7153,14 @@ return(!i||i!==r&&!b.contains(r,i))&&(e.type=o.origType,n=o.handler.apply(this,a
         return -1 * parseInt(model.get('count'), 10);
       };
 
+      ListItems.prototype.clear = function() {
+        return this.each(function(o) {
+          return o.set({
+            checked: false
+          });
+        });
+      };
+
       ListItems.prototype.updateOptions = function(newOptions) {
         var _this = this;
         if (newOptions == null) {
@@ -7628,9 +7636,9 @@ define('text!html/facet.html',[],function () { return '<div class="placeholder p
 
 }).call(this);
 
-define('text!html/facet/list.html',[],function () { return '\n<header>\n  <h3 data-name="<%= name %>"><%= title %></h3><small>&#8711;</small>\n  <div class="options">\n    <div class="row span4 align middle">\n      <div class="cell span2">\n        <input type="text" name="listsearch" class="listsearch"/>\n      </div>\n      <div class="cell span1"><small class="optioncount"></small></div>\n      <div class="cell span1 right">\n        <nav>\n          <ul>\n            <li class="all">All </li>\n            <li class="none">None</li>\n          </ul>\n        </nav>\n      </div>\n    </div>\n  </div>\n</header>\n<div class="body">\n  <div class="options">\n    <ul></ul>\n  </div>\n</div>';});
+define('text!html/facet/list.html',[],function () { return '<header><h3 data-name="<%= name %>"><%= title %></h3><small>&#8711;</small><div class="options"><div class="row span4 align middle"><div class="cell span2"><input type="text" name="listsearch" class="listsearch"/></div><div class="cell span1"><small class="optioncount"></small></div><div class="cell span1 right"><nav><ul><li class="all">All </li><li class="none">None</li></ul></nav></div></div></div></header><div class="body"><div class="options"><ul></ul></div></div>';});
 
-define('text!html/facet/list.options.html',[],function () { return '\n<ul>\n  <% _.each(options, function(option) { %>\n  <% var randomId = generateID(); %>\n  <% var checked = (option.get(\'checked\')) ? \'checked\' : \'\'; %>\n  <% var count = (option.get(\'count\') === 0) ? option.get(\'total\') : option.get(\'count\'); %>\n  <% var labelText = (option.id === \':empty\') ? \'<i>(empty)</i>\' : option.id %>\n  <li class="option">\n    <div data-count="<%= option.get(\'count\') %>" class="row span6">\n      <div class="cell span5"><input id="<%= randomId %>" name="<%= randomId %>" type="checkbox" data-value="<%= option.id %>" <%= checked %>>\n        <label for="<%= randomId %>"><%= labelText %></label>\n      </div>\n      <div class="cell span1 right">\n        <div class="count"><%= count %></div>\n      </div>\n    </div>\n  </li><% }); %>\n</ul>';});
+define('text!html/facet/list.options.html',[],function () { return '<ul><% _.each(options, function(option) { %>\n<% var randomId = generateID(); %>\n<% var checked = (option.get(\'checked\')) ? \'checked\' : \'\'; %>\n<% var count = (option.get(\'count\') === 0) ? option.get(\'total\') : option.get(\'count\'); %>\n<% var labelText = (option.id === \':empty\') ? \'<i>(empty)</i>\' : option.id %><li class="option"><div data-count="<%= option.get(\'count\') %>" class="row span6"><div class="cell span5"><input id="<%= randomId %>" name="<%= randomId %>" type="checkbox" data-value="<%= option.id %>" <%= checked %>><label for="<%= randomId %>"><%= labelText %></label></div><div class="cell span1 right"><div class="count"><%= count %></div></div></div></li><% }); %></ul>';});
 
 (function() {
   var __hasProp = {}.hasOwnProperty,
@@ -7838,6 +7846,11 @@ define('text!html/facet/list.options.html',[],function () { return '\n<ul>\n  <%
 
       ListFacet.prototype.update = function(newOptions) {
         return this.collection.updateOptions(newOptions);
+      };
+
+      ListFacet.prototype.reset = function() {
+        this.collection.clear();
+        return console.log("Resetting list facet");
       };
 
       return ListFacet;
@@ -8115,6 +8128,10 @@ define('text!html/facet/date.html',[],function () { return '<header><h3 data-nam
 
       DateFacet.prototype.update = function(newOptions) {};
 
+      DateFacet.prototype.reset = function() {
+        return console.log("Resetting date facet");
+      };
+
       return DateFacet;
 
     })(Views.Facet);
@@ -8183,7 +8200,7 @@ define('text!html/facet/date.html',[],function () { return '<header><h3 data-nam
 
 }).call(this);
 
-define('text!html/facet/period.html',[],function () { return '\n<header>\n  <h3 data-name="<%= name %>"><%= title %></h3>\n</header>\n<div class="body">\n  <label>From:</label>\n  <select><% _.each(options, function(option) { %>\n    <option><%= option %></option><% }); %>\n  </select>\n  <label>To:</label>\n  <select><% _.each(options.reverse(), function(option) { %>\n    <option><%= option %></option><% }); %>\n  </select>\n  <p> \n    <input type="checkbox"/>\n    <label>Reset</label>\n  </p>\n</div>';});
+define('text!html/facet/period.html',[],function () { return '\n<header>\n  <h3 data-name="<%= name %>"><%= title %></h3><small>&#8711;</small>\n  <div class="options">\n    <div class="row span1 align middle">\n      <div class="cell span1">\n        <label>\n          <input type="checkbox"/>Include undated records\n        </label>\n      </div>\n    </div>\n  </div>\n</header>\n<div class="body">\n  <label>From:</label>\n  <select><% _.each(options, function(option) { %>\n    <option><%= option %></option><% }); %>\n  </select>\n  <label>To:</label>\n  <select><% _.each(options.reverse(), function(option) { %>\n    <option><%= option %></option><% }); %>\n  </select>\n</div>';});
 
 (function() {
   var __hasProp = {}.hasOwnProperty,
@@ -8215,9 +8232,14 @@ define('text!html/facet/period.html',[],function () { return '\n<header>\n  <h3 
       PeriodFacet.prototype.events = function() {
         return {
           'click h3': 'toggleBody',
+          'click header small': 'toggleOptions',
           'change select': 'changePeriod',
           'change input[type=checkbox]': 'changeIncludeDateless'
         };
+      };
+
+      PeriodFacet.prototype.toggleOptions = function(ev) {
+        return this.$('.options').slideToggle();
       };
 
       PeriodFacet.prototype.toggleBody = function(ev) {
@@ -8269,6 +8291,12 @@ define('text!html/facet/period.html',[],function () { return '\n<header>\n  <h3 
 
       PeriodFacet.prototype.update = function(newOptions) {};
 
+      PeriodFacet.prototype.reset = function() {
+        this.$('select option:selected').prop('selected', false);
+        this.$('select option:first-child').prop('selected', true);
+        return console.log("Resetting period");
+      };
+
       return PeriodFacet;
 
     })(Views.Facet);
@@ -8292,7 +8320,9 @@ define('text!html/facet/period.html',[],function () { return '\n<header>\n  <h3 
       baseUrl: '',
       searchUrl: '',
       token: null,
+      resultRows: 25,
       queryOptions: {},
+      showControls: true,
       facetViewMap: {
         BOOLEAN: Views.Facets.Boolean,
         LIST: Views.Facets.List,
@@ -8346,9 +8376,8 @@ define('text!html/facet/period.html',[],function () { return '\n<header>\n  <h3 
   var __hasProp = {}.hasOwnProperty,
     __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
 
-  define('models/main',['require','config','managers/ajax','models/base'],function(require) {
-    var FacetedSearch, Models, ajax, config, _ref;
-    config = require('config');
+  define('models/main',['require','managers/ajax','models/base'],function(require) {
+    var FacetedSearch, Models, ajax, _ref;
     ajax = require('managers/ajax');
     Models = {
       Base: require('models/base')
@@ -8369,24 +8398,23 @@ define('text!html/facet/period.html',[],function () { return '\n<header>\n  <h3 
         };
       };
 
-      FacetedSearch.prototype.initialize = function() {
+      FacetedSearch.prototype.initialize = function(options) {
         var _this = this;
-        this.on('change:sort', function() {
+        return this.on('change:sort', function() {
+          console.log("Sort triggered", _this.attributes);
           return _this.fetch({
             success: function() {
               return _this.trigger('faceted-search:results', _this.serverResponse);
             }
           });
         });
-        if (this.has('resultRows')) {
-          this.resultRows = this.get('resultRows');
-          return this.unset('resultRows');
-        }
       };
 
       FacetedSearch.prototype.parse = function(attrs) {
+        var def;
         this.serverResponse = attrs;
-        return {};
+        def = _.pick(this.attributes, ['baseUrl', 'searchUrl', 'resultRows']);
+        return def;
       };
 
       FacetedSearch.prototype.set = function(attrs, options) {
@@ -8398,30 +8426,35 @@ define('text!html/facet/period.html',[],function () { return '\n<header>\n  <h3 
           if (attrs.facetValue.values.length) {
             facetValues.push(attrs.facetValue);
           }
-          console.log("facetValues", facetValues);
           attrs.facetValues = facetValues;
           delete attrs.facetValue;
         }
         return FacetedSearch.__super__.set.call(this, attrs, options);
       };
 
+      FacetedSearch.prototype.toJSON = function() {
+        var ignore;
+        ignore = ['baseUrl', 'searchUrl', 'resultRows'];
+        return JSON.stringify(_.omit(this.attributes, ignore));
+      };
+
       FacetedSearch.prototype.sync = function(method, model, options) {
         var jqXHR,
           _this = this;
         if (method === 'read') {
-          ajax.token = config.token;
+          ajax.token = options.token;
+          console.log("BASEUR", this.attributes, this.get('baseUrl'));
           jqXHR = ajax.post({
-            url: config.baseUrl + config.searchUrl,
-            data: JSON.stringify(this.attributes),
+            url: this.get('baseUrl') + this.get('searchUrl'),
+            data: this.toJSON(),
             dataType: 'text'
           });
           jqXHR.done(function(data, textStatus, jqXHR) {
             var resultUrl, xhr;
-            console.log("*** DONE ", arguments);
             if (jqXHR.status === 201) {
               resultUrl = jqXHR.getResponseHeader('Location');
-              if (_this.resultRows) {
-                resultUrl += '?rows=' + _this.resultRows;
+              if (_this.get('resultRows')) {
+                resultUrl += '?rows=' + _this.get('resultRows');
               }
               xhr = ajax.get({
                 url: resultUrl
@@ -8443,7 +8476,7 @@ define('text!html/facet/period.html',[],function () { return '\n<header>\n  <h3 
           _this = this;
         if (this.serverResponse[direction]) {
           url = this.serverResponse[direction];
-          url = url.replace('hi12.huygens.knaw.nl:8080/repository', 'repository.huygens.knaw.nl');
+          url = url.replace('hi12.huygens.knaw.nl:8080/repository', 'database.dutch-caribbean.huygens.knaw.nl/api');
           jqXHR = ajax.get({
             url: url
           });
@@ -8499,15 +8532,14 @@ define("models/restclient", function(){});
 
 }).call(this);
 
-define('text!html/search.html',[],function () { return '\n<header>\n  <h3>Text search</h3><small>&#8711;</small>\n  <div class="options">\n    <div class="row span1 align middle">\n      <div class="cell span1 casesensitive">\n        <input id="cb_casesensitive" type="checkbox" name="cb_casesensitive" data-prop="caseSensitive"/>\n        <label for="cb_casesensitive">Match case</label>\n      </div>\n    </div><% console.log(\'searchInAnnotations\' in searchOptions); %>\n    <% if (\'searchInAnnotations\' in searchOptions || \'searchInTranscriptions\' in searchOptions) { %>\n    <% cb_searchin_annotations_checked = (\'searchInAnnotations\' in searchOptions && searchOptions.searchInAnnotations) ? \' checked \' : \'\' %>\n    <% cb_searchin_transcriptions_checked = (\'searchInTranscriptions\' in searchOptions && searchOptions.searchInTranscriptions) ? \' checked \' : \'\' %>\n    <div class="row span1">\n      <div class="cell span1">\n        <h4>Search in</h4>\n        <ul class="searchins"><% if (\'searchInAnnotations\' in searchOptions) { %>\n          <li class="searchin"><input id="cb_searchin_annotations" type="checkbox" data-prop="searchInAnnotations"<%= cb_searchin_annotations_checked %>>\n            <label for="cb_searchin_annotations">Annotations</label>\n          </li><% } %>\n          <% if (\'searchInTranscriptions\' in searchOptions) { %>\n          <li class="searchin"><input id="cb_searchin_transcriptions" type="checkbox" data-prop="searchInTranscriptions"<%= cb_searchin_transcriptions_checked %>>\n            <label for="cb_searchin_transcriptions">Transcriptions</label>\n          </li><% } %>\n        </ul>\n      </div>\n    </div><% } %>\n    <% if (\'textLayers\' in searchOptions) { %>\n    <div class="row span1">\n      <div class="cell span1">\n        <h4>Text layers</h4>\n        <ul class="textlayers"><% _.each(textLayers, function(tl) { %>\n          <li class="textlayer">\n            <input id="cb_textlayer_<%= tl %>" type="checkbox" data-proparr="textLayers"/>\n            <label for="cb_textlayer_<%= tl %>"><%= tl %></label>\n          </li><% }); %>\n        </ul>\n      </div>\n    </div><% } %>\n  </div>\n</header>\n<div class="body">\n  <div class="row span4 align middle">\n    <div class="cell span3">\n      <div class="padr4">\n        <input id="search" type="text" name="search"/>\n      </div>\n    </div>\n    <div class="cell span1">\n      <button class="search">Search</button>\n    </div>\n  </div>\n</div>';});
+define('text!html/search.html',[],function () { return '<header><h3>Text search</h3><small>&#8711;</small><div class="options"><div class="row span1 align middle"><div class="cell span1 casesensitive"><input id="cb_casesensitive" type="checkbox" name="cb_casesensitive" data-prop="caseSensitive"/><label for="cb_casesensitive">Match case</label></div></div><% console.log(\'searchInAnnotations\' in searchOptions); %>\n<% if (\'searchInAnnotations\' in searchOptions || \'searchInTranscriptions\' in searchOptions) { %>\n<% cb_searchin_annotations_checked = (\'searchInAnnotations\' in searchOptions && searchOptions.searchInAnnotations) ? \' checked \' : \'\' %>\n<% cb_searchin_transcriptions_checked = (\'searchInTranscriptions\' in searchOptions && searchOptions.searchInTranscriptions) ? \' checked \' : \'\' %><div class="row span1"><div class="cell span1"><h4>Search in</h4><ul class="searchins"><% if (\'searchInAnnotations\' in searchOptions) { %><li class="searchin"><input id="cb_searchin_annotations" type="checkbox" data-prop="searchInAnnotations"<%= cb_searchin_annotations_checked %>><label for="cb_searchin_annotations">Annotations</label></li><% } %>\n<% if (\'searchInTranscriptions\' in searchOptions) { %><li class="searchin"><input id="cb_searchin_transcriptions" type="checkbox" data-prop="searchInTranscriptions"<%= cb_searchin_transcriptions_checked %>><label for="cb_searchin_transcriptions">Transcriptions</label></li><% } %></ul></div></div><% } %>\n<% if (\'textLayers\' in searchOptions) { %><div class="row span1"><div class="cell span1"><h4>Text layers</h4><ul class="textlayers"><% _.each(textLayers, function(tl) { %><li class="textlayer"><input id="cb_textlayer_<%= tl %>" type="checkbox" data-proparr="textLayers"/><label for="cb_textlayer_<%= tl %>"><%= tl %></label></li><% }); %></ul></div></div><% } %></div></header><div class="body"><div class="row span4 align middle"><div class="cell span3"><div class="padr4"><input id="search" type="text" name="search"/></div></div><div class="cell span1"><button class="search">Search</button></div></div></div>';});
 
 (function() {
   var __hasProp = {}.hasOwnProperty,
     __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
 
-  define('views/search',['require','config','models/search','views/facet','text!html/search.html'],function(require) {
-    var Models, Search, Templates, Views, config, _ref;
-    config = require('config');
+  define('views/search',['require','models/search','views/facet','text!html/search.html'],function(require) {
+    var Models, Search, Templates, Views, _ref;
     Models = {
       Search: require('models/search')
     };
@@ -8550,7 +8582,8 @@ define('text!html/search.html',[],function () { return '\n<header>\n  <h3>Text s
 
       Search.prototype.initialize = function(options) {
         Search.__super__.initialize.apply(this, arguments);
-        this.model = new Models.Search(config.textSearchOptions);
+        console.log("Search options", options);
+        this.model = new Models.Search(options != null ? options.textSearchOptions : void 0);
         return this.render();
       };
 
@@ -8583,14 +8616,69 @@ define('text!html/search.html',[],function () { return '\n<header>\n  <h3>Text s
 
 }).call(this);
 
-define('text!html/faceted-search.html',[],function () { return '\n<div class="faceted-search">\n  <form>\n    <div class="search-placeholder"></div>\n    <div class="facets">\n      <div style="display: none; text-align: center; margin-top: 20px" class="loader">\n        <h4>Loading facets...</h4><br/><img src="../images/faceted-search/loader.gif"/>\n      </div>\n    </div>\n  </form>\n</div>';});
+define('text!html/controls.html',[],function () { return '\n<button class="reset">New search</button>';});
+
+(function() {
+  var __hasProp = {}.hasOwnProperty,
+    __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
+
+  define('views/controls',['require','views/facet','text!html/controls.html'],function(require) {
+    var Controls, Templates, Views, _ref;
+    Views = {
+      Facet: require('views/facet')
+    };
+    Templates = {
+      Search: require('text!html/controls.html')
+    };
+    return Controls = (function(_super) {
+      __extends(Controls, _super);
+
+      function Controls() {
+        _ref = Controls.__super__.constructor.apply(this, arguments);
+        return _ref;
+      }
+
+      Controls.prototype.className = 'facet controls';
+
+      Controls.prototype.events = {
+        'click button.reset': 'clickResetButton'
+      };
+
+      Controls.prototype.clickResetButton = function(e) {
+        this.facetedSearch.reset();
+        return e.preventDefault();
+      };
+
+      Controls.prototype.initialize = function(options) {
+        Controls.__super__.initialize.apply(this, arguments);
+        if (options.facetedSearch) {
+          this.facetedSearch = options.facetedSearch;
+        }
+        return this.render();
+      };
+
+      Controls.prototype.render = function() {
+        var tmpl;
+        Controls.__super__.render.apply(this, arguments);
+        tmpl = _.template(Templates.Search);
+        return this.$el.html(tmpl());
+      };
+
+      return Controls;
+
+    })(Views.Facet);
+  });
+
+}).call(this);
+
+define('text!html/faceted-search.html',[],function () { return '\n<div class="faceted-search">\n  <form>\n    <div class="controls"></div>\n    <div class="search-placeholder"></div>\n    <div class="facets">\n      <div style="display: none; text-align: center; margin-top: 20px" class="loader">\n        <h4>Loading facets...</h4><br/><img src="../images/faceted-search/loader.gif"/><br/>\n      </div>\n    </div>\n  </form>\n</div>';});
 
 (function() {
   var __hasProp = {}.hasOwnProperty,
     __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; },
     __indexOf = [].indexOf || function(item) { for (var i = 0, l = this.length; i < l; i++) { if (i in this && this[i] === item) return i; } return -1; };
 
-  define('main',['require','config','models/main','models/restclient','views/base','views/search','views/facets/list','views/facets/boolean','views/facets/date','text!html/faceted-search.html'],function(require) {
+  define('main',['require','config','models/main','models/restclient','views/base','views/search','views/controls','views/facets/list','views/facets/boolean','views/facets/date','text!html/faceted-search.html'],function(require) {
     var FacetedSearch, Models, Templates, Views, config, _ref;
     config = require('config');
     Models = {
@@ -8600,6 +8688,7 @@ define('text!html/faceted-search.html',[],function () { return '\n<div class="fa
     Views = {
       Base: require('views/base'),
       Search: require('views/search'),
+      Controls: require('views/controls'),
       Facets: {
         List: require('views/facets/list'),
         Boolean: require('views/facets/boolean'),
@@ -8623,37 +8712,43 @@ define('text!html/faceted-search.html',[],function () { return '\n<div class="fa
         FacetedSearch.__super__.initialize.apply(this, arguments);
         facetViewMap = options.facetViewMap;
         delete options.facetViewMap;
-        _.extend(config, options);
-        _.extend(config.facetViewMap, facetViewMap);
-        console.log(">> << >> << >> << >> << >> << >> << >> << >> << >>");
-        console.log("" + config.facetOrder);
+        this.config = {};
+        _.extend(this.config, config);
+        _.extend(this.config, options);
+        _.extend(this.config.facetViewMap, facetViewMap);
+        console.log("FS CONF", this.config);
         this.facetViews = {};
         this.firstRender = true;
-        queryOptions = _.extend(config.queryOptions, config.textSearchOptions);
-        this.model = new Models.FacetedSearch(queryOptions);
+        queryOptions = _.extend(this.config.queryOptions, this.config.textSearchOptions);
+        this.model = new Models.FacetedSearch(_.extend(queryOptions, _.pick(this.config, 'baseUrl', 'searchUrl', 'resultRows')));
         this.model.on('faceted-search:results', function(response) {
           return _this.trigger('faceted-search:results', response);
         });
         this.subscribe('unauthorized', function() {
           return _this.trigger('unauthorized');
         });
-        console.log(":: << :: << :: << :: << :: << :: << :: << :: << ::");
-        console.log("" + config.facetOrder);
         return this.render();
       };
 
       FacetedSearch.prototype.render = function() {
-        var rtpl, search;
+        var controls, rtpl, search;
         rtpl = _.template(Templates.FacetedSearch);
         this.$el.html(rtpl);
         this.$('.loader').fadeIn('slow');
-        if (config.search) {
-          search = new Views.Search();
+        console.log("CONF", this.config);
+        if (this.config.search) {
+          search = new Views.Search({
+            textSearchOptions: this.config.textSearchOptions
+          });
           this.$('.search-placeholder').html(search.$el);
           this.listenTo(search, 'change', this.fetchResults);
         }
-        console.log(">> ** >> ** >> ** >> ** >> ** >> ** >> ** >> ** >>");
-        console.log("" + config.facetOrder);
+        if (config.showControls) {
+          controls = new Views.Controls({
+            facetedSearch: this
+          });
+          this.$('.controls').html(controls.$el);
+        }
         this.fetchResults();
         return this;
       };
@@ -8670,8 +8765,6 @@ define('text!html/faceted-search.html',[],function () { return '\n<div class="fa
           queryOptions = {};
         }
         this.model.set(queryOptions);
-        console.log(">> %&%& >> %&%& >> %&%& >> %&%& >> %&%& >> %&%& >> %&%& >> %&%& >>");
-        console.log("" + config.facetOrder);
         return this.model.fetch({
           success: function() {
             return _this.renderFacets();
@@ -8695,32 +8788,60 @@ define('text!html/faceted-search.html',[],function () { return '\n<div class="fa
         return _.has(this.model.serverResponse, '_prev');
       };
 
-      FacetedSearch.prototype.reset = function() {};
+      FacetedSearch.prototype.numPages = function() {
+        console.log("I am", this, this.model);
+        return Math.ceil(this.model.serverResponse.numFound / this.config.resultRows);
+      };
+
+      FacetedSearch.prototype.currentPosition = function() {
+        console.log("I am", this, this.model);
+        return 1 + (this.model.serverResponse.start / this.config.resultRows);
+      };
+
+      FacetedSearch.prototype.reset = function() {
+        var _this = this;
+        this.model.clear({
+          silent: true
+        });
+        this.model.set(_.pick(this.config.queryOptions, ['term', 'typeString', 'sort', 'baseUrl', 'searchUrl', 'resultRows']), {
+          silent: true
+        });
+        return this.model.fetch({
+          success: function() {
+            var name, view, _ref1;
+            _ref1 = _this.facetViews;
+            for (name in _ref1) {
+              view = _ref1[name];
+              view.reset();
+            }
+            return _this.renderFacets();
+          }
+        });
+      };
 
       FacetedSearch.prototype.publishResult = function(result) {
         this.trigger('faceted-search:results', result);
         return this.publish('faceted-search:results', result);
       };
 
-      FacetedSearch.prototype.renderFacets = function(data) {
-        var f, facet, facetData, facets, fragment, hasTitleMapping, hideFacet, idx, index, _ref1, _ref2;
+      FacetedSearch.prototype.renderFacets = function() {
+        var data, f, facet, facetData, facets, fragment, hasTitleMapping, hideFacet, idx, index, _ref1, _ref2;
         this.$('.loader').hide();
-        console.log(">> ORDER >> " + config.facetOrder);
         facets = this.model.serverResponse.facets;
         if (this.firstRender) {
           this.firstRender = false;
           fragment = document.createDocumentFragment();
-          if (config.facetOrder) {
+          if (this.config.facetOrder) {
             _ref1 = ((function() {
               var _i, _len, _ref1, _results;
-              _ref1 = config.facetOrder;
+              _ref1 = this.config.facetOrder;
               _results = [];
               for (_i = 0, _len = _ref1.length; _i < _len; _i++) {
                 f = _ref1[_i];
                 _results.push(f);
               }
               return _results;
-            })()).reverse();
+            }).call(this)).reverse();
             for (index in _ref1) {
               f = _ref1[index];
               for (idx in facets) {
@@ -8734,13 +8855,13 @@ define('text!html/faceted-search.html',[],function () { return '\n<div class="fa
           for (index in facets) {
             if (!__hasProp.call(facets, index)) continue;
             facetData = facets[index];
-            hideFacet = 'excludeFacets' in config && (_ref2 = facetData.name, __indexOf.call(config.excludeFacets, _ref2) >= 0);
-            if (facetData.type in config.facetViewMap) {
-              hasTitleMapping = (config.facetTitles != null) && facetData.name in config.facetTitles;
+            hideFacet = 'excludeFacets' in this.config && (_ref2 = facetData.name, __indexOf.call(this.config.excludeFacets, _ref2) >= 0);
+            if (facetData.type in this.config.facetViewMap) {
+              hasTitleMapping = (this.config.facetTitles != null) && facetData.name in this.config.facetTitles;
               if (hasTitleMapping && !facetData.title) {
-                facetData.title = config.facetTitles[facetData.name];
+                facetData.title = this.config.facetTitles[facetData.name];
               }
-              this.facetViews[facetData.name] = new config.facetViewMap[facetData.type]({
+              this.facetViews[facetData.name] = new this.config.facetViewMap[facetData.type]({
                 attrs: facetData
               });
               this.listenTo(this.facetViews[facetData.name], 'change', this.fetchResults);
@@ -8756,6 +8877,7 @@ define('text!html/faceted-search.html',[],function () { return '\n<div class="fa
           for (index in facets) {
             if (!__hasProp.call(facets, index)) continue;
             data = facets[index];
+            console.log(' FACETVIEWS', this.config.name, data.name, this.facetViews[data.name]);
             this.facetViews[data.name].update(data.options);
           }
         }
@@ -9170,9 +9292,9 @@ define('text',['module'], function (module) {
 
 define('text!html/home.html',[],function () { return '<div class="tabs"><img src="/images/tabs-slant.png"/><ul><li class="archives">Archives</li><li class="creators">Creators</li><li class="legislations">Legislation</li></ul></div><div class="search-views"><div class="archives search"></div><div class="creators search"></div><div class="legislations search"></div></div>';});
 
-define('text!html/faceted-search-and-results.html',[],function () { return '<div class="row span3"><div class="cell span1"><div class="faceted-search"></div></div><div class="cell span2"><div class="abbreviations"><a href="http://dutch-caribbean.huygens.knaw.nl/wp-content/uploads/2013/08/Afkortingen-Caribische-Wereld.pdf" target="_new">Abbreviations</a></div><div class="results"><div class="heading"><h3>No results yet</h3><div class="sort"></div></div><div class="cursor"><span class="previous">Previous</span><span class="next">Next</span></div><div class="body"></div></div></div></div>';});
+define('text!html/faceted-search-and-results.html',[],function () { return '\n<div class="row span3">\n  <div class="cell span1">\n    <div class="faceted-search"></div>\n  </div>\n  <div class="cell span2">\n    <div class="results">\n      <div class="abbreviations"><a href="http://dutch-caribbean.huygens.knaw.nl/wp-content/uploads/2013/08/Afkortingen-Caribische-Wereld.pdf" target="_new">Abbreviations</a></div>\n      <div class="empty">\n        <h3>Start searching using the panel on the left.</h3>\n      </div>\n      <div class="heading">\n        <h3>No results yet</h3>\n        <div class="sort"></div>\n      </div>\n      <div class="cursor"><span class="previous">Previous</span><span class="position">Page&nbsp;<span class="current"></span>&nbsp;of&nbsp;<span class="total"></span></span><span class="next">Next</span></div>\n      <div class="body"></div>\n    </div>\n  </div>\n</div>';});
 
-define('text!html/generic-results.html',[],function () { return '\n<ul class="results">\n  <% _.each(results, function (r) { %>\n  <li id="<%= r._id %>">\n    <span class="title"><%= r.titleEng || r.nameEng %></span>\n  </li>\n  <% }) %>\n</ul>';});
+define('text!html/generic-results.html',[],function () { return '<ul class="results"><% _.each(results, function (r) { %>\n<li id="<%= r._id %>">\n  <span class="title"><%= r.titleEng || r.nameEng %></span>\n</li>\n<% }) %></ul>';});
 
 (function() {
   var __hasProp = {}.hasOwnProperty,
@@ -9255,7 +9377,7 @@ define('text!html/generic-results.html',[],function () { return '\n<ul class="re
         this.search = this.options.facetedSearch || this.facetedSearch;
         this.search.on('faceted-search:results', function(response) {
           if (_this.firstTime) {
-
+            console.log("First time!");
           } else {
             if ('sortableFields' in response) {
               _this.sortableFields = response.sortableFields;
@@ -9289,10 +9411,15 @@ define('text!html/generic-results.html',[],function () { return '\n<ul class="re
       };
 
       Search.prototype.renderResults = function(response) {
-        this.$('.results h3').html(response.numFound + ' archives');
+        this.$('.empty').hide();
+        this.$('.results, .heading, .cursor, .body').show();
+        this.$('.results h3').html(response.numFound + ' results');
         this.$('.results .body').html(this.resultsTemplate({
           results: response.results
         }));
+        console.log("SEARCH IS >>>>> ", this.search);
+        this.$('.results .cursor .position .current').text(this.search.currentPosition());
+        this.$('.results .cursor .position .total').text(this.search.numPages());
         this.$('.results .cursor .next').toggle(this.search.hasNext());
         return this.$('.results .cursor .previous').toggle(this.search.hasPrev());
       };
@@ -9340,6 +9467,7 @@ define('text!html/archive-results.html',[],function () { return '<ul class="resu
       Search.prototype.resultsTemplate = _.template(Templates.Results);
 
       Search.prototype.facetedSearch = new FacetedSearch({
+        name: 'archive',
         baseUrl: config.facetedSearchHost,
         searchUrl: config.searchPath,
         queryOptions: {
@@ -9384,12 +9512,13 @@ define('text!html/creator-results.html',[],function () { return '<ul class="resu
       }
 
       Search.prototype.resultClicked = function(ev) {
-        return this.publish('navigate:entry', 'legislation/' + ev.currentTarget.id);
+        return this.publish('navigate:entry', 'creator/' + ev.currentTarget.id);
       };
 
       Search.prototype.resultsTemplate = _.template(Templates.Results);
 
       Search.prototype.facetedSearch = new FacetedSearch({
+        name: 'creator',
         baseUrl: config.facetedSearchHost,
         searchUrl: config.searchPath,
         queryOptions: {
@@ -9440,6 +9569,7 @@ define('text!html/legislation-results.html',[],function () { return '<ul class="
       Search.prototype.resultsTemplate = _.template(Templates.Results);
 
       Search.prototype.facetedSearch = new FacetedSearch({
+        name: 'legislation',
         baseUrl: config.facetedSearchHost,
         searchUrl: config.searchPath,
         queryOptions: {
@@ -9773,7 +9903,7 @@ define('text!html/archive.html',[],function () { return '<div class="breadcrumbs
 
 }).call(this);
 
-define('text!html/legislation.html',[],function () { return '\n<div class="breadcrumbs">\n  <div class="line"></div>\n  <ul>\n    <li><a href="/legislation/results">Search results</a></li><% if (data.titleEng) { %>\n    <li class="active"><a href="/legislation/"><%= data.titleEng.length > 70 ? data.titleEng.substr(0,70) + \'...\' : data.titleEng %></a></li><% } %>\n  </ul>\n</div>\n<div class="content">\n  <div class="panel-left">\n    <h3 class="type">Legislation</h3>\n    <h2 class="title"><%- data.titleEng %><i class="reference"><%= data.reference %> <%= data.pages %></i></h2><% if (String().toLowerCase(data.titleEng) !== String(data.titleNld).toLowerCase()) { %>\n    <div class="section dutch-title">\n      <h4>Dutch title</h4>\n      <p><%= data.titleNld %></p>\n    </div><% } %>\n    <div class="section contents">\n      <p><%= String(data.contents).replace(/\\n/g, \'<br>\') %></p>\n    </div>\n    <div class="section archival-source">\n      <h4>Original archival source</h4>\n      <p><%= data.originalArchivalSource || \'-\' %></p>\n    </div>\n    <div class="section earlier-later-publications">\n      <h4>Earlier and later publications</h4><% if (_.has(data, \'otherPublications\') && data.otherPublications.length) { %>\n      <p><%= data.otherPublications.join(\', \') %></p><% } else { %>\n      <p>-</p><% } %>\n    </div>\n  </div>\n  <div class="panel-right">\n    <div class="section relevant-dates">\n      <h4>Relevant dates</h4>\n      <p><%= data.date1 %></p>\n    </div>\n    <div class="section geography">\n      <h4>Geography</h4><% if (_.has(data, \'placeKeywords\') && data.placeKeywords.length) { %>\n      \t<% _.each(data.placeKeywords, function (place) { %>\n      <p>\t\t<%= place.displayName %></p>\t<% }) %>\n      <% } else { %>\n      <p>-</p><% } %>\n    </div>\n    <div class="section subject">\n      <h4>Subject</h4><% var hasOKW = _.has(data, \'otherKeywords\') && data.otherKeywords.length; %>\n      <% var hasGKW = _.has(data, \'groupKeywords\') && data.groupKeywords.length; %>\n      <% if (hasOKW || hasGKW) { %>\n      \t\t<% if (hasOKW) { %>\n      \t\t<% _.each(data.otherKeywords, function (kw) { %>\n      <p>\t\t\t<%= kw.displayName %></p>\t\t<% }) %>\n      \t\t<% } %>\n      \t\t<% console.log("GKW", hasGKW) %>\n      \t\t<% if (hasGKW) { %>\n      \t\t\t<% _.each(data.groupKeywords, function (gkw) { %>\n      \t\t\t\t<%= gkw.displayName %>\n      \t\t\t<% }) %>\n      \t\t<% } %>\n      <% } else { %>\n      <p>-</p><% } %>\n    </div>\n    <div class="section person">\n      <h4>Person</h4><% if (_.has(data, \'persons\') && data.persons.length) { %>\n      \t<% _.each(data.persons, function (person) { %>\n      <p>\t\t<%= person.displayName %></p>\t<% }) %>\n      <% } else { %>\n      <p>-</p><% } %>\n    </div>\n  </div>\n</div>';});
+define('text!html/legislation.html',[],function () { return '<div class="breadcrumbs"><div class="line"></div><ul><li><a href="/legislation/results">Search results</a></li><% if (data.titleEng) { %><li class="active"><a href="/legislation/"><%= data.titleEng.length > 70 ? data.titleEng.substr(0,70) + \'...\' : data.titleEng %></a></li><% } %></ul></div><div class="content"><div class="panel-left"><h3 class="type">Legislation</h3><h2 class="title"><%- data.titleEng %><i class="reference"><%= data.reference %> <%= data.pages %></i></h2><% if (String().toLowerCase(data.titleEng) !== String(data.titleNld).toLowerCase()) { %><div class="section dutch-title"><h4>Dutch title</h4><p><%= data.titleNld %></p></div><% } %><div class="section contents"><p><%= String(data.contents).replace(/\\n/g, \'<br>\') %></p></div><div class="section archival-source"><h4>Original archival source</h4><p><%= data.originalArchivalSource || \'-\' %></p></div><div class="section earlier-later-publications"><h4>Earlier and later publications</h4><% if (_.has(data, \'otherPublications\') && data.otherPublications.length) { %><p><%= data.otherPublications.join(\', \') %></p><% } else { %><p>-</p><% } %></div></div><div class="panel-right"><div class="section relevant-dates"><h4>Relevant dates</h4><p><%= data.date1 %></p></div><div class="section geography"><h4>Geography</h4><% if (_.has(data, \'placeKeywords\') && data.placeKeywords.length) { %>\n\t<% _.each(data.placeKeywords, function (place) { %><p>\t\t<%= place.displayName %></p>\t<% }) %>\n<% } else { %><p>-</p><% } %></div><div class="section subject"><h4>Subject</h4><% var hasOKW = _.has(data, \'otherKeywords\') && data.otherKeywords.length; %>\n<% var hasGKW = _.has(data, \'groupKeywords\') && data.groupKeywords.length; %>\n<% if (hasOKW || hasGKW) { %>\n\t\t<% if (hasOKW) { %>\n\t\t<% _.each(data.otherKeywords, function (kw) { %><p>\t\t\t<%= kw.displayName %></p>\t\t<% }) %>\n\t\t<% } %>\n\t\t<% if (hasGKW) { %>\n\t\t\t<% _.each(data.groupKeywords, function (gkw) { %><p>\t\t\t\t<%= gkw.displayName %></p>\t\t\t<% }) %>\n\t\t<% } %>\n<% } else { %><p>-</p><% } %></div><div class="section person"><h4>Person</h4><% if (_.has(data, \'persons\') && data.persons.length) { %>\n\t<% _.each(data.persons, function (person) { %><p>\t\t<%= person.displayName %></p>\t<% }) %>\n<% } else { %><p>-</p><% } %></div></div></div>';});
 
 (function() {
   var __hasProp = {}.hasOwnProperty,

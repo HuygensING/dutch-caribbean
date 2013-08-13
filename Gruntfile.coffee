@@ -103,8 +103,8 @@ module.exports = (grunt) ->
 			css:
 				src: [
 					'dev/lib/normalize-css/normalize.css'
-					'dev/css/project.css'
 					'dev/lib/faceted-search/dev/css/main.css'
+					'dev/css/project.css'
 				]
 				dest:
 					'dev/css/main.css'

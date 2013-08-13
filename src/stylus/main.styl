@@ -1,12 +1,13 @@
 .tabs
 	position relative
-	background-color #f1f1f1
+	background-color tabsBackgroundColor
 	width 299px
 	img
 		position absolute
 		top 0
 		z-index 1100
 		pointer-events none
+		display none
 	ul
 		li
 			cursor pointer
@@ -17,10 +18,10 @@
 			width 32%
 			text-align center
 			&:hover
-				background-color lighten(#f1f1f1, 30%)
+				background-color lighten(activeTabColor, 30%)
 			&.active
 				font-weight bold
-				background-color darken(#f1f1f1, 5%)
+				background-color activeTabColor
 
 
 .breadcrumbs
@@ -76,9 +77,3 @@
 			border-bottom 10px solid transparent
 			border-left 11px solid #e5fbf9
 			margin 0 0 0 -5px
-
-.search .abbreviations
-	text-align right
-	a
-		font-size 9pt
-		color grey

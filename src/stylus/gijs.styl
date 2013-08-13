@@ -1,3 +1,10 @@
+.search .abbreviations
+	display none
+	text-align right
+	a
+		font-size 9pt
+		color grey
+
 div.results
 	padding-left 20px
 
@@ -5,6 +12,7 @@ div.results
 		border-bottom 1px solid #F6F6F6
 
 	.heading
+		display none
 		position relative
 		margin-top 1em
 		.sort
@@ -14,6 +22,8 @@ div.results
 			top 0
 
 	.body
+		display none
+
 		ul
 			list-style none
 
@@ -47,6 +57,7 @@ div.results
 					font-size 80%
 					font-weight normal
 	.cursor
+		display none
 		position relative
 		margin-bottom 1em
 		padding-top 1em
@@ -57,6 +68,7 @@ div.results
 			position absolute
 			display inline-block
 			padding 1em
+			top 0
 			cursor pointer
 			color breadCrumbTextColor
 		.previous
@@ -65,6 +77,12 @@ div.results
 		.next
 			right 0
 			padding-right 0
+
+		.position
+			display block
+			width 200px
+			margin 0 auto
+			text-align center
 
 .facet
 	select

@@ -2,13 +2,20 @@
 	.cell.span1
 		.faceted-search
 	.cell.span2
-		.abbreviations
-			a(href="http://dutch-caribbean.huygens.knaw.nl/wp-content/uploads/2013/08/Afkortingen-Caribische-Wereld.pdf", target="_new") Abbreviations
 		.results
+			.abbreviations
+				a(href="http://dutch-caribbean.huygens.knaw.nl/wp-content/uploads/2013/08/Afkortingen-Caribische-Wereld.pdf", target="_new") Abbreviations
+			.empty
+				h3 Start searching using the panel on the left.
 			.heading
 				h3 No results yet
 				.sort
 			.cursor
 				span.previous Previous
+				span.position
+					| Page&nbsp;
+					span.current
+					| &nbsp;of&nbsp;
+					span.total
 				span.next Next
 			.body

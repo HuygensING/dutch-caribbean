@@ -36,6 +36,7 @@ define (require) ->
 			@search.on 'faceted-search:results', (response) =>
 				if @firstTime
 					# render first time page
+					console.log "First time!"
 				else
 					if 'sortableFields' of response
 						@sortableFields = response.sortableFields
@@ -60,8 +61,15 @@ define (require) ->
 			@
 
 		renderResults: (response) ->
-			@$('.results h3').html response.numFound + ' archives'
+			@$('.empty').hide()
+			@$('.results, .heading, .cursor, .body').show()
+			@$('.results h3').html response.numFound + ' results'
 			@$('.results .body').html @resultsTemplate results: response.results
+
+			console.log "SEARCH IS >>>>> ", @search
+
+			@$('.results .cursor .position .current').text @search.currentPosition()
+			@$('.results .cursor .position .total').text @search.numPages()
 
 			@$('.results .cursor .next').toggle @search.hasNext()
 			@$('.results .cursor .previous').toggle @search.hasPrev()

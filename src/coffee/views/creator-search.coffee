@@ -8,10 +8,11 @@ define (require) ->
 
 	class Search extends SearchView
 		resultClicked: (ev) ->
-			@publish 'navigate:entry', 'legislation/'+ev.currentTarget.id
+			@publish 'navigate:entry', 'creator/'+ev.currentTarget.id
 
 		resultsTemplate: _.template Templates.Results
 		facetedSearch: new FacetedSearch
+			name: 'creator'
 			baseUrl: config.facetedSearchHost
 			searchUrl: config.searchPath
 			queryOptions:

@@ -12,6 +12,7 @@ define (require) ->
 
 		resultsTemplate: _.template Templates.Results
 		facetedSearch: new FacetedSearch
+			name: 'legislation'
 			baseUrl: config.facetedSearchHost
 			searchUrl: config.searchPath
 			queryOptions:

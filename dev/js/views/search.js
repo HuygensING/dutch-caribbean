@@ -56,7 +56,7 @@
         this.search = this.options.facetedSearch || this.facetedSearch;
         this.search.on('faceted-search:results', function(response) {
           if (_this.firstTime) {
-
+            console.log("First time!");
           } else {
             if ('sortableFields' in response) {
               _this.sortableFields = response.sortableFields;
@@ -90,10 +90,15 @@
       };
 
       Search.prototype.renderResults = function(response) {
-        this.$('.results h3').html(response.numFound + ' archives');
+        this.$('.empty').hide();
+        this.$('.results, .heading, .cursor, .body').show();
+        this.$('.results h3').html(response.numFound + ' results');
         this.$('.results .body').html(this.resultsTemplate({
           results: response.results
         }));
+        console.log("SEARCH IS >>>>> ", this.search);
+        this.$('.results .cursor .position .current').text(this.search.currentPosition());
+        this.$('.results .cursor .position .total').text(this.search.numPages());
         this.$('.results .cursor .next').toggle(this.search.hasNext());
         return this.$('.results .cursor .previous').toggle(this.search.hasPrev());
       };

@@ -1,3 +1,40 @@
 .faceted-search
 	.facets
 		background-image none
+
+	.facet, form .facet, form .facet:first-child, form .facet:last-child
+		// border-radius none
+		border-top-left-radius 0px
+		border-top-right-radius 0px
+		border-bottom-left-radius 0px
+		border-bottom-right-radius 0px
+
+		border-bottom 1px solid #e0e0e0
+
+	.facet.controls
+		padding 10px
+		button
+			font-size 12px
+			// font-weight bold
+			background none
+			background-color controlsButtonColor
+			color white
+			box-shadow none
+			border-radius 3px
+
+			&:hover
+				background-color lighten(controlsButtonColor, 5%)
+
+			&:active
+				background-color darken(controlsButtonColor, 5%)
+
+	form .facet
+		background-color activeTabColor
+		font-size 12px
+		h3
+			color facetHeadingColor
+		.options ul li.option
+			label
+				color facetItemLabelColor
+			label, .count
+				font-size 13px

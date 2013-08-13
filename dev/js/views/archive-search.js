@@ -26,6 +26,7 @@
       Search.prototype.resultsTemplate = _.template(Templates.Results);
 
       Search.prototype.facetedSearch = new FacetedSearch({
+        name: 'archive',
         baseUrl: config.facetedSearchHost,
         searchUrl: config.searchPath,
         queryOptions: {
