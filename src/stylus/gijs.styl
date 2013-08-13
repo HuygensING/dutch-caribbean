@@ -20,6 +20,9 @@ div.results
 			display inline-block
 			right 0
 			top 0
+			span
+				font-size 11px
+				line-height 20px
 
 	.body
 		display none
@@ -70,13 +73,27 @@ div.results
 			padding 1em
 			top 0
 			cursor pointer
-			color breadCrumbTextColor
+			background-color controlsButtonColor
+			color white
+			font-size 12px
+			box-shadow none
+			border-radius 3px
+			width auto
+			padding 5px 5px
+			margin 10px 0
+
+			&:hover
+				background-color lighten(controlsButtonColor, 5%)
+
+			&:active
+				background-color darken(controlsButtonColor, 5%)
+
 		.previous
-			padding-left 0
+			// padding-left 0
 			left 0
 		.next
 			right 0
-			padding-right 0
+			// padding-right 0
 
 		.position
 			display block

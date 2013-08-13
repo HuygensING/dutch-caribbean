@@ -56,7 +56,8 @@ define (require) ->
 					option.attr('selected','selected') if @sortField and @sortField is f
 					select.append(option)
 
-				@$('.heading .sort').html select
+				@$('.heading .sort').empty().append '<span>Order by&nbsp;</span>'
+				@$('.heading .sort').append select
 
 			@
 
