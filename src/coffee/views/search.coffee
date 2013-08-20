@@ -15,9 +15,19 @@ define (require) ->
 			'click .results .previous': 'previousResults'
 			'change .sort select': 'sortResults'
 
+		showLoader: ->
+			@displayLoader = true
+			doIt = =>
+				if @displayLoader
+					@$('.position').hide()
+					@$('.loader').fadeIn('fast')
+			_.delay doIt, 200
+
 		nextResults: ->
+			@showLoader()
 			@search.next()
 		previousResults: ->
+			@showLoader()
 			@search.prev()
 		sortResults: (e) ->
 			@sortField = $(e.currentTarget).val()
@@ -36,7 +46,7 @@ define (require) ->
 			@search.on 'faceted-search:results', (response) =>
 				if @firstTime
 					# render first time page
-					console.log "First time!"
+					if config.debug then console.log "First time!"
 				else
 					if 'sortableFields' of response
 						@sortableFields = response.sortableFields
@@ -62,15 +72,16 @@ define (require) ->
 			@
 
 		renderResults: (response) ->
+			@displayLoader = false
 			@$('.empty').hide()
-			@$('.results, .heading, .cursor, .body').show()
+			@$('.results, .heading, .cursor, .body, .abbreviations').show()
 			@$('.results h3').html response.numFound + ' results'
 			@$('.results .body').html @resultsTemplate results: response.results
 
-			console.log "SEARCH IS >>>>> ", @search
-
-			@$('.results .cursor .position .current').text @search.currentPosition()
-			@$('.results .cursor .position .total').text @search.numPages()
+			@$('.position .current').text @search.currentPosition()
+			@$('.position .total').text @search.numPages()
+			@$('.position').show()
+			@$('.loader').hide()
 
 			@$('.results .cursor .next').toggle @search.hasNext()
 			@$('.results .cursor .previous').toggle @search.hasPrev()

@@ -14,7 +14,7 @@ define (require) ->
 			super
 
 			if options and options.id?
-				console.log "New Creator", options.id
+				if config.debug then console.log "New Creator", options.id
 				@model = new Models.Creator
 					_id: options.id
 				@model.fetch()
@@ -28,4 +28,4 @@ define (require) ->
 				data: @model.attributes
 				model: @model
 				config: config
-			console.log @model.attributes
+			if config.debug then console.log @model.attributes
