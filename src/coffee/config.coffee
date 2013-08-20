@@ -1,5 +1,6 @@
 define (require) ->
 	config =
+		debug: false
 		baseURL: 'http://database.dutch-caribbean.huygens.knaw.nl/api/'
 		appRootElement: '#app'
 		homeElement: '#app'
@@ -12,6 +13,7 @@ define (require) ->
 		archiveResultsURL: "/archive/results"
 		legislationURL: (id) -> "/legislation/#{id}"
 		legislationResultsURL: "/legislation/results"
+		abbreviationsURL: "http://dutch-caribbean.huygens.knaw.nl/wp-content/uploads/2013/08/Afkortingen-Caribische-Wereld.pdf"		
 		facetNames:
 			facet_s_refcode: 'Code Repository'
 			facet_s_subject: 'Subject'
