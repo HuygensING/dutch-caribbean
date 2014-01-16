@@ -1,3 +1,7 @@
+// 'use strict';
+
+if (!window.console) window.console = {};
+if (!window.console.log) window.console.log = function () { };
 /* json2.js 
  * 2008-01-17
  * Public Domain
@@ -3556,6 +3560,7 @@ return(!i||i!==r&&!b.contains(r,i))&&(e.type=o.origType,n=o.handler.apply(this,a
   define('config',['require'],function(require) {
     var config;
     config = {
+      debug: false,
       baseURL: 'http://database.dutch-caribbean.huygens.knaw.nl/api/',
       appRootElement: '#app',
       homeElement: '#app',
@@ -3574,6 +3579,7 @@ return(!i||i!==r&&!b.contains(r,i))&&(e.type=o.origType,n=o.handler.apply(this,a
         return "/legislation/" + id;
       },
       legislationResultsURL: "/legislation/results",
+      abbreviationsURL: "http://dutch-caribbean.huygens.knaw.nl/wp-content/uploads/2013/08/Afkortingen-Caribische-Wereld.pdf",
       facetNames: {
         facet_s_refcode: 'Code Repository',
         facet_s_subject: 'Subject',
@@ -3686,7 +3692,7 @@ return(!i||i!==r&&!b.contains(r,i))&&(e.type=o.origType,n=o.handler.apply(this,a
 // }(this, function ($, Backbone, text, Fn, ajax) {
 
 /**
- * almond 0.2.5 Copyright (c) 2011-2012, The Dojo Foundation All Rights Reserved.
+ * almond 0.2.6 Copyright (c) 2011-2012, The Dojo Foundation All Rights Reserved.
  * Available via the MIT or new BSD license.
  * see: http://github.com/jrburke/almond for details
  */
@@ -4070,6 +4076,11 @@ var requirejs, require, define;
         return req;
     };
 
+    /**
+     * Expose module registry for debugging and tooling
+     */
+    requirejs._defined = defined;
+
     define = function (name, deps, callback) {
 
         //This module may not have dependencies
@@ -4149,7 +4160,30 @@ return(!i||i!==r&&!b.contains(r,i))&&(e.type=o.origType,n=o.handler.apply(this,a
           clearTimeout(timer);
           return timer = setTimeout(cb, ms);
         };
-      })()
+      })(),
+      /*
+      	Highlight text between two nodes. 
+      
+      	Creates a span.hilite between two given nodes, surrounding the contents of the nodes
+      */
+
+      highlightBetweenNodes: function(args) {
+        var className, el, endNode, range, startNode, tagName;
+        startNode = args.startNode, endNode = args.endNode, className = args.className, tagName = args.tagName;
+        if (className == null) {
+          className = 'hilite';
+        }
+        if (tagName == null) {
+          tagName = 'span';
+        }
+        range = document.createRange();
+        range.setStartAfter(startNode);
+        range.setEndBefore(endNode);
+        el = document.createElement(tagName);
+        el.className = className;
+        el.appendChild(range.extractContents());
+        return range.insertNode(el);
+      }
     };
   });
 
@@ -7212,7 +7246,7 @@ return(!i||i!==r&&!b.contains(r,i))&&(e.type=o.origType,n=o.handler.apply(this,a
 }).call(this);
 
 /**
- * @license RequireJS text 2.0.9 Copyright (c) 2010-2012, The Dojo Foundation All Rights Reserved.
+ * @license RequireJS text 2.0.10 Copyright (c) 2010-2012, The Dojo Foundation All Rights Reserved.
  * Available via the MIT or new BSD license.
  * see: http://github.com/requirejs/text for details
  */
@@ -7236,7 +7270,7 @@ define('text',['module'], function (module) {
         masterConfig = (module.config && module.config()) || {};
 
     text = {
-        version: '2.0.9',
+        version: '2.0.10',
 
         strip: function (content) {
             //Strips <?xml ...?> declarations so that external SVG and XML
@@ -7388,6 +7422,12 @@ define('text',['module'], function (module) {
                 url = req.toUrl(nonStripName),
                 useXhr = (masterConfig.useXhr) ||
                          text.useXhr;
+
+            // Do not load if it is an empty: url
+            if (url.indexOf('empty:') === 0) {
+                onLoad();
+                return;
+            }
 
             //Load the text. Use XHR if possible and in a browser.
             if (!hasLocation || useXhr(url, defaultProtocol, defaultHostName, defaultPort)) {
@@ -7626,7 +7666,7 @@ define('text!html/facet.html',[],function () { return '<div class="placeholder p
       };
 
       Facet.prototype.update = function(newOptions) {
-        return console.log(newOptions);
+        return 'pass';
       };
 
       return Facet;
@@ -7849,8 +7889,7 @@ define('text!html/facet/list.options.html',[],function () { return '<ul><% _.eac
       };
 
       ListFacet.prototype.reset = function() {
-        this.collection.clear();
-        return console.log("Resetting list facet");
+        return this.collection.clear();
       };
 
       return ListFacet;
@@ -8129,7 +8168,7 @@ define('text!html/facet/date.html',[],function () { return '<header><h3 data-nam
       DateFacet.prototype.update = function(newOptions) {};
 
       DateFacet.prototype.reset = function() {
-        return console.log("Resetting date facet");
+        return 'pass';
       };
 
       return DateFacet;
@@ -8159,7 +8198,7 @@ define('text!html/facet/date.html',[],function () { return '<header><h3 data-nam
       PeriodFacet.prototype.idAttribute = 'name';
 
       PeriodFacet.prototype.find = function(start, end) {
-        var overlappingPeriods, pend, period, pstart, _i, _len, _ref1, _ref2;
+        var beginOverlap, endOverlap, insideOverlap, overlappingPeriods, pend, period, pstart, totalOverlap, _i, _len, _ref1, _ref2;
         overlappingPeriods = [];
         _ref1 = this.get('periods');
         for (_i = 0, _len = _ref1.length; _i < _len; _i++) {
@@ -8167,7 +8206,11 @@ define('text!html/facet/date.html',[],function () { return '<header><h3 data-nam
           _ref2 = period.name.split(/\s+-\s+/), pstart = _ref2[0], pend = _ref2[1];
           pstart = pstart.split(/\-/)[0];
           pend = pend.split(/\-/)[0];
-          if ((pstart > start && pstart < end) || (start > pstart && end < pend)) {
+          beginOverlap = pstart <= start && pend >= start && pend <= end;
+          endOverlap = pstart >= start && pstart <= end && pend >= end;
+          totalOverlap = pstart <= start && pend >= end;
+          insideOverlap = pstart >= start && pend <= end;
+          if (beginOverlap || endOverlap || insideOverlap || totalOverlap) {
             overlappingPeriods.push(period.name);
           }
         }
@@ -8200,7 +8243,7 @@ define('text!html/facet/date.html',[],function () { return '<header><h3 data-nam
 
 }).call(this);
 
-define('text!html/facet/period.html',[],function () { return '\n<header>\n  <h3 data-name="<%= name %>"><%= title %></h3><small>&#8711;</small>\n  <div class="options">\n    <div class="row span1 align middle">\n      <div class="cell span1">\n        <label>\n          <input type="checkbox"/>Include undated records\n        </label>\n      </div>\n    </div>\n  </div>\n</header>\n<div class="body">\n  <label>From:</label>\n  <select><% _.each(options, function(option) { %>\n    <option><%= option %></option><% }); %>\n  </select>\n  <label>To:</label>\n  <select><% _.each(options.reverse(), function(option) { %>\n    <option><%= option %></option><% }); %>\n  </select>\n</div>';});
+define('text!html/facet/period.html',[],function () { return '<header><h3 data-name="<%= name %>"><%= title %></h3><small>&#8711;</small><div class="options"><div class="row span1 align middle"><div class="cell span1"><label><input type="checkbox"/>Include undated records</label></div></div></div></header><div class="body"><label>From:</label><select><% _.each(options, function(option) { %><option><%= option %></option><% }); %></select><label>To:</label><select><% _.each(options.reverse(), function(option) { %><option><%= option %></option><% }); %></select></div>';});
 
 (function() {
   var __hasProp = {}.hasOwnProperty,
@@ -8262,7 +8305,6 @@ define('text!html/facet/period.html',[],function () { return '\n<header>\n  <h3 
         this.$('input').prop('checked', false);
         start = this.$('select').eq(0).val();
         end = this.$('select').eq(1).val();
-        console.log("STart " + start + ", end " + end);
         periods = this.model.find(start, end);
         return this.trigger('change', {
           facetValue: {
@@ -8293,8 +8335,7 @@ define('text!html/facet/period.html',[],function () { return '\n<header>\n  <h3 
 
       PeriodFacet.prototype.reset = function() {
         this.$('select option:selected').prop('selected', false);
-        this.$('select option:first-child').prop('selected', true);
-        return console.log("Resetting period");
+        return this.$('select option:first-child').prop('selected', true);
       };
 
       return PeriodFacet;
@@ -8401,7 +8442,6 @@ define('text!html/facet/period.html',[],function () { return '\n<header>\n  <h3 
       FacetedSearch.prototype.initialize = function(options) {
         var _this = this;
         return this.on('change:sort', function() {
-          console.log("Sort triggered", _this.attributes);
           return _this.fetch({
             success: function() {
               return _this.trigger('faceted-search:results', _this.serverResponse);
@@ -8443,7 +8483,6 @@ define('text!html/facet/period.html',[],function () { return '\n<header>\n  <h3 
           _this = this;
         if (method === 'read') {
           ajax.token = options.token;
-          console.log("BASEUR", this.attributes, this.get('baseUrl'));
           jqXHR = ajax.post({
             url: this.get('baseUrl') + this.get('searchUrl'),
             data: this.toJSON(),
@@ -8463,7 +8502,6 @@ define('text!html/facet/period.html',[],function () { return '\n<header>\n  <h3 
             }
           });
           return jqXHR.fail(function(jqXHR, textStatus, errorThrown) {
-            console.log("*** FAIL", textStatus, errorThrown, arguments);
             if (jqXHR.status === 401) {
               return _this.publish('unauthorized');
             }
@@ -8532,7 +8570,7 @@ define("models/restclient", function(){});
 
 }).call(this);
 
-define('text!html/search.html',[],function () { return '<header><h3>Text search</h3><small>&#8711;</small><div class="options"><div class="row span1 align middle"><div class="cell span1 casesensitive"><input id="cb_casesensitive" type="checkbox" name="cb_casesensitive" data-prop="caseSensitive"/><label for="cb_casesensitive">Match case</label></div></div><% console.log(\'searchInAnnotations\' in searchOptions); %>\n<% if (\'searchInAnnotations\' in searchOptions || \'searchInTranscriptions\' in searchOptions) { %>\n<% cb_searchin_annotations_checked = (\'searchInAnnotations\' in searchOptions && searchOptions.searchInAnnotations) ? \' checked \' : \'\' %>\n<% cb_searchin_transcriptions_checked = (\'searchInTranscriptions\' in searchOptions && searchOptions.searchInTranscriptions) ? \' checked \' : \'\' %><div class="row span1"><div class="cell span1"><h4>Search in</h4><ul class="searchins"><% if (\'searchInAnnotations\' in searchOptions) { %><li class="searchin"><input id="cb_searchin_annotations" type="checkbox" data-prop="searchInAnnotations"<%= cb_searchin_annotations_checked %>><label for="cb_searchin_annotations">Annotations</label></li><% } %>\n<% if (\'searchInTranscriptions\' in searchOptions) { %><li class="searchin"><input id="cb_searchin_transcriptions" type="checkbox" data-prop="searchInTranscriptions"<%= cb_searchin_transcriptions_checked %>><label for="cb_searchin_transcriptions">Transcriptions</label></li><% } %></ul></div></div><% } %>\n<% if (\'textLayers\' in searchOptions) { %><div class="row span1"><div class="cell span1"><h4>Text layers</h4><ul class="textlayers"><% _.each(textLayers, function(tl) { %><li class="textlayer"><input id="cb_textlayer_<%= tl %>" type="checkbox" data-proparr="textLayers"/><label for="cb_textlayer_<%= tl %>"><%= tl %></label></li><% }); %></ul></div></div><% } %></div></header><div class="body"><div class="row span4 align middle"><div class="cell span3"><div class="padr4"><input id="search" type="text" name="search"/></div></div><div class="cell span1"><button class="search">Search</button></div></div></div>';});
+define('text!html/search.html',[],function () { return '<header><h3>Text search</h3><small>&#8711;</small><div class="options"><div class="row span1 align middle"><div class="cell span1 casesensitive"><input id="cb_casesensitive" type="checkbox" name="cb_casesensitive" data-prop="caseSensitive"/><label for="cb_casesensitive">Match case</label></div></div><% if (\'searchInAnnotations\' in searchOptions || \'searchInTranscriptions\' in searchOptions) { %>\n<% cb_searchin_annotations_checked = (\'searchInAnnotations\' in searchOptions && searchOptions.searchInAnnotations) ? \' checked \' : \'\' %>\n<% cb_searchin_transcriptions_checked = (\'searchInTranscriptions\' in searchOptions && searchOptions.searchInTranscriptions) ? \' checked \' : \'\' %><div class="row span1"><div class="cell span1"><h4>Search in</h4><ul class="searchins"><% if (\'searchInAnnotations\' in searchOptions) { %><li class="searchin"><input id="cb_searchin_annotations" type="checkbox" data-prop="searchInAnnotations"<%= cb_searchin_annotations_checked %>><label for="cb_searchin_annotations">Annotations</label></li><% } %>\n<% if (\'searchInTranscriptions\' in searchOptions) { %><li class="searchin"><input id="cb_searchin_transcriptions" type="checkbox" data-prop="searchInTranscriptions"<%= cb_searchin_transcriptions_checked %>><label for="cb_searchin_transcriptions">Transcriptions</label></li><% } %></ul></div></div><% } %>\n<% if (\'textLayers\' in searchOptions) { %><div class="row span1"><div class="cell span1"><h4>Text layers</h4><ul class="textlayers"><% _.each(textLayers, function(tl) { %><li class="textlayer"><input id="cb_textlayer_<%= tl %>" type="checkbox" data-proparr="textLayers"/><label for="cb_textlayer_<%= tl %>"><%= tl %></label></li><% }); %></ul></div></div><% } %></div></header><div class="body"><div class="row span4 align middle"><div class="cell span3"><div class="padr4"><input id="search" type="text" name="search"/></div></div><div class="cell span1"><button class="search">Search</button></div></div></div>';});
 
 (function() {
   var __hasProp = {}.hasOwnProperty,
@@ -8582,7 +8620,6 @@ define('text!html/search.html',[],function () { return '<header><h3>Text search<
 
       Search.prototype.initialize = function(options) {
         Search.__super__.initialize.apply(this, arguments);
-        console.log("Search options", options);
         this.model = new Models.Search(options != null ? options.textSearchOptions : void 0);
         return this.render();
       };
@@ -8616,7 +8653,7 @@ define('text!html/search.html',[],function () { return '<header><h3>Text search<
 
 }).call(this);
 
-define('text!html/controls.html',[],function () { return '\n<button class="reset">New search</button>';});
+define('text!html/controls.html',[],function () { return '<button class="reset">New search</button>';});
 
 (function() {
   var __hasProp = {}.hasOwnProperty,
@@ -8671,7 +8708,7 @@ define('text!html/controls.html',[],function () { return '\n<button class="reset
 
 }).call(this);
 
-define('text!html/faceted-search.html',[],function () { return '\n<div class="faceted-search">\n  <form>\n    <div class="controls"></div>\n    <div class="search-placeholder"></div>\n    <div class="facets">\n      <div style="display: none; text-align: center; margin-top: 20px" class="loader">\n        <h4>Loading facets...</h4><br/><img src="../images/faceted-search/loader.gif"/><br/>\n      </div>\n    </div>\n  </form>\n</div>';});
+define('text!html/faceted-search.html',[],function () { return '<div class="faceted-search"><form><div class="controls"></div><div class="search-placeholder"></div><div class="facets"><div style="display: none; text-align: center; margin-top: 20px" class="loader"><h4>Loading facets...</h4><br/><img src="../images/faceted-search/loader.gif"/><br/></div></div></form></div>';});
 
 (function() {
   var __hasProp = {}.hasOwnProperty,
@@ -8716,7 +8753,6 @@ define('text!html/faceted-search.html',[],function () { return '\n<div class="fa
         _.extend(this.config, config);
         _.extend(this.config, options);
         _.extend(this.config.facetViewMap, facetViewMap);
-        console.log("FS CONF", this.config);
         this.facetViews = {};
         this.firstRender = true;
         queryOptions = _.extend(this.config.queryOptions, this.config.textSearchOptions);
@@ -8735,7 +8771,6 @@ define('text!html/faceted-search.html',[],function () { return '\n<div class="fa
         rtpl = _.template(Templates.FacetedSearch);
         this.$el.html(rtpl);
         this.$('.loader').fadeIn('slow');
-        console.log("CONF", this.config);
         if (this.config.search) {
           search = new Views.Search({
             textSearchOptions: this.config.textSearchOptions
@@ -8789,12 +8824,10 @@ define('text!html/faceted-search.html',[],function () { return '\n<div class="fa
       };
 
       FacetedSearch.prototype.numPages = function() {
-        console.log("I am", this, this.model);
         return Math.ceil(this.model.serverResponse.numFound / this.config.resultRows);
       };
 
       FacetedSearch.prototype.currentPosition = function() {
-        console.log("I am", this, this.model);
         return 1 + (this.model.serverResponse.start / this.config.resultRows);
       };
 
@@ -8869,7 +8902,9 @@ define('text!html/faceted-search.html',[],function () { return '\n<div class="fa
                 fragment.appendChild(this.facetViews[facetData.name].el);
               }
             } else {
-              console.error('Unknown facetView', facetData.type);
+              if (window.console) {
+                console.error('Unknown facetView', facetData.type);
+              }
             }
           }
           this.$('.facets').html(fragment);
@@ -8877,7 +8912,6 @@ define('text!html/faceted-search.html',[],function () { return '\n<div class="fa
           for (index in facets) {
             if (!__hasProp.call(facets, index)) continue;
             data = facets[index];
-            console.log(' FACETVIEWS', this.config.name, data.name, this.facetViews[data.name]);
             this.facetViews[data.name].update(data.options);
           }
         }
@@ -9292,7 +9326,7 @@ define('text',['module'], function (module) {
 
 define('text!html/home.html',[],function () { return '<div class="tabs"><img src="/images/tabs-slant.png"/><ul><li class="archives">Archives</li><li class="creators">Creators</li><li class="legislations">Legislation</li></ul></div><div class="search-views"><div class="archives search"></div><div class="creators search"></div><div class="legislations search"></div></div>';});
 
-define('text!html/faceted-search-and-results.html',[],function () { return '\n<div class="row span3">\n  <div class="cell span1">\n    <div class="faceted-search"></div>\n  </div>\n  <div class="cell span2">\n    <div class="results">\n      <div class="abbreviations"><a href="http://dutch-caribbean.huygens.knaw.nl/wp-content/uploads/2013/08/Afkortingen-Caribische-Wereld.pdf" target="_new">Abbreviations</a></div>\n      <div class="empty">\n        <h3>Start searching using the panel on the left.</h3>\n      </div>\n      <div class="heading">\n        <h3>No results yet</h3>\n        <div class="sort"></div>\n      </div>\n      <div class="cursor"><span class="previous">Previous</span><span class="position">Page&nbsp;<span class="current"></span>&nbsp;of&nbsp;<span class="total"></span></span><span class="next">Next</span></div>\n      <div class="body"></div>\n    </div>\n  </div>\n</div>';});
+define('text!html/faceted-search-and-results.html',[],function () { return '\n<div class="row span3">\n  <div class="cell span1">\n    <div class="faceted-search"></div>\n  </div>\n  <div class="cell span2">\n    <div class="results">\n      <div class="abbreviations"><a href="http://dutch-caribbean.huygens.knaw.nl/wp-content/uploads/2013/08/Afkortingen-Caribische-Wereld.pdf" target="_new">Abbreviations</a></div>\n      <div class="empty">\n        <h3>Start searching using the panel on the left.</h3>\n      </div>\n      <div class="heading">\n        <h3>No results yet</h3>\n        <div class="sort"></div>\n      </div>\n      <div class="cursor"><span class="previous">Previous</span><span class="position">Page&nbsp;<span class="current"></span>&nbsp;of&nbsp;<span class="total"></span></span><img src="/images/loader.gif" class="loader"/><span class="next">Next</span></div>\n      <div class="body"></div>\n    </div>\n  </div>\n</div>';});
 
 define('text!html/generic-results.html',[],function () { return '<ul class="results"><% _.each(results, function (r) { %>\n<li id="<%= r._id %>">\n  <span class="title"><%= r.titleEng || r.nameEng %></span>\n</li>\n<% }) %></ul>';});
 
@@ -9350,11 +9384,26 @@ define('text!html/generic-results.html',[],function () { return '<ul class="resu
         };
       };
 
+      Search.prototype.showLoader = function() {
+        var doIt,
+          _this = this;
+        this.displayLoader = true;
+        doIt = function() {
+          if (_this.displayLoader) {
+            _this.$('.position').hide();
+            return _this.$('.loader').fadeIn('fast');
+          }
+        };
+        return _.delay(doIt, 200);
+      };
+
       Search.prototype.nextResults = function() {
+        this.showLoader();
         return this.search.next();
       };
 
       Search.prototype.previousResults = function() {
+        this.showLoader();
         return this.search.prev();
       };
 
@@ -9377,7 +9426,9 @@ define('text!html/generic-results.html',[],function () { return '<ul class="resu
         this.search = this.options.facetedSearch || this.facetedSearch;
         this.search.on('faceted-search:results', function(response) {
           if (_this.firstTime) {
-            console.log("First time!");
+            if (config.debug) {
+              console.log("First time!");
+            }
           } else {
             if ('sortableFields' in response) {
               _this.sortableFields = response.sortableFields;
@@ -9405,21 +9456,24 @@ define('text!html/generic-results.html',[],function () { return '<ul class="resu
             }
             select.append(option);
           }
-          this.$('.heading .sort').html(select);
+          this.$('.heading .sort').empty().append('<span>Order by&nbsp;</span>');
+          this.$('.heading .sort').append(select);
         }
         return this;
       };
 
       Search.prototype.renderResults = function(response) {
+        this.displayLoader = false;
         this.$('.empty').hide();
-        this.$('.results, .heading, .cursor, .body').show();
+        this.$('.results, .heading, .cursor, .body, .abbreviations').show();
         this.$('.results h3').html(response.numFound + ' results');
         this.$('.results .body').html(this.resultsTemplate({
           results: response.results
         }));
-        console.log("SEARCH IS >>>>> ", this.search);
-        this.$('.results .cursor .position .current').text(this.search.currentPosition());
-        this.$('.results .cursor .position .total').text(this.search.numPages());
+        this.$('.position .current').text(this.search.currentPosition());
+        this.$('.position .total').text(this.search.numPages());
+        this.$('.position').show();
+        this.$('.loader').hide();
         this.$('.results .cursor .next').toggle(this.search.hasNext());
         return this.$('.results .cursor .previous').toggle(this.search.hasPrev());
       };
@@ -9718,7 +9772,7 @@ define('text!html/legislation-results.html',[],function () { return '<ul class="
 
 }).call(this);
 
-define('text!html/creator.html',[],function () { return '<div class="breadcrumbs"><div class="line"></div><ul><li><a href="/creator/results">Search results</a></li><% if (data.nameEng) { %><li class="active"><a href="/creator/<%= data._id %>"><%= data.nameEng.length > 70 ? data.nameEng.substr(0,70) + \'...\' : data.nameEng %></a></li><% } %></ul></div><div class="content"><div class="panel-left"><h3 class="type">Creator</h3><h2 class="title"><%- data.nameEng %></h2><% if (String(data.nameEng).toLowerCase() !== String(data.nameNld).toLowerCase()) { %><div class="section dutch-name"><h4>Dutch name</h4><p><%= data.nameNld %></p></div><% } %><div class="section history"><%= String(data.history).replace(/\\n/g, \'<br>\') %></div><div class="section remarks"><h4>Remarks</h4><% if (data.notes) { %><p>\t<%= data.notes %></p><% } else { %><p>-</p><% } %></div><div class="section related-archives"><h4>Related archives</h4><% if (_.has(data, \'relatedArchives\') && data.relatedArchives.length) { %><ul><% _.each(data.relatedArchives, function (archive) { %><li><a href="<%= config.archiveURL(archive.id) %>"><%- archive.displayName %></a></li><% }) %></ul><% } else { %><p>-</p><% } %></div><div class="section related-creators"><h4>Related creators</h4><% if (_.has(data, \'relatedArchivers\') && data.relatedArchivers.length) { %><ul><% _.each(data.relatedArchivers, function (archiver) { %><li><a href="<%= config.archiverURL(archiver.id) %>"><%- archiver.displayName %></a></li><% }) %></ul><% } else { %><p>-</p><% } %></div></div><div class="panel-right"><div class="section date"><h4>Date</h4><p><span class="lbl">Begin date</span><span><%= data.beginDate %></span></p><p><span class="lbl">End date</span><span><%= data.endDate %></span></p></div><div class="section geography"><h4>Geography</h4><% if (_.has(data, \'placeKeywords\') && data.placeKeywords.length) { %>\n\t<% _.each(data.placeKeywords, function (place) { %><p>\t\t<%= place.displayName %></p>\t<% }) %>\n<% } else { %><p>-</p><% } %></div><div class="section subject"><h4>Subject</h4><% if (_.has(data, \'subjectKeywords\') && data.subjectKeywords.length) { %>\n\t<% _.each(data.subjectKeywords, function (kw) { %><p>\t\t<%= kw.displayName %></p>\t<% }) %>\n<% } else { %><p>-</p><% } %></div><div class="section person"><h4>Person</h4><% if (_.has(data, \'persons\') && data.persons.length) { %>\n\t<% _.each(data.persons, function (person) { %><p>\t\t<%= person.displayName %></p>\t<% }) %>\n<% } else { %><p>-</p><% } %></div><div class="section type"><h4>Type</h4><%= (data.types || []).join(\', \') %></div></div></div>';});
+define('text!html/creator.html',[],function () { return '\n<div class="breadcrumbs">\n  <div class="line"></div>\n  <ul>\n    <li><a href="/creator/results">Search results</a></li><% if (data.nameEng) { %>\n    <li class="active"><a href="/creator/<%= data._id %>"><%= data.nameEng.length > 70 ? data.nameEng.substr(0,70) + \'...\' : data.nameEng %></a></li><% } %>\n  </ul>\n</div>\n<div class="content">\n  <div class="panel-left">\n    <h3 class="type">Creator</h3>\n    <h2 class="title"><%- data.nameEng %></h2><% if (String(data.nameEng).toLowerCase() !== String(data.nameNld).toLowerCase()) { %>\n    <div class="section dutch-name">\n      <h4>Dutch name</h4>\n      <p><%= data.nameNld %></p>\n    </div><% } %>\n    <div class="section history"><%= String(data.history).replace(/\\n/g, \'<br>\') %></div>\n    <div class="section remarks">\n      <h4>Remarks</h4><% if (data.notes) { %>\n      <p>\t<%= data.notes %></p><% } else { %>\n      <p>-</p><% } %>\n    </div>\n    <div class="section related-archives">\n      <h4>Related archives</h4><% if (_.has(data, \'relatedArchives\') && data.relatedArchives.length) { %>\n      <ul><% _.each(data.relatedArchives, function (archive) { %>\n        <li><a href="<%= config.archiveURL(archive.id) %>"><%- archive.displayName %></a></li><% }) %>\n      </ul><% } else { %>\n      <p>-</p><% } %>\n    </div>\n    <div class="section related-creators">\n      <h4>Related creators</h4><% if (_.has(data, \'relatedArchivers\') && data.relatedArchivers.length) { %>\n      <ul><% _.each(data.relatedArchivers, function (archiver) { %>\n        <li><a href="<%= config.archiverURL(archiver.id) %>"><%- archiver.displayName %></a></li><% }) %>\n      </ul><% } else { %>\n      <p>-</p><% } %>\n    </div>\n  </div>\n  <div class="panel-right">\n    <div class="section abbreviations"><a href="<%= config.abbreviationsURL %>" target="_new">Explain abbreviations</a></div>\n    <div class="section date">\n      <h4>Date</h4>\n      <p><span class="lbl">Begin date</span><span><%= data.beginDate %></span></p>\n      <p><span class="lbl">End date</span><span><%= data.endDate %></span></p>\n    </div>\n    <div class="section geography">\n      <h4>Geography</h4><% if (_.has(data, \'placeKeywords\') && data.placeKeywords.length) { %>\n      \t<% _.each(data.placeKeywords, function (place) { %>\n      <p>\t\t<%= place.displayName %></p>\t<% }) %>\n      <% } else { %>\n      <p>-</p><% } %>\n    </div>\n    <div class="section subject">\n      <h4>Subject</h4><% if (_.has(data, \'subjectKeywords\') && data.subjectKeywords.length) { %>\n      \t<% _.each(data.subjectKeywords, function (kw) { %>\n      <p>\t\t<%= kw.displayName %></p>\t<% }) %>\n      <% } else { %>\n      <p>-</p><% } %>\n    </div>\n    <div class="section person">\n      <h4>Person</h4><% if (_.has(data, \'persons\') && data.persons.length) { %>\n      \t<% _.each(data.persons, function (person) { %>\n      <p>\t\t<%= person.displayName %></p>\t<% }) %>\n      <% } else { %>\n      <p>-</p><% } %>\n    </div>\n    <div class="section type">\n      <h4>Type</h4><%= (data.types || []).join(\', \') %>\n    </div>\n  </div>\n</div>';});
 
 (function() {
   var __hasProp = {}.hasOwnProperty,
@@ -9747,7 +9801,9 @@ define('text!html/creator.html',[],function () { return '<div class="breadcrumbs
       Creator.prototype.initialize = function(options) {
         Creator.__super__.initialize.apply(this, arguments);
         if (options && (options.id != null)) {
-          console.log("New Creator", options.id);
+          if (config.debug) {
+            console.log("New Creator", options.id);
+          }
           this.model = new Models.Creator({
             _id: options.id
           });
@@ -9765,7 +9821,9 @@ define('text!html/creator.html',[],function () { return '<div class="breadcrumbs
           model: this.model,
           config: config
         }));
-        return console.log(this.model.attributes);
+        if (config.debug) {
+          return console.log(this.model.attributes);
+        }
       };
 
       return Creator;
@@ -9815,7 +9873,7 @@ define('text!html/creator.html',[],function () { return '<div class="breadcrumbs
 
 }).call(this);
 
-define('text!html/archive.html',[],function () { return '<div class="breadcrumbs"><div class="line"></div><ul><li><a href="/archive/results">Search results</a></li><% if (data.titleEng) { %><li class="active"><%= data.titleEng.length > 70 ? data.titleEng.substr(0,70) + \'...\' : data.titleEng %></li><% } %></ul></div><div class="content"><div class="panel-left"><h3 class="type">Archive</h3><h2 class="title"><%= data.titleEng %></h2><% if (String(data.titleEng).toLowerCase() !== String(data.titleNld).toLowerCase()) { %><div class="section dutch-title"><h4>Dutch title</h4><p><%= data.titleNld %></p></div><% } %><div class="section remarks"><h4>Remarks</h4><p><%= String(data.notes || \'-\').replace(/\\n/g, \'<br>\') %></p></div><div class="section related-archives"><h4>Related archives</h4><% if (_.has(data, \'underlyingArchives\') && data.underlyingArchives.length) { %><ul><% _.each(data.underlyingArchives, function (archive) { %><li><a href="<%= config.archiveURL(archive.id) %>"><%- archive.displayName %> (underlying)</a></li><% }) %></ul><% } else { %><p>-</p><% } %></div><div class="section related-creators"><h4>Creators</h4><% if (_.has(data, \'creators\') && data.creators.length) { %><ul><% _.each(data.creators, function (archiver) { %><li><a href="<%= config.archiverURL(archiver.id) %>"><%- archiver.displayName %> (creator)</a></li><% }) %></ul><% } else { %><p>-</p><% } %></div></div><div class="panel-right"><div class="section date"><h4>Date</h4><p><span class="lbl">Begin date</span><span><%= data.beginDate %></span></p><p><span class="lbl">End date</span><span><%= data.endDate %>\t\t\t</span></p></div><div class="section reference"><h4>Reference</h4><p><%= model.reference() %></p></div><div class="section geography"><h4>Geography</h4><% if (_.has(data, \'placeKeywords\') && data.placeKeywords.length) { %>\n<% _.each(data.placeKeywords, function (place) { %><p><%= place.displayName %></p><% }) %>\n<% } else { %><p>-</p><% } %></div><div class="section subject"><h4>Subject</h4><% if (_.has(data, \'subjectKeywords\') && data.subjectKeywords.length) { %>\n<% _.each(data.subjectKeywords, function (kw) { %><p><%= kw.displayName %></p><% }) %>\n<% } else { %><p>-</p><% } %></div><div class="section person"><h4>Person</h4><% if (_.has(data, \'persons\') && data.persons.length) { %>\n\t<% _.each(data.persons, function (person) { %><p>\t\t<%= person.displayName %></p>\t<% }) %>\n<% } else { %><p>-</p><% } %></div><div class="section extent"><h4>Extent</h4><p><%= data.extent || \'-\' %></p></div></div></div>';});
+define('text!html/archive.html',[],function () { return '\n<div class="breadcrumbs">\n  <div class="line"></div>\n  <ul>\n    <li><a href="/archive/results">Search results</a></li><% if (data.titleEng) { %>\n    <li class="active"><%= data.titleEng.length > 70 ? data.titleEng.substr(0,70) + \'...\' : data.titleEng %></li><% } %>\n  </ul>\n</div>\n<div class="content">\n  <div class="panel-left">\n    <h3 class="type">Archive</h3>\n    <h2 class="title"><%= data.titleEng %></h2><% if (String(data.titleEng).toLowerCase() !== String(data.titleNld).toLowerCase()) { %>\n    <div class="section dutch-title">\n      <h4>Dutch title</h4>\n      <p><%= data.titleNld %></p>\n    </div><% } %>\n    <div class="section remarks">\n      <h4>Remarks</h4>\n      <p><%= String(data.notes || \'-\').replace(/\\n/g, \'<br>\') %></p>\n    </div>\n    <div class="section related-archives">\n      <h4>Related archives</h4><% if (_.has(data, \'underlyingArchives\') && data.underlyingArchives.length) { %>\n      <ul><% _.each(data.underlyingArchives, function (archive) { %>\n        <li><a href="<%= config.archiveURL(archive.id) %>"><%- archive.displayName %> (underlying)</a></li><% }) %>\n      </ul><% } else { %>\n      <p>-</p><% } %>\n    </div>\n    <div class="section related-creators">\n      <h4>Creators</h4><% if (_.has(data, \'creators\') && data.creators.length) { %>\n      <ul><% _.each(data.creators, function (archiver) { %>\n        <li><a href="<%= config.archiverURL(archiver.id) %>"><%- archiver.displayName %> (creator)</a></li><% }) %>\n      </ul><% } else { %>\n      <p>-</p><% } %>\n    </div>\n  </div>\n  <div class="panel-right">\n    <div class="section abbreviations"><a href="<%= config.abbreviationsURL %>" target="_new">Explain abbreviations</a></div>\n    <div class="section date">\n      <h4>Date</h4>\n      <p><span class="lbl">Begin date</span><span><%= data.beginDate %></span></p>\n      <p><span class="lbl">End date</span><span><%= data.endDate %>\t\t\t</span></p>\n    </div>\n    <div class="section reference">\n      <h4>Reference</h4>\n      <p><%= model.reference() %></p>\n    </div>\n    <div class="section geography">\n      <h4>Geography</h4><% if (_.has(data, \'placeKeywords\') && data.placeKeywords.length) { %>\n      <% _.each(data.placeKeywords, function (place) { %>\n      <p><%= place.displayName %></p><% }) %>\n      <% } else { %>\n      <p>-</p><% } %>\n    </div>\n    <div class="section subject">\n      <h4>Subject</h4><% if (_.has(data, \'subjectKeywords\') && data.subjectKeywords.length) { %>\n      <% _.each(data.subjectKeywords, function (kw) { %>\n      <p><%= kw.displayName %></p><% }) %>\n      <% } else { %>\n      <p>-</p><% } %>\n    </div>\n    <div class="section person">\n      <h4>Person</h4><% if (_.has(data, \'persons\') && data.persons.length) { %>\n      \t<% _.each(data.persons, function (person) { %>\n      <p>\t\t<%= person.displayName %></p>\t<% }) %>\n      <% } else { %>\n      <p>-</p><% } %>\n    </div>\n    <div class="section extent">\n      <h4>Extent</h4>\n      <p><%= data.extent || \'-\' %></p>\n    </div>\n  </div>\n</div>';});
 
 (function() {
   var __hasProp = {}.hasOwnProperty,
@@ -9903,7 +9961,7 @@ define('text!html/archive.html',[],function () { return '<div class="breadcrumbs
 
 }).call(this);
 
-define('text!html/legislation.html',[],function () { return '<div class="breadcrumbs"><div class="line"></div><ul><li><a href="/legislation/results">Search results</a></li><% if (data.titleEng) { %><li class="active"><a href="/legislation/"><%= data.titleEng.length > 70 ? data.titleEng.substr(0,70) + \'...\' : data.titleEng %></a></li><% } %></ul></div><div class="content"><div class="panel-left"><h3 class="type">Legislation</h3><h2 class="title"><%- data.titleEng %><i class="reference"><%= data.reference %> <%= data.pages %></i></h2><% if (String().toLowerCase(data.titleEng) !== String(data.titleNld).toLowerCase()) { %><div class="section dutch-title"><h4>Dutch title</h4><p><%= data.titleNld %></p></div><% } %><div class="section contents"><p><%= String(data.contents).replace(/\\n/g, \'<br>\') %></p></div><div class="section archival-source"><h4>Original archival source</h4><p><%= data.originalArchivalSource || \'-\' %></p></div><div class="section earlier-later-publications"><h4>Earlier and later publications</h4><% if (_.has(data, \'otherPublications\') && data.otherPublications.length) { %><p><%= data.otherPublications.join(\', \') %></p><% } else { %><p>-</p><% } %></div></div><div class="panel-right"><div class="section relevant-dates"><h4>Relevant dates</h4><p><%= data.date1 %></p></div><div class="section geography"><h4>Geography</h4><% if (_.has(data, \'placeKeywords\') && data.placeKeywords.length) { %>\n\t<% _.each(data.placeKeywords, function (place) { %><p>\t\t<%= place.displayName %></p>\t<% }) %>\n<% } else { %><p>-</p><% } %></div><div class="section subject"><h4>Subject</h4><% var hasOKW = _.has(data, \'otherKeywords\') && data.otherKeywords.length; %>\n<% var hasGKW = _.has(data, \'groupKeywords\') && data.groupKeywords.length; %>\n<% if (hasOKW || hasGKW) { %>\n\t\t<% if (hasOKW) { %>\n\t\t<% _.each(data.otherKeywords, function (kw) { %><p>\t\t\t<%= kw.displayName %></p>\t\t<% }) %>\n\t\t<% } %>\n\t\t<% if (hasGKW) { %>\n\t\t\t<% _.each(data.groupKeywords, function (gkw) { %><p>\t\t\t\t<%= gkw.displayName %></p>\t\t\t<% }) %>\n\t\t<% } %>\n<% } else { %><p>-</p><% } %></div><div class="section person"><h4>Person</h4><% if (_.has(data, \'persons\') && data.persons.length) { %>\n\t<% _.each(data.persons, function (person) { %><p>\t\t<%= person.displayName %></p>\t<% }) %>\n<% } else { %><p>-</p><% } %></div></div></div>';});
+define('text!html/legislation.html',[],function () { return '\n<div class="breadcrumbs">\n  <div class="line"></div>\n  <ul>\n    <li><a href="/legislation/results">Search results</a></li><% if (data.titleEng) { %>\n    <li class="active"><a href="/legislation/"><%= data.titleEng.length > 70 ? data.titleEng.substr(0,70) + \'...\' : data.titleEng %></a></li><% } %>\n  </ul>\n</div>\n<div class="content">\n  <div class="panel-left">\n    <h3 class="type">Legislation</h3>\n    <h2 class="title"><%- data.titleEng %><i class="reference"><%= data.reference %> <%= data.pages %></i></h2><% if (String().toLowerCase(data.titleEng) !== String(data.titleNld).toLowerCase()) { %>\n    <div class="section dutch-title">\n      <h4>Dutch title</h4>\n      <p><%= data.titleNld %></p>\n    </div><% } %>\n    <div class="section contents">\n      <p><%= String(data.contents).replace(/\\n/g, \'<br>\') %></p>\n    </div>\n    <div class="section archival-source">\n      <h4>Original archival source</h4>\n      <p><%= data.originalArchivalSource || \'-\' %></p>\n    </div>\n    <div class="section earlier-later-publications">\n      <h4>Earlier and later publications</h4><% if (_.has(data, \'otherPublications\') && data.otherPublications.length) { %>\n      <p><%= data.otherPublications.join(\', \') %></p><% } else { %>\n      <p>-</p><% } %>\n    </div>\n  </div>\n  <div class="panel-right">\n    <div class="section abbreviations"><a href="<%= config.abbreviationsURL %>" target="_new">Explain abbreviations</a></div>\n    <div class="section relevant-dates">\n      <h4>Relevant dates</h4>\n      <p><%= data.date1 %></p>\n    </div>\n    <div class="section geography">\n      <h4>Geography</h4><% if (_.has(data, \'placeKeywords\') && data.placeKeywords.length) { %>\n      \t<% _.each(data.placeKeywords, function (place) { %>\n      <p>\t\t<%= place.displayName %></p>\t<% }) %>\n      <% } else { %>\n      <p>-</p><% } %>\n    </div>\n    <div class="section subject">\n      <h4>Subject</h4><% var hasOKW = _.has(data, \'otherKeywords\') && data.otherKeywords.length; %>\n      <% var hasGKW = _.has(data, \'groupKeywords\') && data.groupKeywords.length; %>\n      <% if (hasOKW || hasGKW) { %>\n      \t\t<% if (hasOKW) { %>\n      \t\t<% _.each(data.otherKeywords, function (kw) { %>\n      <p>\t\t\t<%= kw.displayName %></p>\t\t<% }) %>\n      \t\t<% } %>\n      \t\t<% if (hasGKW) { %>\n      \t\t\t<% _.each(data.groupKeywords, function (gkw) { %>\n      <p>\t\t\t\t<%= gkw.displayName %></p>\t\t\t<% }) %>\n      \t\t<% } %>\n      <% } else { %>\n      <p>-</p><% } %>\n    </div>\n    <div class="section person">\n      <h4>Person</h4><% if (_.has(data, \'persons\') && data.persons.length) { %>\n      \t<% _.each(data.persons, function (person) { %>\n      <p>\t\t<%= person.displayName %></p>\t<% }) %>\n      <% } else { %>\n      <p>-</p><% } %>\n    </div>\n  </div>\n</div>';});
 
 (function() {
   var __hasProp = {}.hasOwnProperty,

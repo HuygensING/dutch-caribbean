@@ -110,6 +110,7 @@ module.exports = (grunt) ->
 					'dev/css/main.css'
 			legacy:
 				src: [
+					'ie-compatibility.js'
 					'json2.min.js'
 					'stage/js/main.js'
 					'jquery-ajaxhooks.min.js'
