@@ -1,11 +1,10 @@
 define (require) ->
 	config =
 		debug: false
-		baseURL: 'http://database.dutch-caribbean.huygens.knaw.nl/api/'
 		appRootElement: '#app'
 		homeElement: '#app'
 		resultRows: 15
-		facetedSearchHost: 'http://database.dutch-caribbean.huygens.knaw.nl/api/'
+		facetedSearchHost: 'http://test.dutch-caribbean.huygens.knaw.nl/api/'
 		searchPath: 'search'
 		archiverURL: (id) -> "/creator/#{id}"
 		archiverResultsURL: "/creator/results"
@@ -40,8 +39,8 @@ define (require) ->
 
 	# config.baseURL = 'http://repository.huygens.knaw.nl'
 
-	config.resources.legislation.url = (id) -> "#{config.baseURL}/resources/atlglegislations/#{id}"
-	config.resources.archive.url = (id) -> "#{config.baseURL}/resources/atlgarchives/#{id}"
-	config.resources.creator.url = (id) -> "#{config.baseURL}/resources/atlgarchivers/#{id}"
+	config.resources.legislation.url = (id) -> "#{config.facetedSearchHost}/resources/atlglegislations/#{id}"
+	config.resources.archive.url = (id) -> "#{config.facetedSearchHost}/resources/atlgarchives/#{id}"
+	config.resources.creator.url = (id) -> "#{config.facetedSearchHost}/resources/atlgarchivers/#{id}"
 
 	config
