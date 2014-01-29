@@ -4,6 +4,16 @@ module.exports = (grunt) ->
 	### CONFIG ###
 	##############
 
+	cfg =
+		production:
+			deployment:
+				host: 'duca-fail'
+				baseDir: '/data/duca'
+		test:
+			deployment:
+				host: 'duca-test'
+				baseDir: '/data/duca'
+
 	grunt.initConfig
 		connect:
 			compiled:
@@ -58,17 +68,6 @@ module.exports = (grunt) ->
 						'src/stylus/**/*.styl'
 						'!src/stylus/import/*.styl'
 					]
-		
-		rsync:
-			options:
-				args: ["--verbose"]
-				exclude: [".git*"]
-				recursive: true
-			compiled:
-				options:
-					src: ["./src/static/"]
-					dest: "./compiled"
-
 		concat:
 			css:
 				src: [
@@ -111,6 +110,33 @@ module.exports = (grunt) ->
 					}
 				]
 
+		rsync:
+			options:
+				args: ["--verbose", "-i"]
+				exclude: [".git*"]
+				recursive: true
+			compiled:
+				options:
+					src: ["./src/static/"]
+					dest: "./compiled"
+			stage:
+				options:
+					src: "./src/static/"
+					dest: "./stage"
+			'deploy-test':
+				options:
+					syncDest: true
+					syncDestIgnoreExcl: true
+					src: "./stage/"
+					dest: "#{cfg.test.deployment.host}:#{cfg.test.deployment.baseDir}/"
+			'deploy-production':
+				options:
+					syncDest: true
+					syncDestIgnoreExcl: true
+					src: "./stage/"
+					dest: "#{cfg.production.deployment.host}:#{cfg.production.deployment.baseDir}/"
+
+
 		requirejs:
 			compile:
 				options:
@@ -129,6 +155,7 @@ module.exports = (grunt) ->
 						'text': '../lib/requirejs-text/text'
 						'domready': '../lib/requirejs-domready/domReady'
 						'faceted-search': '../lib/faceted-search/stage/js/main'
+						'managers': '../lib/managers/dev'
 						'html': '../html'
 					wrap: true
 
@@ -185,6 +212,12 @@ module.exports = (grunt) ->
 		'replace:html'											# Copy and replace index.html
 		'cssmin:stage'
 		'requirejs:compile' # Run r.js
+		'rsync:stage'
+	]
+
+	grunt.registerTask 'deploy-test', [
+		'build'
+		'rsync:deploy-test'
 	]
 
 	##############
