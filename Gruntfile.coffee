@@ -155,6 +155,7 @@ module.exports = (grunt) ->
 						'text': '../lib/requirejs-text/text'
 						'domready': '../lib/requirejs-domready/domReady'
 						'faceted-search': '../lib/faceted-search/stage/js/main'
+						'es5-shim': '../lib/es5-shim/es5-shim.min'
 						'managers': '../lib/managers/dev'
 						'html': '../html'
 					wrap: true
