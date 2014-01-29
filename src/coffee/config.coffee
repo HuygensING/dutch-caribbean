@@ -4,7 +4,7 @@ define (require) ->
 		appRootElement: '#app'
 		homeElement: '#app'
 		resultRows: 15
-		facetedSearchHost: 'http://test.dutch-caribbean.huygens.knaw.nl/api/'
+		facetedSearchHost: 'http://dc.dev/api/search'
 		searchPath: 'search'
 		archiverURL: (id) -> "/creator/#{id}"
 		archiverResultsURL: "/creator/results"
@@ -31,16 +31,16 @@ define (require) ->
 			facet_sort_period: 'Period'
 		resources:
 			legislation:
-				label: 'atlglegislation'
+				label: 'dcarlegislation'
 			archive:
-				label: 'atlgarchive'
+				label: 'dcararchive'
 			creator:
-				label: 'atlgarchiver'
+				label: 'dcararchiver'
 
 	# config.baseURL = 'http://repository.huygens.knaw.nl'
 
-	config.resources.legislation.url = (id) -> "#{config.facetedSearchHost}/resources/atlglegislations/#{id}"
-	config.resources.archive.url = (id) -> "#{config.facetedSearchHost}/resources/atlgarchives/#{id}"
-	config.resources.creator.url = (id) -> "#{config.facetedSearchHost}/resources/atlgarchivers/#{id}"
+	config.resources.legislation.url = (id) -> "#{config.facetedSearchHost}/../domain/dcarlegislations/#{id}"
+	config.resources.archive.url = (id) -> "#{config.facetedSearchHost}/../domain/dcararchives/#{id}"
+	config.resources.creator.url = (id) -> "#{config.facetedSearchHost}/../domain/dcararchivers/#{id}"
 
 	config

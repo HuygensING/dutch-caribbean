@@ -10,7 +10,7 @@
 		"backbone-amd": "*",
 		"managers": "https://github.com/Gijsjan/managers.git",
 		"helpers": "https://github.com/Gijsjan/helpers.git",
-		"faceted-search": "https://github.com/HuygensING/faceted-search.git#elaborate",
+		"faceted-search": "/home/jona/workspace/faceted-search-timbuctoo#timbuctoo-compatible",
 		"almond": "*",
 		"json3": "*"
 	},

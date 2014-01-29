@@ -1,5 +1,7 @@
 define (require) ->
 	config = require 'config'
+	Backbone = require 'backbone'
+
 	SearchView = require 'views/search'
 	FacetedSearch = require 'faceted-search'
 	Templates =
@@ -15,22 +17,24 @@ define (require) ->
 			name: 'archive'
 			baseUrl: config.facetedSearchHost
 			searchUrl: config.searchPath
+			searchRequestOptions:
+				headers:
+					VRE_ID: 'DutchCaribbean'
 			queryOptions:
 				resultRows: config.resultRows
 				term: '*'
 				typeString: config.resources.archive.label
-				sort: 'facet_sort_title'
 			excludeFacets: [
-				'facet_s_begin_date'
-				'facet_s_end_date'
+				'dynamic_s_begin_date'
+				'dynamic_s_end_date'
 			]
 			facetOrder: [
-				'facet_s_period'
-				'facet_s_begin_date'
-				'facet_s_end_date'
-				'facet_s_place'
-				'facet_s_subject'
-				'facet_s_person'
-				'facet_s_refcode'
+				'dynamic_s_period'
+				'dynamic_s_begin_date'
+				'dynamic_s_end_date'
+				'dynamic_s_place'
+				'dynamic_s_subject'
+				'dynamic_s_person'
+				'dynamic_s_refcode'
 			]
-			facetTitles: config.facetNames
+			facetNameMap: config.facetNames

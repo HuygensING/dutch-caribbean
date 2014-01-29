@@ -43,7 +43,7 @@ define (require) ->
 
 			@firstTime = true
 			@search = @options.facetedSearch || @facetedSearch
-			@search.on 'faceted-search:results', (response) =>
+			@listenTo @search, 'results:change', (response) =>
 				if @firstTime
 					# render first time page
 					if config.debug then console.log "First time!"
@@ -72,14 +72,19 @@ define (require) ->
 			@
 
 		renderResults: (response) ->
+			console.log response
 			@displayLoader = false
 			@$('.empty').hide()
 			@$('.results, .heading, .cursor, .body, .abbreviations').show()
-			@$('.results h3').html response.numFound + ' results'
-			@$('.results .body').html @resultsTemplate results: response.results
+			@$('.results h3').html response.get('numFound') + ' results'
+			@$('.results .body').html @resultsTemplate results: response.get 'results'
 
-			@$('.position .current').text @search.currentPosition()
-			@$('.position .total').text @search.numPages()
+			currentPosition = 1 + (response.get('start') / config.resultRows)
+			@$('.position .current').text currentPosition
+
+			numPages = Math.ceil response.get('numFound') / config.resultRows
+			@$('.position .total').text numPages
+
 			@$('.position').show()
 			@$('.loader').hide()
 

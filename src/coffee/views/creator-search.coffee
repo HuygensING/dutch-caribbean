@@ -7,6 +7,11 @@ define (require) ->
 		Results: require 'text!html/creator-results.html'
 
 	class Search extends SearchView
+
+		init: -> 
+			super
+
+
 		resultClicked: (ev) ->
 			@publish 'navigate:entry', 'creator/'+ev.currentTarget.id
 
@@ -15,22 +20,24 @@ define (require) ->
 			name: 'creator'
 			baseUrl: config.facetedSearchHost
 			searchUrl: config.searchPath
+			searchRequestOptions:
+				headers:
+					VRE_ID: 'DutchCaribbean'
 			queryOptions:
 				resultRows: config.resultRows
 				term: '*'
 				typeString: config.resources.creator.label
-				sort: 'facet_sort_name'
 			excludeFacets: [
-				'facet_s_begin_date'
-				'facet_s_end_date'
+				'dynamic_s_begin_date'
+				'dynamic_s_end_date'
 			]
 			facetOrder: [
-				'facet_s_period'
-				'facet_s_begin_date'
-				'facet_s_end_date'
-				'facet_s_type'
-				'facet_s_place'
-				'facet_s_subject'
-				'facet_s_person'
+				'dynamic_s_period'
+				'dynamic_s_begin_date'
+				'dynamic_s_end_date'
+				'dynamic_s_type'
+				'dynamic_s_place'
+				'dynamic_s_subject'
+				'dynamic_s_person'
 			]
-			facetTitles: config.facetNames
+			facetNameMap: config.facetNames
