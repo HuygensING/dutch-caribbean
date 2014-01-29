@@ -2,7 +2,7 @@ define (require) ->
 	config = require 'config'
 	Backbone = require 'backbone'
 
-	SearchView = require 'views/search'
+	SearchView = require 'views/base-search'
 	FacetedSearch = require 'faceted-search'
 	Templates =
 		Search: require 'text!html/faceted-search-and-results.html'
