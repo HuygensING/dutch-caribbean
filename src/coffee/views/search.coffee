@@ -14,6 +14,7 @@ define (require) ->
 			'click .results .next': 'nextResults'
 			'click .results .previous': 'previousResults'
 			'change .sort select': 'sortResults'
+			'click .new-search': 'resetSearch'
 
 		showLoader: ->
 			@displayLoader = true
@@ -33,6 +34,9 @@ define (require) ->
 			@sortField = $(e.currentTarget).val()
 			@search.sortResultsBy(@sortField)
 
+		resetSearch: ->
+			@search.reset()
+
 		initialize: (@options) ->
 			super
 
@@ -48,8 +52,8 @@ define (require) ->
 					# render first time page
 					if config.debug then console.log "First time!"
 				else
-					if 'sortableFields' of response
-						@sortableFields = response.sortableFields
+					if response.has 'sortableFields'
+						@sortableFields = response.get 'sortableFields'
 					@renderResults response
 				@firstTime = false
 				@renderSortableFields()
@@ -72,7 +76,6 @@ define (require) ->
 			@
 
 		renderResults: (response) ->
-			console.log response
 			@displayLoader = false
 			@$('.empty').hide()
 			@$('.results, .heading, .cursor, .body, .abbreviations').show()
@@ -94,4 +97,5 @@ define (require) ->
 		render: ->
 			@$el.html @searchTemplate()
 			@$('.faceted-search').html @search.$el
+			@$el.prepend '<div class="new-search">New Search</div>'
 			@

@@ -3,11 +3,38 @@
 	margin 0px 20px 0px 0px
 	border none
 
+#home
+	position relative // for "new search" button
+
+.new-search
+	display inline-block
+	cursor pointer
+	font-size 12px
+	background none
+	background-color controlsButtonColor
+	color white
+	box-shadow none
+	border-radius 3px
+	width auto
+	padding 6px 8px
+
+	position absolute
+	top 0px
+
+	z-index 300 // on top of tabs
+
+	&:hover
+		background-color lighten(controlsButtonColor, 5%)
+
+	&:active
+		background-color darken(controlsButtonColor, 5%)
+
 .tabs
 	tabsWidth = 300px
 	position relative
 	width tabsWidth
 	z-index 200
+	padding-top 40px // to make way for "new search" button
 	img
 		position absolute
 		top 0
