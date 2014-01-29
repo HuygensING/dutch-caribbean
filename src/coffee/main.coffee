@@ -6,6 +6,7 @@ require.config
     'domready': '../lib/requirejs-domready/domReady'
     'text': '../lib/requirejs-text/text'
     'faceted-search': '../lib/faceted-search/stage/js/main'
+    'es5-shim': '../lib/es5-shim/es5-shim.min'
     'managers': '../lib/managers/dev'
     'html': '../html'
 
@@ -16,6 +17,6 @@ require.config
       deps: ['underscore', 'jquery']
       exports: 'Backbone'
 
-require ['domready', 'app'], (domready, app) ->
+require ['es5-shim', 'domready', 'app'], (e5s, domready, app) ->
   domready ->
     app.initialize()
