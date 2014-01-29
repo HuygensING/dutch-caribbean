@@ -1,6 +1,5 @@
 define (require) ->
 	Backbone = require 'backbone'
-	viewManager = require 'managers/view'
 	Pubsub = require 'pubsub'
 	currentUser = require 'models/currentUser'
 
@@ -13,15 +12,6 @@ define (require) ->
 	home = new Views.Home el: '#home'
 
 	class MainRouter extends Backbone.Router
-		# view: null
-		# query: {}
-
-		# show: (route, params) ->
-		# 	viewManager.clear() # Empty the viewManager before initializing new views
-		# 	viewManager.show new @view @query
-
-		# 	@query = {}
-
 		initialize: ->
 			_.extend @, Pubsub
 			@on 'route', @show, @
@@ -39,8 +29,6 @@ define (require) ->
 			'': 'home'
 
 		home: ->
-			# @view = Views.Home
-			# viewManager.show Views.Home
 			@showHome()
 
 		home_creator: ->
