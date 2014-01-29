@@ -4,9 +4,10 @@
 	border none
 
 .tabs
+	tabsWidth = 300px
 	position relative
-	background-color tabsBackgroundColor
-	width 299px
+	width tabsWidth
+	z-index 200
 	img
 		position absolute
 		top 0
@@ -14,19 +15,63 @@
 		pointer-events none
 		display none
 	ul
+		height 54px
 		li
+			tabWidth = 100px
+			display block
+			position absolute
+			bottom 0
+			width tabWidth
+
+			background-color tabsBackgroundColor
+			hoverColor = lighten(activeTabColor, 30%)
+
 			cursor pointer
 			list-style none
-			display inline-block
-			line-height 40px
-			padding-top 20px
-			width 32%
+			line-height 38px
 			text-align center
+
+			&:before
+				display block
+				content " "
+				width 0
+				height 0
+				border-style solid
+				border-width 0 0 8px tabWidth
+				border-color transparent transparent tabsBackgroundColor transparent
+				line-height 0px
+
+				position absolute
+
+			&.archives
+				left 0
+				padding-top 0
+				&:before
+					margin-top -8px
+			&.creators
+				left 1 * tabWidth
+				padding-top 8px
+				&:before
+					margin-top -16px
+			&.legislations 
+				legTabWidth = tabsWidth - 2*tabWidth
+				left 2 * tabWidth
+				width legTabWidth
+				padding-top 16px
+				&:before
+					border-width 0 0 8px legTabWidth
+					margin-top -24px
+
 			&:hover
-				background-color lighten(activeTabColor, 30%)
+				background-color hoverColor
+				&:before
+					border-color transparent transparent hoverColor transparent
 			&.active
 				font-weight bold
 				background-color activeTabColor
+				&:before
+					border-color transparent transparent activeTabColor transparent
+
 
 
 .breadcrumbs

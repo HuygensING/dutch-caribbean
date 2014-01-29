@@ -1,14 +1,29 @@
 .faceted-search
+	position relative
+	box-shadow 0 2px 8px rgba(0,0,0,0.08)
+	z-index 100
+
+	form
+		box-shadow none
+
+	i.fa-compress, i.fa-expand
+		position absolute
+		display block
+		left -20px
+		top 5px
+		background-color #f7f7f7
+		padding 4px
+		border-top-left-radius 3px
+		border-bottom-left-radius 3px
+		box-shadow inset -3px 0 3px rgba(0,0,0,.1)
+		color black
+	
 	.facets
+		float none
 		background-image none
 
 	.facet, form .facet, form .facet:first-child, form .facet:last-child
-		// border-radius none
-		border-top-left-radius 0px
-		border-top-right-radius 0px
-		border-bottom-left-radius 0px
-		border-bottom-right-radius 0px
-
+		border-radius none
 		border-bottom 1px solid #e0e0e0
 
 	.facet.controls
@@ -35,8 +50,8 @@
 		font-size 12px
 		h3
 			color facetHeadingColor
-		.options ul li.option
-			label
-				color facetItemLabelColor
-			label, .count
-				font-size 13px
+		// .options ul li.option
+		// 	label
+		// 		color facetItemLabelColor
+		// 	label, .count
+		// 		font-size 13px
