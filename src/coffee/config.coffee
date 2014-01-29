@@ -4,7 +4,8 @@ define (require) ->
 		appRootElement: '#app'
 		homeElement: '#app'
 		resultRows: 15
-		facetedSearchHost: 'http://dc.dev/api/search'
+		facetedSearchHost: 'http://test-database.dutch-caribbean.huygens.knaw.nl/api/search'
+		# facetedSearchHost: 'http://dc.dev/api/search'
 		searchPath: 'search'
 		archiverURL: (id) -> "/creator/#{id}"
 		archiverResultsURL: "/creator/results"
@@ -14,21 +15,21 @@ define (require) ->
 		legislationResultsURL: "/legislation/results"
 		abbreviationsURL: "http://dutch-caribbean.huygens.knaw.nl/wp-content/uploads/2013/08/Afkortingen-Caribische-Wereld.pdf"		
 		facetNames:
-			facet_s_refcode: 'Code Repository'
-			facet_s_subject: 'Subject'
-			facet_s_person: 'Person'
-			facet_s_place: 'Geography'
-			facet_s_date: 'Date'
-			facet_s_begin_date: 'Begin date'
-			facet_s_end_date: 'End date'
-			facet_s_type: 'Identity type'
-			facet_sort_text: 'Text'
-			facet_s_period: 'Period'
+			dynamic_s_refcode: 'Code Repository'
+			dynamic_s_subject: 'Subject'
+			dynamic_s_person: 'Person'
+			dynamic_s_place: 'Geography'
+			dynamic_s_date: 'Date'
+			dynamic_s_begin_date: 'Begin date'
+			dynamic_s_end_date: 'End date'
+			dynamic_s_type: 'Identity type'
+			dynamic_sort_text: 'Text'
+			dynamic_s_period: 'Period'
 		sortableFieldNames:
-			facet_sort_date: 'Date'
-			facet_sort_title: 'Title'
-			facet_sort_name: 'Name'
-			facet_sort_period: 'Period'
+			dynamic_sort_date: 'Date'
+			dynamic_sort_title: 'Title'
+			dynamic_sort_name: 'Name'
+			dynamic_sort_period: 'Period'
 		resources:
 			legislation:
 				label: 'dcarlegislation'
