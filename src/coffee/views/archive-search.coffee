@@ -30,8 +30,6 @@ define (require) ->
 			]
 			facetOrder: [
 				'dynamic_s_period'
-				'dynamic_s_begin_date'
-				'dynamic_s_end_date'
 				'dynamic_s_place'
 				'dynamic_s_subject'
 				'dynamic_s_person'
