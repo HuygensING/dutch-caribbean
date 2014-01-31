@@ -135,8 +135,8 @@ module.exports = (grunt) ->
 				files:
 					'stage/css/main.css': [
 						'compiled/lib/normalize-css/normalize.css'
-						'compiled/css/main.css'
 						'compiled/lib/faceted-search/compiled/css/main.css'
+						'compiled/css/main.css'
 					]
 
 		replace:
