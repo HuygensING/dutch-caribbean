@@ -1,3 +1,46 @@
+fs = require 'fs'
+path = require 'path'
+shell = require 'shelljs'
+colors = require 'colors'
+
+connect_middleware = (connect, options) ->
+	[
+		(req, res, next) ->
+			contentTypesMap =
+				'.html': 'text/html'
+				'.css': 'text/css'
+				'.js': 'application/javascript'
+				'.map': 'application/javascript' # js source maps
+				'.json': 'application/json'
+				'.gif': 'image/gif'
+				'.jpg': 'image/jpeg'
+				'.jpeg': 'image/jpeg'
+				'.png': 'image/png'
+				'.ico': 'image/x-icon'
+				'.ttf': 'application/octet-stream'
+
+			sendFile = (reqUrl) ->
+				filePath = path.join options.base, reqUrl
+				console.log "Fetching #{filePath.green}"
+
+				res.writeHead 200,
+					'Content-Type': contentTypesMap[extName] || 'text/html'
+					'Content-Length': fs.statSync(filePath).size
+
+				readStream = fs.createReadStream filePath
+				readStream.pipe res
+
+			# Create a favicon on the fly if it does not exist
+			if req.url is '/favicon.ico' and not fs.existsSync(options.base + req.url)
+				fs.openSync options.base + req.url, 'w'
+			
+			extName = path.extname req.url
+			if contentTypesMap[extName]?
+				sendFile req.url
+			else
+				sendFile 'index.html'
+	]
+
 module.exports = (grunt) ->
 
 	##############
@@ -16,11 +59,12 @@ module.exports = (grunt) ->
 
 	grunt.initConfig
 		connect:
-			compiled:
+			keepalive:
 				options:
-					base: 'compiled'
 					port: 9000
-					livereload: true
+					base: 'compiled'
+					middleware: connect_middleware
+					keepalive: true
 
 		shell:
 			'bower-install':
