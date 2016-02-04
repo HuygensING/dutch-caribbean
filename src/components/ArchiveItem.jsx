@@ -1,6 +1,6 @@
 import React from "react";
 import {getEntry} from "../actions/entry";
-import {makeUrl} from "../router";
+import {makeSearchUrl, makeArchiveUrl, makeCreatorUrl} from "../router";
 import renderRelation from "./utils/renderRelation";
 import config from "../config";
 
@@ -11,14 +11,12 @@ export default React.createClass({
   render () {
     let data = this.props.archive || {};
     let hasDifferentTitles = String(data.titleNld).toLowerCase() !== String(data.titleEng).toLowerCase();
-    let makeArchiveUrl = function () {};
-    let makeArchiverUrl = function () {};
-
+    //FIXME: zorg dat de back button niet op een lege search uitkomt
     return (<div id="fiche">
       <div className="breadcrumbs">
         <div className="line"></div>
         <ul>
-          <li><a href={makeUrl("ROOT")}>Search results</a></li>
+          <li><a href={makeSearchUrl("archive")}>Search results</a></li>
           {data.titleEng ? <li className="active" style={{maxWidth: "500px", textOverflow: "ellipsis", overflow: "hidden", whiteSpace: "nowrap"}}>{data.titleEng}</li> : null}
         </ul>
       </div>
@@ -38,12 +36,12 @@ export default React.createClass({
           </div>
           <div className="section related-archives">
             <h4>Related archives</h4>
-            { renderRelation(data["@relations"], "has_child_archive", relation => <a href="{makeArchiveUrl(relation.id)}">{relation.displayName} (underlying)</a>) }
-            { renderRelation(data["@relations"], "has_parent_archive", relation => <a href="{makeArchiveUrl(relation.id)}">{relation.displayName} (underlying)</a>) }
+            { renderRelation(data["@relations"], "has_child_archive", relation => <a href={makeArchiveUrl(relation.id)}>{relation.displayName} (underlying)</a>) }
+            { renderRelation(data["@relations"], "has_parent_archive", relation => <a href={makeArchiveUrl(relation.id)}>{relation.displayName} (underlying)</a>) }
           </div>
           <div className="section related-creators">
             <h4>Creators</h4>
-            { renderRelation(data["@relations"], "is_created_by", relation => <a href={makeArchiverUrl(relation.id)}>{relation.displayName} (creator)</a>) }
+            { renderRelation(data["@relations"], "is_created_by", relation => <a href={makeCreatorUrl(relation.id)}>{relation.displayName} (creator)</a>) }
           </div>
         </div>
         <div className="panel-right">
