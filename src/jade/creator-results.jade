@@ -1,7 +1,8 @@
-ul.results
-	| <% _.each(results, function (r) { %>
-	| <li id="<%= r._id %>">
-	|   <span class="title"><%= r.nameEng %> <span class="type">(<%= (r.types || []).join(', ') %>)</span></span>
-	|		<span class="right"><%= r.beginDate %> - <%= r.endDate %></span>
-	| </li>
-	| <% }) %>
+<ul class="results">
+  <% _.each(results, function (r) { %>
+  <li id="<%= r._id %>">
+    <span class="title"><%= r.nameEng %> <span class="type">(<%= (r.types || []).join(', ') %>)</span></span>
+  		<span class="right"><%= r.beginDate %> - <%= r.endDate %></span>
+  </li>
+  <% }) %>
+</ul>
