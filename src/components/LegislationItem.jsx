@@ -30,6 +30,7 @@ export default React.createClass({
               </div>)
           : null}
         <div className="section contents">
+          <h4>Summary of contents</h4>
           <p dangerouslySetInnerHTML={{__html: data.contents}} />
         </div>
         <div className="section archival-source">

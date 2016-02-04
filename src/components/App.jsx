@@ -6,7 +6,7 @@ export default React.createClass({
 			<div className="wrapper">
 				<div id="app" className="main">
 					<div className="head"><a href="http://www.huygens.knaw.nl/"><img src="/images/HuygensING.png" className="HIlogo"/></a>
-						<h1><a href="/"><img src="/images/dutch-caribbean.jpg" alt="The Dutch in the Caribbean" className="DClogo"/></a></h1>
+						<h1><a href="http://dutch-caribbean.huygens.knaw.nl"><img src="/images/dutch-caribbean.jpg" alt="The Dutch in the Caribbean" className="DClogo"/></a></h1>
 					</div>
 					<div id="main">
 						{this.props.children}

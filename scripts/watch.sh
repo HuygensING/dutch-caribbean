@@ -1,5 +1,12 @@
 #!/bin/sh
 
+./node_modules/.bin/stylus \
+	--use nib \
+	--compress \
+	--out build/development/css/style.css \
+	--watch \
+	src/stylus/index.styl &
+
 node_modules/.bin/watchify src/index.jsx \
 	--extension=.jsx \
 	--external classnames \

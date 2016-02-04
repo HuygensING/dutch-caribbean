@@ -5,7 +5,7 @@
 		font-size 9pt
 		color grey
 
-div.results
+div.hire-faceted-search-results
 	padding-left 20px
 
 	h3
@@ -25,43 +25,40 @@ div.results
 				font-size 11px
 				line-height 20px
 
-	.body
-		display none
+	.hire-faceted-search-result-list
+		list-style none
 
-		ul
-			list-style none
+		li
+			font-size 10pt
+			position relative
+			cursor pointer
+			border-bottom 1px solid #F6F6F6
+			padding-top 18px
+			padding-bottom 8px
 
-			li
-				font-size 10pt
-				position relative
-				cursor pointer
-				border-bottom 1px solid #F6F6F6
-				padding-top 18px
-				padding-bottom 8px
+			&:hover
+				background-color #f6f6f6
 
-				&:hover
-					background-color #f6f6f6
+			small
+				color #BBB
+				margin-left 6px
 
-				small
-					color #BBB
-					margin-left 6px
-
-				.ref
-					color grey
-					font-size 80%
-					display block
-				.right
-					display inline-block
-					position absolute
-					right 0
-				.title
-					font-weight bold
-					font-size 11pt
-					display inline-block
-					max-width 85%
-				.type
-					font-size 80%
-					font-weight normal
+			.ref
+				color grey
+				font-size 80%
+				display block
+			.right
+				display inline-block
+				position absolute
+				right 0
+			.title
+				font-weight bold
+				font-size 11pt
+				display inline-block
+				max-width 85%
+			.type
+				font-size 80%
+				font-weight normal
 	.cursor
 		display none
 		position relative
