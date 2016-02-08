@@ -8,9 +8,9 @@ var url = require('url');
 
 var baseDir = "./";
 var watchFiles = [
-	baseDir + "/js/*.js",
-	baseDir + "/css/*.css",
-	baseDir + "/index.html"
+	baseDir + "build/development/js/*.js",
+	baseDir + "build/development/css/*.css",
+	baseDir + "build/development/index.html"
 ];
 
 function onFilesChanged(event, file) {
