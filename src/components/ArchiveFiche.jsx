@@ -1,6 +1,6 @@
 import React from "react";
 import {getEntry} from "../actions/entry";
-import {makeSearchUrl, makeArchiveUrl, makeCreatorUrl} from "../router";
+import {makeArchiveSearchUrl, makeArchiveUrl, makeCreatorUrl} from "../router";
 import renderRelation from "./utils/renderRelation";
 import config from "../config";
 
@@ -13,13 +13,10 @@ export default React.createClass({
     let hasDifferentTitles = String(data.titleNld).toLowerCase() !== String(data.titleEng).toLowerCase();
     //FIXME: zorg dat de back button niet op een lege search uitkomt
     return (<div id="fiche">
-      <div className="breadcrumbs">
-        <div className="line"></div>
-        <ul>
-          <li><a href={makeSearchUrl("archive")}>Search results</a></li>
-          {data.titleEng ? <li className="active" style={{maxWidth: "500px", textOverflow: "ellipsis", overflow: "hidden", whiteSpace: "nowrap"}}>{data.titleEng}</li> : null}
-        </ul>
-      </div>
+      {/*<ul className="breadcrumbs">
+        <li><a href={makeArchiveSearchUrl()}><span className="limiter">Search results</span></a></li>
+        <li className="active"><a href="#"><span className="limiter">{data.titleEng || "(no title)"}</span></a></li>
+      </ul>*/}
       <div className="content">
         <div className="panel-left">
           <h3 className="type">Archive</h3>
@@ -32,7 +29,7 @@ export default React.createClass({
             : null}
           <div className="section remarks">
             <h4>Remarks</h4>
-            <p style={{whiteSpace: "pre-line"}}>{data.notes}</p>
+            <p style={{whiteSpace: "pre-line"}}>{data.notes || "-"}</p>
           </div>
           <div className="section related-archives">
             <h4>Related archives</h4>
@@ -41,7 +38,7 @@ export default React.createClass({
           </div>
           <div className="section related-creators">
             <h4>Creators</h4>
-            { renderRelation(data["@relations"], "is_created_by", relation => <a href={makeCreatorUrl(relation.id)}>{relation.displayName} (creator)</a>) }
+            { renderRelation(data["@relations"], "is_created_by", relation => <a href={makeCreatorUrl(relation.id)}>{relation.displayName} (creator)</a>) || "-" }
           </div>
         </div>
         <div className="panel-right">

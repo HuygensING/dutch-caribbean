@@ -1,111 +1,153 @@
-.search .abbreviations
-	display none
-	text-align right
+
+.tabs
+	tabsWidth = 300px
+	oneTabWidth = tabsWidth / 3
+
+
 	a
-		font-size 9pt
-		color grey
-
-div.hire-faceted-search-results
-	padding-left 20px
-
-	h3
-		border-bottom 1px solid #F6F6F6
-
-	.heading
-		display none
-		position relative
-		height 25px
-		margin-top 20px
-		.sort
-			position absolute
-			display inline-block
-			right 0
-			top 0
-			span
-				font-size 11px
-				line-height 20px
-
-	.hire-faceted-search-result-list
-		list-style none
-
+		color #000
+	position relative
+	width tabsWidth
+	padding-top 60px // to make way for "new search" button
+	ul
+		height 54px
 		li
-			font-size 10pt
-			position relative
-			cursor pointer
-			border-bottom 1px solid #F6F6F6
-			padding-top 18px
-			padding-bottom 8px
+			display block
+			position absolute
+			bottom 0
+			width oneTabWidth
+
+			background-color tabsBackgroundColor
+			hoverColor = lighten(activeTabColor, 30%)
+
+			list-style none
+			line-height 38px
+			text-align center
+
+			&:before
+				display block
+				content " "
+				width 0
+				height 0
+				border-style solid
+				border-width 0 0 8px oneTabWidth
+				border-color transparent transparent tabsBackgroundColor transparent
+				line-height 0px
+				position absolute
+
+			&.archives
+				left 0
+				padding-top 0
+				&:before
+					margin-top -8px
+			&.creators
+				left 1 * oneTabWidth
+				padding-top 8px
+				&:before
+					margin-top -16px
+			&.legislations
+				legTabWidth = tabsWidth - 2*oneTabWidth
+				left 2 * oneTabWidth
+				width legTabWidth
+				padding-top 16px
+				&:before
+					border-width 0 0 8px legTabWidth
+					margin-top -24px
 
 			&:hover
+				background-color hoverColor
+				&:before
+					border-color transparent transparent hoverColor transparent
+			&.active
+				font-weight bold
+				background-color activeTabColor
+				&:before
+					border-color transparent transparent activeTabColor transparent
+
+.hire-faceted-search
+	padding 0
+
+	.hire-faceted-search-filters
+		width: 26%
+	.hire-faceted-search-results
+		width: 73%
+
+	.hire-faceted-search-filters
+		background-color #f6f6f6
+
+		> button
+			display: inline-block;
+			cursor: pointer;
+			font-size: 12px;
+			background: 0;
+			background-color: #00c4c2;
+			color: #fff;
+			box-shadow: none;
+			border-radius: 3px;
+			width: auto;
+			padding: 6px 8px;
+			height: initial;
+			position: relative;
+			top: -100px;
+			margin-bottom: 0;
+		li
+			text-align left
+			list-style-type none
+
+			&.hire-faceted-search-text-search,
+			&.hire-list-facet
+				margin-top 0px
+				padding 10px 20px 20px 20px
+				border-bottom 1px solid #e0e0e0
+				font-size 12px
 				background-color #f6f6f6
 
-			small
-				color #BBB
-				margin-left 6px
+			&.hire-list-facet
+				ul
+					li.hire-list-facet-list-item
+						label,
+						span.count
+							margin-top 5px
 
-			.ref
-				color grey
-				font-size 80%
-				display block
-			.right
-				display inline-block
-				position absolute
-				right 0
-			.title
+		.hire-faceted-search-filter-menu
+			.hire-input
+				input
+					height: 24px
+
+	.hire-faceted-search-current-query
+		display: none
+
+	.hire-faceted-search-results-sort-menu
+		ul
+			background-color #fafafa
+			border thin #AAA solid
+			text-align right
+			width initial
+			padding 5px 15px 5px 10px
+			li
+				list-style-type none
 				font-weight bold
-				font-size 11pt
-				display inline-block
-				max-width 85%
-			.type
-				font-size 80%
-				font-weight normal
-	.cursor
-		display none
-		position relative
-		margin-bottom 20px
-		height 40px
-		// border-top 1px solid grey
+				font-size 1.2em
+				line-height 1.4em
+				&:hover
+					text-decoration underline
 
-		.previous, .next
-			position absolute
+	ol.hire-faceted-search-result-list
+		> li
+			border-bottom: 1px solid #f6f6f6;
+			padding-top: 18px;
+			padding-bottom: 8px;
+			margin: 0;
+		.title
+			font-weight: 700;
+			font-size: 11pt;
+			display: inline-block;
+			max-width: 85%;
+			color black
+		.right
 			display inline-block
-			padding 1em
-			top 0
-			cursor pointer
-			background-color controlsButtonColor
-			color white
-			font-size 12px
-			box-shadow none
-			border-radius 3px
-			width auto
-			padding 5px 5px
-			margin 10px 0
-
-			&:hover
-				background-color lighten(controlsButtonColor, 5%)
-
-			&:active
-				background-color darken(controlsButtonColor, 5%)
-
-		.previous
-			// padding-left 0
-			left 0
-		.next
-			right 0
-			// padding-right 0
-
-		.position
+			float right
+		.ref
 			display block
-			width 200px
-			margin 0 auto
-			text-align center
-		img.loader
-			width 16px
-			margin 0 auto
-			display block
-
-
-.facet
-	select
-		margin 0 4px
-		padding 0 4px
+			color gray
+			font-size 80%

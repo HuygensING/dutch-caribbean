@@ -8,6 +8,6 @@ export default function renderRelation(relations, relationType, content) {
       </ul>
     );
   } else {
-    return <p />
+    return null
   }
 };

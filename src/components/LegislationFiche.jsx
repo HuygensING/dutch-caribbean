@@ -2,6 +2,7 @@ import React from "react";
 import {getEntry} from "../actions/entry";
 import config from "../config";
 import renderRelation from "./utils/renderRelation";
+import {makeLegislationSearchUrl} from "../router";
 
 export default React.createClass({
   componentDidMount() {
@@ -12,13 +13,13 @@ export default React.createClass({
     let hasDifferentTitles = String(data.titleNld).toLowerCase() !== String(data.titleEng).toLowerCase();
 
     return (<div id="fiche">
-    <div className="breadcrumbs">
+    {/*<div className="breadcrumbs">
       <div className="line"></div>
       <ul>
-        <li><a href="/legislation/results">Search results</a></li>
+        <li><a href={makeLegislationSearchUrl()}>Search results</a></li>
         {data.titleEng ? <li className="active" style={{maxWidth: "500px", textOverflow: "ellipsis", overflow: "hidden", whiteSpace: "nowrap"}}>{data.titleEng}</li> : null}
       </ul>
-    </div>
+    </div>*/}
     <div className="content">
       <div className="panel-left">
         <h3 className="type">Legislation</h3>
@@ -39,7 +40,7 @@ export default React.createClass({
         </div>
         <div className="section earlier-later-publications">
           <h4>Earlier and later publications</h4>
-          <p>{data.otherPublications && data.otherPublications.length ? data.otherPublications.join(', ') : "-"}</p>
+          <div dangerouslySetInnerHTML={{__html: data.otherPublications && data.otherPublications.length ? data.otherPublications.join('') : "-"}} />
         </div>
       </div>
       <div className="panel-right">

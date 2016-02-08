@@ -2,7 +2,7 @@ import React from "react";
 import {getEntry} from "../actions/entry";
 import config from "../config";
 import renderRelation from "./utils/renderRelation";
-import {makeSearchUrl, makeArchiveUrl, makeCreatorUrl} from "../router";
+import {makeCreatorSearchUrl, makeArchiveUrl, makeCreatorUrl} from "../router";
 
 export default React.createClass({
   componentDidMount() {
@@ -12,13 +12,13 @@ export default React.createClass({
     let data = this.props.archive || {};
     let hasDifferentTitles = String(data.nameNld).toLowerCase() !== String(data.nameEng).toLowerCase();
     return (<div id="fiche">
-    <div className="breadcrumbs">
+    {/*<div className="breadcrumbs">
       <div className="line"></div>
       <ul>
-        <li><a href={makeSearchUrl("creator")}>Search results</a></li>
+        <li><a href={makeCreatorSearchUrl()}>Search results</a></li>
         {data.nameEng ? <li className="active" style={{maxWidth: "500px", textOverflow: "ellipsis", overflow: "hidden", whiteSpace: "nowrap"}}>{data.nameEng}</li> : null}
       </ul>
-    </div>
+    </div>*/}
     <div className="content">
       <div className="panel-left">
         <h3 className="type">Creator</h3>
@@ -29,7 +29,10 @@ export default React.createClass({
                 <p>{data.nameNld}</p>
               </div>)
           : null}
-        <div style={{whiteSpace: "pre-line"}} className="section history" dangerouslySetInnerHTML={{__html: data.history}} />
+        <div className="section history">
+          <h4>History</h4>
+          <div style={{whiteSpace: "pre-line"}} dangerouslySetInnerHTML={{__html: data.history}} />
+        </div>
         <div className="section remarks">
           <h4>Remarks</h4>
           <p>{data.notes || "-"}</p>

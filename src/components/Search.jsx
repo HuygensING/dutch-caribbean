@@ -1,5 +1,5 @@
 import React from "react";
-import {makeUrl} from "../router";
+import {makeArchiveSearchUrl, makeCreatorSearchUrl, makeLegislationSearchUrl} from "../router";
 import FacetedSearch from "hire-faceted-search";
 import config from "../config";
 import ArchiveResult from "../components/ArchiveResult";
@@ -20,6 +20,8 @@ const labels = {
 	},
   "dynamic_sort_title": "Title",
   "dynamic_k_period": "Period",
+	"dynamic_k_date": "Date",
+	"dynamic_sort_name": "Name",
 	"resultsFound": "Results",
 	"sortBy": "Sort by",
 	"showAll": "Show All",
@@ -42,11 +44,10 @@ export default React.createClass({
     return (
       <div>
         <div className="tabs">
-          <img src="/images/tabs-slant.png"/>
-					<ul>
-	          <li className={"archives" + (searchType==="archive" ? " active" : "")}><a href="/archive/results">Archives</a></li>
-	          <li className={"creators" + (searchType==="creator" ? " active" : "")}><a href="/creator/results">Creators</a></li>
-	          <li className={"legislations" + (searchType==="legislation" ? " active" : "")}><a href="/legislation/results">Legislation</a></li>
+          <ul>
+	          <li className={"archives" + (searchType==="archive" ? " active" : "")}><a href={makeArchiveSearchUrl()}>Archives</a></li>
+	          <li className={"creators" + (searchType==="creator" ? " active" : "")}><a href={makeCreatorSearchUrl()}>Creators</a></li>
+	          <li className={"legislations" + (searchType==="legislation" ? " active" : "")}><a href={makeLegislationSearchUrl()}>Legislation</a></li>
 					</ul>
         </div>
 
