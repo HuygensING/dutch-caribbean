@@ -13,12 +13,9 @@ export default React.createClass({
     let hasDifferentTitles = String(data.titleNld).toLowerCase() !== String(data.titleEng).toLowerCase();
     //FIXME: zorg dat de back button niet op een lege search uitkomt
     return (<div id="fiche">
-      {/*<ul className="breadcrumbs">
-        <li><a href={makeArchiveSearchUrl()}><span className="limiter">Search results</span></a></li>
-        <li className="active"><a href="#"><span className="limiter">{data.titleEng || "(no title)"}</span></a></li>
-      </ul>*/}
       <div className="content">
         <div className="panel-left">
+          <a className="back" href="#" onClick={function () { history.go(-1); }}>&lt; Back</a>
           <h3 className="type">Archive</h3>
           <h2 className="title">{data.titleEng}</h2>
           {hasDifferentTitles

@@ -12,16 +12,10 @@ export default React.createClass({
     let data = this.props.archive || {};
     let hasDifferentTitles = String(data.nameNld).toLowerCase() !== String(data.nameEng).toLowerCase();
     return (<div id="fiche">
-    {/*<div className="breadcrumbs">
-      <div className="line"></div>
-      <ul>
-        <li><a href={makeCreatorSearchUrl()}>Search results</a></li>
-        {data.nameEng ? <li className="active" style={{maxWidth: "500px", textOverflow: "ellipsis", overflow: "hidden", whiteSpace: "nowrap"}}>{data.nameEng}</li> : null}
-      </ul>
-    </div>*/}
     <div className="content">
       <div className="panel-left">
-        <h3 className="type">Creator</h3>
+      <a className="back" href="#" onClick={function () { history.go(-1); }}>&lt; Back</a>
+      <h3 className="type">Creator</h3>
         <h2 className="title">{data.nameEng}</h2>
         {hasDifferentTitles
           ? ( <div className="section dutch-name">
