@@ -13,7 +13,7 @@ let fetchEntry = function(type, id, dispatch) {
 	xhr(options, function(err, resp, body) {
 		dispatch({
 			type: "SELECT_ENTRY",
-			data: JSON.parse(body)
+			entryData: JSON.parse(body)
 		})
 	});
 }
