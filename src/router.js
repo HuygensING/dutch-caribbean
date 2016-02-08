@@ -9,10 +9,17 @@ import LegislationFiche from "./components/LegislationFiche";
 import Search from "./components/Search";
 
 import store from "./store";
+import juriCtor from "juri";
+const juri = juriCtor();
 
 let createElement = function(Component, props) {
+  var q;
+  if (Component === Search && props.location && props.location.query && props.location.query.q) {
+    q = juri.decode(props.location.query.q);
+  }
   return React.createElement(Component, {
-    ...props, ...store.getState()
+    ...props, ...store.getState(),
+    query: q
   });
 };
 
@@ -56,6 +63,10 @@ export function makeCreatorUrl(id) {
 export function makeLegislationUrl(id) {
   return `/legislation/${id}`
 }
-
-//<Route path="creator/:id" component={CreatorItem} />
-//<Route path="legislation/:id" component={LegislationItem} />
+export function setSearchUrl(searchOptions) {
+  if (window.location.pathname.substr(-"/results".length) === "/results") {
+    history.replaceState({}, "", window.location.pathname + "?q=" + juri.encode(searchOptions));
+  } else {
+    history.pushState({}, "", window.location.pathname + "?q=" + juri.encode(searchOptions));
+  }
+}

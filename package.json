@@ -35,13 +35,13 @@
     "watchify": "^3.2.1"
   },
   "dependencies": {
-    "react-router": "^1.0.0-rc1",
+    "adehun": "^1.0.0",
     "babel-polyfill": "^6.2.0",
     "classnames": "^2.1.1",
     "d3": "^3.4.13",
     "es6-promise": "^3.0.2",
     "hire-current-query": "^1.2.1",
-    "hire-faceted-search": "^5.2.3",
+    "hire-faceted-search": "^5.2.4",
     "hire-force-directed-graph": "^1.1.1",
     "hire-forms-autocomplete": "1.0.3",
     "hire-forms-autocomplete-list": "1.0.2",
@@ -56,9 +56,11 @@
     "hire-range-slider": "^1.1.2",
     "hire-tabs": "^1.0.3",
     "immutable": "^3.7.2",
+    "juri": "^1.0.2",
     "lodash.clonedeep": "^3.0.2",
     "lodash.isequal": "^3.0.4",
     "react": "^0.13.3",
+    "react-router": "^1.0.0-rc1",
     "redux": "^2.0.0",
     "redux-thunk": "^0.1.0",
     "xhr": "^2.0.2"

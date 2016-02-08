@@ -5,6 +5,7 @@ import config from "../config";
 import ArchiveResult from "../components/ArchiveResult";
 import CreatorResult from "../components/CreatorResult";
 import LegislationResult from "../components/LegislationResult";
+import {setSearchUrl} from "../router";
 
 const labels = {
 	facetTitles: {
@@ -43,6 +44,7 @@ export default React.createClass({
     let searchType = this.props.params.searchType;
     return (
       <div>
+        <button className="clearSearch" onClick={function () { window.location.search=""; }}>New search</button>
         <div className="tabs">
           <ul>
 	          <li className={"archives" + (searchType==="archive" ? " active" : "")}><a href={makeArchiveSearchUrl()}>Archives</a></li>
@@ -60,9 +62,10 @@ export default React.createClass({
           }}
           facetList={facetLists[searchType]}
           labels={labels}
-          onChange={() => undefined}
+          onChange={(res, params) => setSearchUrl(params)}
           onSelect={() => undefined}
           customComponents={{result: resultComponents[searchType]}}
+					query={this.props.query}
           />
       </div>
     );

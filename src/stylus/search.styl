@@ -8,7 +8,6 @@
 		color #000
 	position relative
 	width tabsWidth
-	padding-top 60px // to make way for "new search" button
 	ul
 		height 54px
 		li
@@ -64,6 +63,22 @@
 				&:before
 					border-color transparent transparent activeTabColor transparent
 
+.clearSearch
+	border: none;
+	outline: none;
+	display: inline-block;
+	cursor: pointer;
+	font-size: 12px;
+	background: 0;
+	background-color: #00c4c2;
+	color: #fff;
+	box-shadow: none;
+	border-radius: 3px;
+	width: auto;
+	padding: 6px 8px;
+	height: initial;
+	margin: 10px 10px 0px;
+
 .hire-faceted-search
 	padding 0
 
@@ -75,21 +90,8 @@
 	.hire-faceted-search-filters
 		background-color #f6f6f6
 
-		> button
-			display: inline-block;
-			cursor: pointer;
-			font-size: 12px;
-			background: 0;
-			background-color: #00c4c2;
-			color: #fff;
-			box-shadow: none;
-			border-radius: 3px;
-			width: auto;
-			padding: 6px 8px;
-			height: initial;
-			position: relative;
-			top: -100px;
-			margin-bottom: 0;
+		button
+			display none
 		li
 			text-align left
 			list-style-type none
@@ -122,7 +124,7 @@
 			background-color #fafafa
 			border thin #AAA solid
 			text-align right
-			width initial
+			width 70px
 			padding 5px 15px 5px 10px
 			li
 				list-style-type none
