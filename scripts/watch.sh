@@ -3,6 +3,7 @@
 ./node_modules/.bin/stylus \
 	--use nib \
 	--compress \
+	--sourcemap \
 	--out build/development/css/style.css \
 	--watch \
 	src/stylus/index.styl &

@@ -6,7 +6,7 @@ var debounce = require("lodash.debounce");
 var proxy = require("proxy-middleware");
 var url = require('url');
 
-var baseDir = "./build/development";
+var baseDir = "./";
 var watchFiles = [
 	baseDir + "/js/*.js",
 	baseDir + "/css/*.css",
@@ -25,16 +25,18 @@ var proxyOptions = url.parse("https://acc.repository.huygens.knaw.nl/repository/
 proxyOptions.route = "/repository/api";
 
 browserSync.init({
+	open: false,
 	server: {
 		baseDir: baseDir,
 		middleware: [
 			proxy(proxyOptions),
 			modRewrite([
-				"^/css/(.*)$ /css/$1 [L]",
-				"^/js/(.*).js$ /js/$1.js [L]",
-				"^/images/(.*)$ /images/$1 [L]",
-				"^/fonts/(.*)$ /fonts/$1 [L]",
-				"^/?.*$ /index.html [L]"
+				"^/css/(.*)$ /build/development/css/$1 [L]",
+				"^/src/stylus/(.*)$ /src/stylus/$1 [L]",
+				"^/js/(.*)$ /build/development/js/$1 [L]",
+				"^/images/(.*)$ /build/development/images/$1 [L]",
+				"^/fonts/(.*)$ /build/development/fonts/$1 [L]",
+				"^/?.*$ /build/development/index.html [L]",
 			])
 		]
 	}
