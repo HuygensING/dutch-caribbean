@@ -1,6 +1,6 @@
 export default {
   vreId: "DutchCaribbean",
-  timbuctooUrl: "https://test.repository.huygens.knaw.nl/v2.1",
+  timbuctooUrl: "https://acc.repository.huygens.knaw.nl/v2.1",
   huygensUrl: "http://www.huygens.knaw.nl/",
   mainSiteUrl: "http://dutch-caribbean.huygens.knaw.nl",
   searchSiteUrl: "",
