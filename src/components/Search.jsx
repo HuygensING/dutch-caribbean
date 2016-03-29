@@ -29,7 +29,7 @@ const labels = {
 	"newSearch": "New Search"
 };
 const facetLists = {
-  "archive": ["dynamic_s_period", "dynamic_s_place", "dynamic_s_subject", "dynamic_s_person", "dynamic_s_refCode"],
+  "archive": ["dynamic_s_period", "dynamic_s_place", "dynamic_s_subject", "dynamic_s_person", "dynamic_s_refcode"],
   "creator": ["dynamic_s_period", "dynamic_s_place", "dynamic_s_subject", "dynamic_s_person", "dynamic_s_type"],
   "legislation": ["dynamic_s_date", "dynamic_s_place", "dynamic_s_subject", "dynamic_s_person"]
 }
