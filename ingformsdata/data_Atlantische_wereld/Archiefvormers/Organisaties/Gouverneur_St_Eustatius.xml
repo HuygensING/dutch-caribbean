@@ -1,0 +1,39 @@
+<creator>
+  <type_identity>
+    <type>corporate_body</type>
+  </type_identity>
+  <name>Gouverneur / Commandeur van St. Eustatius</name>
+  <name_english>Governor / Commander of St Eustatius</name_english>
+  <begindatum>
+    <year>1639</year>
+    <month/>
+    <day/>
+  </begindatum>
+  <einddatum>
+    <year/>
+    <month/>
+    <day/>
+  </einddatum>
+  <period_description/>
+  <his_func>At first, St Eustatius was colonized as a private enterprise or &lt;em&gt;patroonschap&lt;/em&gt;. A &lt;em&gt;patroonschap&lt;/em&gt; was a benefice granted to a person or family by the West India Company (WIC). Only in 1683, after the last patron sold his share, did St Eustatius come under the direct rule of the WIC. According to his instructions, the Governor, also designated as the Commander, held the highest civil and military authority. He presided over a council which was entrusted with the government and the administration of civil and criminal justice. During the 18th century St Martin and Saba were both dependencies of St Eustatius. The Governor on both islands was represented by a (Vice-)Commander. Between 1802 and 1816 St Martin and Saba formed a separate administrative unit, but then the old situation was restored with one Governor for all three islands, who had his seat on St Eustatius. In 1828 the Governor of the three islands was replaced by a Commander for St Eustatius and Saba. He was to account for his administration to a Governor-General established in Paramaribo.</his_func>
+  <related_archive_title>
+    <relation>/data/data_Atlantische_wereld/Archieven/Nationaal_Archief/1_05_13_01_St_Eustatius_St_Maarten_en_Saba_tot_1828/HaNA_1_05_13_01</relation>
+    <relation>/data/data_Atlantische_wereld/Archieven/Nationaal_Archief/1_05_13_02_St_Eustatius_en_Saba_na_1828/HaNA_01_05_13_02</relation>
+  </related_archive_title>
+  <related_creators/>
+  <link_law/>
+  <keyword_geography>
+    <geo>saba</geo>
+    <geo>st_eustatius</geo>
+    <geo>st_martin</geo>
+  </keyword_geography>
+  <keyword_subject>
+    <subject>civilandpoliticaladministration</subject>
+    <subject>courtsofjustice</subject>
+  </keyword_subject>
+  <keyword_person/>
+  <notes></notes>
+  <literatuur/>
+  <made_by>HJ</made_by>
+  <Aantekeningen/>
+</creator>

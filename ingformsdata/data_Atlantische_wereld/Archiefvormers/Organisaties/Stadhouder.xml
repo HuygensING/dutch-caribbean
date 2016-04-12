@@ -1,0 +1,47 @@
+<creator>
+  <type_identity>
+    <type>corporate_body</type>
+  </type_identity>
+  <name>Stadhouder</name>
+  <name_english>Stadtholder</name_english>
+  <begindatum>
+    <year/>
+    <month/>
+    <day/>
+  </begindatum>
+  <einddatum>
+    <year>1795</year>
+    <month/>
+    <day/>
+  </einddatum>
+  <period_description/>
+  <his_func>&lt;p&gt;The Stadtholder, originally the &lt;em&gt;locum tenens&lt;/em&gt; of the Habsburg sovereign in the Dutch Republic, became a military commander, appointed by the States-General. The northern provinces of Friesland and Groningen and the region of Drenthe had a stadtholder all through the 17th and 18th centuries. The other provinces were stadtholderless from 1650 to 1672 and from 1702 to 1747. In 1747 for the first time one stadtholder was appointed for all seven United Provinces. The stadtholder now also became supervising director of the East and West India Companies (VOC and WIC), and so became actively involved in the administration of the colonies. In this function the last stadtholder, Willem V (1751-1795), sent two commissioners to the colonies administered by the WIC (St Eustatius, St Martin, Cura&amp;#231;ao, Demerara and Essequibo) to report on the organisation and functioning of the government and the administration of justice. Soon after the invasion of the Dutch Republic by French revolutionary troops in December 1794, Willem V fled to England.&lt;br /&gt;From his place of exile in Kew, in his function as military commander, he called for resistance against the French and ordered the Dutch colonial directors to surrender to the British in order not to let the overseas territories fall into French hands.&lt;/p&gt;
+&lt;p&gt;In the 17th and 18th centuries the stadtholders had their own secretariat (Stadhouderlijke secretarie) to support their various offices.&lt;/p&gt;</his_func>
+  <related_archive_title>
+    <relation>/data/data_Atlantische_wereld/Archieven/Nationaal_Archief/1_01_50_Stadhouderlijke_Secretarie/HaNA_1_01_50</relation>
+    <relation>/data/data_Atlantische_wereld/Archieven/Koninklijk_Huisarchief/KHA_A16_Willem_III_stadhouder-koning/KHA_A16_Willem_III_stadhouder-koning</relation>
+    <relation>/data/data_Atlantische_wereld/Archieven/Koninklijk_Huisarchief/KHA_A29_Willem_IV_prins_van_Oranje-Nassau/KHA_A29_Archief_van_Willem_IV</relation>
+    <relation>/data/data_Atlantische_wereld/Archieven/Koninklijk_Huisarchief/KHA_A31_Willem_V_prins_van_Oranje-Nassau/Archief_Willem_V</relation>
+  </related_archive_title>
+  <related_creators>
+    <relation>/data/data_Atlantische_wereld/Archiefvormers/Organisaties/West-Indische_Compagnie</relation>
+    <relation>/data/data_Atlantische_wereld/Archiefvormers/Organisaties/Staten-Generaal</relation>
+    <relation>/data/data_Atlantische_wereld/Archiefvormers/Organisaties/Raadpensionaris</relation>
+  </related_creators>
+  <link_law/>
+  <keyword_geography>
+    <geo>west_indies_netherlands</geo>
+  </keyword_geography>
+  <keyword_subject>
+    <subject>civilandpoliticaladministration</subject>
+  </keyword_subject>
+  <keyword_person>
+    <person>
+      <keyword>Willem V, Prince</keyword>
+    </person>
+  </keyword_person>
+  <notes/>
+  <literatuur/>
+  <made_by>HJ/MS</made_by>
+  <Aantekeningen>&lt;p&gt;Inleiding inventaris stadhouderlijke secretarie HaNA 1.01.50.&lt;/p&gt;</Aantekeningen>
+</creator>

@@ -1,0 +1,51 @@
+<archiefmat>
+  <rf_country>
+    <country>NL</country>
+  </rf_country>
+  <rf_archive>HaNA</rf_archive>
+  <ref_code>2.21.240</ref_code>
+  <code_subfonds/>
+  <series/>
+  <itemno>1</itemno>
+  <titel>Brieven Lance (British Commissary Slave Trade) uit Suriname</titel>
+  <titel_eng>Letters by Lance (British Commissary Slave Trade) from Suriname</titel_eng>
+  <begindatum>
+    <year>1822</year>
+    <month/>
+    <day/>
+  </begindatum>
+  <einddatum>
+    <year>1835</year>
+    <month/>
+    <day/>
+  </einddatum>
+  <period_description/>
+  <extent>726 documents</extent>
+  <overhead_title>
+    <relation>/data/data_Atlantische_wereld/Archieven/Nationaal_Archief/2_21_240_archief_Brieven_J_H_Lance_uit_Suriname/HaNA_2_21_240</relation>
+  </overhead_title>
+  <finding_aid/>
+  <creator/>
+  <scope>&lt;p&gt;The letters give a fairly clear idea of slavery at that time.&lt;/p&gt;</scope>
+  <undelying_levels_titels/>
+  <related_units>
+    <relation>/data/data_Atlantische_wereld/Archieven/Surinaams_Museum/152_J_H_Lance_Letters_from_Surinam</relation>
+  </related_units>
+  <link_law/>
+  <keyword_geography>
+    <geo>suriname</geo>
+  </keyword_geography>
+  <keyword_subject>
+    <subject>slaves</subject>
+    <subject>trade</subject>
+  </keyword_subject>
+  <keyword_person>
+    <person>
+      <keyword>Lance</keyword>
+    </person>
+  </keyword_person>
+  <notes>&lt;p&gt;The documents are copies of the original records held in the Surinaams Museum, Paramaribo.&lt;/p&gt;
+&lt;p&gt;Microfilm.&lt;/p&gt;</notes>
+  <made_by>MS</made_by>
+  <Aantekeningen/>
+</archiefmat>

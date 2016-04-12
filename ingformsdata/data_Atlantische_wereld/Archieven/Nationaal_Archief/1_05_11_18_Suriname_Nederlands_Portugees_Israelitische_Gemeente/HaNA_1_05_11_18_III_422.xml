@@ -1,0 +1,48 @@
+<archiefmat>
+  <rf_country>
+    <country>NL</country>
+  </rf_country>
+  <rf_archive>HaNA</rf_archive>
+  <ref_code>1.05.11.18</ref_code>
+  <code_subfonds/>
+  <series/>
+  <itemno>422</itemno>
+  <titel>Grafboek van de kerkhoven op de Savanne, gehouden door Hazan M.M. Quiros tot 1777</titel>
+  <titel_eng>Burial register of the cemeteries on the Savanne, kept by Hazan M.M. Quiros until 1777</titel_eng>
+  <begindatum>
+    <year/>
+    <month/>
+    <day/>
+  </begindatum>
+  <einddatum>
+    <year>1777</year>
+    <month/>
+    <day/>
+  </einddatum>
+  <period_description/>
+  <extent>1 volume</extent>
+  <overhead_title>
+    <relation>/data/data_Atlantische_wereld/Archieven/Nationaal_Archief/1_05_11_18_Suriname_Nederlands_Portugees_Israelitische_Gemeente/HaNA_1_05_11_18_III_000</relation>
+  </overhead_title>
+  <finding_aid/>
+  <creator/>
+  <scope/>
+  <undelying_levels_titels/>
+  <related_units/>
+  <link_law/>
+  <keyword_geography>
+    <geo>suriname</geo>
+  </keyword_geography>
+  <keyword_subject>
+    <subject>jews</subject>
+    <subject>population_registers</subject>
+  </keyword_subject>
+  <keyword_person>
+    <person>
+      <keyword>Quiros, M.M.</keyword>
+    </person>
+  </keyword_person>
+  <notes>&lt;p&gt;18th century; undated.&lt;/p&gt;</notes>
+  <made_by>HJ</made_by>
+  <Aantekeningen>&lt;p&gt;level: item&lt;/p&gt;</Aantekeningen>
+</archiefmat>

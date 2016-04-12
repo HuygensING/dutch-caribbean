@@ -1,0 +1,51 @@
+<archiefmat>
+  <rf_country>
+    <country>NL</country>
+  </rf_country>
+  <rf_archive>HaNA</rf_archive>
+  <ref_code>3.01.26</ref_code>
+  <code_subfonds/>
+  <series/>
+  <itemno>444, 446, 447, 450-454</itemno>
+  <titel>Bescheiden door Van de Spiegel bijeengebracht - West-Indische Zaken</titel>
+  <titel_eng>Documents collected by Van de Spiegel - West Indian Affairs</titel_eng>
+  <begindatum>
+    <year>1675</year>
+    <month/>
+    <day/>
+  </begindatum>
+  <einddatum>
+    <year>1792</year>
+    <month/>
+    <day/>
+  </einddatum>
+  <period_description/>
+  <extent>8 documents</extent>
+  <overhead_title>
+    <relation>/data/data_Atlantische_wereld/Archieven/Nationaal_Archief/3_01_26_archief_en_bescheiden_L_P_van_de_Spiegel/HaNA_3_01_26</relation>
+  </overhead_title>
+  <finding_aid/>
+  <creator/>
+  <scope>&lt;p&gt;The documents are mostly related to administrative, financial and (slave)trade affairs of the West Indian colonies in general and in particular of Essequibo, Demerara and Suriname.&lt;/p&gt;</scope>
+  <undelying_levels_titels/>
+  <related_units/>
+  <link_law/>
+  <keyword_geography>
+    <geo>essequibo</geo>
+    <geo>demarara</geo>
+    <geo>suriname</geo>
+  </keyword_geography>
+  <keyword_subject>
+    <subject>civilandpoliticaladministration</subject>
+    <subject>slaves</subject>
+    <subject>trade</subject>
+  </keyword_subject>
+  <keyword_person>
+    <person>
+      <keyword>Spiegel, van de</keyword>
+    </person>
+  </keyword_person>
+  <notes/>
+  <made_by>MS</made_by>
+  <Aantekeningen/>
+</archiefmat>

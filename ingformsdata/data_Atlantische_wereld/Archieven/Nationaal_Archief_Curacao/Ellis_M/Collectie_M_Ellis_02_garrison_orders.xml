@@ -1,0 +1,49 @@
+<archiefmat>
+  <rf_country>
+    <country>AN</country>
+  </rf_country>
+  <rf_archive>NAC</rf_archive>
+  <ref_code/>
+  <code_subfonds/>
+  <series/>
+  <itemno>2</itemno>
+  <titel>Garnizoensorders van Generaal-majoor Hodgson</titel>
+  <titel_eng>Garrison orders issued by Major-General Hodgson</titel_eng>
+  <begindatum>
+    <year>1811</year>
+    <month/>
+    <day/>
+  </begindatum>
+  <einddatum>
+    <year>1812</year>
+    <month/>
+    <day/>
+  </einddatum>
+  <period_description/>
+  <extent>1 volume</extent>
+  <overhead_title>
+    <relation>/data/data_Atlantische_wereld/Archieven/Nationaal_Archief_Curacao/Ellis_M/Collectie_M_Ellis</relation>
+  </overhead_title>
+  <finding_aid/>
+  <creator/>
+  <scope>&lt;p&gt;Contains copies of garrison orders on matters like guard duty, parole, assembly of court martials and trials of military personnel etc.&lt;/p&gt;</scope>
+  <undelying_levels_titels/>
+  <related_units/>
+  <link_law/>
+  <keyword_geography>
+    <geo>curacao</geo>
+  </keyword_geography>
+  <keyword_subject>
+    <subject>fortifications</subject>
+    <subject>military_personnel</subject>
+    <subject>courtsofjustice</subject>
+  </keyword_subject>
+  <keyword_person>
+    <person>
+      <keyword>Hodgson, Major-General</keyword>
+    </person>
+  </keyword_person>
+  <notes>Period: 1 December 1811 - 30 July 1812.</notes>
+  <made_by>HJ</made_by>
+  <Aantekeningen/>
+</archiefmat>

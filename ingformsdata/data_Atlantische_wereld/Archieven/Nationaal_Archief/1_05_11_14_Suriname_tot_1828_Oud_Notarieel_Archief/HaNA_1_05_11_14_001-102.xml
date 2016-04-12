@@ -1,0 +1,52 @@
+<archiefmat>
+  <rf_country>
+    <country>NL</country>
+  </rf_country>
+  <rf_archive>HaNA</rf_archive>
+  <ref_code>1.05.11.14</ref_code>
+  <code_subfonds/>
+  <series>1-102</series>
+  <itemno/>
+  <titel>Testamenten, codicillen en akten van opening van besloten testamenten benevens besloten testamenten</titel>
+  <titel_eng>Last will and testaments, codicils, certificates of the aperture of sealed last will and testaments and sealed last will and testaments</titel_eng>
+  <begindatum>
+    <year>1708</year>
+    <month/>
+    <day/>
+  </begindatum>
+  <einddatum>
+    <year>1815</year>
+    <month/>
+    <day/>
+  </einddatum>
+  <period_description/>
+  <extent>101 volumes</extent>
+  <overhead_title>
+    <relation>/data/data_Atlantische_wereld/Archieven/Nationaal_Archief/1_05_11_14_Suriname_tot_1828_Oud_Notarieel_Archief/HaNA_1_05_11_14</relation>
+  </overhead_title>
+  <finding_aid/>
+  <creator/>
+  <scope/>
+  <undelying_levels_titels/>
+  <related_units>
+    <relation>/data/data_Atlantische_wereld/Archieven/Nationaal_Archief/1_05_11_14_Suriname_tot_1828_Oud_Notarieel_Archief/HaNA_1_05_11_14_804-823_934</relation>
+    <relation>/data/data_Atlantische_wereld/Archieven/Nationaal_Archief/1_05_11_14_Suriname_tot_1828_Oud_Notarieel_Archief/HaNA_1_05_11_14_769-778</relation>
+    <relation>/data/data_Atlantische_wereld/Archieven/Nationaal_Archief/1_05_11_14_Suriname_tot_1828_Oud_Notarieel_Archief/HaNA_1_05_11_14_908</relation>
+    <relation>/data/data_Atlantische_wereld/Archieven/Nationaal_Archief/1_05_11_14_Suriname_tot_1828_Oud_Notarieel_Archief/HaNA_1_05_11_14_672-685</relation>
+  </related_units>
+  <link_law/>
+  <keyword_geography>
+    <geo>suriname</geo>
+  </keyword_geography>
+  <keyword_subject>
+    <subject>notarys_practice</subject>
+  </keyword_subject>
+  <keyword_person>
+    <person>
+      <keyword/>
+    </person>
+  </keyword_person>
+  <notes>&lt;p&gt;Period: 1 October 1708 - 31 December 1815&lt;/p&gt; &lt;p&gt;&amp;#160;&lt;/p&gt; &lt;p&gt;Most volumes contain an alphabetical index of names. No. 102 = no. 804&lt;/p&gt;</notes>
+  <made_by>HJ</made_by>
+  <Aantekeningen>&lt;p&gt;level: series&lt;/p&gt;</Aantekeningen>
+</archiefmat>

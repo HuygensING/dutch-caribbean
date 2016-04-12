@@ -1,0 +1,50 @@
+<archiefmat>
+  <rf_country>
+    <country>NL</country>
+  </rf_country>
+  <rf_archive>HaNA</rf_archive>
+  <ref_code/>
+  <code_subfonds/>
+  <series/>
+  <itemno>23</itemno>
+  <titel>Journaal gehouden door de kapitein-ter-zee Willem Otto Bloys van Treslong, commanderende 's lands fregat van oorlog Pollux</titel>
+  <titel_eng>Logbook kept by naval Captain Willem Otto Bloys van Treslong, commanding the warship Pollux</titel_eng>
+  <begindatum>
+    <year>1795</year>
+    <month/>
+    <day/>
+  </begindatum>
+  <einddatum>
+    <year>1799</year>
+    <month/>
+    <day/>
+  </einddatum>
+  <period_description/>
+  <extent>1 no.</extent>
+  <overhead_title>
+    <relation>/data/data_Atlantische_wereld/Archieven/Nationaal_Archief/2_01_29_03_Marine_Aanhangsel_2/HaNA_2_01_29_03</relation>
+  </overhead_title>
+  <finding_aid/>
+  <creator/>
+  <scope/>
+  <undelying_levels_titels/>
+  <related_units>
+    <relation>/data/data_Atlantische_wereld/Archieven/Nationaal_Archief/2_01_29_03_Marine_Aanhangsel_2/HaNA_2_01_29_03_056</relation>
+  </related_units>
+  <link_law/>
+  <keyword_geography>
+    <geo>west_indies_netherlands</geo>
+    <geo>suriname</geo>
+  </keyword_geography>
+  <keyword_subject>
+    <subject>military_expeditions</subject>
+  </keyword_subject>
+  <keyword_person>
+    <person>
+      <keyword>Bloys van Treslong, W.O.</keyword>
+    </person>
+  </keyword_person>
+  <notes>Period: 4 April 1795 - 10 September 1799.</notes>
+  <made_by>HJ</made_by>
+  <Aantekeningen/>
+</archiefmat>

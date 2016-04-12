@@ -1,0 +1,53 @@
+<archiefmat>
+  <rf_country>
+    <country>NL</country>
+  </rf_country>
+  <rf_archive>HaNA</rf_archive>
+  <ref_code>1.05.11.15</ref_code>
+  <code_subfonds/>
+  <series/>
+  <itemno>133</itemno>
+  <titel>Register van buitenlandse procuraties.Geregistreerd 1832 dec. 13 - 1837 mei 13</titel>
+  <titel_eng>Register of foreign deeds of procuration. Registered  13 December  1832 &#150;  13 May 1837</titel_eng>
+  <begindatum>
+    <year>1832</year>
+    <month/>
+    <day/>
+  </begindatum>
+  <einddatum>
+    <year>1837</year>
+    <month/>
+    <day/>
+  </einddatum>
+  <period_description/>
+  <extent>1 volume</extent>
+  <overhead_title>
+    <relation>/data/data_Atlantische_wereld/Archieven/Nationaal_Archief/1_05_11_15_Suriname_na_1828_Notarieel_archief/HaNA_1_05_11_15</relation>
+  </overhead_title>
+  <finding_aid/>
+  <creator/>
+  <scope/>
+  <undelying_levels_titels/>
+  <related_units>
+    <relation>/data/data_Atlantische_wereld/Archieven/Nationaal_Archief/1_05_11_15_Suriname_na_1828_Notarieel_archief/HaNA_1_05_11_15_109-122</relation>
+    <relation>/data/data_Atlantische_wereld/Archieven/Nationaal_Archief/1_05_11_15_Suriname_na_1828_Notarieel_archief/HaNA_1_05_11_15_123-125</relation>
+    <relation>/data/data_Atlantische_wereld/Archieven/Nationaal_Archief/1_05_11_15_Suriname_na_1828_Notarieel_archief/HaNA_1_05_11_15_127-132</relation>
+    <relation>/data/data_Atlantische_wereld/Archieven/Nationaal_Archief/1_05_11_15_Suriname_na_1828_Notarieel_archief/HaNA_1_05_11_15_171-175</relation>
+  </related_units>
+  <link_law/>
+  <keyword_geography>
+    <geo>suriname</geo>
+  </keyword_geography>
+  <keyword_subject>
+    <subject>notarys_practice</subject>
+    <subject>economics</subject>
+  </keyword_subject>
+  <keyword_person>
+    <person>
+      <keyword/>
+    </person>
+  </keyword_person>
+  <notes>&lt;p&gt;Contains an alphabetical index of names.&lt;/p&gt; &lt;p&gt;The dates concern the moment of registration, not the dates of the registered documents.&lt;/p&gt;</notes>
+  <made_by>HJ</made_by>
+  <Aantekeningen>&lt;p&gt;level: item&lt;/p&gt;</Aantekeningen>
+</archiefmat>

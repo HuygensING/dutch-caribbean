@@ -1,0 +1,52 @@
+<archiefmat>
+  <rf_country>
+    <country>NL</country>
+  </rf_country>
+  <rf_archive>HaNA</rf_archive>
+  <ref_code>1.05.11.15</ref_code>
+  <code_subfonds/>
+  <series>109-122</series>
+  <itemno/>
+  <titel>Register van procuraties, attestaties, contracten, enz. Geregistreerd 1821 - 1846</titel>
+  <titel_eng>Register of procurations, attestations, contracts, etc. Registered 1821 - 1846</titel_eng>
+  <begindatum>
+    <year>1821</year>
+    <month/>
+    <day/>
+  </begindatum>
+  <einddatum>
+    <year>1846</year>
+    <month/>
+    <day/>
+  </einddatum>
+  <period_description/>
+  <extent>14 volumes</extent>
+  <overhead_title>
+    <relation>/data/data_Atlantische_wereld/Archieven/Nationaal_Archief/1_05_11_15_Suriname_na_1828_Notarieel_archief/HaNA_1_05_11_15</relation>
+  </overhead_title>
+  <finding_aid/>
+  <creator/>
+  <scope/>
+  <undelying_levels_titels/>
+  <related_units>
+    <relation>/data/data_Atlantische_wereld/Archieven/Nationaal_Archief/1_05_11_15_Suriname_na_1828_Notarieel_archief/HaNA_1_05_11_15_123-125</relation>
+    <relation>/data/data_Atlantische_wereld/Archieven/Nationaal_Archief/1_05_11_15_Suriname_na_1828_Notarieel_archief/HaNA_1_05_11_15_127-132</relation>
+    <relation>/data/data_Atlantische_wereld/Archieven/Nationaal_Archief/1_05_11_15_Suriname_na_1828_Notarieel_archief/HaNA_1_05_11_15_133</relation>
+    <relation>/data/data_Atlantische_wereld/Archieven/Nationaal_Archief/1_05_11_15_Suriname_na_1828_Notarieel_archief/HaNA_1_05_11_15_171-175</relation>
+  </related_units>
+  <link_law/>
+  <keyword_geography>
+    <geo>suriname</geo>
+  </keyword_geography>
+  <keyword_subject>
+    <subject>notarys_practice</subject>
+  </keyword_subject>
+  <keyword_person>
+    <person>
+      <keyword/>
+    </person>
+  </keyword_person>
+  <notes>&lt;p&gt;Each volume contains an alphabetical index of names.&lt;/p&gt; &lt;p&gt;The dates mentioned are the dates of registration, not the dates the original documents were drawn up.&lt;/p&gt;</notes>
+  <made_by>HJ</made_by>
+  <Aantekeningen>&lt;p&gt;level: series&lt;/p&gt;</Aantekeningen>
+</archiefmat>

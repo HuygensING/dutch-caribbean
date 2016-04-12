@@ -1,0 +1,55 @@
+<archiefmat>
+  <rf_country>
+    <country>NL</country>
+  </rf_country>
+  <rf_archive>HaNA</rf_archive>
+  <ref_code>3.20.52</ref_code>
+  <code_subfonds/>
+  <series/>
+  <itemno>480, 544 E, 544 F, 544 H, 544 J</itemno>
+  <titel>Papieren van E. De Vrij Temminck (burgemeester van Amsterdam)</titel>
+  <titel_eng>Papers of E. De Vrij Temminck (burgomaster of Amsterdam)</titel_eng>
+  <begindatum>
+    <year>1763</year>
+    <month/>
+    <day/>
+  </begindatum>
+  <einddatum>
+    <year>1775</year>
+    <month/>
+    <day/>
+  </einddatum>
+  <period_description/>
+  <extent>5 nos.</extent>
+  <overhead_title>
+    <relation>/data/data_Atlantische_wereld/Archieven/Nationaal_Archief/3_20_52_archief_familie_van_Slingelandt_de_Vrij_Temminck/HaNA_3_20_52</relation>
+  </overhead_title>
+  <finding_aid/>
+  <creator/>
+  <scope>&lt;p&gt;The documents are related to the administration of Essequibo and Demerara, the slave revolt in Berbice of 1763, owners of plantations in Suriname and the strengthening of military forces in Suriname.&lt;/p&gt;</scope>
+  <undelying_levels_titels/>
+  <related_units/>
+  <link_law/>
+  <keyword_geography>
+    <geo>berbice</geo>
+    <geo>demarara</geo>
+    <geo>essequibo</geo>
+    <geo>suriname</geo>
+  </keyword_geography>
+  <keyword_subject>
+    <subject>slaves</subject>
+    <subject>resistance_revolt</subject>
+    <subject>military_expeditions</subject>
+    <subject>fortifications</subject>
+    <subject>civilandpoliticaladministration</subject>
+    <subject>military_personnel</subject>
+  </keyword_subject>
+  <keyword_person>
+    <person>
+      <keyword>Temminck, E. de Vrij</keyword>
+    </person>
+  </keyword_person>
+  <notes/>
+  <made_by>MS</made_by>
+  <Aantekeningen/>
+</archiefmat>

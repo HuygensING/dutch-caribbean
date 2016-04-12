@@ -1,0 +1,60 @@
+<archiefmat>
+  <rf_country>
+    <country>NL</country>
+  </rf_country>
+  <rf_archive>HaNA</rf_archive>
+  <ref_code>1.05.13.01</ref_code>
+  <code_subfonds/>
+  <series>122-133</series>
+  <itemno/>
+  <titel>Protocollen van secretari&amp;#235;le en notari&amp;#235;le akten van de secretaris a.i. P. Ouckama en, sedert juni 1785, van notari&amp;#235;le akten van eerste gezworen klerk, later tweede secretaris G. du Sart. Met bijlagen</titel>
+  <titel_eng>Protocols of secretarial and notarial deeds of acting secretary P. Ouckema and, from June 1785 onwards, of notarial deeds of the first sworn clerk, later second secretary, G. du Sart. With appendices</titel_eng>
+  <begindatum>
+    <year>1781</year>
+    <month/>
+    <day/>
+  </begindatum>
+  <einddatum>
+    <year>1792</year>
+    <month/>
+    <day/>
+  </einddatum>
+  <period_description/>
+  <extent>12 volumes</extent>
+  <overhead_title>
+    <relation>/data/data_Atlantische_wereld/Archieven/Nationaal_Archief/1_05_13_01_St_Eustatius_St_Maarten_en_Saba_tot_1828/HaNA_1_05_13_01_I_C_0000</relation>
+  </overhead_title>
+  <finding_aid/>
+  <creator/>
+  <scope/>
+  <undelying_levels_titels/>
+  <related_units>
+    <relation>/data/data_Atlantische_wereld/Archieven/Nationaal_Archief/1_05_13_01_St_Eustatius_St_Maarten_en_Saba_tot_1828/HaNA_1_05_13_01_I_C_134-141</relation>
+    <relation>/data/data_Atlantische_wereld/Archieven/Nationaal_Archief/1_05_13_01_St_Eustatius_St_Maarten_en_Saba_tot_1828/HaNA_1_05_13_01_I_C_142</relation>
+    <relation>/data/data_Atlantische_wereld/Archieven/Nationaal_Archief/1_05_13_01_St_Eustatius_St_Maarten_en_Saba_tot_1828/HaNA_1_05_13_01_I_C_143-149</relation>
+    <relation>/data/data_Atlantische_wereld/Archieven/Nationaal_Archief/1_05_13_01_St_Eustatius_St_Maarten_en_Saba_tot_1828/HaNA_1_05_13_01_I_C_185-189</relation>
+    <relation>/data/data_Atlantische_wereld/Archieven/Nationaal_Archief/1_05_13_01_St_Eustatius_St_Maarten_en_Saba_tot_1828/HaNA_1_05_13_01_I_C_190-197</relation>
+    <relation>/data/data_Atlantische_wereld/Archieven/Nationaal_Archief_Curacao/St_Eustatius/st_eustatius_239-240</relation>
+  </related_units>
+  <link_law/>
+  <keyword_geography>
+    <geo>st_eustatius</geo>
+  </keyword_geography>
+  <keyword_subject>
+    <subject>notarys_practice</subject>
+    <subject>economics</subject>
+    <subject>trade</subject>
+    <subject>manumissions</subject>
+  </keyword_subject>
+  <keyword_person>
+    <person>
+      <keyword>Ouckama, P.</keyword>
+    </person>
+    <person>
+      <keyword>Sart, G. du</keyword>
+    </person>
+  </keyword_person>
+  <notes>Except for no. 122, all volumes contain monthly indices. For a survey of the deeds in no. 122, see no. 199. Nos. 122-127 also contain government publications for the period December 1781 - May 1785.</notes>
+  <made_by>HJ</made_by>
+  <Aantekeningen>&lt;p&gt;level: series&lt;/p&gt;</Aantekeningen>
+</archiefmat>

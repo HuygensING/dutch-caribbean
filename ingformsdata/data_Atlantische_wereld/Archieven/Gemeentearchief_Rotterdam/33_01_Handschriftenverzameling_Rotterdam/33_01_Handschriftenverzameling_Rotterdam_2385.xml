@@ -1,0 +1,49 @@
+<archiefmat>
+  <rf_country>
+    <country>NL</country>
+  </rf_country>
+  <rf_archive>GAR</rf_archive>
+  <ref_code>33.01</ref_code>
+  <code_subfonds/>
+  <series/>
+  <itemno>2385</itemno>
+  <titel>Journaal over de slavenopstand in Berbice</titel>
+  <titel_eng>Journal kept during the slave revolt in Berbice</titel_eng>
+  <begindatum>
+    <year>1764</year>
+    <month/>
+    <day/>
+  </begindatum>
+  <einddatum>
+    <year>1764</year>
+    <month/>
+    <day/>
+  </einddatum>
+  <period_description/>
+  <extent>1 volume</extent>
+  <overhead_title>
+    <relation>/data/data_Atlantische_wereld/Archieven/Gemeentearchief_Rotterdam/33_01_Handschriftenverzameling_Rotterdam/33_01_Handschriftenverzameling_Rotterdam</relation>
+  </overhead_title>
+  <finding_aid/>
+  <creator/>
+  <scope>&lt;p&gt;Journal kept during the berbice slave revolt, possibly by lieutenant-colonel Jan Marius de Salve, commander of the Dutch troops.&lt;/p&gt;</scope>
+  <undelying_levels_titels/>
+  <related_units/>
+  <link_law/>
+  <keyword_geography>
+    <geo>berbice</geo>
+  </keyword_geography>
+  <keyword_subject>
+    <subject>slaves</subject>
+    <subject>resistance_revolt</subject>
+    <subject>military_expeditions</subject>
+  </keyword_subject>
+  <keyword_person>
+    <person>
+      <keyword>Salve, J.M. de</keyword>
+    </person>
+  </keyword_person>
+  <notes>&lt;p&gt;Journal from February to May 1764, possibly kept by Lieutenant-Colonel Jan Marius de Salve, commander of the Dutch troops.&lt;/p&gt;</notes>
+  <made_by>HJ</made_by>
+  <Aantekeningen/>
+</archiefmat>

@@ -1,0 +1,50 @@
+<archiefmat>
+  <rf_country>
+    <country>NL</country>
+  </rf_country>
+  <rf_archive>HaNA</rf_archive>
+  <ref_code>3.20.52</ref_code>
+  <code_subfonds/>
+  <series/>
+  <itemno>614-617</itemno>
+  <titel>Stukken van Pieter van Bleiswijk</titel>
+  <titel_eng>Documents of Pieter van Bleiswijk</titel_eng>
+  <begindatum>
+    <year>1772</year>
+    <month/>
+    <day/>
+  </begindatum>
+  <einddatum>
+    <year>1778</year>
+    <month/>
+    <day/>
+  </einddatum>
+  <period_description/>
+  <extent>4 documents</extent>
+  <overhead_title>
+    <relation>/data/data_Atlantische_wereld/Archieven/Nationaal_Archief/3_20_52_archief_familie_van_Slingelandt_de_Vrij_Temminck/HaNA_3_20_52</relation>
+  </overhead_title>
+  <finding_aid/>
+  <creator/>
+  <scope>&lt;p&gt;In particular concerning slaves and plantations in Essequibo, Demerara and Suriname.&lt;/p&gt;</scope>
+  <undelying_levels_titels/>
+  <related_units/>
+  <link_law/>
+  <keyword_geography>
+    <geo>demarara</geo>
+    <geo>essequibo</geo>
+    <geo>suriname</geo>
+  </keyword_geography>
+  <keyword_subject>
+    <subject>plantations</subject>
+    <subject>slaves</subject>
+  </keyword_subject>
+  <keyword_person>
+    <person>
+      <keyword>Bleiswijk, P. van</keyword>
+    </person>
+  </keyword_person>
+  <notes/>
+  <made_by>MS</made_by>
+  <Aantekeningen/>
+</archiefmat>

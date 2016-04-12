@@ -1,0 +1,39 @@
+<creator>
+  <type_identity>
+    <type>corporate_body</type>
+  </type_identity>
+  <name>President van de Raad van Politie/ Commandeur / Gezaghebber St. Maarten</name>
+  <name_english>President of the Council of Policy / Commander of St Martin</name_english>
+  <begindatum>
+    <year>1802</year>
+    <month/>
+    <day/>
+  </begindatum>
+  <einddatum>
+    <year>1845</year>
+    <month/>
+    <day/>
+  </einddatum>
+  <period_description/>
+  <his_func>When Dutch rule was restored on St Martin after the first British interregnum, the old administrative bond with St Eustatius was severed. St Martin and Saba now came to form one administrative unit. The highest authority was held by a Governor. He presided over the Council of Policy and the Council of Justice, which consisted of the same members. After the second British interregnum, St Martin and Saba were governed by a Commander, who was again made accountable to the Governor of St Eustatius. The Commander nominated the members of the Council of Policy and the Council of Justice. In 1821 Saba was again placed under the direct authority of St Eustatius. The highest authority in St Martin was now held by the president of the Council of Policy, who remained accountable to the Governor of St Eustatius. In 1828 he came directly under the supervision of the Governor-General in Paramaribo. In 1834 his title was changed to Director.</his_func>
+  <related_archive_title>
+    <relation>/data/data_Atlantische_wereld/Archieven/Nationaal_Archief/1_05_13_01_St_Eustatius_St_Maarten_en_Saba_tot_1828/HaNA_1_05_13_01</relation>
+    <relation>/data/data_Atlantische_wereld/Archieven/Nationaal_Archief/1_05_13_03_St_Maarten_na_1828/HaNA_1_05_13_03</relation>
+  </related_archive_title>
+  <related_creators>
+    <relation>/data/data_Atlantische_wereld/Archiefvormers/Organisaties/Gouverneur_St_Maarten</relation>
+  </related_creators>
+  <link_law/>
+  <keyword_geography>
+    <geo>st_martin</geo>
+  </keyword_geography>
+  <keyword_subject>
+    <subject>civilandpoliticaladministration</subject>
+    <subject>courtsofjustice</subject>
+  </keyword_subject>
+  <keyword_person/>
+  <notes></notes>
+  <literatuur/>
+  <made_by>HJ</made_by>
+  <Aantekeningen/>
+</creator>

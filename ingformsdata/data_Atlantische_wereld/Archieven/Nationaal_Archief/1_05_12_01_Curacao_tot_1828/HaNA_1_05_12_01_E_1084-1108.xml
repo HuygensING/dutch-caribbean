@@ -1,0 +1,52 @@
+<archiefmat>
+  <rf_country>
+    <country>NL</country>
+  </rf_country>
+  <rf_archive>HaNA</rf_archive>
+  <ref_code>1.05.12.01</ref_code>
+  <code_subfonds/>
+  <series>1084-1108</series>
+  <itemno/>
+  <titel>Protocol van secretari&amp;#235;le akten van mr P.B. van Starckenborgh, secretaris van de Raad (1782-1792) en van secretarissen (1792-1806)</titel>
+  <titel_eng>Protocol of secretarial deeds drawn up by P.B. van Starckenborgh, secretary of the Council (1782-1792) and by secretaries (1792-1806)</titel_eng>
+  <begindatum>
+    <year>1782</year>
+    <month/>
+    <day/>
+  </begindatum>
+  <einddatum>
+    <year>1806</year>
+    <month/>
+    <day/>
+  </einddatum>
+  <period_description/>
+  <extent>25 volumes</extent>
+  <overhead_title>
+    <relation>/data/data_Atlantische_wereld/Archieven/Nationaal_Archief/1_05_12_01_Curacao_tot_1828/HaNA_1_05_12_01_E_0000</relation>
+  </overhead_title>
+  <finding_aid/>
+  <creator/>
+  <scope/>
+  <undelying_levels_titels/>
+  <related_units>
+    <relation>/data/data_Atlantische_wereld/Archieven/Nationaal_Archief/1_05_12_01_Curacao_tot_1828/HaNA_1_05_12_01_E_0965-1083</relation>
+    <relation>/data/data_Atlantische_wereld/Archieven/Nationaal_Archief/1_05_12_01_Curacao_tot_1828/HaNA_1_05_12_01_E_1109-1128</relation>
+    <relation>/data/data_Atlantische_wereld/Archieven/Nationaal_Archief/1_05_12_01_Curacao_tot_1828/HaNA_1_05_12_01_E_1135-1223_1564-1568</relation>
+    <relation>/data/data_Atlantische_wereld/Archieven/Nationaal_Archief/1_05_12_01_Curacao_tot_1828/HaNA_1_05_12_01_E_1225</relation>
+  </related_units>
+  <link_law/>
+  <keyword_geography>
+    <geo>curacao</geo>
+  </keyword_geography>
+  <keyword_subject>
+    <subject>notarys_practice</subject>
+  </keyword_subject>
+  <keyword_person>
+    <person>
+      <keyword>Starckenborgh, P.B. van</keyword>
+    </person>
+  </keyword_person>
+  <notes>Most volumes contain an index.</notes>
+  <made_by>HJ</made_by>
+  <Aantekeningen>&lt;p&gt;level: series&lt;/p&gt;</Aantekeningen>
+</archiefmat>

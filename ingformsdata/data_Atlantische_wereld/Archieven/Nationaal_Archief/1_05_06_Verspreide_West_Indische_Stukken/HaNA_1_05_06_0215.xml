@@ -1,0 +1,53 @@
+<archiefmat>
+  <rf_country>
+    <country>NL</country>
+  </rf_country>
+  <rf_archive>HaNA</rf_archive>
+  <ref_code>1.05.06</ref_code>
+  <code_subfonds/>
+  <series/>
+  <itemno>215</itemno>
+  <titel>Verslag van het Nederlands gedeelte van St. Martin en Saba over het jaar 1817</titel>
+  <titel_eng>Report concerning the Dutch part of St Martin and Saba for the year 1817</titel_eng>
+  <begindatum>
+    <year>1817</year>
+    <month/>
+    <day/>
+  </begindatum>
+  <einddatum>
+    <year>1817</year>
+    <month/>
+    <day/>
+  </einddatum>
+  <period_description/>
+  <extent>1 document</extent>
+  <overhead_title>
+    <relation>/data/data_Atlantische_wereld/Archieven/Nationaal_Archief/1_05_06_Verspreide_West_Indische_Stukken/HaNA_1_05_06</relation>
+    <relation>/data/data_Atlantische_wereld/Archieven/Nationaal_Archief/1_05_06_Verspreide_West_Indische_Stukken/HaNA_1_05_06_0185</relation>
+  </overhead_title>
+  <finding_aid/>
+  <creator/>
+  <scope/>
+  <undelying_levels_titels/>
+  <related_units>
+    <relation>/data/data_Atlantische_wereld/Archieven/Nationaal_Archief/1_05_06_Verspreide_West_Indische_Stukken/HaNA_1_05_06_0213</relation>
+  </related_units>
+  <link_law/>
+  <keyword_geography>
+    <geo>saba</geo>
+    <geo>st_martin</geo>
+  </keyword_geography>
+  <keyword_subject>
+    <subject>civilandpoliticaladministration</subject>
+  </keyword_subject>
+  <keyword_person>
+    <person>
+      <keyword/>
+    </person>
+  </keyword_person>
+  <notes>&lt;p&gt;See also nos. 213 and 185.&lt;/p&gt;</notes>
+  <made_by>HJ</made_by>
+  <Aantekeningen>&lt;p&gt;level: item&lt;/p&gt;
+&lt;p&gt;&amp;#160;&lt;/p&gt;
+&lt;p&gt;See also nos. 213 en 185&lt;/p&gt;</Aantekeningen>
+</archiefmat>

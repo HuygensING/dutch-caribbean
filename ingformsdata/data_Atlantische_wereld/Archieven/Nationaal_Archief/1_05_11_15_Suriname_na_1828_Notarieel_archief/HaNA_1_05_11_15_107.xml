@@ -1,0 +1,50 @@
+<archiefmat>
+  <rf_country>
+    <country>NL</country>
+  </rf_country>
+  <rf_archive>HaNA</rf_archive>
+  <ref_code>1.05.11.15</ref_code>
+  <code_subfonds/>
+  <series/>
+  <itemno>107</itemno>
+  <titel>Besloten testamenten en codicillen met akten van superscriptie</titel>
+  <titel_eng>Sealed last will and testaments and codicils with deeds of superscription</titel_eng>
+  <begindatum>
+    <year>1820</year>
+    <month/>
+    <day/>
+  </begindatum>
+  <einddatum>
+    <year>1846</year>
+    <month/>
+    <day/>
+  </einddatum>
+  <period_description/>
+  <extent>?</extent>
+  <overhead_title>
+    <relation>/data/data_Atlantische_wereld/Archieven/Nationaal_Archief/1_05_11_15_Suriname_na_1828_Notarieel_archief/HaNA_1_05_11_15</relation>
+  </overhead_title>
+  <finding_aid/>
+  <creator/>
+  <scope/>
+  <undelying_levels_titels/>
+  <related_units>
+    <relation>/data/data_Atlantische_wereld/Archieven/Nationaal_Archief/1_05_11_15_Suriname_na_1828_Notarieel_archief/HaNA_1_05_11_15_106</relation>
+    <relation>/data/data_Atlantische_wereld/Archieven/Nationaal_Archief/1_05_11_14_Suriname_tot_1828_Oud_Notarieel_Archief/HaNA_1_05_11_14_804-823_934</relation>
+  </related_units>
+  <link_law/>
+  <keyword_geography>
+    <geo>suriname</geo>
+  </keyword_geography>
+  <keyword_subject>
+    <subject>notarys_practice</subject>
+  </keyword_subject>
+  <keyword_person>
+    <person>
+      <keyword/>
+    </person>
+  </keyword_person>
+  <notes>Includes an alphabetical list of testators.</notes>
+  <made_by>HJ</made_by>
+  <Aantekeningen>&lt;p&gt;level: item&lt;/p&gt;</Aantekeningen>
+</archiefmat>

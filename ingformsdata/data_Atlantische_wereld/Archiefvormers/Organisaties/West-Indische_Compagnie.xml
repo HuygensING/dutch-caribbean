@@ -1,0 +1,40 @@
+<creator>
+  <type_identity>
+    <type>corporate_body</type>
+  </type_identity>
+  <name>West-Indische Compagnie</name>
+  <name_english>West India Company</name_english>
+  <begindatum>
+    <year>1621</year>
+    <month/>
+    <day/>
+  </begindatum>
+  <einddatum>
+    <year>1791</year>
+    <month/>
+    <day/>
+  </einddatum>
+  <period_description/>
+  <his_func>The chartered West India Company (WIC) was first established in 1621 as a private joint-stock enterprise with semi-governmental responsibilities and powers in the Atlantic territories of Africa (excluding the Cape colony) and the Americas: public government; legislation; administration of justice; defence; foreign policy. The company received its charter from the States-General, which held the sovereign authority in the United Provinces. The WIC was intended in the first place to be an instrument of war in the Eighty Years' War against the King of Spain; colonizing efforts and trade were only secondary. After half a century the company faced bankruptcy, mainly due to the costly military operations, especially in Brazil and in Africa. In 1674 the WIC was dissolved, but immediately re-established in a reorganised form. The orginal administrative organisation in 5 Chambers and a Board of General Directors remained the same in principle, but the number of directors was reduced from 19 to 10: the Gentlemen Ten. The Company did not directly control all of the Dutch Atlantic possessions, only the Antillean islands and Demerara and Essequibo. Suriname was governed by the Society of Suriname, in which the WIC had a share. Berbice was controlled by the Board of Berbice. On 31 December 1791 the WIC was dissolved. Its administrative tasks were taken over by the Direction Ad Interim.</his_func>
+  <related_archive_title>
+    <relation>/data/data_Atlantische_wereld/Archieven/Nationaal_Archief/1_05_01_02_tweede_WIC/HaNA_1_05_01_02</relation>
+    <relation>/data/data_Atlantische_wereld/Archieven/The_National_Archives_London/Colonial_Office/CO_RECORDS_OF_LOCAL_BODIES_AND_MISCELLANEA/CO_116</relation>
+    <relation>/data/data_Atlantische_wereld/Archieven/Nationaal_Archief/1_05_06_Verspreide_West_Indische_Stukken/HaNA_1_05_06</relation>
+  </related_archive_title>
+  <related_creators/>
+  <link_law/>
+  <keyword_geography>
+    <geo>west_indies_netherlands</geo>
+  </keyword_geography>
+  <keyword_subject>
+    <subject>civilandpoliticaladministration</subject>
+    <subject>fortifications</subject>
+    <subject>economics</subject>
+    <subject>courtsofjustice</subject>
+  </keyword_subject>
+  <keyword_person/>
+  <notes></notes>
+  <literatuur/>
+  <made_by>HJ</made_by>
+  <Aantekeningen/>
+</creator>

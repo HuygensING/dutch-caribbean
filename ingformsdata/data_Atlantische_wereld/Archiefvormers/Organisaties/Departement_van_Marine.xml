@@ -1,0 +1,45 @@
+<creator>
+  <type_identity>
+    <type>corporate_body</type>
+  </type_identity>
+  <name>Departement van Marine</name>
+  <name_english>Department of the Navy</name_english>
+  <begindatum>
+    <year>1795</year>
+    <month/>
+    <day/>
+  </begindatum>
+  <einddatum>
+    <year>1810</year>
+    <month/>
+    <day/>
+  </einddatum>
+  <period_description/>
+  <his_func>The archives of the Department of the Navy were formed by four successive creators. After the establishment of the Batavian Republic in 1795, the admiralty boards were dissolved and their tasks were taken over by the Committee for the Affairs of the Navy, which functioned until 1798. In that year an Agent for the Navy was appointed, which was succeeded by a Council for the Navy in 1801, which functioned until 1805. Between 1806 and 1808 there was a Ministry of the Navy and after that a Ministry of the Navy and Colonies until 1810.</his_func>
+  <related_archive_title>
+    <relation>/data/data_Atlantische_wereld/Archieven/Nationaal_Archief/2_01_29_01_Departement_van_Marine/HaNA_2_01_29_01</relation>
+    <relation>/data/data_Atlantische_wereld/Archieven/Nationaal_Archief/2_01_29_03_Marine_Aanhangsel_2/HaNA_2_01_29_03</relation>
+    <relation>/data/data_Atlantische_wereld/Archieven/Nationaal_Archief/1_10_07_archief_W_O_Bloys_van_Treslong_1802-1804/HaNA_1_10_07</relation>
+    <relation>/data/data_Atlantische_wereld/Archieven/Nationaal_Archief/2_01_28_03_Ministerie_van_Koophandel_en_Kolonien/HaNA_2_01_28_03</relation>
+  </related_archive_title>
+  <related_creators>
+    <relation>/data/data_Atlantische_wereld/Archiefvormers/Organisaties/Admiraliteitscolleges</relation>
+    <relation>/data/data_Atlantische_wereld/Archiefvormers/Organisaties/Ministerie_van_Marine_en_Kolonien</relation>
+    <relation>/data/data_Atlantische_wereld/Archiefvormers/Personen_en_families/Hoop_J_C_van_der</relation>
+    <relation>/data/data_Atlantische_wereld/Archiefvormers/Personen_en_families/Bloys_van_Treslong_W_O</relation>
+  </related_creators>
+  <link_law/>
+  <keyword_geography>
+    <geo>west_indies_netherlands</geo>
+  </keyword_geography>
+  <keyword_subject>
+    <subject>fortifications</subject>
+    <subject>military_expeditions</subject>
+    <subject>military_personnel</subject>
+  </keyword_subject>
+  <keyword_person/>
+  <notes></notes>
+  <literatuur/>
+  <made_by>HJ</made_by>
+  <Aantekeningen/>
+</creator>

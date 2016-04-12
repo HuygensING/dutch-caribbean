@@ -1,0 +1,57 @@
+<archiefmat>
+  <rf_country>
+    <country>NL</country>
+  </rf_country>
+  <rf_archive>HaNA</rf_archive>
+  <ref_code>1.05.03</ref_code>
+  <code_subfonds/>
+  <series/>
+  <itemno>566</itemno>
+  <titel>Aantekeningen op een beschrijving van Suriname (door J.D. Herlein) van de hand van (Jan Nepveu)</titel>
+  <titel_eng>Notes on a description of Suriname (by J.D. Herlein), written by (Jan Nepveu)</titel_eng>
+  <begindatum>
+    <year>1772</year>
+    <month/>
+    <day/>
+  </begindatum>
+  <einddatum>
+    <year>1779</year>
+    <month/>
+    <day/>
+  </einddatum>
+  <period_description/>
+  <extent>1 volume</extent>
+  <overhead_title>
+    <relation>/data/data_Atlantische_wereld/Archieven/Nationaal_Archief/1_05_03_Societeit_van_Suriname/HaNA_1_05_03</relation>
+  </overhead_title>
+  <finding_aid/>
+  <creator/>
+  <scope/>
+  <undelying_levels_titels/>
+  <related_units>
+    <relation>/data/data_Atlantische_wereld/Archieven/Nationaal_Archief/1_10_60_archief_J_Nepveu_1752-1777/HaNA_1_10_60_6_9_11_12_13_15_16-22</relation>
+    <relation>/data/data_Atlantische_wereld/Archieven/Stadsarchief_Amsterdam/00195_familie_Bicker/195_familie_Bicker_1025A</relation>
+    <relation>/data/data_Atlantische_wereld/Archieven/Stadsarchief_Amsterdam/00195_familie_Bicker/195_familie_Bicker_1025B</relation>
+    <relation>/data/data_Atlantische_wereld/Archieven/Stadsarchief_Amsterdam/00231_Huis_Marquette/231_Huis_Marquette_295-301</relation>
+  </related_units>
+  <link_law/>
+  <keyword_geography>
+    <geo>suriname</geo>
+  </keyword_geography>
+  <keyword_subject>
+    <subject>civilandpoliticaladministration</subject>
+  </keyword_subject>
+  <keyword_person>
+    <person>
+      <keyword>Herlein, J.D.</keyword>
+    </person>
+    <person>
+      <keyword>Nepveu, J.J.</keyword>
+    </person>
+  </keyword_person>
+  <notes>&lt;p&gt;Undated (after 1771). Pages 129-136, 169-280, 384- are missing. See also the Nepveu collection, no. 19.&lt;/p&gt;</notes>
+  <made_by>MS</made_by>
+  <Aantekeningen>&lt;p&gt;level: item&lt;/p&gt;
+&lt;p&gt;&amp;#160;&lt;/p&gt;
+&lt;p&gt;Zie ook de collectie Nepveu, no. 19.&lt;/p&gt;</Aantekeningen>
+</archiefmat>

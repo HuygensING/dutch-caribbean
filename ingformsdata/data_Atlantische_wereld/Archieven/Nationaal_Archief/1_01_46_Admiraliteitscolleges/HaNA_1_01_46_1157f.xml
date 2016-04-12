@@ -1,0 +1,51 @@
+<archiefmat>
+  <rf_country>
+    <country>NL</country>
+  </rf_country>
+  <rf_archive>HaNA</rf_archive>
+  <ref_code>1.01.46</ref_code>
+  <code_subfonds/>
+  <series/>
+  <itemno>1157f</itemno>
+  <titel>Journaal, gehouden door den eersten schrijver J.H. Ilcksen op het schip Princesse Carolina, onder bevel van Kapitein P. van Hoogwerff in een konvooi naar St. Eustatius en Curaçao</titel>
+  <titel_eng>Logbook kept by the first clerk J.H. Ilcksen aboard the warship Princesse Carolina, commanded by Captain P. van Hoogwerff, in a convoy to St Eustatius and CuraÃ§ao</titel_eng>
+  <begindatum>
+    <year>1760</year>
+    <month/>
+    <day/>
+  </begindatum>
+  <einddatum>
+    <year>1761</year>
+    <month/>
+    <day/>
+  </einddatum>
+  <period_description/>
+  <extent>1 volume</extent>
+  <overhead_title>
+    <relation>/data/data_Atlantische_wereld/Archieven/Nationaal_Archief/1_01_46_Admiraliteitscolleges/HaNA_1_01_46_0_1139b-2420</relation>
+  </overhead_title>
+  <finding_aid/>
+  <creator/>
+  <scope/>
+  <undelying_levels_titels/>
+  <related_units/>
+  <link_law/>
+  <keyword_geography>
+    <geo>curacao</geo>
+    <geo>st_eustatius</geo>
+  </keyword_geography>
+  <keyword_subject>
+    <subject>military_expeditions</subject>
+  </keyword_subject>
+  <keyword_person>
+    <person>
+      <keyword>Ilcksen, J.H.</keyword>
+    </person>
+    <person>
+      <keyword>Hoogwerff, P. van</keyword>
+    </person>
+  </keyword_person>
+  <notes/>
+  <made_by>HJ</made_by>
+  <Aantekeningen>&lt;p&gt;level: item&lt;/p&gt;</Aantekeningen>
+</archiefmat>

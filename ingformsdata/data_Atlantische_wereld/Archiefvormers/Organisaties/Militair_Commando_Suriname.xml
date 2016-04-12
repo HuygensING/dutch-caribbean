@@ -1,0 +1,47 @@
+<creator>
+  <type_identity>
+    <type>corporate_body</type>
+  </type_identity>
+  <name>Militair commando van Suriname</name>
+  <name_english>Military Command of Suriname</name_english>
+  <begindatum>
+    <year>1667</year>
+    <month/>
+    <day/>
+  </begindatum>
+  <einddatum>
+    <year/>
+    <month/>
+    <day/>
+  </einddatum>
+  <period_description/>
+  <his_func>&lt;p&gt;The Governor had the highest authority as far as defence was concerned. Under the Governor the position of the Commander of the regular troops has always been important: in the absence of a Governor, the Commander temporarily took over the running of the colony.&lt;/p&gt; &lt;p&gt;In the mid-18th century the armed forces consisted of two battalions, each formed of six companies. Each company had 100 men. The troops were spread over several posts along the rivers and on some forts and redoubts.&lt;/p&gt; &lt;p&gt;The military was paid jointly by the Society of Suriname and by the residents, one half each. There was a small court-martial.&lt;/p&gt; &lt;p&gt;The residents of Suriname were divided into eleven civil companies. In Paramaribo there were three of them. Each company had civil officers, who were appointed by the Governor. There was a lower civil court-martial and a higher one.&lt;/p&gt;</his_func>
+  <related_archive_title>
+    <relation>/data/data_Atlantische_wereld/Archieven/Nationaal_Archief/1_05_10_08_Suriname_tot_1828_Militaire_wezen/HaNA_1_05_10_08</relation>
+    <relation>/data/data_Atlantische_wereld/Archieven/Nationaal_Archief/1_05_11_05_Suriname_na_1828_Militair_Gerechtshof/HaNA_1_05_11_05</relation>
+    <relation>/data/data_Atlantische_wereld/Archieven/Nationaal_Archief/1_05_10_01_Suriname_tot_1828_Gouvernementssecretarie/HaNA_1_05_10_01</relation>
+    <relation>/data/data_Atlantische_wereld/Archieven/Nationaal_Archief/1_05_11_08_Suriname_na_1828_Commissariaat_Militaire_Zaken/HaNA_1_05_11_08</relation>
+    <relation>/data/data_Atlantische_wereld/Archieven/Nationaal_Archief_Suriname/1_01_01_Gouvernementssecretarie/NASR_1_01_01</relation>
+  </related_archive_title>
+  <related_creators>
+    <relation>/data/data_Atlantische_wereld/Archiefvormers/Organisaties/Gouverneur_Suriname</relation>
+  </related_creators>
+  <link_law/>
+  <keyword_geography>
+    <geo>suriname</geo>
+  </keyword_geography>
+  <keyword_subject>
+    <subject>militias</subject>
+    <subject>military_personnel</subject>
+    <subject>fortifications</subject>
+  </keyword_subject>
+  <keyword_person/>
+  <notes></notes>
+  <literatuur/>
+  <made_by>MS</made_by>
+  <Aantekeningen>&lt;p&gt;Zelf&lt;/p&gt;
+&lt;p&gt;Roessingh, Guide, 68, 71, 74&lt;/p&gt;
+&lt;p&gt;Oudschans Dentz, commandeurs (1942), p. 161-180.&lt;/p&gt;
+&lt;p&gt;Hartsinck, p. 891-894.&lt;/p&gt;
+&lt;p&gt;HaNA, 1.05.10.08, 1.05.10.09, 1.05.11.05, 1.05.11.08.&lt;/p&gt;</Aantekeningen>
+</creator>

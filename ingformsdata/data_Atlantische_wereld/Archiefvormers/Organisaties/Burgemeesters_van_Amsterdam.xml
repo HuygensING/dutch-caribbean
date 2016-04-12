@@ -1,0 +1,46 @@
+<creator>
+  <type_identity>
+    <type>corporate_body</type>
+  </type_identity>
+  <name>Burgemeesters van Amsterdam</name>
+  <name_english>Burgomasters of Amsterdam</name_english>
+  <begindatum>
+    <year>1683</year>
+    <month/>
+    <day/>
+  </begindatum>
+  <einddatum>
+    <year>1795</year>
+    <month/>
+    <day/>
+  </einddatum>
+  <period_description/>
+  <his_func>&lt;p&gt;At the time of the Dutch Republic the city of Amsterdam held a dominant position in the province of Holland. Holland, in its turn, had a leading position within the United Provinces. Against this background it is not surprising that the city of Amsterdam became one of the three participants of the chartered Society of Suriname which was founded in 1683 to supervise the government of this colony, the other two being the West India Company (WIC) and the wealthy merchant Cornelis van Aerssen van Sommelsdijck. After the Van Aerssen family had sold its share in the colony to Amsterdam in 1770, and the WIC was dissolved in 1791, Amsterdam was the sole participant left. Not long after the proclamation of the Batavian Republic in 1795, the Society of Suriname was dissolved and its administrative tasks were taken over by the Committee for the Affairs of the Colonies and Possessions on the Guinea Coast and in America, i.e. the 'West India Committee' for short.&lt;/p&gt;</his_func>
+  <related_archive_title>
+    <relation>/data/data_Atlantische_wereld/Archieven/Stadsarchief_Amsterdam/05026_Burgemeesters_ontvangen_missiven/5026_Burgemeesters_ontvangen_missiven</relation>
+    <relation>/data/data_Atlantische_wereld/Archieven/Stadsarchief_Amsterdam/05030_Burgemeesters_Lands_en_Gewestelijk_Bestuur/5030_Burgemeesters_Lands_en_Gewestelijk_Bestuur</relation>
+  </related_archive_title>
+  <related_creators>
+    <relation>/data/data_Atlantische_wereld/Archiefvormers/Organisaties/West-Indische_Compagnie</relation>
+    <relation>/data/data_Atlantische_wereld/Archiefvormers/Organisaties/Societeit_van_Suriname</relation>
+  </related_creators>
+  <link_law/>
+  <keyword_geography>
+    <geo>suriname</geo>
+    <geo>west_indies_netherlands</geo>
+  </keyword_geography>
+  <keyword_subject>
+    <subject>civilandpoliticaladministration</subject>
+    <subject>economics</subject>
+    <subject>trade</subject>
+  </keyword_subject>
+  <keyword_person>
+    <person>
+      <keyword>Aerssen van Sommelsdijck, C. van</keyword>
+    </person>
+  </keyword_person>
+  <notes/>
+  <literatuur/>
+  <made_by>MS/HJ</made_by>
+  <Aantekeningen/>
+</creator>

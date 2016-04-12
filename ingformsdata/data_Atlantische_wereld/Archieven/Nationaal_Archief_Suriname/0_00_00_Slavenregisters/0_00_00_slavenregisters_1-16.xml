@@ -1,0 +1,45 @@
+<archiefmat>
+  <rf_country>
+    <country>SR</country>
+  </rf_country>
+  <rf_archive>NASR</rf_archive>
+  <ref_code/>
+  <code_subfonds/>
+  <series>1-16</series>
+  <itemno/>
+  <titel>Slavenregisters</titel>
+  <titel_eng>Registers of slaves</titel_eng>
+  <begindatum>
+    <year>1830</year>
+    <month/>
+    <day/>
+  </begindatum>
+  <einddatum>
+    <year>1852</year>
+    <month/>
+    <day/>
+  </einddatum>
+  <period_description/>
+  <extent>16 volumes</extent>
+  <overhead_title>
+    <relation>/data/data_Atlantische_wereld/Archieven/Nationaal_Archief_Suriname/0_00_00_Slavenregisters/0_00_00_slavenregisters</relation>
+  </overhead_title>
+  <finding_aid/>
+  <creator/>
+  <scope/>
+  <undelying_levels_titels/>
+  <related_units/>
+  <link_law/>
+  <keyword_geography>
+    <geo>suriname</geo>
+  </keyword_geography>
+  <keyword_subject>
+    <subject>population_registers</subject>
+    <subject>slaves</subject>
+    <subject>plantations</subject>
+  </keyword_subject>
+  <keyword_person/>
+  <notes>Registers ordered by the names of plantations/ slave owners; partly alphabetical (see inventory).</notes>
+  <made_by>HJ</made_by>
+  <Aantekeningen/>
+</archiefmat>

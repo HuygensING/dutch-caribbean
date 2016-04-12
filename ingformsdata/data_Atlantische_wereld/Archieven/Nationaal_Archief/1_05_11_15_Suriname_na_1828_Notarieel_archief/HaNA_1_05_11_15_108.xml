@@ -1,0 +1,49 @@
+<archiefmat>
+  <rf_country>
+    <country>NL</country>
+  </rf_country>
+  <rf_archive>HaNA</rf_archive>
+  <ref_code>1.05.11.15</ref_code>
+  <code_subfonds/>
+  <series/>
+  <itemno>108</itemno>
+  <titel>Register van inventarissen en prisaties. Geregistreerd 1826 apr. 27 - 1841 mei 11</titel>
+  <titel_eng>Register of inventories and appraisals. Registered  27 April  1826 &#150;  11 May  1841</titel_eng>
+  <begindatum>
+    <year>1827</year>
+    <month/>
+    <day/>
+  </begindatum>
+  <einddatum>
+    <year>1841</year>
+    <month/>
+    <day/>
+  </einddatum>
+  <period_description/>
+  <extent>?</extent>
+  <overhead_title>
+    <relation>/data/data_Atlantische_wereld/Archieven/Nationaal_Archief/1_05_11_15_Suriname_na_1828_Notarieel_archief/HaNA_1_05_11_15</relation>
+  </overhead_title>
+  <finding_aid/>
+  <creator/>
+  <scope/>
+  <undelying_levels_titels/>
+  <related_units>
+    <relation>/data/data_Atlantische_wereld/Archieven/Nationaal_Archief/1_05_11_15_Suriname_na_1828_Notarieel_archief/HaNA_1_05_11_15_150-169</relation>
+  </related_units>
+  <link_law/>
+  <keyword_geography>
+    <geo>suriname</geo>
+  </keyword_geography>
+  <keyword_subject>
+    <subject>notarys_practice</subject>
+  </keyword_subject>
+  <keyword_person>
+    <person>
+      <keyword/>
+    </person>
+  </keyword_person>
+  <notes>&lt;p&gt;Includes an alphabetical list of names.&lt;/p&gt; &lt;p&gt;The dates mentioned are the dates of registration, not the dates the original documents were drawn up.&lt;/p&gt;</notes>
+  <made_by>HJ</made_by>
+  <Aantekeningen>&lt;p&gt;level: item&lt;/p&gt;</Aantekeningen>
+</archiefmat>

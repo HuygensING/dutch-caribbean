@@ -1,0 +1,44 @@
+<creator>
+  <type_identity>
+    <type>corporate_body</type>
+  </type_identity>
+  <name>Staten-Generaal</name>
+  <name_english>States-General</name_english>
+  <begindatum>
+    <year/>
+    <month/>
+    <day/>
+  </begindatum>
+  <einddatum>
+    <year>1796</year>
+    <month/>
+    <day/>
+  </einddatum>
+  <period_description/>
+  <his_func>The States-General, composed of representatives from the seven united provinces, were entrusted with the sovereign power of the Dutch Republic. In fact, they formed its confederate government, with powers to decide on matters of war and peace, determination of the foreign policy of the Dutch Republic, and supervision over the colonial administration and jurisdiction. Lack of means prevented the States-General from active involvement with the overseas territories on a daily basis. Therefore, some of their sovereign powers (legislation; jurisdiction; defence; diplomatic relations with local rulers) were transferred to chartered, private companies for the East (the Cape colony and Asia; VOC) and the West (West Coast of Africa and the Americas; WIC). Periodically, the charters of these companies were reconsidered and renewed. The States-General also kept control over legislation and the appointment of colonial directors, while sentences pronounced by the civil and criminal councils in the colonies could be reviewed by the States-General.&lt;br /&gt;After the collapse of the ancien regime and the proclamation of the Batavian Republic in 1795, the States-General remained in function for about a year. In March 1796 they were dissolved, and their powers transferred to the National Assembly (&lt;em&gt;Nationale Vergadering&lt;/em&gt;).</his_func>
+  <related_archive_title>
+    <relation>/data/data_Atlantische_wereld/Archieven/Nationaal_Archief/1_01_02_Staten_Generaal/HaNA_1_01_02</relation>
+  </related_archive_title>
+  <related_creators>
+    <relation>/data/data_Atlantische_wereld/Archiefvormers/Organisaties/Admiraliteitscolleges</relation>
+    <relation>/data/data_Atlantische_wereld/Archiefvormers/Organisaties/Societeit_van_Suriname</relation>
+    <relation>/data/data_Atlantische_wereld/Archiefvormers/Organisaties/West-Indische_Compagnie</relation>
+    <relation>/data/data_Atlantische_wereld/Archiefvormers/Organisaties/Directie_van_Berbice</relation>
+    <relation>/data/data_Atlantische_wereld/Archiefvormers/Organisaties/Directie_ad_interim</relation>
+    <relation>/data/data_Atlantische_wereld/Archiefvormers/Organisaties/Raad_der_Colonien</relation>
+  </related_creators>
+  <link_law/>
+  <keyword_geography>
+    <geo>west_indies_netherlands</geo>
+  </keyword_geography>
+  <keyword_subject>
+    <subject>civilandpoliticaladministration</subject>
+    <subject>fortifications</subject>
+    <subject>courtsofjustice</subject>
+  </keyword_subject>
+  <keyword_person/>
+  <notes></notes>
+  <literatuur/>
+  <made_by>HJ</made_by>
+  <Aantekeningen/>
+</creator>

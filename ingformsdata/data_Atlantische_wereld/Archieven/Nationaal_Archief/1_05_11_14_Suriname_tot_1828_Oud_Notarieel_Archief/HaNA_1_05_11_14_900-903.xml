@@ -1,0 +1,51 @@
+<archiefmat>
+  <rf_country>
+    <country>NL</country>
+  </rf_country>
+  <rf_archive>HaNA</rf_archive>
+  <ref_code>1.05.11.14</ref_code>
+  <code_subfonds/>
+  <series>900-903</series>
+  <itemno/>
+  <titel>Register van procuraties. Geregistreerd 1815 - 1836</titel>
+  <titel_eng>Register of procurations. Registered in the period 1815 - 1836</titel_eng>
+  <begindatum>
+    <year>1815</year>
+    <month/>
+    <day/>
+  </begindatum>
+  <einddatum>
+    <year>1836</year>
+    <month/>
+    <day/>
+  </einddatum>
+  <period_description/>
+  <extent>4 volumes</extent>
+  <overhead_title>
+    <relation>/data/data_Atlantische_wereld/Archieven/Nationaal_Archief/1_05_11_14_Suriname_tot_1828_Oud_Notarieel_Archief/HaNA_1_05_11_14</relation>
+  </overhead_title>
+  <finding_aid/>
+  <creator/>
+  <scope/>
+  <undelying_levels_titels/>
+  <related_units>
+    <relation>/data/data_Atlantische_wereld/Archieven/Nationaal_Archief/1_05_11_14_Suriname_tot_1828_Oud_Notarieel_Archief/HaNA_1_05_11_14_904-906_933</relation>
+    <relation>/data/data_Atlantische_wereld/Archieven/Nationaal_Archief/1_05_11_14_Suriname_tot_1828_Oud_Notarieel_Archief/HaNA_1_05_11_14_710-757</relation>
+    <relation>/data/data_Atlantische_wereld/Archieven/Nationaal_Archief/1_05_11_14_Suriname_tot_1828_Oud_Notarieel_Archief/HaNA_1_05_11_14_922-932</relation>
+  </related_units>
+  <link_law/>
+  <keyword_geography>
+    <geo>suriname</geo>
+  </keyword_geography>
+  <keyword_subject>
+    <subject>notarys_practice</subject>
+  </keyword_subject>
+  <keyword_person>
+    <person>
+      <keyword/>
+    </person>
+  </keyword_person>
+  <notes>&lt;p&gt;Period: 2 March 1815 - 29 February 1836&lt;/p&gt; &lt;p&gt;&amp;#160;&lt;/p&gt; &lt;p&gt;Nos. 901-903 contain an alphabetical index of names. The dates mentioned are the dates of registration, not the dates the original documents were drawn up.&lt;/p&gt;</notes>
+  <made_by>HJ</made_by>
+  <Aantekeningen>&lt;p&gt;level: series&lt;/p&gt;</Aantekeningen>
+</archiefmat>

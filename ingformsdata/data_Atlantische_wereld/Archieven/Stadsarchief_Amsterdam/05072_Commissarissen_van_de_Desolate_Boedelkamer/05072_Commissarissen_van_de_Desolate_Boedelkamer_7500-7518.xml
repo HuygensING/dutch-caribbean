@@ -1,0 +1,56 @@
+<archiefmat>
+  <rf_country>
+    <country>NL</country>
+  </rf_country>
+  <rf_archive>SAA</rf_archive>
+  <ref_code/>
+  <code_subfonds/>
+  <series>7500A-7518</series>
+  <itemno/>
+  <titel>West-Indische boedels</titel>
+  <titel_eng>West Indian estates</titel_eng>
+  <begindatum>
+    <year>1758</year>
+    <month/>
+    <day/>
+  </begindatum>
+  <einddatum>
+    <year>1820</year>
+    <month/>
+    <day/>
+  </einddatum>
+  <period_description/>
+  <extent>6 documents; 18 folders </extent>
+  <overhead_title>
+    <relation>/data/data_Atlantische_wereld/Archieven/Stadsarchief_Amsterdam/05072_Commissarissen_van_de_Desolate_Boedelkamer/005072_Commissarissen_van_de_Desolate_Boedelkamer</relation>
+  </overhead_title>
+  <finding_aid/>
+  <creator/>
+  <scope>&lt;p&gt;Estates in Suriname, Berbice, and Demerara. Contains inventories, valuations, documents regarding financial administration etc. of property, mainly plantations,including slaves, among which the estates of the free colored women Elizabeth and Nanette Samson.&lt;/p&gt;</scope>
+  <undelying_levels_titels/>
+  <related_units/>
+  <link_law/>
+  <keyword_geography>
+    <geo>berbice</geo>
+    <geo>demarara</geo>
+    <geo>suriname</geo>
+  </keyword_geography>
+  <keyword_subject>
+    <subject>economics</subject>
+    <subject>slaves</subject>
+    <subject>plantations</subject>
+    <subject>free_blacks_and_coloureds</subject>
+    <subject>left_estates_and_orphans</subject>
+  </keyword_subject>
+  <keyword_person>
+    <person>
+      <keyword>Samson, E.</keyword>
+    </person>
+    <person>
+      <keyword>Samson, N.</keyword>
+    </person>
+  </keyword_person>
+  <notes></notes>
+  <made_by>HJ</made_by>
+  <Aantekeningen/>
+</archiefmat>

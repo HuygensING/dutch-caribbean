@@ -1,0 +1,51 @@
+<archiefmat>
+  <rf_country>
+    <country>NL</country>
+  </rf_country>
+  <rf_archive>HaNA</rf_archive>
+  <ref_code>1.05.12.01</ref_code>
+  <code_subfonds/>
+  <series>522-541</series>
+  <itemno/>
+  <titel>Publicaties. Met bijlagen</titel>
+  <titel_eng>Publications. With appendices</titel_eng>
+  <begindatum>
+    <year>1807</year>
+    <month/>
+    <day/>
+  </begindatum>
+  <einddatum>
+    <year>1827</year>
+    <month/>
+    <day/>
+  </einddatum>
+  <period_description/>
+  <extent>20 volumes</extent>
+  <overhead_title>
+    <relation>/data/data_Atlantische_wereld/Archieven/Nationaal_Archief/1_05_12_01_Curacao_tot_1828/HaNA_1_05_12_01_B_0000</relation>
+  </overhead_title>
+  <finding_aid/>
+  <creator/>
+  <scope>&lt;p&gt;This series also contains publications concerning manumissions.&lt;/p&gt;</scope>
+  <undelying_levels_titels/>
+  <related_units>
+    <relation>/data/data_Atlantische_wereld/Archieven/Nationaal_Archief/1_05_12_01_Curacao_tot_1828/HaNA_1_05_12_01_B_0415-0419</relation>
+    <relation>/data/data_Atlantische_wereld/Archieven/Nationaal_Archief/1_05_12_01_Curacao_tot_1828/HaNA_1_05_12_01_B_0542-0552</relation>
+  </related_units>
+  <link_law/>
+  <keyword_geography>
+    <geo>curacao</geo>
+  </keyword_geography>
+  <keyword_subject>
+    <subject>legislation</subject>
+    <subject>manumissions</subject>
+  </keyword_subject>
+  <keyword_person>
+    <person>
+      <keyword/>
+    </person>
+  </keyword_person>
+  <notes>In each volume an index is included. These publications are not included in nos. 415-419 and 542-552.</notes>
+  <made_by>HJ</made_by>
+  <Aantekeningen>&lt;p&gt;level: series&lt;/p&gt;</Aantekeningen>
+</archiefmat>

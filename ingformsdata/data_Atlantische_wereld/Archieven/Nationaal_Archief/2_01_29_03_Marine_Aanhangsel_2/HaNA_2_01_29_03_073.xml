@@ -1,0 +1,53 @@
+<archiefmat>
+  <rf_country>
+    <country>NL</country>
+  </rf_country>
+  <rf_archive>HaNA</rf_archive>
+  <ref_code>2.01.29.03</ref_code>
+  <code_subfonds/>
+  <series/>
+  <itemno>73-74</itemno>
+  <titel>Journaal van de kapitein ter zee, Albert Kikkert, commanderende het Bataafse fregat Ceres</titel>
+  <titel_eng>Logbook kept by naval Captain Albert Kikkert, Commander of the Batavian frigate Ceres</titel_eng>
+  <begindatum>
+    <year>1795</year>
+    <month/>
+    <day/>
+  </begindatum>
+  <einddatum>
+    <year>1800</year>
+    <month/>
+    <day/>
+  </einddatum>
+  <period_description/>
+  <extent>2 volumes</extent>
+  <overhead_title>
+    <relation>/data/data_Atlantische_wereld/Archieven/Nationaal_Archief/2_01_29_03_Marine_Aanhangsel_2/HaNA_2_01_29_03</relation>
+  </overhead_title>
+  <finding_aid/>
+  <creator/>
+  <scope/>
+  <undelying_levels_titels/>
+  <related_units>
+    <relation>/data/data_Atlantische_wereld/Archieven/Nationaal_Archief/2_01_29_03_Marine_Aanhangsel_2/HaNA_2_01_29_03_164</relation>
+  </related_units>
+  <link_law/>
+  <keyword_geography>
+    <geo>curacao</geo>
+  </keyword_geography>
+  <keyword_subject>
+    <subject>fortifications</subject>
+    <subject>military_expeditions</subject>
+    <subject>military_personnel</subject>
+    <subject>slaves</subject>
+    <subject>resistance_revolt</subject>
+  </keyword_subject>
+  <keyword_person>
+    <person>
+      <keyword>Kikkert, A.</keyword>
+    </person>
+  </keyword_person>
+  <notes></notes>
+  <made_by>HJ</made_by>
+  <Aantekeningen/>
+</archiefmat>

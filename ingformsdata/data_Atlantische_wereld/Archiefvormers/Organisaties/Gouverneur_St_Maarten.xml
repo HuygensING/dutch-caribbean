@@ -1,0 +1,45 @@
+<creator>
+  <type_identity>
+    <type>corporate_body</type>
+  </type_identity>
+  <name>Gouverneur / Commandeur van St. Maarten</name>
+  <name_english>Governor / Commander of St Martin</name_english>
+  <begindatum>
+    <year>1700</year>
+    <month/>
+    <day/>
+  </begindatum>
+  <einddatum>
+    <year/>
+    <month/>
+    <day/>
+  </einddatum>
+  <period_description/>
+  <his_func>St Martin came under the direct rule of the West India Company (WIC) only in 1703. Until 1802 St Martin and Saba were dependencies of St Eustatius. The Commander of St Eustatius held the highest authority and was represented on St Martin by a Vice-Commander. Dutch rule was interrupted in 1781 by a British occupation, followed by French rule which lasted until 1784. In 1801 the three islands once more came under British rule. After the colonies were restored to the Dutch in 1802, the tie with St Eustatius was severed; a Governor was installed on St Martin, and Saba became a dependency. In 1810 St Martin again came under British rule, which lasted until 1816. After Dutch rule was restored, a Commander for St Martin and Saba was installed, who was subordinate to a governor, who had his seat in St Eustatius. But already in 1821 a president of the Council of Policy was entrusted with the highest civil and military authority. In 1828 it was decided that the government of St Martin was no longer subordinate to that of St Eustatius, but came directly under the newly appointed Governor-General of the Netherlands West Indian Possessions seated in Paramaribo. In 1833 the title of the representative of the Governor-General was changed from president of the Council of Policy to Director. Finally, in 1845, the three Windward islands became dependencies of Cura&amp;#231;ao. The Governor of Cura&amp;#231;ao was represented on each of the islands by a Vice-Governor.</his_func>
+  <related_archive_title>
+    <relation>/data/data_Atlantische_wereld/Archieven/Nationaal_Archief/1_05_13_01_St_Eustatius_St_Maarten_en_Saba_tot_1828/HaNA_1_05_13_01</relation>
+    <relation>/data/data_Atlantische_wereld/Archieven/Nationaal_Archief/1_05_13_02_St_Eustatius_en_Saba_na_1828/HaNA_01_05_13_02</relation>
+  </related_archive_title>
+  <related_creators>
+    <relation>/data/data_Atlantische_wereld/Archiefvormers/Organisaties/Gouverneur_St_Eustatius</relation>
+    <relation>/data/data_Atlantische_wereld/Archiefvormers/Organisaties/Gezaghebber_St_Eustatius_en_Saba</relation>
+    <relation>/data/data_Atlantische_wereld/Archiefvormers/Organisaties/Financiele_administratie_St_Maarten</relation>
+    <relation>/data/data_Atlantische_wereld/Archiefvormers/Organisaties/President_Raad_Politie_St_Maarten</relation>
+    <relation>/data/data_Atlantische_wereld/Archiefvormers/Organisaties/Raad_St_Maarten</relation>
+    <relation>/data/data_Atlantische_wereld/Archiefvormers/Organisaties/Raad_Civiele_en_Criminele_Justitie_St_Maarten</relation>
+    <relation>/data/data_Atlantische_wereld/Archiefvormers/Organisaties/Britse_tussenbesturen</relation>
+  </related_creators>
+  <link_law/>
+  <keyword_geography>
+    <geo>st_martin</geo>
+  </keyword_geography>
+  <keyword_subject>
+    <subject>civilandpoliticaladministration</subject>
+    <subject>courtsofjustice</subject>
+  </keyword_subject>
+  <keyword_person/>
+  <notes></notes>
+  <literatuur/>
+  <made_by>HJ</made_by>
+  <Aantekeningen/>
+</creator>

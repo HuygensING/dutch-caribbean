@@ -1,0 +1,52 @@
+<archiefmat>
+  <rf_country>
+    <country>NL</country>
+  </rf_country>
+  <rf_archive>HaNA</rf_archive>
+  <ref_code>2.21.183.45</ref_code>
+  <code_subfonds/>
+  <series>1-24</series>
+  <itemno/>
+  <titel>[Kopieen van de handschriften van mr. A.F. Lammens]</titel>
+  <titel_eng>[Copies of the manuscripts of Mr. A.F. Lammens]</titel_eng>
+  <begindatum>
+    <year>1815</year>
+    <month/>
+    <day/>
+  </begindatum>
+  <einddatum>
+    <year>1836</year>
+    <month/>
+    <day/>
+  </einddatum>
+  <period_description/>
+  <extent>24 nos.</extent>
+  <overhead_title>
+    <relation>/data/data_Atlantische_wereld/Archieven/Nationaal_Archief/2_21_183_45_archief_A_F_Lammens/HaNA_2_21_183_45</relation>
+  </overhead_title>
+  <finding_aid/>
+  <creator/>
+  <scope/>
+  <undelying_levels_titels/>
+  <related_units>
+    <relation>/data/data_Atlantische_wereld/Archieven/Surinaams_Museum/Collectie_A_F_Lammens</relation>
+  </related_units>
+  <link_law/>
+  <keyword_geography>
+    <geo>suriname</geo>
+  </keyword_geography>
+  <keyword_subject>
+    <subject>courtsofjustice</subject>
+    <subject>civilandpoliticaladministration</subject>
+    <subject>abolition_slave</subject>
+  </keyword_subject>
+  <keyword_person>
+    <person>
+      <keyword>Lammens, A.F.</keyword>
+    </person>
+  </keyword_person>
+  <notes>&lt;p&gt;The original manuscripts are held in the Collection Surinamica (No. 868-VI) of the Surinaams Museum, Paramaribo.&lt;/p&gt;
+&lt;p&gt;The first copy (nos. 1-12) is identical with the second copy (nos. 13-24).&lt;/p&gt;</notes>
+  <made_by>MS</made_by>
+  <Aantekeningen/>
+</archiefmat>

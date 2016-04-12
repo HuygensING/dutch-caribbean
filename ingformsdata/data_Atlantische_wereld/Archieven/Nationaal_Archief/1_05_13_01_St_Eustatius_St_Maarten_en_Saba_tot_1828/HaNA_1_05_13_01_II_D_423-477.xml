@@ -1,0 +1,56 @@
+<archiefmat>
+  <rf_country>
+    <country>NL</country>
+  </rf_country>
+  <rf_archive>HaNA</rf_archive>
+  <ref_code>1.05.13.01</ref_code>
+  <code_subfonds/>
+  <series>423-477</series>
+  <itemno/>
+  <titel>Protocollen van notari&amp;#235;le akten</titel>
+  <titel_eng>Protocols of notarial deeds</titel_eng>
+  <begindatum>
+    <year>1714</year>
+    <month/>
+    <day/>
+  </begindatum>
+  <einddatum>
+    <year>1827</year>
+    <month/>
+    <day/>
+  </einddatum>
+  <period_description/>
+  <extent>55 volumes</extent>
+  <overhead_title>
+    <relation>/data/data_Atlantische_wereld/Archieven/Nationaal_Archief/1_05_13_01_St_Eustatius_St_Maarten_en_Saba_tot_1828/HaNA_1_05_13_01_II_D_0000</relation>
+  </overhead_title>
+  <finding_aid/>
+  <creator/>
+  <scope/>
+  <undelying_levels_titels/>
+  <related_units>
+    <relation>/data/data_Atlantische_wereld/Archieven/Nationaal_Archief/1_05_13_01_St_Eustatius_St_Maarten_en_Saba_tot_1828/HaNA_1_05_13_01_II_D_399-422</relation>
+    <relation>/data/data_Atlantische_wereld/Archieven/Nationaal_Archief/1_05_13_01_St_Eustatius_St_Maarten_en_Saba_tot_1828/HaNA_1_05_13_01_II_D_478</relation>
+    <relation>/data/data_Atlantische_wereld/Archieven/Nationaal_Archief/1_05_13_01_St_Eustatius_St_Maarten_en_Saba_tot_1828/HaNA_1_05_13_01_II_D_479</relation>
+    <relation>/data/data_Atlantische_wereld/Archieven/Nationaal_Archief/1_05_13_01_St_Eustatius_St_Maarten_en_Saba_tot_1828/HaNA_1_05_13_01_II_D_480_1-2</relation>
+    <relation>/data/data_Atlantische_wereld/Archieven/Nationaal_Archief/1_05_13_01_St_Eustatius_St_Maarten_en_Saba_tot_1828/HaNA_1_05_13_01_II_D_484-485</relation>
+    <relation>/data/data_Atlantische_wereld/Archieven/Nationaal_Archief/1_05_13_01_St_Eustatius_St_Maarten_en_Saba_tot_1828/HaNA_1_05_13_01_II_D_486</relation>
+  </related_units>
+  <link_law/>
+  <keyword_geography>
+    <geo>st_martin</geo>
+  </keyword_geography>
+  <keyword_subject>
+    <subject>manumissions</subject>
+    <subject>economics</subject>
+    <subject>notarys_practice</subject>
+  </keyword_subject>
+  <keyword_person>
+    <person>
+      <keyword/>
+    </person>
+  </keyword_person>
+  <notes>&lt;p&gt;The series is not fully complete; a few years are missing.&lt;/p&gt; &lt;p&gt;See for contents: nos. 384 and 385. Nos. 437-440 include an alphabetical index of types of deeds.&lt;/p&gt;</notes>
+  <made_by>HJ</made_by>
+  <Aantekeningen>&lt;p&gt;level: series&lt;/p&gt;</Aantekeningen>
+</archiefmat>

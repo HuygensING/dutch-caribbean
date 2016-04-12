@@ -1,0 +1,49 @@
+<archiefmat>
+  <rf_country>
+    <country>NL</country>
+    <country>SR</country>
+  </rf_country>
+  <rf_archive>EBGS/HUA</rf_archive>
+  <ref_code>212</ref_code>
+  <code_subfonds/>
+  <series>234-239, 245, 246, 248</series>
+  <itemno/>
+  <titel>Johannes King </titel>
+  <titel_eng>Johannes King</titel_eng>
+  <begindatum>
+    <year>1861</year>
+    <month/>
+    <day/>
+  </begindatum>
+  <einddatum>
+    <year>1870</year>
+    <month/>
+    <day/>
+  </einddatum>
+  <period_description/>
+  <extent>7 volumes; 2 folders</extent>
+  <overhead_title>
+    <relation>/data/data_Atlantische_wereld/Archieven/Archief_Evangelische_Broedergemeente_Suriname/0212_EBGS</relation>
+  </overhead_title>
+  <finding_aid/>
+  <creator/>
+  <scope>&lt;p&gt;Diaries, reports and visions of Johannes King.&lt;/p&gt;</scope>
+  <undelying_levels_titels/>
+  <related_units/>
+  <link_law/>
+  <keyword_geography>
+    <geo>suriname</geo>
+  </keyword_geography>
+  <keyword_subject>
+    <subject>evangelical_brotherhood</subject>
+    <subject>maroons</subject>
+  </keyword_subject>
+  <keyword_person>
+    <person>
+      <keyword>King, J.</keyword>
+    </person>
+  </keyword_person>
+  <notes/>
+  <made_by>MS</made_by>
+  <Aantekeningen/>
+</archiefmat>

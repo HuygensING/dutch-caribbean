@@ -1,0 +1,51 @@
+<archiefmat>
+  <rf_country>
+    <country>NL</country>
+  </rf_country>
+  <rf_archive>HaNA</rf_archive>
+  <ref_code>1.01.46</ref_code>
+  <code_subfonds/>
+  <series>1139b, 1153d-e, 1154a-c, 1157e-f, 1158b-c,e,g, 1161a-b, 1170a-b, 1171e-f, 1176g-h, 1177a-b, 1183-1184, 1185b, 1186a-b, 1187, 1189a-b, 1196a,d, 1198e, 1201b, 1204, 1204a, 1210e, 1212, 1212b, 1213a-b, 1215c-d, 1219b, 1220, 1263, 1275, 2316-2318, 2322-2323, 2328, 2338, 2341, 2349, 2366, 2380, 2388, 2396-2397, 2402, 2414-2415, 2417-2420</series>
+  <itemno/>
+  <titel>Scheepsjournalen en rapporten afkomstig van oorlogsschepen gezonden naar de West-Indische koloniën</titel>
+  <titel_eng>Logbooks and reports from warships sent to the West Indian colonies</titel_eng>
+  <begindatum>
+    <year>1737</year>
+    <month/>
+    <day/>
+  </begindatum>
+  <einddatum>
+    <year>1794</year>
+    <month/>
+    <day/>
+  </einddatum>
+  <period_description/>
+  <extent>66 nos.</extent>
+  <overhead_title>
+    <relation>/data/data_Atlantische_wereld/Archieven/Nationaal_Archief/1_01_46_Admiraliteitscolleges/HaNA_1_01_46</relation>
+  </overhead_title>
+  <finding_aid/>
+  <creator/>
+  <scope/>
+  <undelying_levels_titels/>
+  <related_units>
+    <relation>/data/data_Atlantische_wereld/Archieven/Nationaal_Archief/1_01_47_04_Admiraliteitscolleges_verzameling_N_P_Blommendaal_1787-1808/HaNA_1_01_47_04_3</relation>
+    <relation>/data/data_Atlantische_wereld/Archieven/Nationaal_Archief/1_01_47_20_Admiraliteitscolleges_verzameling_J_A_Zoutman_1697-1846/HaNA_1_01_47_20_16-18</relation>
+    <relation>/data/data_Atlantische_wereld/Archieven/Nationaal_Archief/1_01_47_29_Admiraliteitscolleges_verzameling_J_C_van_der_Hoop_1524-1825/HaNA_1_01_47_29_121-122_124-126</relation>
+  </related_units>
+  <link_law/>
+  <keyword_geography>
+    <geo>west_indies_netherlands</geo>
+  </keyword_geography>
+  <keyword_subject>
+    <subject>military_expeditions</subject>
+  </keyword_subject>
+  <keyword_person>
+    <person>
+      <keyword/>
+    </person>
+  </keyword_person>
+  <notes>&lt;p&gt;See the individual descriptions of the logbooks and reports.&lt;/p&gt;</notes>
+  <made_by>HJ</made_by>
+  <Aantekeningen>&lt;p&gt;level: item&lt;/p&gt;</Aantekeningen>
+</archiefmat>

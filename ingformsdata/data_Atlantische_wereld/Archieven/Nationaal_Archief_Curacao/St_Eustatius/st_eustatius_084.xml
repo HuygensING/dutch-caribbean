@@ -1,0 +1,47 @@
+<archiefmat>
+  <rf_country>
+    <country>AN</country>
+  </rf_country>
+  <rf_archive>NAC</rf_archive>
+  <ref_code/>
+  <code_subfonds>Stukken van Algemene aard</code_subfonds>
+  <series/>
+  <itemno>84</itemno>
+  <titel>Jaarverslagen</titel>
+  <titel_eng>Annual reports</titel_eng>
+  <begindatum>
+    <year>1847</year>
+    <month/>
+    <day/>
+  </begindatum>
+  <einddatum>
+    <year>1901</year>
+    <month/>
+    <day/>
+  </einddatum>
+  <period_description/>
+  <extent>1 volume</extent>
+  <overhead_title>
+    <relation>/data/data_Atlantische_wereld/Archieven/Nationaal_Archief_Curacao/St_Eustatius/St_Eustatius</relation>
+  </overhead_title>
+  <finding_aid/>
+  <creator/>
+  <scope>&lt;p&gt;zie foto's&lt;/p&gt;</scope>
+  <undelying_levels_titels/>
+  <related_units/>
+  <link_law/>
+  <keyword_geography>
+    <geo>st_eustatius</geo>
+    <geo>saba</geo>
+  </keyword_geography>
+  <keyword_subject>
+    <subject>civilandpoliticaladministration</subject>
+    <subject>population_registers</subject>
+    <subject>military_personnel</subject>
+    <subject>courtsofjustice</subject>
+  </keyword_subject>
+  <keyword_person/>
+  <notes>Years: 1847, 1852-1863, 1865-1870 (1872-1879).</notes>
+  <made_by>HJ</made_by>
+  <Aantekeningen/>
+</archiefmat>
