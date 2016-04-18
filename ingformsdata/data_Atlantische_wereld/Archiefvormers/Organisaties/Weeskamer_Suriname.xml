@@ -2,7 +2,7 @@
   <type_identity>
     <type>corporate_body</type>
   </type_identity>
-  <name>Wees- en Onbeheerde Boedelkamer Suriname</name>
+  <name>Wees- en Onbeheerde Boedelkamer van Suriname</name>
   <name_english>Orphans and Ownerless Estates Chamber of Suriname</name_english>
   <begindatum>
     <year>1683</year>
@@ -15,7 +15,9 @@
     <day/>
   </einddatum>
   <period_description/>
-  <his_func>&lt;p&gt;The Orphans and Ownerless Estates Chamber regulated the administration of insolvent and other estates. Orphan masters were entrusted with the supervision of minors. They were obliged to keep a regular administration. In the 18th and 19th centuries there were some changes in the organization and/or powers. Individual denominations had their own Orphans Chambers until the 19th century.&lt;/p&gt; &lt;p&gt;From 1835 to 1876 the "&lt;em&gt;Pupillaire Raad&lt;/em&gt;" had the supervision over all minors.&lt;/p&gt; &lt;p&gt;&amp;#160;&lt;/p&gt;</his_func>
+  <his_func>&lt;p&gt;The Orphans and Ownerless Estates Chamber regulated the administration of insolvent and other estates. Orphan masters were entrusted with the supervision of minors. They were obliged to keep a regular administration. In the 18th and 19th centuries there were some changes in the organization and/or powers. Individual denominations had their own Orphans Chambers until the 19th century.&lt;/p&gt;
+&lt;p&gt;From 1835 to 1876 the "&lt;em&gt;Pupillaire Raad&lt;/em&gt;" had the supervision over all minors.&lt;/p&gt;
+&lt;p&gt;&amp;#160;&lt;/p&gt;</his_func>
   <related_archive_title>
     <relation>/data/data_Atlantische_wereld/Archieven/Nationaal_Archief/1_05_11_13_Suriname_na_1828_Onbeheerde_Boedels_en_Wezen/HaNA_1_05_11_13</relation>
     <relation>/data/data_Atlantische_wereld/Archieven/Nationaal_Archief/1_05_11_18_Suriname_Nederlands_Portugees_Israelitische_Gemeente/HaNA_1_05_11_18</relation>
@@ -30,7 +32,7 @@
     <subject>left_estates_and_orphans</subject>
   </keyword_subject>
   <keyword_person/>
-  <notes></notes>
+  <notes/>
   <literatuur/>
   <made_by>MS</made_by>
   <Aantekeningen>&lt;p&gt;Zelf&lt;/p&gt;

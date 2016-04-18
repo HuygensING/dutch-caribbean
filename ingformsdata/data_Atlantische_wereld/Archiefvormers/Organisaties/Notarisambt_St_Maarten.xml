@@ -2,7 +2,7 @@
   <type_identity>
     <type>corporate_body</type>
   </type_identity>
-  <name>Notarisambt te St. Maarten</name>
+  <name>Notarisambt op St. Maarten</name>
   <name_english>Notarial office on St Martin</name_english>
   <begindatum>
     <year>1700</year>
@@ -15,7 +15,7 @@
     <day/>
   </einddatum>
   <period_description/>
-  <his_func>So-called secretarial deeds, like mortgage deeds, deeds of conveyance of real estate, ships and slaves, and deeds of manumission of slaves were passed before the Commander or two Councillors. Notarial deeds like last wills, probate inventories, contracts, donations, marriage contracts, and procurations were drawn up by the secretary.</his_func>
+  <his_func>&lt;p&gt;So-called secretarial deeds, like mortgage deeds, deeds of conveyance of real estate, ships and slaves, and deeds of manumission of slaves were passed before the Commander or two Councillors. Notarial deeds like last wills, probate inventories, contracts, donations, marriage contracts, and procurations were drawn up by the secretary.&lt;/p&gt;</his_func>
   <related_archive_title>
     <relation>/data/data_Atlantische_wereld/Archieven/Nationaal_Archief/1_05_13_01_St_Eustatius_St_Maarten_en_Saba_tot_1828/HaNA_1_05_13_01</relation>
   </related_archive_title>
@@ -28,7 +28,7 @@
     <subject>notarys_practice</subject>
   </keyword_subject>
   <keyword_person/>
-  <notes></notes>
+  <notes/>
   <literatuur/>
   <made_by>HJ</made_by>
   <Aantekeningen/>

@@ -3,7 +3,7 @@
     <type>corporate_body</type>
   </type_identity>
   <name>Notarisambt in Demerary en Essequebo</name>
-  <name_english>Notarial office on Demerara and Essequibo</name_english>
+  <name_english>Notarial office in Demerara and Essequibo</name_english>
   <begindatum>
     <year>1674</year>
     <month/>
@@ -15,7 +15,8 @@
     <day/>
   </einddatum>
   <period_description/>
-  <his_func>&lt;p&gt;There was no public notary in Essequibo or Demerara. Therefore, the secretaries of these settlements exercised the work of a notary and took the instruments.&lt;/p&gt; &lt;p&gt;&amp;#160;&lt;/p&gt;</his_func>
+  <his_func>&lt;p&gt;There was no public notary in Essequibo or Demerara. Therefore, the secretaries of these settlements exercised the work of a notary and took the instruments.&lt;/p&gt;
+&lt;p&gt;&amp;#160;&lt;/p&gt;</his_func>
   <related_archive_title>
     <relation>/data/data_Atlantische_wereld/Archieven/National_Archives_Guyana/PROTOCOLS_NOTARIES</relation>
   </related_archive_title>
@@ -31,7 +32,7 @@
     <subject>notarys_practice</subject>
   </keyword_subject>
   <keyword_person/>
-  <notes></notes>
+  <notes/>
   <literatuur/>
   <made_by>MS</made_by>
   <Aantekeningen>&lt;p&gt;Zelf&lt;/p&gt;

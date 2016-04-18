@@ -2,7 +2,7 @@
   <type_identity>
     <type>corporate_body</type>
   </type_identity>
-  <name>Wees- en Onbeheerde Boedelkamer St. Eustatius</name>
+  <name>Wees- en Onbeheerde Boedelkamer van St. Eustatius</name>
   <name_english>Orphans and Ownerless Estates Chamber of St Eustatius</name_english>
   <begindatum>
     <year>1816</year>
@@ -15,7 +15,7 @@
     <day/>
   </einddatum>
   <period_description/>
-  <his_func>After the second British interregnum and the restoration of Dutch rule in 1816, an Orphans and Ownerless Estates Chamber was established. This body consisted of the bookkeeper general and two of the most capable citizens. The secretary of the Council of Policy supported the Chamber administratively. Formerly, the liquidations of &lt;em&gt;ab intestato&lt;/em&gt; deceased persons and the control of estates inherited by minors was done by the Governor and the Councillors. With the administrative changes in 1828, the Orphans Chamber remained functioning. The second alderman of the municipal government replaced the bookkeeper general.</his_func>
+  <his_func>&lt;p&gt;After the second British interregnum and the restoration of Dutch rule in 1816, an Orphans and Ownerless Estates Chamber was established. This body consisted of the bookkeeper general and two of the most capable citizens. The secretary of the Council of Policy supported the Chamber administratively. Formerly, the liquidations of &lt;em&gt;ab intestato&lt;/em&gt; deceased persons and the control of estates inherited by minors was done by the Governor and the Councillors. With the administrative changes in 1828, the Orphans Chamber remained functioning. The second alderman of the municipal government replaced the bookkeeper general.&lt;/p&gt;</his_func>
   <related_archive_title>
     <relation>/data/data_Atlantische_wereld/Archieven/Nationaal_Archief/1_05_13_01_St_Eustatius_St_Maarten_en_Saba_tot_1828/HaNA_1_05_13_01</relation>
     <relation>/data/data_Atlantische_wereld/Archieven/Nationaal_Archief/1_05_13_02_St_Eustatius_en_Saba_na_1828/HaNA_01_05_13_02</relation>
@@ -30,7 +30,7 @@
     <subject>left_estates_and_orphans</subject>
   </keyword_subject>
   <keyword_person/>
-  <notes></notes>
+  <notes/>
   <literatuur/>
   <made_by>HJ</made_by>
   <Aantekeningen/>
