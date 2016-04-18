@@ -15,7 +15,7 @@ const juri = juriCtor();
 let createElement = function(Component, props) {
   var q;
   if (Component === Search && props.location && props.location.query && props.location.query.q) {
-    q = juri.decode(props.location.query.q);
+    q = juri.decode(props.location.query.q.replace(/ /g, "+"));
   }
   return React.createElement(Component, {
     ...props, ...store.getState(),
