@@ -4,7 +4,7 @@
 	--use nib \
 	--compress \
 	--sourcemap \
-	--out build/development/css/style.css \
+	--out build/development/css \
 	--watch \
 	src/stylus/index.styl &
 

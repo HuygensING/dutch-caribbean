@@ -3,7 +3,7 @@
 ./node_modules/.bin/stylus \
 	--use nib \
 	--compress \
-	--out build/development/css/style.css \
+	--out build/development/css \
 	src/stylus/index.styl
 
 # Build React JS
