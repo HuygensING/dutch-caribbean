@@ -8,30 +8,30 @@ import LegislationResult from "../components/LegislationResult";
 import {setSearchUrl} from "../router";
 
 const labels = {
-	facetTitles: {
-		"dynamic_s_period": "Period",
-		"dynamic_s_place": "Geography",
-		"dynamic_s_subject": "Subject",
-		"dynamic_s_person": "Person",
-		"dynamic_s_refcode": "Repository Code",
-    "dynamic_s_date": "Date",
+  facetTitles: {
+    "dynamic_i_period": "Period",
+    "dynamic_s_place": "Geography",
+    "dynamic_s_subject": "Subject",
+    "dynamic_s_person": "Person",
+    "dynamic_s_refcode": "Repository Code",
+    "dynamic_i_date": "Period",
     "dynamic_s_type": "Identity type",
 
     "term": "Text Search",
-	},
+  },
   "dynamic_sort_title": "Title",
   "dynamic_k_period": "Period",
-	"dynamic_k_date": "Date",
-	"dynamic_sort_name": "Name",
-	"resultsFound": "Results",
-	"sortBy": "Sort by",
-	"showAll": "Show All",
-	"newSearch": "New Search"
+  "dynamic_k_date": "Date",
+  "dynamic_sort_name": "Name",
+  "resultsFound": "Results",
+  "sortBy": "Sort by",
+  "showAll": "Show All",
+  "newSearch": "New Search"
 };
 const facetLists = {
-  "archive": ["dynamic_s_period", "dynamic_s_place", "dynamic_s_subject", "dynamic_s_person", "dynamic_s_refcode"],
-  "creator": ["dynamic_s_period", "dynamic_s_place", "dynamic_s_subject", "dynamic_s_person", "dynamic_s_type"],
-  "legislation": ["dynamic_s_date", "dynamic_s_place", "dynamic_s_subject", "dynamic_s_person"]
+  "archive": ["dynamic_i_period", "dynamic_s_place", "dynamic_s_subject", "dynamic_s_person", "dynamic_s_refcode"],
+  "creator": ["dynamic_i_period", "dynamic_s_place", "dynamic_s_subject", "dynamic_s_person", "dynamic_s_type"],
+  "legislation": ["dynamic_i_date", "dynamic_s_place", "dynamic_s_subject", "dynamic_s_person"]
 }
 const resultComponents = {
   "archive": ArchiveResult,
@@ -47,10 +47,10 @@ export default React.createClass({
         <button className="clearSearch" onClick={function () { window.location.search=""; }}>New search</button>
         <div className="tabs">
           <ul>
-	          <li className={"archives" + (searchType==="archive" ? " active" : "")}><a href={makeArchiveSearchUrl()}>Archives</a></li>
-	          <li className={"creators" + (searchType==="creator" ? " active" : "")}><a href={makeCreatorSearchUrl()}>Creators</a></li>
-	          <li className={"legislations" + (searchType==="legislation" ? " active" : "")}><a href={makeLegislationSearchUrl()}>Legislation</a></li>
-					</ul>
+            <li className={"archives" + (searchType==="archive" ? " active" : "")}><a href={makeArchiveSearchUrl()}>Archives</a></li>
+            <li className={"creators" + (searchType==="creator" ? " active" : "")}><a href={makeCreatorSearchUrl()}>Creators</a></li>
+            <li className={"legislations" + (searchType==="legislation" ? " active" : "")}><a href={makeLegislationSearchUrl()}>Legislation</a></li>
+          </ul>
         </div>
 
         <FacetedSearch
@@ -65,7 +65,7 @@ export default React.createClass({
           onChange={(res, params) => setSearchUrl(params)}
           onSelect={() => undefined}
           customComponents={{result: resultComponents[searchType]}}
-					query={this.props.query}
+          query={this.props.query}
           />
       </div>
     );
