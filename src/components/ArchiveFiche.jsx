@@ -31,7 +31,7 @@ export default React.createClass({
           <div className="section related-archives">
             <h4>Related archives</h4>
             { renderRelation(data["@relations"], "has_child_archive", relation => <a href={makeArchiveUrl(relation.id)}>{relation.displayName} (underlying)</a>) }
-            { renderRelation(data["@relations"], "has_parent_archive", relation => <a href={makeArchiveUrl(relation.id)}>{relation.displayName} (underlying)</a>) }
+            { renderRelation(data["@relations"], "has_parent_archive", relation => <a href={makeArchiveUrl(relation.id)}>{relation.displayName} (parent)</a>) }
           </div>
           <div className="section related-creators">
             <h4>Creators</h4>

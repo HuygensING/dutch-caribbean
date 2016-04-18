@@ -37,7 +37,7 @@ export default React.createClass({
         </div>
         <div className="section related-creators">
           <h4>Related creators</h4>
-          { renderRelation(data["@relations"], "has_sibling_archiver", relation => <a href={makeCreatorUrl(relation.id)}>{relation.displayName} (underlying)</a>) }
+          { renderRelation(data["@relations"], "has_sibling_archiver", relation => <a href={makeCreatorUrl(relation.id)}>{relation.displayName} (sibling)</a>) }
         </div>
       </div>
       <div className="panel-right">
