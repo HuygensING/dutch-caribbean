@@ -41,7 +41,7 @@
     "d3": "^3.4.13",
     "es6-promise": "^3.0.2",
     "hire-current-query": "^1.2.1",
-    "hire-faceted-search": "^5.2.4",
+    "hire-faceted-search": "git+https://github.com/jauco/hire-faceted-search#ecc9de41b9b8b120e51b7a27d8c59e354acd245f",
     "hire-force-directed-graph": "^1.1.1",
     "hire-forms-autocomplete": "1.0.3",
     "hire-forms-autocomplete-list": "1.0.2",
