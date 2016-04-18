@@ -55,6 +55,7 @@
     "hire-login": "^2.3.2",
     "hire-range-slider": "^1.1.2",
     "hire-tabs": "^1.0.3",
+    "history": "^1.17.0",
     "immutable": "^3.7.2",
     "juri": "^1.0.2",
     "lodash.clonedeep": "^3.0.2",
