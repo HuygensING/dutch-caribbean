@@ -47,7 +47,7 @@ export default React.createClass({
           </div>
           <div className="section reference">
             <h4>Reference</h4>
-            <p>{data.reference}</p>
+            <p>{ (data.countries || [""])[0] } {data.refCodeArchive} {data.refCode} {data.subCode} {data.itemNo || data.series}</p>
           </div>
           <div className="section geography">
             <h4>Geography</h4>
