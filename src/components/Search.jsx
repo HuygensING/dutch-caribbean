@@ -16,8 +16,13 @@ const labels = {
     "dynamic_s_refcode": "Repository Code",
     "dynamic_i_date": "Period",
     "dynamic_s_type": "Identity type",
-
-    "term": "Text Search",
+    "dynamic_t_notes": "Remarks",
+    "dynamic_t_titleNld": "Dutch title",
+    "dynamic_t_titleEng": "English title",
+    "dynamic_t_nameNld": "Dutch name",
+    "dynamic_t_nameEng": "English name",
+    "dynamic_t_history": "History",
+    "dynamic_t_contents": "Contents",
   },
   "dynamic_sort_title": "Title",
   "dynamic_k_period": "Period",
@@ -28,16 +33,37 @@ const labels = {
   "showAll": "Show All",
   "newSearch": "New Search"
 };
+
 const facetLists = {
   "archive": ["dynamic_i_period", "dynamic_s_place", "dynamic_s_subject", "dynamic_s_person", "dynamic_s_refcode"],
   "creator": ["dynamic_i_period", "dynamic_s_place", "dynamic_s_subject", "dynamic_s_person", "dynamic_s_type"],
   "legislation": ["dynamic_i_date", "dynamic_s_place", "dynamic_s_subject", "dynamic_s_person"]
-}
+};
+
 const resultComponents = {
   "archive": ArchiveResult,
   "creator": CreatorResult,
   "legislation": LegislationResult,
-}
+};
+
+const fullTextSearchFields = {
+  "archive": [
+    {name: "dynamic_t_titleEng"},
+    {name: "dynamic_t_titleNld"},
+    {name: "dynamic_t_notes"}
+  ],
+  "creator": [
+    {name: "dynamic_t_nameEng"},
+    {name: "dynamic_t_nameNld"},
+    {name: "dynamic_t_notes"},
+    {name: "dynamic_t_history"}
+  ],
+  "legislation": [
+    {name: "dynamic_t_titleEng"},
+    {name: "dynamic_t_titleNld"},
+    {name: "dynamic_t_contents"}
+  ]
+};
 
 export default React.createClass({
   render () {
@@ -58,7 +84,8 @@ export default React.createClass({
             baseURL: config.timbuctooUrl,
             searchPath: `/search/${config.collections[searchType]}`,
             headers: {VRE_ID: config.vreId, Accept: "application/json"},
-            hideFreeTextSearch: false
+            hideFreeTextSearch: true,
+            fullTextSearchFields: fullTextSearchFields[searchType]
           }}
           facetList={facetLists[searchType]}
           labels={labels}
