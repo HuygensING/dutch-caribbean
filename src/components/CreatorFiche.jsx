@@ -2,11 +2,22 @@ import React from "react";
 import config from "../config";
 import renderRelation from "./utils/renderRelation";
 import {makeArchiveUrl, makeCreatorUrl} from "../router";
+import { Link } from "react-router";
 
 export default React.createClass({
+  componentWillReceiveProps(nextProps) {
+    const { onFetchEntry } = this.props;
+
+    // Triggers fetch data from server based on id from route.
+    if (this.props.params.id !== nextProps.params.id) {
+      onFetchEntry("archive", nextProps.params.id);
+    }
+  },
+
   componentDidMount() {
     this.props.onFetchEntry("creator", this.props.params.id);
   },
+
   render () {
     let data = this.props.archive || {};
     let hasDifferentTitles = String(data.nameNld).toLowerCase() !== String(data.nameEng).toLowerCase();
@@ -32,11 +43,11 @@ export default React.createClass({
         </div>
         <div className="section related-archives">
           <h4>Related archives</h4>
-          { renderRelation(data["@relations"], "is_creator_of", relation => <a href={makeArchiveUrl(relation.id)}>{relation.displayName} (underlying)</a>) }
+          { renderRelation(data["@relations"], "is_creator_of", relation => <Link to={makeArchiveUrl(relation.id)}>{relation.displayName} (underlying)</Link>) }
         </div>
         <div className="section related-creators">
           <h4>Related creators</h4>
-          { renderRelation(data["@relations"], "has_sibling_archiver", relation => <a href={makeCreatorUrl(relation.id)}>{relation.displayName} (sibling)</a>) }
+          { renderRelation(data["@relations"], "has_sibling_archiver", relation => <Link to={makeCreatorUrl(relation.id)}>{relation.displayName} (sibling)</Link>) }
         </div>
       </div>
       <div className="panel-right">
