@@ -4,7 +4,7 @@ import store from "../store";
 
 const archiveFields = [
   { label: "English title", field: "titleEng_t", type: "text" },
-  { label: "Dutch title", field: "titleNdl_t", type: "text"},
+  { label: "Dutch title", field: "titleNld_t", type: "text"},
   { label: "Remarks", field: "notes_t", type: "text"},
   { label: "Period start", field: "beginDate_i", type: "range-facet"},
   { label: "Period end", field: "endDate_i", type: "range-facet"},

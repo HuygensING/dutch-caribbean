@@ -1,7 +1,6 @@
 #!/bin/sh
 
 mkdir -p "build/${NODE_ENV}/js"
-mkdir -p "build/${NODE_ENV}/css"
 cp -R src/static/* "build/${NODE_ENV}/"
 
 if [ "$1" = "--watch" ]; then
@@ -11,16 +10,6 @@ else
 	cmd="browserify"
 	styluswatch=""
 fi
-
-
-mkdir -p "build/${NODE_ENV}/js"
-cp -R src/static/* "build/${NODE_ENV}/"
-
-
-#node_modules/.bin/browserify \
-#	--transform [ envify --NODE_ENV="${NODE_ENV}" ] \
-#	--require react \
-#	--require react-dom > "build/${NODE_ENV}/js/react-libs.js"
 
 node_modules/.bin/browserify \
 	--transform [ envify --NODE_ENV="${NODE_ENV}" ] \

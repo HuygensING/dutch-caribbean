@@ -4,12 +4,12 @@ import {Link} from "react-router";
 
 export default React.createClass({
   render() {
-    let r = this.props.data.data;
-    let id = this.props.data.id;
-    let displayName = this.props.data.displayName;
+    let r = this.props.doc;
+    let id = this.props.doc.id;
+
     return (<li id={id} key={id}>
-      <Link className="title" to={makeCreatorUrl(id)}>{r.nameEng || "(no title)"} <span className="type">({(r.types || "").split(";").join(', ')})</span></Link>
-      <span className="right">{r.beginDate} - {r.endDate}</span>
+      <Link className="title" to={makeCreatorUrl(id)}>{(r.nameEng_t || ["(no title)"]).join(" ")} <span className="type">({(r.archiverTypes_ss || [""]).join(', ')})</span></Link>
+      <span className="right">{r.beginDate_i} - {r.endDate_i}</span>
     </li>);
   }
 });
