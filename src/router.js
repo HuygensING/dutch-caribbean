@@ -28,26 +28,26 @@ let createElement = function(Component, props) {
 const makeContainerComponent = connect((state) => state, (dispatch) => actions(navigateTo, dispatch));
 
 export const routes = (
-	<Provider store={store}>
-		<Router history={browserHistory}>
-			<Redirect from="/" to="/archive/results" />
-			<Route path="/" component={makeContainerComponent(makeContainerComponent(App))}>
-				<Route path=":searchType/results" component={makeContainerComponent(Search)} />
-				<Route path="archive/:id" component={makeContainerComponent(ArchiveFiche)} />
-				<Route path="creator/:id" component={makeContainerComponent(CreatorFiche)} />
-				<Route path="legislation/:id" component={makeContainerComponent(LegislationFiche)} />
-			</Route>
-		</Router>
-	</Provider>
+  <Provider store={store}>
+    <Router history={browserHistory}>
+      <Redirect from="/" to="/archive/results" />
+      <Route path="/" component={makeContainerComponent(makeContainerComponent(App))}>
+        <Route path=":searchType/results" component={makeContainerComponent(Search)} />
+        <Route path="archive/:id" component={makeContainerComponent(ArchiveFiche)} />
+        <Route path="creator/:id" component={makeContainerComponent(CreatorFiche)} />
+        <Route path="legislation/:id" component={makeContainerComponent(LegislationFiche)} />
+      </Route>
+    </Router>
+  </Provider>
 );
 
 export let makeUrl = function (id, params) {
-	switch(id) {
-		case "ROOT":
-			return "/";
-		case "ABBREVIATIONS":
-			return "http://dutch-caribbean.huygens.knaw.nl/wp-content/uploads/2013/08/Afkortingen-Caribische-Wereld.pdf";
-	}
+  switch(id) {
+    case "ROOT":
+      return "/";
+    case "ABBREVIATIONS":
+      return "http://dutch-caribbean.huygens.knaw.nl/wp-content/uploads/2013/08/Afkortingen-Caribische-Wereld.pdf";
+  }
 }
 
 export function makeArchiveSearchUrl() {
@@ -75,7 +75,7 @@ const urls = {
 };
 
 export function navigateTo(key, args) {
-	browserHistory.push(urls[key].apply(null, args));
+  browserHistory.push(urls[key].apply(null, args));
 }
 
 
