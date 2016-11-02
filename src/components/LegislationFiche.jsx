@@ -1,12 +1,10 @@
 import React from "react";
-import {getEntry} from "../actions/entry";
 import config from "../config";
 import renderRelation from "./utils/renderRelation";
-import {makeLegislationSearchUrl} from "../router";
 
 export default React.createClass({
   componentDidMount() {
-    getEntry("legislation", this.props.params.id);
+    this.props.onFetchEntry("legislation", this.props.params.id);
   },
   render () {
     let data = this.props.archive || {};

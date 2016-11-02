@@ -1,12 +1,11 @@
 import React from "react";
-import {getEntry} from "../actions/entry";
-import {makeArchiveSearchUrl, makeArchiveUrl, makeCreatorUrl} from "../router";
+import {makeArchiveUrl, makeCreatorUrl} from "../router";
 import renderRelation from "./utils/renderRelation";
 import config from "../config";
 
 export default React.createClass({
   componentDidMount() {
-    getEntry("archive", this.props.params.id);
+    this.props.onFetchEntry("archive", this.props.params.id);
   },
   render () {
     let data = this.props.archive || {};
