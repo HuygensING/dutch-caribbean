@@ -1,13 +1,13 @@
 require("babel-polyfill");
 
-import React from "react";
+import ReactDOM from "react-dom";
 
 import store from "./store";
 import {routes} from "./router";
 
 document.addEventListener("DOMContentLoaded", () => {
-	store.subscribe(() =>
-		React.render(routes, document.body)
-	);
-	React.render(routes, document.body);
+	store.subscribe(() => {
+		ReactDOM.render(routes, document.getElementById("app"))
+	});
+	ReactDOM.render(routes, document.getElementById("app"));
 });
