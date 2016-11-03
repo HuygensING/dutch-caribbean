@@ -24,7 +24,7 @@ export default React.createClass({
     return (<div id="fiche">
     <div className="content">
       <div className="panel-left">
-      <a className="back" href="#" onClick={function () { history.go(-1); }}>&lt; Back</a>
+      <a className="back" onClick={function () { history.go(-1); }}>&lt; Back</a>
       <h3 className="type">Creator</h3>
         <h2 className="title">{data.nameEng}</h2>
         {hasDifferentTitles

@@ -19,6 +19,41 @@
 				font-size 12px
 				margin-top 0
 				padding 10px 20px 20px
+
+		.solr-search-results
+			> *
+				padding-left 40px
+				padding-right 15px
+			li
+				list-style-type none
+			.current-query
+				display: none
+			.panel-heading
+				background-color #fff
+				padding 0 0 15px 0
+				.dropdown
+					cursor pointer
+					li
+						padding 0
+			ul
+				> li
+					border-bottom: 1px solid #f6f6f6;
+					padding-top: 18px;
+					padding-bottom: 8px;
+					margin: 0;
+				.title
+					font-weight: 700;
+					font-size: 11pt;
+					display: inline-block;
+					max-width: 85%;
+					color black
+				.right
+					display inline-block
+					float right
+				.ref
+					display block
+					color gray
+					font-size 80%
 .tabs
 	tabsWidth = 300px
 	oneTabWidth = tabsWidth / 3
@@ -99,88 +134,5 @@
 	height: initial;
 	margin: 10px 10px 0px;
 
-.hire-faceted-search
-	padding 0
 
-	.hire-faceted-search-filters
-		width: 26%
-	.hire-faceted-search-results
-		width: 73%
 
-	.hire-faceted-search-filters
-		background-color #f6f6f6
-
-		& > button
-			display none
-		li
-			text-align left
-			list-style-type none
-
-			&.hire-faceted-search-text-search,
-			&.hire-list-facet
-				margin-top 0px
-				padding 10px 20px 20px 20px
-				border-bottom 1px solid #e0e0e0
-				font-size 12px
-				background-color #f6f6f6
-
-			&.hire-list-facet
-				ul
-					li.hire-list-facet-list-item
-						label,
-						span.count
-							margin-top 5px
-
-		.hire-faceted-search-filter-menu
-			.hire-input
-				input
-					height: 24px
-
-	.hire-faceted-search-current-query
-		display: none
-
-	.hire-faceted-search-results-sort-menu
-		ul
-			background-color #fafafa
-			border thin #AAA solid
-			text-align right
-			width 70px
-			padding 5px 15px 5px 10px
-			li
-				list-style-type none
-				font-weight bold
-				font-size 1.2em
-				line-height 1.4em
-				&:hover
-					text-decoration underline
-
-	ol.hire-faceted-search-result-list
-		> li
-			border-bottom: 1px solid #f6f6f6;
-			padding-top: 18px;
-			padding-bottom: 8px;
-			margin: 0;
-		.title
-			font-weight: 700;
-			font-size: 11pt;
-			display: inline-block;
-			max-width: 85%;
-			color black
-		.right
-			display inline-block
-			float right
-		.ref
-			display block
-			color gray
-			font-size 80%
-
-li.hire-range-facet
-	background-color: #f6f6f6;
-	border-bottom: 1px solid #e0e0e0;
-	font-size: 12px;
-	margin-top: 0;
-	padding: 10px 20px 20px;
-	& > header > h3
-		margin 0 0 12px
-		padding 0
-		width 60%
