@@ -1,12 +1,10 @@
 import React from "react";
-import {getEntry} from "../actions/entry";
 import config from "../config";
 import renderRelation from "./utils/renderRelation";
-import {makeLegislationSearchUrl} from "../router";
 
 export default React.createClass({
   componentDidMount() {
-    getEntry("legislation", this.props.params.id);
+    this.props.onFetchEntry("legislation", this.props.params.id);
   },
   render () {
     let data = this.props.archive || {};
@@ -15,7 +13,7 @@ export default React.createClass({
     return (<div id="fiche">
     <div className="content">
       <div className="panel-left">
-      <a className="back" href="#" onClick={function () { history.go(-1); }}>&lt; Back</a>
+      <a className="back" onClick={function () { history.go(-1); }}>&lt; Back</a>
       <h3 className="type">Legislation</h3>
         <h2 className="title">{data.titleEng}<i className="reference">{data.reference} {data.pages}</i></h2>
         {hasDifferentTitles

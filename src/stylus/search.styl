@@ -1,6 +1,126 @@
+#app
+	.solr-faceted-search
+		.glyphicon
+			display none
+		.panel.panel-default
+			border none
+		.col-md-3 .panel-heading
+			display none
+		&.col-md-12, .col-md-3, .col-md-9
+			padding 0
+		h5
+			font-family: "Raleway",sans-serif
+			font-size 12px
+			font-weight bold
+			margin-bottom 1em
+		.solr-search-fields
+			& > .list-group-item
+				background-color #f6f6f6
+				border-bottom 1px solid #e0e0e0
+				font-size 12px
+				margin-top 0
+				padding 10px 20px 20px
+			input
+				-moz-border-bottom-colors: none;
+				-moz-border-left-colors: none;
+				-moz-border-right-colors: none;
+				-moz-border-top-colors: none;
+				background-color: #fff;
+				border-color: #eee -moz-use-text-color #eee #eee;
+				border-image: none;
+				border-style: solid none solid solid;
+				border-width: 1px medium 1px 1px;
+				font-size: 1em;
+				height: 40px;
+				outline: medium none;
+				padding-left: 20px;
+				width: calc(100% - 20px);
+				& + span
+					display: none
+					& + button
+						width 20px
+						height 40px
+						background-color: #f6f6f6
+						border-color: #eee #eee #eee -moz-use-text-color
+						border-left: none
+						padding: 0
+						padidng-top: 4px
+						.search-icon
+							width 18px
+							fill #ddd
 
+
+			.list-facet
+				input
+					width 100%
+					margin-bottom 4px
+				ul
+					max-height 264px
+					overflow-y auto
+					li
+						background-color #f6f6f6
+						padding 4px
+						padding-left 0
+						padding-right 0
+						border none
+						cursor pointer
+						.facet-item-amount
+							float right
+						svg
+							fill #aaa
+
+			.facet-range-slider
+				fill #ddd
+				stroke #ddd
+
+				circle
+					stroke-width 0
+					&:hover
+						fill #eee
+						stroke-width 1
+						cursor pointer
+				.range-line path
+					stroke-width 8
+					&:hover
+						stroke #eee
+						cursor pointer
+		.solr-search-results
+			> *
+				padding-left 40px
+				padding-right 15px
+			li
+				list-style-type none
+			.current-query
+				display: none
+			.panel-heading
+				background-color #fff
+				padding 0 0 15px 0
+				margin-bottom 20px
+				.dropdown
+					cursor pointer
+					li
+						padding 0
+			ul
+				> li
+					border-bottom: 1px solid #f6f6f6;
+					padding-top: 18px;
+					padding-bottom: 8px;
+					margin: 0;
+				.title
+					font-weight: 700;
+					font-size: 11pt;
+					display: inline-block;
+					max-width: 85%;
+					color black
+				.right
+					display inline-block
+					float right
+				.ref
+					display block
+					color gray
+					font-size 80%
 .tabs
-	tabsWidth = 300px
+	tabsWidth = 295px
 	oneTabWidth = tabsWidth / 3
 
 
@@ -75,92 +195,9 @@
 	box-shadow: none;
 	border-radius: 3px;
 	width: auto;
-	padding: 6px 8px;
+	padding: 8px 10px;
 	height: initial;
 	margin: 10px 10px 0px;
 
-.hire-faceted-search
-	padding 0
 
-	.hire-faceted-search-filters
-		width: 26%
-	.hire-faceted-search-results
-		width: 73%
 
-	.hire-faceted-search-filters
-		background-color #f6f6f6
-
-		& > button
-			display none
-		li
-			text-align left
-			list-style-type none
-
-			&.hire-faceted-search-text-search,
-			&.hire-list-facet
-				margin-top 0px
-				padding 10px 20px 20px 20px
-				border-bottom 1px solid #e0e0e0
-				font-size 12px
-				background-color #f6f6f6
-
-			&.hire-list-facet
-				ul
-					li.hire-list-facet-list-item
-						label,
-						span.count
-							margin-top 5px
-
-		.hire-faceted-search-filter-menu
-			.hire-input
-				input
-					height: 24px
-
-	.hire-faceted-search-current-query
-		display: none
-
-	.hire-faceted-search-results-sort-menu
-		ul
-			background-color #fafafa
-			border thin #AAA solid
-			text-align right
-			width 70px
-			padding 5px 15px 5px 10px
-			li
-				list-style-type none
-				font-weight bold
-				font-size 1.2em
-				line-height 1.4em
-				&:hover
-					text-decoration underline
-
-	ol.hire-faceted-search-result-list
-		> li
-			border-bottom: 1px solid #f6f6f6;
-			padding-top: 18px;
-			padding-bottom: 8px;
-			margin: 0;
-		.title
-			font-weight: 700;
-			font-size: 11pt;
-			display: inline-block;
-			max-width: 85%;
-			color black
-		.right
-			display inline-block
-			float right
-		.ref
-			display block
-			color gray
-			font-size 80%
-
-li.hire-range-facet
-	background-color: #f6f6f6;
-	border-bottom: 1px solid #e0e0e0;
-	font-size: 12px;
-	margin-top: 0;
-	padding: 10px 20px 20px;
-	& > header > h3
-		margin 0 0 12px
-		padding 0
-		width 60%

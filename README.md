@@ -10,6 +10,8 @@ Install the node and bower modules:
 
 ## compile the code
 
+	export server=localhost:8080
+	export NODE_ENV=development
 	npm run-script build
 
 ## run a server
