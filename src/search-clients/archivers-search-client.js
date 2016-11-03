@@ -16,8 +16,8 @@ const archiverFields = [
 ];
 
 const archiverSortFields = [
-  { label: "Period start", field: "beginDate_i" },
-  { label: "Period end", field: "endDate_i" },
+  { label: "Title", field: "nameEng_s", value: "asc" },
+  { label: "Period", field: "beginDate_i" }
 ];
 
 const archiverSearchClient = new SolrClient({

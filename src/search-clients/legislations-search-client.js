@@ -14,6 +14,7 @@ const legislationFields = [
 ];
 
 const legislationSortFields = [
+  { label: "Title", field: "titleEng_s", value: "asc" },
   { label: "Date", field: "beginDate_s" },
 ];
 
