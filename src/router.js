@@ -18,12 +18,22 @@ const grabQuery = (search) => ({
 export function serializeSearch() {
   const { creatorSearch, legislationSearch, archiveSearch } = store.getState();
 
+  const scrollTop = (window.pageYOffset || document.documentElement.scrollTop)  - (document.documentElement.clientTop || 0);
   return encodeURIComponent(JSON.stringify({
     creatorSearch: grabQuery(creatorSearch),
     legislationSearch: grabQuery(legislationSearch),
-    archiveSearch: grabQuery(archiveSearch)
+    archiveSearch: grabQuery(archiveSearch),
+    scrollTop: scrollTop
   }));
 }
+
+export function storeSearch() {
+  const serialized = `${location.pathname}?#q=${serializeSearch()}`;
+  if (location.pathname + "#" + location.hash !== serialized) {
+    browserHistory.replace(`${location.pathname}#q=${serializeSearch()}`);
+  }
+}
+
 
 
 

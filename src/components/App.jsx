@@ -2,6 +2,20 @@ import React from "react";
 import config from "../config";
 
 export default React.createClass({
+  componentDidUpdate() {
+    const scrollTop = (window.pageYOffset || document.documentElement.scrollTop)  - (document.documentElement.clientTop || 0);
+
+    if (location.hash.length > 0 && scrollTop < 500) {
+      try {
+        const searchState = JSON.parse(decodeURIComponent(location.hash.replace(/^#q=/, "")));
+        window.scrollTo(0, searchState.scrollTop);
+      } catch (e) {
+        console.log(e);
+      }
+    }
+
+  },
+
   render() {
     return (
       <div className="wrapper">

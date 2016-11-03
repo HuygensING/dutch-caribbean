@@ -1,7 +1,7 @@
 require("babel-polyfill");
 
 import ReactDOM from "react-dom";
-import {routes, serializeSearch} from "./router";
+import {routes, storeSearch} from "./router";
 import {browserHistory} from "react-router";
 
 import archiveSearchClient from "./search-clients/archives-search-client";
@@ -17,11 +17,7 @@ document.addEventListener("DOMContentLoaded", () => {
       location.pathname !== "/archive/results") {
       return;
     }
-
-    const serialized = `${location.pathname}?#q=${serializeSearch()}`;
-    if (location.pathname + "#" + location.hash !== serialized) {
-      browserHistory.replace(`${location.pathname}#q=${serializeSearch()}`);
-    }
+    storeSearch();
   });
 
   if (location.hash.length > 0) {
