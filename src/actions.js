@@ -2,7 +2,7 @@ import config from "./config";
 import xhr from "xhr";
 
 
-export default function actionsMaker(navigateTo, dispatch) {
+export default function actionsMaker(dispatch) {
   const actions = {
     onFetchEntry: function(type, id) {
       const options = {

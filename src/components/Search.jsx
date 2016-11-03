@@ -46,8 +46,6 @@ export default React.createClass({
     const searchState = this.props[`${searchType}Search`];
     const searchClient = searchClients[searchType];
 
-    console.log(searchType);
-    console.log(customComponents[searchType]);
     return (
       <div>
         <button className="clearSearch" onClick={function () { searchClient.resetSearchFields() }}>New search</button>
