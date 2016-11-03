@@ -13,6 +13,8 @@ export default function actionsMaker(navigateTo, dispatch) {
         url: `${config.timbuctooUrl}/domain/${config.collections[type]}/${id}`
       };
 
+      dispatch({type: "ENTRY_PENDING"});
+
       xhr(options, function(err, resp, body) {
         dispatch({
           type: "SELECT_ENTRY",
