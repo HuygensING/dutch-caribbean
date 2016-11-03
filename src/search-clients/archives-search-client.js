@@ -11,7 +11,7 @@ const archiveFields = [
   { label: "Geography", field: "place_ss", type: "list-facet"},
   { label: "Subject", field: "subject_ss", type: "list-facet"},
   { label: "Person", field: "person_ss", type: "list-facet"},
-  { label: "Repository Code", field: "refcode_s", type: "list-facet"},
+  { label: "Repository Code", field: "refCodeArchive_s", type: "list-facet"},
 ];
 
 const archiveSortFields = [
