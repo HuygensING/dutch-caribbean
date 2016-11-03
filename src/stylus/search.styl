@@ -12,6 +12,7 @@
 			font-family: "Raleway",sans-serif
 			font-size 12px
 			font-weight bold
+			margin-bottom 1em
 		.solr-search-fields
 			& > .list-group-item
 				background-color #f6f6f6
@@ -19,7 +20,55 @@
 				font-size 12px
 				margin-top 0
 				padding 10px 20px 20px
+			input
+				-moz-border-bottom-colors: none;
+				-moz-border-left-colors: none;
+				-moz-border-right-colors: none;
+				-moz-border-top-colors: none;
+				background-color: #fff;
+				border-color: #eee -moz-use-text-color #eee #eee;
+				border-image: none;
+				border-style: solid none solid solid;
+				border-width: 1px medium 1px 1px;
+				font-size: 1em;
+				height: 40px;
+				outline: medium none;
+				padding-left: 20px;
+				width: calc(100% - 20px);
+				& + span
+					display: none
+					& + button
+						width 20px
+						height 40px
+						background-color: #f6f6f6
+						border-color: #eee #eee #eee -moz-use-text-color
+						border-left: none
+						padding: 0
+						padidng-top: 4px
+						.search-icon
+							width 18px
+							fill #ddd
 
+
+			.list-facet
+				input
+					width 100%
+					margin-bottom 4px
+			.facet-range-slider
+				fill #ddd
+				stroke #ddd
+
+				circle
+					stroke-width 0
+					&:hover
+						fill #eee
+						stroke-width 1
+						cursor pointer
+				.range-line path
+					stroke-width 8
+					&:hover
+						stroke #eee
+						cursor pointer
 		.solr-search-results
 			> *
 				padding-left 40px
