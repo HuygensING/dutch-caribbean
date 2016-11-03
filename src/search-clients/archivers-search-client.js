@@ -27,6 +27,7 @@ const archiverSearchClient = new SolrClient({
   sortFields: archiverSortFields,
   rows: 50,
   pageStrategy: "cursor",
+  facetSort: "count",
   onChange: (state) => {
     store.dispatch({type: "SET_ARCHIVER_SEARCH_STATE", state: state});
   }

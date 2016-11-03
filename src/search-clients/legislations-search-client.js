@@ -25,6 +25,7 @@ const legislationSearchClient = new SolrClient({
   sortFields: legislationSortFields,
   rows: 50,
   pageStrategy: "cursor",
+  facetSort: "count",
   onChange: (state) => {
     store.dispatch({type: "SET_LEGISLATION_SEARCH_STATE", state: state});
   }
