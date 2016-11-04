@@ -15,18 +15,17 @@ export default React.createClass({
     }
   },
 
+  componentDidMount() {
+    this.props.onFetchEntry("archive", this.props.params.id);
+  },
+
   componentDidUpdate() {
     const { storedScrollTop } = this.props;
     if (typeof storedScrollTop !== "undefined") {
-      console.log(storedScrollTop);
       window.scrollTo(0, storedScrollTop);
     }
   },
 
-
-  componentDidMount() {
-    this.props.onFetchEntry("archive", this.props.params.id);
-  },
   render () {
     let data = this.props.archive || {};
     let hasDifferentTitles = String(data.titleNld).toLowerCase() !== String(data.titleEng).toLowerCase();

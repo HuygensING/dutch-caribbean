@@ -10,7 +10,6 @@ export default React.createClass({
   componentDidUpdate() {
     const { storedScrollTop } = this.props;
     if (typeof storedScrollTop !== "undefined") {
-      console.log(storedScrollTop);
       window.scrollTo(0, storedScrollTop);
     }
   },

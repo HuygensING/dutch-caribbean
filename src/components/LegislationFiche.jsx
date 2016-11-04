@@ -3,9 +3,26 @@ import config from "../config";
 import renderRelation from "./utils/renderRelation";
 
 export default React.createClass({
+  componentWillReceiveProps(nextProps) {
+    const { onFetchEntry } = this.props;
+
+    // Triggers fetch data from server based on id from route.
+    if (this.props.params.id !== nextProps.params.id) {
+      onFetchEntry("legislation", nextProps.params.id);
+    }
+  },
+
   componentDidMount() {
     this.props.onFetchEntry("legislation", this.props.params.id);
   },
+
+  componentDidUpdate() {
+    const { storedScrollTop } = this.props;
+    if (typeof storedScrollTop !== "undefined") {
+      window.scrollTo(0, storedScrollTop);
+    }
+  },
+
   render () {
     let data = this.props.archive || {};
     let hasDifferentTitles = String(data.titleNld).toLowerCase() !== String(data.titleEng).toLowerCase();
