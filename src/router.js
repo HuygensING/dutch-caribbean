@@ -11,11 +11,13 @@ import store from "./store";
 import {getCurrentScrollTop} from "./dom";
 
 
+// Filters out all search fields and sort fields with values
 const grabQuery = (search) => ({
   searchFields: search.query.searchFields.filter((sf) => sf.value && sf.value.length),
   sortFields: search.query.sortFields.filter((sf) => sf.value && sf.value.length)
 });
 
+// Serialize search states as json + URI
 export function serializeSearch() {
   const { creatorSearch, legislationSearch, archiveSearch } = store.getState();
 
@@ -26,6 +28,7 @@ export function serializeSearch() {
   }));
 }
 
+// Store search state in url
 export function storeSearch() {
   const serialized = `${location.pathname}?#q=${serializeSearch()}`;
   if (location.pathname + "#" + location.hash !== serialized) {
@@ -34,53 +37,51 @@ export function storeSearch() {
 }
 
 
+// Connector functions
 
+// Gets the stored scroll position for the current route
+const getStoredScrollState = (pathname, scrollTop) =>
+  scrollTop[pathname] && getCurrentScrollTop() !== scrollTop[pathname]
+    ? { storedScrollTop: scrollTop[pathname] }
+    : {};
 
-const connectComponent = connect(
-  (state, routed) => {
-    const { location: { pathname }, params: { searchType } } = routed;
-    const { scrollTop } = state;
-
-    const storedScrollState = scrollTop[pathname] && getCurrentScrollTop() !== scrollTop[pathname] ?
-      { storedScrollTop: scrollTop[pathname] } : {};
-
-    if (searchType) {
-      return {
-        ...storedScrollState,
-        [searchType + "Search"]: state[searchType + "Search"]
-      };
-    } else {
-      return {
-        ...storedScrollState,
-        archive: state.archive
-      };
-    }
-  },
+// Passes along the current fiche state and the stored scroll position
+const connectFicheComponent = connect(
+  (state, routed) => ({
+    ...getStoredScrollState(routed.location.pathname, state.scrollTop),
+    archive: state.archive
+  }),
   (dispatch) => actions(dispatch)
 );
 
+// Only pases along the search state of the currently active search
+const connectSearchComponent = connect(
+  (state, routed) => ({
+    [routed.params.searchType + "Search"]: state[routed.params.searchType + "Search"]
+  }),
+  (dispatch) => actions(dispatch)
+);
+
+// Just passes along the stored scroll position for this route
+const connectAppComponent = connect(
+  (state, routed) => getStoredScrollState(routed.location.pathname, state.scrollTop),
+  (dispatch) => actions(dispatch)
+);
+
+// Actual routes
 export const routes = (
   <Provider store={store}>
     <Router history={browserHistory}>
       <Redirect from="/" to="/archive/results" />
-      <Route path="/" component={connectComponent(App)}>
-        <Route path=":searchType/results" component={connectComponent(Search)} />
-        <Route path="archive/:id" component={connectComponent(ArchiveFiche)} />
-        <Route path="creator/:id" component={connectComponent(CreatorFiche)} />
-        <Route path="legislation/:id" component={connectComponent(LegislationFiche)} />
+      <Route path="/" component={connectAppComponent(App)}>
+        <Route path=":searchType/results" component={connectSearchComponent(Search)} />
+        <Route path="archive/:id" component={connectFicheComponent(ArchiveFiche)} />
+        <Route path="creator/:id" component={connectFicheComponent(CreatorFiche)} />
+        <Route path="legislation/:id" component={connectFicheComponent(LegislationFiche)} />
       </Route>
     </Router>
   </Provider>
 );
-
-export let makeUrl = function (id, params) {
-  switch(id) {
-    case "ROOT":
-      return "/";
-    case "ABBREVIATIONS":
-      return "http://dutch-caribbean.huygens.knaw.nl/wp-content/uploads/2013/08/Afkortingen-Caribische-Wereld.pdf";
-  }
-}
 
 export function makeArchiveSearchUrl() {
   return `/archive/results`

@@ -3,6 +3,7 @@ import config from "../config";
 
 export default React.createClass({
 
+  // Prevents entire app tree from rerendering after app-state change on scroll event
   shouldComponentUpdate(nextProps, nextState) {
     return nextProps.location.pathname !== this.props.location.pathname;
   },

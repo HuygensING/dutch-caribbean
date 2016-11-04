@@ -19,6 +19,7 @@ document.addEventListener("DOMContentLoaded", () => {
     storeSearch();
   });
 
+  // Deserialize stores search state on page load
   if (location.hash.length > 0) {
     try {
       const initialSearchState = JSON.parse(decodeURIComponent(location.hash.replace(/^#q=/, "")));
