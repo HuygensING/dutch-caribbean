@@ -18,6 +18,13 @@ export default React.createClass({
     this.props.onFetchEntry("creator", this.props.params.id);
   },
 
+  componentDidUpdate() {
+    const { storedScrollTop } = this.props;
+    if (typeof storedScrollTop !== "undefined") {
+      window.scrollTo(0, storedScrollTop);
+    }
+  },
+
   render () {
     let data = this.props.archive || {};
     let hasDifferentTitles = String(data.nameNld).toLowerCase() !== String(data.nameEng).toLowerCase();
