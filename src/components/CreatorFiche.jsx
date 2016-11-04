@@ -26,7 +26,7 @@ export default React.createClass({
   },
 
   render () {
-    let data = this.props.archive || {};
+    let data = this.props.fiche || {};
     let hasDifferentTitles = String(data.nameNld).toLowerCase() !== String(data.nameEng).toLowerCase();
     return (<div id="fiche">
     <div className="content">

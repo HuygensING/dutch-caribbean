@@ -27,7 +27,7 @@ export default React.createClass({
   },
 
   render () {
-    let data = this.props.archive || {};
+    let data = this.props.fiche || {};
     let hasDifferentTitles = String(data.titleNld).toLowerCase() !== String(data.titleEng).toLowerCase();
     //FIXME: zorg dat de back button niet op een lege search uitkomt
     return (<div id="fiche">
