@@ -1,9 +1,8 @@
 require("babel-polyfill");
 
 import ReactDOM from "react-dom";
+import {getCurrentScrollTop} from "./dom";
 import {routes, storeSearch} from "./router";
-import {browserHistory} from "react-router";
-
 import archiveSearchClient from "./search-clients/archives-search-client";
 import archiverSearchClient from "./search-clients/archivers-search-client";
 import legislationSearchClient from "./search-clients/legislations-search-client";
@@ -34,5 +33,8 @@ document.addEventListener("DOMContentLoaded", () => {
   archiveSearchClient.initialize();
   archiverSearchClient.initialize();
   legislationSearchClient.initialize();
+});
 
+window.addEventListener('scroll', function(e) {
+  store.dispatch({type: "SET_SCROLL_TOP", scrollTop: getCurrentScrollTop(), pathname: location.pathname});
 });

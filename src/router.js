@@ -8,6 +8,7 @@ import actions from "./actions";
 import {Provider, connect} from "react-redux";
 import {Redirect, Router, Route, browserHistory} from "react-router";
 import store from "./store";
+import {getCurrentScrollTop} from "./dom";
 
 
 const grabQuery = (search) => ({
@@ -18,12 +19,10 @@ const grabQuery = (search) => ({
 export function serializeSearch() {
   const { creatorSearch, legislationSearch, archiveSearch } = store.getState();
 
-  const scrollTop = (window.pageYOffset || document.documentElement.scrollTop)  - (document.documentElement.clientTop || 0);
   return encodeURIComponent(JSON.stringify({
     creatorSearch: grabQuery(creatorSearch),
     legislationSearch: grabQuery(legislationSearch),
-    archiveSearch: grabQuery(archiveSearch),
-    scrollTop: scrollTop
+    archiveSearch: grabQuery(archiveSearch)
   }));
 }
 
@@ -37,17 +36,38 @@ export function storeSearch() {
 
 
 
-const makeContainerComponent = connect((state) => state, (dispatch) => actions(dispatch));
+const connectComponent = connect(
+  (state, routed) => {
+    const { location: { pathname }, params: { searchType } } = routed;
+    const { scrollTop } = state;
+
+    const storedScrollState = scrollTop[pathname] && getCurrentScrollTop() !== scrollTop[pathname] ?
+      { storedScrollTop: scrollTop[pathname] } : {};
+
+    if (searchType) {
+      return {
+        ...storedScrollState,
+        [searchType + "Search"]: state[searchType + "Search"]
+      };
+    } else {
+      return {
+        ...storedScrollState,
+        archive: state.archive
+      };
+    }
+  },
+  (dispatch) => actions(dispatch)
+);
 
 export const routes = (
   <Provider store={store}>
     <Router history={browserHistory}>
       <Redirect from="/" to="/archive/results" />
-      <Route path="/" component={makeContainerComponent(makeContainerComponent(App))}>
-        <Route path=":searchType/results" component={makeContainerComponent(Search)} />
-        <Route path="archive/:id" component={makeContainerComponent(ArchiveFiche)} />
-        <Route path="creator/:id" component={makeContainerComponent(CreatorFiche)} />
-        <Route path="legislation/:id" component={makeContainerComponent(LegislationFiche)} />
+      <Route path="/" component={connectComponent(connectComponent(App))}>
+        <Route path=":searchType/results" component={connectComponent(Search)} />
+        <Route path="archive/:id" component={connectComponent(ArchiveFiche)} />
+        <Route path="creator/:id" component={connectComponent(CreatorFiche)} />
+        <Route path="legislation/:id" component={connectComponent(LegislationFiche)} />
       </Route>
     </Router>
   </Provider>
