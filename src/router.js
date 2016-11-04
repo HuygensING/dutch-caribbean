@@ -63,7 +63,7 @@ export const routes = (
   <Provider store={store}>
     <Router history={browserHistory}>
       <Redirect from="/" to="/archive/results" />
-      <Route path="/" component={connectComponent(connectComponent(App))}>
+      <Route path="/" component={connectComponent(App)}>
         <Route path=":searchType/results" component={connectComponent(Search)} />
         <Route path="archive/:id" component={connectComponent(ArchiveFiche)} />
         <Route path="creator/:id" component={connectComponent(CreatorFiche)} />
