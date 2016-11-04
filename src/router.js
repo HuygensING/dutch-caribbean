@@ -49,7 +49,7 @@ const getStoredScrollState = (pathname, scrollTop) =>
 const connectFicheComponent = connect(
   (state, routed) => ({
     ...getStoredScrollState(routed.location.pathname, state.scrollTop),
-    archive: state.archive
+    fiche: state.fiche
   }),
   (dispatch) => actions(dispatch)
 );
