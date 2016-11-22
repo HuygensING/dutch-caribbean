@@ -1,21 +1,36 @@
 import React from "react";
-import {getEntry} from "../actions/entry";
 import config from "../config";
 import renderRelation from "./utils/renderRelation";
-import {makeLegislationSearchUrl} from "../router";
 
 export default React.createClass({
-  componentDidMount() {
-    getEntry("legislation", this.props.params.id);
+  componentWillReceiveProps(nextProps) {
+    const { onFetchEntry } = this.props;
+
+    // Triggers fetch data from server based on id from route.
+    if (this.props.params.id !== nextProps.params.id) {
+      onFetchEntry("legislation", nextProps.params.id);
+    }
   },
+
+  componentDidMount() {
+    this.props.onFetchEntry("legislation", this.props.params.id);
+  },
+
+  componentDidUpdate() {
+    const { storedScrollTop } = this.props;
+    if (typeof storedScrollTop !== "undefined") {
+      window.scrollTo(0, storedScrollTop);
+    }
+  },
+
   render () {
-    let data = this.props.archive || {};
+    let data = this.props.fiche || {};
     let hasDifferentTitles = String(data.titleNld).toLowerCase() !== String(data.titleEng).toLowerCase();
 
     return (<div id="fiche">
     <div className="content">
       <div className="panel-left">
-      <a className="back" href="#" onClick={function () { history.go(-1); }}>&lt; Back</a>
+      <a className="back" onClick={function () { history.go(-1); }}>&lt; Back</a>
       <h3 className="type">Legislation</h3>
         <h2 className="title">{data.titleEng}<i className="reference">{data.reference} {data.pages}</i></h2>
         {hasDifferentTitles

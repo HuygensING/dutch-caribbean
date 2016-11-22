@@ -8,36 +8,45 @@ var url = require('url');
 
 var baseDir = "./";
 var watchFiles = [
-	baseDir + "build/development/js/*.js",
-	baseDir + "build/development/css/*.css",
-	baseDir + "build/development/index.html"
+  baseDir + "build/development/js/*.js",
+  baseDir + "build/development/css/*.css",
+  baseDir + "build/development/index.html"
 ];
 
 function onFilesChanged(event, file) {
-	if (event === "change") {
-		browserSync.reload(file);
-	}
+  if (event === "change") {
+    browserSync.reload(file);
+  }
 }
 
 browserSync.watch(watchFiles, debounce(onFilesChanged, 300));
 
-var proxyOptions = url.parse("https://acc.repository.huygens.knaw.nl/repository/api/v2.1");
-proxyOptions.route = "/repository/api";
+var localSolr = process.env.SOLR || "http://localhost:8983/solr";
+var dcarlegislationsOptions = url.parse(localSolr + "/dcarlegislations/select");
+dcarlegislationsOptions.route = "/repositorysolr/dcarlegislations";
+
+var dcararchivesOptions = url.parse(localSolr + "/dcararchives/select");
+dcararchivesOptions.route = "/repositorysolr/dcararchives";
+
+var dcararchiversOptions = url.parse(localSolr + "/dcararchivers/select");
+dcararchiversOptions.route = "/repositorysolr/dcararchivers";
 
 browserSync.init({
-	open: false,
-	server: {
-		baseDir: baseDir,
-		middleware: [
-			proxy(proxyOptions),
-			modRewrite([
-				"^/css/(.*)$ /build/development/css/$1 [L]",
-				"^/src/stylus/(.*)$ /src/stylus/$1 [L]",
-				"^/js/(.*)$ /build/development/js/$1 [L]",
-				"^/images/(.*)$ /build/development/images/$1 [L]",
-				"^/fonts/(.*)$ /build/development/fonts/$1 [L]",
-				"^/?.*$ /build/development/index.html [L]",
-			])
-		]
-	}
+  open: false,
+  server: {
+    baseDir: baseDir,
+    middleware: [
+      proxy(dcarlegislationsOptions),
+      proxy(dcararchivesOptions),
+      proxy(dcararchiversOptions),
+      modRewrite([
+        "^/css/(.*)$ /build/development/css/$1 [L]",
+        "^/src/stylus/(.*)$ /src/stylus/$1 [L]",
+        "^/js/(.*)$ /build/development/js/$1 [L]",
+        "^/images/(.*)$ /build/development/images/$1 [L]",
+        "^/fonts/(.*)$ /build/development/fonts/$1 [L]",
+        "^/?.*$ /build/development/index.html [L]",
+      ])
+    ]
+  }
 });

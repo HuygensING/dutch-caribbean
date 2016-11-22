@@ -1,20 +1,37 @@
 import React from "react";
-import {getEntry} from "../actions/entry";
 import config from "../config";
 import renderRelation from "./utils/renderRelation";
-import {makeCreatorSearchUrl, makeArchiveUrl, makeCreatorUrl} from "../router";
+import {makeArchiveUrl, makeCreatorUrl} from "../router";
+import { Link } from "react-router";
 
 export default React.createClass({
-  componentDidMount() {
-    getEntry("creator", this.props.params.id);
+  componentWillReceiveProps(nextProps) {
+    const { onFetchEntry } = this.props;
+
+    // Triggers fetch data from server based on id from route.
+    if (this.props.params.id !== nextProps.params.id) {
+      onFetchEntry("archive", nextProps.params.id);
+    }
   },
+
+  componentDidMount() {
+    this.props.onFetchEntry("creator", this.props.params.id);
+  },
+
+  componentDidUpdate() {
+    const { storedScrollTop } = this.props;
+    if (typeof storedScrollTop !== "undefined") {
+      window.scrollTo(0, storedScrollTop);
+    }
+  },
+
   render () {
-    let data = this.props.archive || {};
+    let data = this.props.fiche || {};
     let hasDifferentTitles = String(data.nameNld).toLowerCase() !== String(data.nameEng).toLowerCase();
     return (<div id="fiche">
     <div className="content">
       <div className="panel-left">
-      <a className="back" href="#" onClick={function () { history.go(-1); }}>&lt; Back</a>
+      <a className="back" onClick={function () { history.go(-1); }}>&lt; Back</a>
       <h3 className="type">Creator</h3>
         <h2 className="title">{data.nameEng}</h2>
         {hasDifferentTitles
@@ -33,11 +50,11 @@ export default React.createClass({
         </div>
         <div className="section related-archives">
           <h4>Related archives</h4>
-          { renderRelation(data["@relations"], "is_creator_of", relation => <a href={makeArchiveUrl(relation.id)}>{relation.displayName} (underlying)</a>) }
+          { renderRelation(data["@relations"], "is_creator_of", relation => <Link to={makeArchiveUrl(relation.id)}>{relation.displayName} (underlying)</Link>) }
         </div>
         <div className="section related-creators">
           <h4>Related creators</h4>
-          { renderRelation(data["@relations"], "has_sibling_archiver", relation => <a href={makeCreatorUrl(relation.id)}>{relation.displayName} (sibling)</a>) }
+          { renderRelation(data["@relations"], "has_sibling_archiver", relation => <Link to={makeCreatorUrl(relation.id)}>{relation.displayName} (sibling)</Link>) }
         </div>
       </div>
       <div className="panel-right">

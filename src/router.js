@@ -1,48 +1,87 @@
-import { Redirect, Router, Route, Link, IndexRoute } from 'react-router';
-import createBrowserHistory from "history/lib/createBrowserHistory";
 import React from "react";
-
 import App from "./components/App";
 import ArchiveFiche from "./components/ArchiveFiche";
 import CreatorFiche from "./components/CreatorFiche";
 import LegislationFiche from "./components/LegislationFiche";
 import Search from "./components/Search";
-
+import actions from "./actions";
+import {Provider, connect} from "react-redux";
+import {Redirect, Router, Route, browserHistory} from "react-router";
 import store from "./store";
-import juriCtor from "juri";
-const juri = juriCtor();
+import {getCurrentScrollTop} from "./dom";
 
-let createElement = function(Component, props) {
-  var q;
-  if (Component === Search && props.location && props.location.query && props.location.query.q) {
-    q = juri.decode(props.location.query.q.replace(/ /g, "+"));
+
+// Filters out all search fields and sort fields with values
+const grabQuery = (search) => ({
+  searchFields: search.query.searchFields.filter((sf) => sf.value && sf.value.length),
+  sortFields: search.query.sortFields.filter((sf) => sf.value && sf.value.length)
+});
+
+// Serialize search states as json + URI
+export function serializeSearch() {
+  const { creatorSearch, legislationSearch, archiveSearch } = store.getState();
+
+  return encodeURIComponent(JSON.stringify({
+    creatorSearch: grabQuery(creatorSearch),
+    legislationSearch: grabQuery(legislationSearch),
+    archiveSearch: grabQuery(archiveSearch)
+  }));
+}
+
+// Store search state in url
+export function storeSearch() {
+  const serialized = `${location.pathname}?#q=${serializeSearch()}`;
+  if (location.pathname + "#" + location.hash !== serialized) {
+    browserHistory.replace(`${location.pathname}#q=${serializeSearch()}`);
   }
-  return React.createElement(Component, {
-    ...props, ...store.getState(),
-    query: q
-  });
-};
+}
 
-export let routes = (
-	<Router history={createBrowserHistory()} createElement={createElement}>
-		<Redirect from="/" to="/archive/results" />
-		<Route path="/" component={App}>
-			<Route path=":searchType/results" component={Search} />
-			<Route path="archive/:id" component={ArchiveFiche} />
-			<Route path="creator/:id" component={CreatorFiche} />
-			<Route path="legislation/:id" component={LegislationFiche} />
-		</Route>
-	</Router>
+
+// Connector functions
+
+// Gets the stored scroll position for the current route
+const getStoredScrollState = (pathname, scrollTop) =>
+  scrollTop[pathname] && getCurrentScrollTop() !== scrollTop[pathname]
+    ? { storedScrollTop: scrollTop[pathname] }
+    : {};
+
+// Passes along the current fiche state and the stored scroll position
+const connectFicheComponent = connect(
+  (state, routed) => ({
+    ...getStoredScrollState(routed.location.pathname, state.scrollTop),
+    fiche: state.fiche
+  }),
+  (dispatch) => actions(dispatch)
 );
 
-export let makeUrl = function (id, params) {
-	switch(id) {
-		case "ROOT":
-			return "/";
-		case "ABBREVIATIONS":
-			return "http://dutch-caribbean.huygens.knaw.nl/wp-content/uploads/2013/08/Afkortingen-Caribische-Wereld.pdf";
-	}
-}
+// Only pases along the search state of the currently active search
+const connectSearchComponent = connect(
+  (state, routed) => ({
+    [routed.params.searchType + "Search"]: state[routed.params.searchType + "Search"]
+  }),
+  (dispatch) => actions(dispatch)
+);
+
+// Just passes along the stored scroll position for this route
+const connectAppComponent = connect(
+  (state, routed) => getStoredScrollState(routed.location.pathname, state.scrollTop),
+  (dispatch) => actions(dispatch)
+);
+
+// Actual routes
+export const routes = (
+  <Provider store={store}>
+    <Router history={browserHistory}>
+      <Redirect from="/" to="/archive/results" />
+      <Route path="/" component={connectAppComponent(App)}>
+        <Route path=":searchType/results" component={connectSearchComponent(Search)} />
+        <Route path="archive/:id" component={connectFicheComponent(ArchiveFiche)} />
+        <Route path="creator/:id" component={connectFicheComponent(CreatorFiche)} />
+        <Route path="legislation/:id" component={connectFicheComponent(LegislationFiche)} />
+      </Route>
+    </Router>
+  </Provider>
+);
 
 export function makeArchiveSearchUrl() {
   return `/archive/results`
@@ -62,11 +101,4 @@ export function makeCreatorUrl(id) {
 }
 export function makeLegislationUrl(id) {
   return `/legislation/${id}`
-}
-export function setSearchUrl(searchOptions) {
-  if (window.location.pathname.substr(-"/results".length) === "/results") {
-    history.replaceState({}, "", window.location.pathname + "?q=" + juri.encode(searchOptions));
-  } else {
-    history.pushState({}, "", window.location.pathname + "?q=" + juri.encode(searchOptions));
-  }
 }
